@@ -22,6 +22,7 @@ interface AgentBInput {
     userPreferences?: string[];
     startDate: string;
     arrivalHour?: number;
+    budget?: number;
 }
 
 const RELEVANCE_THRESHOLD = 25; // Minimum score to be considered if preferences are set
@@ -32,9 +33,18 @@ const RELEVANCE_THRESHOLD = 25; // Minimum score to be considered if preferences
  * 2. Popularity (tourist visits)
  * 3. Rating (recommendations)
  */
-function scoreSpot(spot: Spot, preferences: string[]): number {
+function scoreSpot(spot: Spot, preferences: string[], budget?: number): number {
     // Base profit: Rating and Popularity
     let profit = spot.popularity + spot.rating * 5;
+
+    // Budget Sensitivity
+    if (budget !== undefined) {
+        if (budget < 20000 && spot.entryFee > 500) {
+            profit -= 50; // Penalize expensive spots on low budget
+        } else if (budget > 60000 && spot.entryFee > 1000) {
+            profit += 30; // Boost "Premium" experiences on high budget
+        }
+    }
 
     if (preferences.length === 0) return profit;
 
@@ -129,13 +139,13 @@ function findNearestRestaurant(
  * Maximizes aggregate Profit (User Interest) across all days M.
  */
 function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpots: Spot[] } {
-    const { spots, restaurants, daysInLocality, locality, cityCenter, hotelLocation, maxHoursPerDay, userPreferences = [], startDate, arrivalHour } = input;
+    const { spots, restaurants, daysInLocality, locality, cityCenter, hotelLocation, maxHoursPerDay, userPreferences = [], startDate, arrivalHour, budget } = input;
 
     // Use HotelLocation as Depot if available, otherwise CityCenter
     const depot = hotelLocation || cityCenter;
 
     // 1. Score and filter candidates
-    const scored = spots.map(s => ({ spot: s, score: scoreSpot(s, userPreferences) }));
+    const scored = spots.map(s => ({ spot: s, score: scoreSpot(s, userPreferences, budget) }));
     let qualified = scored.sort((a, b) => b.score - a.score);
 
     if (userPreferences.length > 0) {
@@ -201,7 +211,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
 
                 if (day.totalHours + deltaTotal + returnTime > maxHoursPerDay) continue;
 
-                const profit = scoreSpot(spot, userPreferences);
+                const profit = scoreSpot(spot, userPreferences, budget);
                 const efficiency = profit / (deltaTotal || 0.1);
 
                 if (!bestInsertion || efficiency > bestInsertion.efficiency) {
@@ -291,9 +301,8 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
         };
     });
 
-    const unselectedSpots = qualified
-        .filter(q => !assigned.has(q.spot.id))
-        .map(q => q.spot);
+    const unselectedSpots = spots
+        .filter(s => !assigned.has(s.id));
 
     return { dayPlans, unselectedSpots };
 }
@@ -301,7 +310,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { localities, agentData, startDate, maxHoursPerDay = DEFAULT_MAX_HOURS, userPreferences = [], hotelLocation, arrivalHour } = body;
+        const { localities, agentData, startDate, maxHoursPerDay = DEFAULT_MAX_HOURS, userPreferences = [], hotelLocation, arrivalHour, budget } = body;
 
         const allDayPlans: DayPlan[] = [];
         const allUnselectedSpots: Spot[] = [];
@@ -339,6 +348,7 @@ export async function POST(request: NextRequest) {
                 userPreferences,
                 startDate: new Date(new Date(startDate).getTime() + dayOffset * 86400000).toISOString(),
                 arrivalHour: plannedLocalitiesCount === 0 ? arrivalHour : undefined,
+                budget,
             });
 
             // Re-number days

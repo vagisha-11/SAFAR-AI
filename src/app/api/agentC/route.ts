@@ -258,6 +258,57 @@ export async function POST(request: NextRequest) {
             totalVariableCost += costDiff;
         }
 
+        // --- NEW: Survival Pruning ---
+        // If we are still over budget even with the cheapest assets, prune spots
+        let currentTotalCost = totalVariableCost + activitiesCost;
+        if (currentTotalCost > tripInput.budget) {
+            // Flatten all spots across all days to find those to prune
+            interface PrunableSpot {
+                dayIdx: number;
+                itemIdx: number;
+                cost: number;
+                utility: number;
+            }
+
+            const prunable: PrunableSpot[] = [];
+            updatedDayPlans.forEach((day, dIdx) => {
+                day.items.forEach((item, iIdx) => {
+                    if (item.type === 'spot') {
+                        const s = item.data as Spot;
+                        prunable.push({
+                            dayIdx: dIdx,
+                            itemIdx: iIdx,
+                            cost: s.entryFee,
+                            utility: s.popularity + s.rating * 5, // Simple utility proxy
+                        });
+                    }
+                });
+            });
+
+            // Sort by "Efficiency" (lowest utility/cost first for pruning)
+            prunable.sort((a, b) => (a.utility / (a.cost || 1)) - (b.utility / (b.cost || 1)));
+
+            for (const p of prunable) {
+                if (currentTotalCost <= tripInput.budget) break;
+
+                const day = updatedDayPlans[p.dayIdx];
+                const item = day.items[p.itemIdx];
+                if (!item || item.type !== 'spot') continue;
+
+                // Remove it by marking its data with a special flag if we must keep index, 
+                // or just remove it if we don't care about subsequent p indices.
+                // Since we're iterating through a copy of indices, let's just null it out carefully with a type cast or use a filter.
+                currentTotalCost -= p.cost;
+                day.totalCost -= p.cost;
+                (day.items[p.itemIdx] as any)._toPrune = true;
+            }
+
+            // Clean up marked items
+            updatedDayPlans.forEach(day => {
+                day.items = day.items.filter(it => !(it as any)._toPrune);
+            });
+        }
+
         // Apply results
         const selectedHotels: Record<string, Hotel> = {};
         let outboundSelection: any = null;

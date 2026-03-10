@@ -30,15 +30,18 @@ export default function PromptBar() {
                 setLastResponse(promptData.intent.response);
                 addPromptMessage('assistant', promptData.intent.response);
 
-                // Handle budget change
-                if (promptData.intent.action === 'change_budget' && promptData.intent.params.amount) {
+                // Handle all delta updates
+                if (promptData.intent.action !== 'generic') {
                     const res = await fetch('/api/deltaUpdate', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            action: 'change_budget',
+                            action: promptData.intent.action,
                             itinerary,
-                            payload: { newBudget: parseInt(promptData.intent.params.amount) },
+                            payload: {
+                                ...promptData.intent.params,
+                                newBudget: promptData.intent.action === 'change_budget' ? parseInt(promptData.intent.params.amount) : undefined
+                            },
                         }),
                     });
                     const data = await res.json();

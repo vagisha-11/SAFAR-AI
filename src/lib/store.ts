@@ -106,6 +106,7 @@ export const useSafarStore = create<SafarState>((set, get) => ({
             currentCost: itinerary.totalCost,
             selectedHotels: initialHotels
         });
+        get().recalculateTotalCost();
     },
 
     updateDayPlan: (dayNumber, dayPlan) => {

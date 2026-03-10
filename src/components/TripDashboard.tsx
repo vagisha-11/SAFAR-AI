@@ -60,12 +60,21 @@ export default function TripDashboard() {
                     </div>
                 </div>
 
-                {/* Day Selector */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                {/* Day Selector - Horizontally Scrollable */}
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    overflowX: 'auto',
+                    maxWidth: '40%',
+                    padding: '4px 0',
+                    scrollbarWidth: 'none', // Hide scrollbar for clean look
+                    msOverflowStyle: 'none'
+                }}>
                     <button
                         onClick={() => setSelectedDay(null)}
                         className={selectedDay === null ? 'btn-primary' : 'btn-secondary'}
-                        style={{ padding: '8px 16px', fontSize: 13 }}
+                        style={{ padding: '8px 16px', fontSize: 13, whiteSpace: 'nowrap' }}
                     >
                         Entire Trip
                     </button>
@@ -74,7 +83,7 @@ export default function TripDashboard() {
                             key={day.dayNumber}
                             onClick={() => setSelectedDay(day.dayNumber)}
                             className={selectedDay === day.dayNumber ? 'btn-primary' : 'btn-secondary'}
-                            style={{ padding: '8px 12px', fontSize: 13, minWidth: 36 }}
+                            style={{ padding: '8px 12px', fontSize: 13, minWidth: 36, whiteSpace: 'nowrap' }}
                         >
                             D{day.dayNumber}
                         </button>

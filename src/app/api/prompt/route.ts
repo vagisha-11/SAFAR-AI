@@ -62,6 +62,24 @@ function detectIntent(prompt: string): {
         };
     }
 
+    // Category Swap (e.g., "remove clubs and add religious places")
+    if ((lower.includes('remove') || lower.includes('skip') || lower.includes('delete')) &&
+        (lower.includes('add') || lower.includes('include') || lower.includes('more'))) {
+        const removeMatch = prompt.match(/(?:remove|skip|delete)\s+(.+?)(?:\s+and|\s*,|$)/i);
+        const addMatch = prompt.match(/(?:add|include|more)\s+(.+?)(?:\s+and|\s*,|$)/i);
+
+        if (removeMatch && addMatch) {
+            return {
+                action: 'category_swap',
+                params: {
+                    removeCategory: removeMatch[1].trim(),
+                    addCategory: addMatch[1].trim()
+                },
+                response: `Understood! I'll remove items related to "${removeMatch[1]}" and refocus your itinerary on "${addMatch[1]}".`,
+            };
+        }
+    }
+
     // General preference
     if (lower.includes('prefer') || lower.includes('like') || lower.includes('interest')) {
         return {

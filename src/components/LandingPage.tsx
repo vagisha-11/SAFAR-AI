@@ -142,7 +142,8 @@ export default function LandingPage() {
                     startDate: tripInput.departureDate,
                     maxHoursPerDay: 14,
                     userPreferences: tripInput.preferences,
-                    arrivalHour
+                    arrivalHour,
+                    budget: tripInput.budget,
                 }),
             });
             const agentBData = await agentBRes.json();

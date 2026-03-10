@@ -38,7 +38,7 @@ function FitBounds({ points }: { points: LatLng[] }) {
     useEffect(() => {
         if (points.length > 0) {
             const bounds = L.latLngBounds(points.map(p => [p.lat, p.lng]));
-            map.fitBounds(bounds, { padding: [40, 40], maxZoom: 14 });
+            map.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
         }
     }, [points, map]);
     return null;
@@ -96,7 +96,7 @@ function MapClickHandler() {
 }
 
 export default function MapView() {
-    const { itinerary, selectedDay, selectedHotels, selectedPlaceId } = useSafarStore();
+    const { itinerary, selectedDay, selectedHotels, selectedPlaceId, setSelectedPlaceId } = useSafarStore();
     const markerRefs = useRef<Record<string, L.Marker>>({});
 
     // Collect all points to display
@@ -210,10 +210,10 @@ export default function MapView() {
                         key={`route-${i}`}
                         positions={route.points}
                         pathOptions={{
-                            color: route.color,
-                            weight: 3,
-                            opacity: 0.7,
-                            dashArray: '2, 10', // Dotted lines
+                            color: '#1e3a8a', // Bold Dark Blue
+                            weight: 5,       // Bolder
+                            opacity: 0.8,
+                            dashArray: '5, 15', // More visible dots
                             lineCap: 'round'
                         }}
                     />
@@ -292,6 +292,55 @@ export default function MapView() {
                     </Marker>
                 ))}
             </MapContainer>
+
+            {/* Horizontal Spot Carousel (Scrollbar on the map) */}
+            {selectedDay && (spots.length > 0 || restaurants.length > 0) && (
+                <div style={{
+                    position: 'absolute', bottom: 80, left: '50%', transform: 'translateX(-50%)',
+                    width: '90%', zIndex: 1000,
+                    display: 'flex', gap: 12, overflowX: 'auto', padding: '12px 0',
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: 'rgba(99,102,241,0.5) transparent',
+                }}>
+                    {[...spots, ...restaurants.map(r => ({ spot: r.restaurant as any, dayNum: r.dayNum, type: 'food' }))].map((item, idx) => {
+                        const isSpot = 'spot' in item;
+                        const data = isSpot ? item.spot : (item as any).spot;
+                        const isSelected = selectedPlaceId === data.id;
+
+                        return (
+                            <div
+                                key={`${data.id}-${idx}`}
+                                className="glass"
+                                onClick={() => {
+                                    setSelectedPlaceId(data.id);
+                                    const marker = markerRefs.current[data.id];
+                                    if (marker) marker.openPopup();
+                                }}
+                                style={{
+                                    minWidth: 200, padding: '10px 14px', borderRadius: 12,
+                                    cursor: 'pointer', transition: 'all 0.2s',
+                                    border: isSelected ? '1px solid #6366f1' : '1px solid rgba(255,255,255,0.1)',
+                                    background: isSelected ? 'rgba(99,102,241,0.15)' : 'rgba(10,10,26,0.8)',
+                                    flexShrink: 0,
+                                }}
+                            >
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                                    <span style={{ fontSize: 14 }}>{isSpot ? '📍' : '🍽️'}</span>
+                                    <strong style={{ fontSize: 13, color: '#f0f0ff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                        {data.name}
+                                    </strong>
+                                </div>
+                                <div style={{ fontSize: 11, color: '#a0a0cc' }}>
+                                    {isSpot ? data.category : (data as any).cuisine}
+                                </div>
+                                <div style={{ fontSize: 10, color: '#6b6b99', marginTop: 4 }}>
+                                    {isSelected ? '🎯 Selected' : 'Click to view'}
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            )}
 
             {/* Map Legend */}
             <div className="glass" style={{
