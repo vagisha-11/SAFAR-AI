@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSafarStore } from '@/lib/store';
 import { TripInput } from '@/lib/types';
 
 const POPULAR_DESTINATIONS = [
+    // ... rest remains same
     { name: 'Goa', emoji: '🏖️', tagline: 'Beaches & Nightlife' },
     { name: 'Manali', emoji: '🏔️', tagline: 'Mountains & Snow' },
     { name: 'Jaipur', emoji: '🏰', tagline: 'Royal Heritage' },
@@ -20,7 +21,20 @@ const INTERESTS = [
 ];
 
 export default function LandingPage() {
-    const { setTripInput, setIsLoading, setLoadingMessage, setActiveStep, setLocalitySplit, setAgentData, setItinerary, setBudget, setSelectedHotel } = useSafarStore();
+    const {
+        tripInput: storeTripInput,
+        activeStep,
+        setIsLoading,
+        setLoadingMessage,
+        setActiveStep,
+        setLocalitySplit,
+        setAgentData,
+        setItinerary,
+        setBudget,
+        setSelectedHotel,
+        itinerary,
+        setTripInput
+    } = useSafarStore();
 
     const [destination, setDestination] = useState('');
     const [source, setSource] = useState('');
@@ -32,18 +46,31 @@ export default function LandingPage() {
     const [budget, setBudgetLocal] = useState('50000');
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
+    // Sync local state if store changes (e.g. from applySuggestion)
+    useEffect(() => {
+        if (storeTripInput) {
+            setDestination(storeTripInput.destination);
+            setSource(storeTripInput.source);
+            setDepartureDate(storeTripInput.departureDate);
+            setReturnDate(storeTripInput.returnDate);
+            setBudgetLocal(storeTripInput.budget.toString());
+            setSelectedInterests(storeTripInput.preferences);
+            setIsDateFlexible(storeTripInput.isDateFlexible);
+        }
+    }, [storeTripInput]);
+
     const toggleInterest = (interest: string) => {
         setSelectedInterests(prev =>
             prev.includes(interest) ? prev.filter(i => i !== interest) : [...prev, interest]
         );
     };
 
-    const handlePlanTrip = async () => {
-        const tripInput: TripInput = {
+    const handlePlanTrip = async (forcedInput?: TripInput) => {
+        const tripInput: TripInput = forcedInput || {
             destination,
             source,
             departureDate,
-            returnDate: isDateFlexible ? departureDate : returnDate, // fallback
+            returnDate: isDateFlexible ? departureDate : returnDate,
             budget: parseInt(budget) || 50000,
             preferences: selectedInterests,
             maxHoursPerDay: 14,
@@ -52,7 +79,7 @@ export default function LandingPage() {
             maxDays: parseInt(maxDays),
         };
 
-        setTripInput(tripInput);
+        if (!forcedInput) setTripInput(tripInput);
         setIsLoading(true);
         setActiveStep('planning');
 
@@ -68,10 +95,9 @@ export default function LandingPage() {
             if (!splitData.success) throw new Error('Locality split failed');
             setLocalitySplit(splitData.split);
 
-            // Calculate adjusted return date for Agent A based on totalDays from split
-            let adjustedReturnDate = returnDate;
-            if (isDateFlexible) {
-                const depDate = new Date(departureDate);
+            let adjustedReturnDate = tripInput.returnDate;
+            if (tripInput.isDateFlexible) {
+                const depDate = new Date(tripInput.departureDate);
                 depDate.setDate(depDate.getDate() + splitData.totalDays);
                 adjustedReturnDate = depDate.toISOString().split('T')[0];
             }
@@ -83,9 +109,9 @@ export default function LandingPage() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     localities: splitData.split,
-                    source,
-                    destination,
-                    departureDate,
+                    source: tripInput.source,
+                    destination: tripInput.destination,
+                    departureDate: tripInput.departureDate,
                     returnDate: adjustedReturnDate,
                 }),
             });
@@ -95,19 +121,36 @@ export default function LandingPage() {
 
             // Step 3: Agent B — Build Itinerary
             setLoadingMessage('🧠 Agent B is crafting your day-by-day itinerary...');
+
+            // Pre-calculate expected arrival time for Day 1
+            let arrivalHour = undefined;
+            const outboundFlights = (agentAData.data.flights || []).filter((f: any) => f.source.toLowerCase() === tripInput.source.toLowerCase());
+            const outboundTrains = (agentAData.data.trains || []).filter((t: any) => t.source.toLowerCase() === tripInput.source.toLowerCase());
+            const allOutbound = [...outboundFlights, ...outboundTrains].sort((a, b) => a.price - b.price);
+
+            if (allOutbound.length > 0) {
+                const arrivalTime = new Date(allOutbound[0].arrivalTime);
+                arrivalHour = arrivalTime.getHours() + arrivalTime.getMinutes() / 60;
+            }
+
             const agentBRes = await fetch('/api/agentB', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     localities: splitData.split,
                     agentData: agentAData.data,
-                    startDate: departureDate,
+                    startDate: tripInput.departureDate,
                     maxHoursPerDay: 14,
-                    userPreferences: selectedInterests,
+                    userPreferences: tripInput.preferences,
+                    arrivalHour
                 }),
             });
             const agentBData = await agentBRes.json();
             if (!agentBData.success) throw new Error('Agent B failed');
+
+            // Set suggestions for resilience
+            const { setSuggestions } = useSafarStore.getState();
+            setSuggestions(agentBData.suggestions || []);
 
             // Step 4: Agent C — Budget Optimization
             setLoadingMessage('💰 Agent C is optimizing your budget...');
@@ -116,6 +159,7 @@ export default function LandingPage() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     dayPlans: agentBData.dayPlans,
+                    unselectedSpots: agentBData.unselectedSpots,
                     agentData: agentAData.data,
                     tripInput,
                     localities: splitData.split,
@@ -127,7 +171,6 @@ export default function LandingPage() {
             setItinerary(agentCData.itinerary);
             setBudget(agentCData.budgetAllocation);
 
-            // Set selected hotels
             if (agentCData.selectedHotels) {
                 for (const [locality, hotel] of Object.entries(agentCData.selectedHotels)) {
                     setSelectedHotel(locality, hotel as any);
@@ -146,6 +189,17 @@ export default function LandingPage() {
             setIsLoading(false);
         }
     };
+
+    // Auto-trigger planning if in planning mode (e.g. from applySuggestion)
+    const isPlanningRef = useRef(false);
+    useEffect(() => {
+        if (activeStep === 'planning' && !itinerary && storeTripInput && !isPlanningRef.current) {
+            isPlanningRef.current = true;
+            handlePlanTrip(storeTripInput).finally(() => {
+                isPlanningRef.current = false;
+            });
+        }
+    }, [activeStep, storeTripInput?.returnDate, itinerary]);
 
     return (
         <div style={{ minHeight: '100vh', position: 'relative' }}>
@@ -360,7 +414,7 @@ export default function LandingPage() {
                     {/* Submit Button */}
                     <button
                         className="btn-primary"
-                        onClick={handlePlanTrip}
+                        onClick={() => handlePlanTrip()}
                         disabled={!destination || !source || !departureDate || (!returnDate && !isDateFlexible)}
                         style={{ width: '100%', justifyContent: 'center', fontSize: 16, padding: '16px 32px' }}
                     >

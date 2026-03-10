@@ -25,6 +25,8 @@ interface SafarState {
     itinerary: FullItinerary | null;
     setItinerary: (itinerary: FullItinerary) => void;
     updateDayPlan: (dayNumber: number, dayPlan: DayPlan) => void;
+    addSpotToDay: (dayNumber: number, spot: any) => void;
+    removeSpotFromDay: (dayNumber: number, spotId: string) => void;
 
     // Budget
     budget: BudgetAllocation | null;
@@ -54,7 +56,14 @@ interface SafarState {
     selectedHotels: Record<string, Hotel>; // locality -> hotel
     setSelectedHotel: (locality: string, hotel: Hotel) => void;
     setSelectedTravel: (type: 'outbound' | 'return', travel: TravelSelection) => void;
-    setSelectedInterCitySegment: (locality: string, option: any) => void; // Using any for InterCityOption to avoid type issues if not exported correctly
+    setSelectedInterCitySegment: (locality: string, option: any) => void;
+    selectedPlaceId: string | null;
+    setSelectedPlaceId: (id: string | null) => void;
+
+    // Suggestions
+    suggestions: { type: string; message: string; data: any }[];
+    setSuggestions: (suggestions: any[]) => void;
+    applySuggestion: (suggestion: any) => void;
 
     // Reset
     reset: () => void;
@@ -74,6 +83,8 @@ const initialState = {
     promptHistory: [],
     reviews: [],
     selectedHotels: {},
+    suggestions: [],
+    selectedPlaceId: null,
 };
 
 export const useSafarStore = create<SafarState>((set, get) => ({
@@ -89,7 +100,12 @@ export const useSafarStore = create<SafarState>((set, get) => ({
         for (const day of itinerary.days) {
             if (day.hotel) initialHotels[day.locality] = day.hotel;
         }
-        set({ itinerary, currentCost: itinerary.totalCost, selectedHotels: initialHotels });
+        set({
+            itinerary,
+            tripInput: itinerary.tripInput, // Sync trip input (budget, etc.)
+            currentCost: itinerary.totalCost,
+            selectedHotels: initialHotels
+        });
     },
 
     updateDayPlan: (dayNumber, dayPlan) => {
@@ -180,9 +196,13 @@ export const useSafarStore = create<SafarState>((set, get) => ({
                 notes: `${type === 'outbound' ? '✈️ Outbound' : '✈️ Return'}: ${travel.data.source} → ${travel.data.destination}`,
             };
 
+            const nextItems = type === 'outbound'
+                ? [travelItem, ...filteredItems]
+                : [...filteredItems, travelItem];
+
             updatedDays[dayIdx] = {
                 ...day,
-                items: type === 'outbound' ? [travelItem, ...filteredItems] : [...filteredItems, travelItem],
+                items: nextItems,
             };
         }
 
@@ -212,6 +232,96 @@ export const useSafarStore = create<SafarState>((set, get) => ({
 
         set({ itinerary: { ...nextItinerary, days: updatedDays } });
         get().recalculateTotalCost();
+    },
+
+    setSelectedPlaceId: (id) => set({ selectedPlaceId: id }),
+
+    addSpotToDay: (dayNumber, spot) => {
+        const { itinerary } = get();
+        if (!itinerary) return;
+
+        const nextItinerary = { ...itinerary };
+        const updatedDays = [...nextItinerary.days];
+        const dayIdx = updatedDays.findIndex(d => d.dayNumber === dayNumber);
+
+        if (dayIdx >= 0) {
+            const day = updatedDays[dayIdx];
+            const lastActiveItem = [...day.items].reverse().find(i => i.type === 'spot' || i.type === 'restaurant');
+            let startTime = '16:00';
+            if (lastActiveItem && lastActiveItem.endTime) {
+                startTime = lastActiveItem.endTime;
+            }
+
+            const [h, m] = startTime.split(':').map(Number);
+            const endHour = Math.min(23, h + (spot.timeToSpend || 1));
+            const endTime = `${String(endHour).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+
+            const newItem = {
+                type: 'spot' as const,
+                data: spot,
+                startTime,
+                endTime,
+                notes: '✨ Manually added'
+            };
+
+            updatedDays[dayIdx] = {
+                ...day,
+                items: [...day.items, newItem].sort((a, b) => (a.startTime || '').localeCompare(b.startTime || '')),
+            };
+
+            const nextUnselected = (itinerary.unselectedSpots || []).filter(s => (s as any).id !== spot.id);
+            set({ itinerary: { ...nextItinerary, days: updatedDays, unselectedSpots: nextUnselected } });
+            get().recalculateTotalCost();
+        }
+    },
+
+    removeSpotFromDay: (dayNumber, spotId) => {
+        const { itinerary } = get();
+        if (!itinerary) return;
+
+        const nextItinerary = { ...itinerary };
+        const updatedDays = [...nextItinerary.days];
+        const dayIdx = updatedDays.findIndex(d => d.dayNumber === dayNumber);
+
+        if (dayIdx >= 0) {
+            const day = updatedDays[dayIdx];
+            const spotItem = day.items.find(i => i.type === 'spot' && (i.data as any).id === spotId);
+            const removedSpot = spotItem?.data;
+            const nextItems = day.items.filter(i => !(i.type === 'spot' && (i.data as any).id === spotId));
+
+            updatedDays[dayIdx] = { ...day, items: nextItems };
+
+            const nextUnselected = [...(itinerary.unselectedSpots || [])];
+            if (removedSpot) nextUnselected.push(removedSpot as any);
+
+            set({ itinerary: { ...nextItinerary, days: updatedDays, unselectedSpots: nextUnselected } });
+            get().recalculateTotalCost();
+        }
+    },
+
+    setSuggestions: (suggestions) => set({ suggestions }),
+
+    applySuggestion: (suggestion) => {
+        if (suggestion.type === 'shorten_trip') {
+            const { tripInput } = get();
+            if (!tripInput) return;
+
+            // Calculate new return date
+            const start = new Date(tripInput.departureDate);
+            const newReturnDate = new Date(start.getTime() + (suggestion.recommendedDays - 1) * 86400000);
+
+            const nextTripInput = {
+                ...tripInput,
+                returnDate: newReturnDate.toISOString().split('T')[0],
+            };
+
+            set({
+                tripInput: nextTripInput,
+                activeStep: 'planning', // Go back to planning to trigger re-run
+                itinerary: null, // Clear old itinerary
+                suggestions: [] // Clear suggestions
+            });
+        }
     },
 
     reset: () => set(initialState),

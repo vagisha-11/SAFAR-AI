@@ -6,7 +6,7 @@ import FeedbackForm from './FeedbackForm';
 import { useState } from 'react';
 
 export default function ItineraryPanel() {
-    const { itinerary, selectedDay, setSelectedDay } = useSafarStore();
+    const { itinerary, selectedDay, setSelectedDay, removeSpotFromDay, setSelectedPlaceId, selectedPlaceId } = useSafarStore();
     const [expandedDay, setExpandedDay] = useState<number | null>(null);
     const [feedbackSpotId, setFeedbackSpotId] = useState<string | null>(null);
 
@@ -16,24 +16,8 @@ export default function ItineraryPanel() {
         ? itinerary.days.filter(d => d.dayNumber === selectedDay)
         : itinerary.days;
 
-    const removeSpot = async (spotId: string) => {
-        try {
-            const res = await fetch('/api/deltaUpdate', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    action: 'remove_place',
-                    itinerary,
-                    payload: { spotId },
-                }),
-            });
-            const data = await res.json();
-            if (data.success) {
-                useSafarStore.getState().setItinerary(data.itinerary);
-            }
-        } catch (err) {
-            console.error('Failed to remove place:', err);
-        }
+    const removeSpot = (dayNumber: number, spotId: string) => {
+        removeSpotFromDay(dayNumber, spotId);
     };
 
     return (
@@ -111,9 +95,27 @@ export default function ItineraryPanel() {
                                 {day.items.map((item, idx) => {
                                     if (item.type === 'spot') {
                                         const spot = item.data as Spot;
+                                        const isSelected = selectedPlaceId === spot.id;
                                         return (
                                             <div key={`${spot.id}-${idx}`} className="timeline-item spot">
-                                                <div className="glass-card" style={{ padding: '12px 14px', marginBottom: 4 }}>
+                                                <div
+                                                    className="glass-card"
+                                                    style={{
+                                                        padding: '12px 14px',
+                                                        marginBottom: 4,
+                                                        cursor: 'pointer',
+                                                        border: isSelected ? '1px solid #6366f1' : '1px solid rgba(99,102,241,0.1)',
+                                                        background: isSelected ? 'rgba(99,102,241,0.12)' : 'rgba(255,255,255,0.03)',
+                                                        transition: 'all 0.2s'
+                                                    }}
+                                                    onClick={() => setSelectedPlaceId(spot.id)}
+                                                    onMouseEnter={(e) => {
+                                                        if (!isSelected) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.08)';
+                                                    }}
+                                                    onMouseLeave={(e) => {
+                                                        if (!isSelected) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.03)';
+                                                    }}
+                                                >
                                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
                                                         <div style={{ flex: 1 }}>
                                                             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -137,7 +139,7 @@ export default function ItineraryPanel() {
                                                                 title="Leave feedback"
                                                             >💬</button>
                                                             <button
-                                                                onClick={(e) => { e.stopPropagation(); removeSpot(spot.id); }}
+                                                                onClick={(e) => { e.stopPropagation(); removeSpot(day.dayNumber, spot.id); }}
                                                                 className="btn-icon"
                                                                 style={{ width: 28, height: 28, fontSize: 12, borderColor: 'rgba(239,68,68,0.3)' }}
                                                                 title="Remove from itinerary"
@@ -154,13 +156,20 @@ export default function ItineraryPanel() {
 
                                     if (item.type === 'restaurant') {
                                         const rest = item.data as Restaurant;
+                                        const isSelected = selectedPlaceId === rest.id;
                                         return (
                                             <div key={`${rest.id}-${idx}`} className="timeline-item food">
-                                                <div style={{
-                                                    padding: '8px 14px', marginBottom: 4,
-                                                    background: 'rgba(16,185,129,0.06)',
-                                                    borderRadius: 8, border: '1px solid rgba(16,185,129,0.12)',
-                                                }}>
+                                                <div
+                                                    style={{
+                                                        padding: '8px 14px', marginBottom: 4,
+                                                        background: isSelected ? 'rgba(16,185,129,0.15)' : 'rgba(16,185,129,0.06)',
+                                                        borderRadius: 8,
+                                                        border: isSelected ? '1px solid #10b981' : '1px solid rgba(16,185,129,0.12)',
+                                                        cursor: 'pointer',
+                                                        transition: 'all 0.2s'
+                                                    }}
+                                                    onClick={() => setSelectedPlaceId(rest.id)}
+                                                >
                                                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                         <div>
                                                             <span style={{ fontWeight: 600, fontSize: 13, color: '#10b981' }}>

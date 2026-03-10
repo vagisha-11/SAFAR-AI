@@ -7,6 +7,8 @@ import BudgetPanel from './BudgetPanel';
 import PromptBar from './PromptBar';
 import HotelList from './HotelList';
 import TravelOptions from './TravelOptions';
+import ResiliencePanel from './ResiliencePanel';
+import SpotExplorer from './SpotExplorer';
 
 // Leaflet must be loaded client-side only (no SSR)
 const MapView = dynamic(() => import('./MapView'), { ssr: false });
@@ -118,6 +120,8 @@ export default function TripDashboard() {
                 }}>
                     {/* Scrollable content */}
                     <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px' }}>
+                        <ResiliencePanel />
+                        <SpotExplorer />
                         <ItineraryPanel />
                         <div style={{ marginTop: 20 }}>
                             <TravelOptions />

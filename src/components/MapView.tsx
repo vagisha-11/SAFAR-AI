@@ -96,10 +96,12 @@ function MapClickHandler() {
 }
 
 export default function MapView() {
-    const { itinerary, selectedDay, selectedHotels } = useSafarStore();
+    const { itinerary, selectedDay, selectedHotels, selectedPlaceId } = useSafarStore();
+    const markerRefs = useRef<Record<string, L.Marker>>({});
 
     // Collect all points to display
     const { spots, restaurants, routes, allPoints, hotelMarkers } = useMemo(() => {
+        // ... (Memo logic keeps same)
         if (!itinerary) return { spots: [], restaurants: [], routes: [], allPoints: [], hotelMarkers: [] };
 
         const daysToShow = selectedDay
@@ -152,12 +154,20 @@ export default function MapView() {
         return { spots, restaurants, routes, allPoints, hotelMarkers };
     }, [itinerary, selectedDay, selectedHotels]);
 
+    // Programmatically open popup when selectedPlaceId changes
+    useEffect(() => {
+        if (selectedPlaceId && markerRefs.current[selectedPlaceId]) {
+            markerRefs.current[selectedPlaceId].openPopup();
+        }
+    }, [selectedPlaceId]);
+
     // Default center (India)
     const defaultCenter: [number, number] = allPoints.length > 0
         ? [allPoints[0].lat, allPoints[0].lng]
         : [20.5937, 78.9629];
 
     const removeSpot = async (spotId: string) => {
+        // ... (Keep removeSpot logic same)
         if (!itinerary) return;
         try {
             const res = await fetch('/api/deltaUpdate', {
@@ -187,8 +197,8 @@ export default function MapView() {
                 zoomControl={true}
             >
                 <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                    url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
                 <FitBounds points={allPoints} />
@@ -203,7 +213,8 @@ export default function MapView() {
                             color: route.color,
                             weight: 3,
                             opacity: 0.7,
-                            dashArray: '8, 4',
+                            dashArray: '2, 10', // Dotted lines
+                            lineCap: 'round'
                         }}
                     />
                 ))}
@@ -222,7 +233,12 @@ export default function MapView() {
 
                 {/* Spot markers */}
                 {spots.map(({ spot, dayNum }) => (
-                    <Marker key={spot.id} position={[spot.location.lat, spot.location.lng]} icon={spotIcon}>
+                    <Marker
+                        key={spot.id}
+                        position={[spot.location.lat, spot.location.lng]}
+                        icon={spotIcon}
+                        ref={(ref) => { if (ref) markerRefs.current[spot.id] = ref; }}
+                    >
                         <Popup>
                             <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 200 }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
@@ -258,7 +274,12 @@ export default function MapView() {
 
                 {/* Restaurant markers */}
                 {restaurants.map(({ restaurant, dayNum }) => (
-                    <Marker key={restaurant.id} position={[restaurant.location.lat, restaurant.location.lng]} icon={restaurantIcon}>
+                    <Marker
+                        key={restaurant.id}
+                        position={[restaurant.location.lat, restaurant.location.lng]}
+                        icon={restaurantIcon}
+                        ref={(ref) => { if (ref) markerRefs.current[restaurant.id] = ref; }}
+                    >
                         <Popup>
                             <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 160 }}>
                                 <strong style={{ fontSize: 14, color: '#10b981' }}>🍽️ {restaurant.name}</strong>

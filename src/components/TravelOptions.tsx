@@ -17,12 +17,26 @@ export default function TravelOptions() {
         );
     }
 
-    // Filter flights and trains by outbound/return based on source/destination
-    const outboundFlights = allFlights.filter(f => f.source.toLowerCase() === tripInput.source.toLowerCase());
-    const returnFlights = allFlights.filter(f => f.destination.toLowerCase() === tripInput.source.toLowerCase());
+    // Filter and sort flights and trains by outbound/return based on source/destination
+    // Sort so that selected travel appears first
+    const selectedOutboundId = itinerary.outboundTravel?.data.id;
+    const selectedReturnId = itinerary.returnTravel?.data.id;
 
-    const outboundTrains = allTrains.filter(t => t.source.toLowerCase() === tripInput.source.toLowerCase());
-    const returnTrains = allTrains.filter(t => t.destination.toLowerCase() === tripInput.source.toLowerCase());
+    const outboundFlights = allFlights
+        .filter(f => f.source.toLowerCase() === tripInput.source.toLowerCase())
+        .sort((a, b) => (a.id === selectedOutboundId ? -1 : b.id === selectedOutboundId ? 1 : 0));
+
+    const returnFlights = allFlights
+        .filter(f => f.destination.toLowerCase() === tripInput.source.toLowerCase())
+        .sort((a, b) => (a.id === selectedReturnId ? -1 : b.id === selectedReturnId ? 1 : 0));
+
+    const outboundTrains = allTrains
+        .filter(t => t.source.toLowerCase() === tripInput.source.toLowerCase())
+        .sort((a, b) => (a.id === selectedOutboundId ? -1 : b.id === selectedOutboundId ? 1 : 0));
+
+    const returnTrains = allTrains
+        .filter(t => t.destination.toLowerCase() === tripInput.source.toLowerCase())
+        .sort((a, b) => (a.id === selectedReturnId ? -1 : b.id === selectedReturnId ? 1 : 0));
 
     const selectedOutbound = itinerary.outboundTravel;
     const selectedReturn = itinerary.returnTravel;
@@ -166,16 +180,22 @@ export default function TravelOptions() {
             </div>
 
             {/* Inter-City Transit Sections */}
-            {itinerary.interCityOptions && Object.entries(itinerary.interCityOptions).map(([locality, options]) => (
-                <div key={locality} style={{ marginBottom: 24 }}>
-                    <h3 style={{ fontSize: 12, fontWeight: 600, color: '#a0a0cc', marginBottom: 10, textTransform: 'uppercase', letterSpacing: 0.5 }}>
-                        Transit: {locality}
-                    </h3>
-                    <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 8 }}>
-                        {options.map(opt => renderInterCityCard(locality, opt))}
+            {itinerary.interCityOptions && Object.entries(itinerary.interCityOptions).map(([locality, options]) => {
+                const transitDay = itinerary.days.find(d => d.locality === locality && d.isTransitDay);
+                const selectedLocalityOptionId = (transitDay?.items.find(i => i.type === 'intercity')?.data as any)?.id;
+                const sortedOptions = [...options].sort((a, b) => (a.id === selectedLocalityOptionId ? -1 : b.id === selectedLocalityOptionId ? 1 : 0));
+
+                return (
+                    <div key={locality} style={{ marginBottom: 24 }}>
+                        <h3 style={{ fontSize: 12, fontWeight: 600, color: '#a0a0cc', marginBottom: 10, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                            Transit: {locality}
+                        </h3>
+                        <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 8 }}>
+                            {sortedOptions.map(opt => renderInterCityCard(locality, opt))}
+                        </div>
                     </div>
-                </div>
-            ))}
+                );
+            })}
         </div>
     );
 }

@@ -36,6 +36,8 @@ const RESTAURANTS_DATA: Record<string, Partial<Restaurant>[]> = {
         { name: 'Thalassa', cuisine: 'Greek', avgCostForTwo: 2000, rating: 4.5, location: { lat: 15.6057, lng: 73.7328 }, mealType: 'dinner' },
         { name: 'Vinayak Family Restaurant', cuisine: 'Goan', avgCostForTwo: 500, rating: 4.4, location: { lat: 15.4010, lng: 73.8790 }, mealType: 'any' },
         { name: 'Curlies Beach Shack', cuisine: 'Multi-Cuisine', avgCostForTwo: 800, rating: 4.0, location: { lat: 15.5730, lng: 73.7420 }, mealType: 'any' },
+        { name: 'Artjuna Cafe', cuisine: 'Mediterranean', avgCostForTwo: 1000, rating: 4.5, location: { lat: 15.5800, lng: 73.7400 }, mealType: 'any' },
+        { name: 'Baba Au Rhum', cuisine: 'French', avgCostForTwo: 1200, rating: 4.4, location: { lat: 15.5850, lng: 73.7500 }, mealType: 'any' },
     ],
     'Mumbai': [
         { name: 'Leopold Cafe', cuisine: 'Multi-Cuisine', avgCostForTwo: 1200, rating: 4.2, location: { lat: 18.9229, lng: 72.8315 }, mealType: 'any' },
@@ -47,15 +49,27 @@ const RESTAURANTS_DATA: Record<string, Partial<Restaurant>[]> = {
     ],
     'Kochi': [
         { name: 'Rice Boat', cuisine: 'Seafood', avgCostForTwo: 3000, rating: 4.7, location: { lat: 9.9658, lng: 76.2421 }, mealType: 'dinner' },
-        { name: 'Kashi Art Cafe', cuisine: 'Cafe', avgCostForTwo: 800, rating: 4.5, location: { lat: 9.9680, lng: 76.2410 }, mealType: 'lunch' },
+        { name: 'Kashi Art Cafe', cuisine: 'Cafe', avgCostForTwo: 700, rating: 4.2, location: { lat: 9.9680, lng: 76.2410 }, mealType: 'any' },
+        { name: 'Loafers Corner Cafe', cuisine: 'Cafe', avgCostForTwo: 300, rating: 4.3, location: { lat: 9.9690, lng: 76.2420 }, mealType: 'any' },
     ],
     'Munnar': [
         { name: 'Saravana Bhavan Munnar', cuisine: 'South Indian', avgCostForTwo: 400, rating: 4.2, location: { lat: 10.0880, lng: 77.0590 }, mealType: 'any' },
         { name: 'Rapsy Restaurant', cuisine: 'Multi-Cuisine', avgCostForTwo: 600, rating: 4.3, location: { lat: 10.0895, lng: 77.0605 }, mealType: 'lunch' },
+        { name: 'Tea Tales Cafe', cuisine: 'Cafe', avgCostForTwo: 300, rating: 4.3, location: { lat: 10.0890, lng: 77.0600 }, mealType: 'any' },
+    ],
+    'Thekkady': [
+        { name: 'Our Place', cuisine: 'European', avgCostForTwo: 1200, rating: 4.6, location: { lat: 9.6080, lng: 77.1620 }, mealType: 'dinner' },
+        { name: 'Spice Garden', cuisine: 'Local', avgCostForTwo: 600, rating: 4.1, location: { lat: 9.6040, lng: 77.1680 }, mealType: 'any' },
     ],
     'Alleppey': [
         { name: 'Thaff Delicacy', cuisine: 'Biryani/North Indian', avgCostForTwo: 700, rating: 4.1, location: { lat: 9.4930, lng: 76.3200 }, mealType: 'any' },
         { name: 'Halais Restaurant', cuisine: 'Multi-Cuisine', avgCostForTwo: 800, rating: 4.0, location: { lat: 9.5000, lng: 76.3300 }, mealType: 'dinner' },
+        { name: 'Cafe Cloud 9', cuisine: 'Restaurant', avgCostForTwo: 300, rating: 4.6, location: { lat: 9.6000, lng: 76.2900 }, mealType: 'any' },
+    ],
+    'Varkala': [
+        { name: 'Darjeeling Cafe Varkala', cuisine: 'Multi-Cuisine', avgCostForTwo: 800, rating: 3.6, location: { lat: 8.7390, lng: 76.7110 }, mealType: 'any' },
+        { name: 'God\'s Own Country Kitchen', cuisine: 'Seafood', avgCostForTwo: 1000, rating: 3.9, location: { lat: 8.7380, lng: 76.7115 }, mealType: 'dinner' },
+        { name: 'Abba Restaurant', cuisine: 'Multi-Cuisine', avgCostForTwo: 1200, rating: 4.2, location: { lat: 8.7370, lng: 76.7120 }, mealType: 'any' },
     ],
 };
 

@@ -90,10 +90,19 @@ const HOTEL_DATA: Record<string, Partial<Hotel>[]> = {
         { name: 'Kumarakom Lake Resort', starRating: 5, pricePerNight: 18000, propertyType: 'Resort', location: { lat: 9.5950, lng: 76.4310 } },
         { name: 'Coconut Lagoon', starRating: 4, pricePerNight: 10000, propertyType: 'Resort', location: { lat: 9.5800, lng: 76.4200 } },
         { name: 'Marari Beach Resort', starRating: 4, pricePerNight: 8000, propertyType: 'Resort', location: { lat: 9.6000, lng: 76.3000 } },
-        { name: 'Greenix Village', starRating: 3, pricePerNight: 3500, propertyType: 'Homestay', location: { lat: 9.9400, lng: 76.2600 } },
         { name: 'Alleppey Houseboat Deluxe', starRating: 4, pricePerNight: 7000, propertyType: 'Houseboat', location: { lat: 9.4900, lng: 76.3400 } },
         { name: 'Spice Village Thekkady', starRating: 4, pricePerNight: 9000, propertyType: 'Resort', location: { lat: 9.6050, lng: 77.1640 } },
+        { name: 'The Wildernest, Thekkady', starRating: 4, pricePerNight: 4000, propertyType: 'Homestay', location: { lat: 9.6050, lng: 77.1640 } },
         { name: 'Zostel Alleppey', starRating: 2, pricePerNight: 600, propertyType: 'Hostel', location: { lat: 9.4950, lng: 76.3380 } },
+    ],
+    'Thekkady': [
+        { name: 'The Wildernest, Thekkady', starRating: 4, pricePerNight: 4000, propertyType: 'Homestay', location: { lat: 9.6050, lng: 77.1640 } },
+        { name: 'Spice Village', starRating: 4, pricePerNight: 9000, propertyType: 'Resort', location: { lat: 9.6050, lng: 77.1640 } },
+    ],
+    'Varkala': [
+        { name: 'The Gateway Hotel Varkala', starRating: 5, pricePerNight: 8000, propertyType: 'Hotel', location: { lat: 8.7300, lng: 76.7100 } },
+        { name: 'Clafouti Heritage Beach Resort', starRating: 4, pricePerNight: 5000, propertyType: 'Resort', location: { lat: 8.7350, lng: 76.7120 } },
+        { name: 'Zostel Varkala', starRating: 2, pricePerNight: 700, propertyType: 'Hostel', location: { lat: 8.7320, lng: 76.7140 } },
     ],
 };
 

@@ -17,48 +17,52 @@ interface AgentBInput {
     daysInLocality: number;
     locality: string;
     cityCenter: LatLng;
+    hotelLocation?: LatLng; // The "Depot" for TOPTW
     maxHoursPerDay: number;
     userPreferences?: string[];
     startDate: string;
+    arrivalHour?: number;
 }
 
 const RELEVANCE_THRESHOLD = 25; // Minimum score to be considered if preferences are set
 
 /**
- * Score a spot based on priority:
- * 1. Popularity (tourist visits)
- * 2. Rating (recommendations)
- * 3. User preference match (HEAVILY WEIGHTED)
+ * Score a spot (Profit Pi) based on priority:
+ * 1. Semantic User preference match (HEAVILY WEIGHTED)
+ * 2. Popularity (tourist visits)
+ * 3. Rating (recommendations)
  */
 function scoreSpot(spot: Spot, preferences: string[]): number {
-    let score = spot.popularity + spot.rating * 2;
+    // Base profit: Rating and Popularity
+    let profit = spot.popularity + spot.rating * 5;
 
-    if (preferences.length === 0) return score;
+    if (preferences.length === 0) return profit;
 
-    // Heavy boost for user preferences
+    // Semantic Boost
     let matched = false;
     for (const pref of preferences) {
         const p = pref.toLowerCase();
         if (spot.category.toLowerCase().includes(p) ||
             spot.name.toLowerCase().includes(p) ||
             spot.description.toLowerCase().includes(p)) {
-            score += 50;
+            profit += 100; // Large profit boost for matches
             matched = true;
         }
     }
 
-    // Significant penalty for categorized spots that DON'T match ANY preference
-    // This prevents churches appearing in a nightlife trip
+    // Dynamic Category Penalty (Instead of static -40)
+    // If it's a "Static" category and NO preference matches it, penalize
     if (!matched && (
         spot.category === 'Religious' ||
         spot.category === 'Temple' ||
         spot.category === 'Museum' ||
-        spot.category === 'Heritage'
+        spot.category === 'Heritage' ||
+        spot.category === 'Cultural'
     )) {
-        score -= 40;
+        profit -= 60;
     }
 
-    return score;
+    return profit;
 }
 
 /**
@@ -120,243 +124,193 @@ function findNearestRestaurant(
  * Greedy approach — iterate through scored & sorted spots,
  * assign to days based on spatial proximity and time constraints
  */
-function buildDayPlans(input: AgentBInput): DayPlan[] {
-    const { spots, restaurants, daysInLocality, locality, cityCenter, maxHoursPerDay, userPreferences = [], startDate } = input;
+/**
+ * TOPTW-inspired Simultaneous Multi-Day Solver
+ * Maximizes aggregate Profit (User Interest) across all days M.
+ */
+function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpots: Spot[] } {
+    const { spots, restaurants, daysInLocality, locality, cityCenter, hotelLocation, maxHoursPerDay, userPreferences = [], startDate, arrivalHour } = input;
 
-    // 1. Score and sort spots
+    // Use HotelLocation as Depot if available, otherwise CityCenter
+    const depot = hotelLocation || cityCenter;
+
+    // 1. Score and filter candidates
     const scored = spots.map(s => ({ spot: s, score: scoreSpot(s, userPreferences) }));
+    let qualified = scored.sort((a, b) => b.score - a.score);
 
-    // 2. Filter by threshold if preferences exist
-    let qualified = scored;
     if (userPreferences.length > 0) {
-        qualified = scored.filter(s => s.score >= RELEVANCE_THRESHOLD);
-        // Fallback: If no spots match threshold, take top 5 anyway
+        qualified = qualified.filter(s => s.score >= RELEVANCE_THRESHOLD);
         if (qualified.length === 0) {
-            qualified = scored.sort((a, b) => b.score - a.score).slice(0, 5);
+            qualified = scored.sort((a, b) => b.score - a.score).slice(0, 7);
         }
     }
 
-    qualified.sort((a, b) => b.score - a.score);
+    // Target a healthy density: ~4-5 high quality spots per day
+    const targetSelection = Math.min(qualified.length, daysInLocality * 5);
+    const candidateSpots = qualified.slice(0, targetSelection).map(s => s.spot);
 
-    // 3. Select top spots (up to ~6 per day target for high relevance, less for filler)
-    const targetSpotsPerDayLimit = userPreferences.length > 0 ? 5 : 7;
-    const maxSpotsTotal = Math.min(qualified.length, daysInLocality * targetSpotsPerDayLimit);
-    const selectedSpots = qualified.slice(0, maxSpotsTotal).map(s => s.spot);
+    // 2. Initialize Day Structures
+    const days: { items: ItineraryItem[], currentTime: number, currentLocation: LatLng, totalHours: number, spotsCount: number }[] = [];
+    for (let i = 0; i < daysInLocality; i++) {
+        let startHour = DEFAULT_START_HOUR;
 
-    // Calculate Pacing: How many spots SHOULD ideally be in a day?
-    const idealSpotsPerDay = Math.ceil(selectedSpots.length / daysInLocality);
+        // For the first day of the ENTIRE itinerary (if this is the first locality or only locality)
+        // we respect the arrival hour if provided
+        if (i === 0 && arrivalHour !== undefined) {
+            startHour = arrivalHour + 1.5; // 1.5 hour buffer for airport/station exit + travel to hotel + check-in
+        } else if (userPreferences.some(p => p.toLowerCase().includes('nightlife'))) {
+            startHour = 11;
+        }
 
-    // 4. Sort by closing time (visit spots with earlier closing times first)
-    // BUT prioritize high-score items
-    selectedSpots.sort((a, b) => {
-        const scoreA = scoreSpot(a, userPreferences);
-        const scoreB = scoreSpot(b, userPreferences);
-        if (Math.abs(scoreA - scoreB) > 20) return scoreB - scoreA;
+        days.push({
+            items: [],
+            currentTime: startHour,
+            currentLocation: depot,
+            totalHours: 0,
+            spotsCount: 0
+        });
+    }
 
-        const closeA = parseInt(a.closingTime.split(':')[0]);
-        const closeB = parseInt(b.closingTime.split(':')[0]);
-        return (closeA === 0 ? 24 : closeA) - (closeB === 0 ? 24 : closeB);
-    });
-
-    // 5. Greedy clustering into day plans
-    const dayPlans: DayPlan[] = [];
     const assigned = new Set<string>();
     const usedRestaurants = new Set<string>();
 
-    for (let day = 0; day < daysInLocality; day++) {
-        const date = new Date(startDate);
-        date.setDate(date.getDate() + day);
-        const dateStr = date.toISOString().split('T')[0];
+    /**
+     * Greedy Insertion logic for TOPTW:
+     * We look at all unassigned candidates and find the BEST day/position to insert.
+     */
+    while (assigned.size < candidateSpots.length) {
+        let bestInsertion: { spot: Spot, dayIdx: number, costTime: number, efficiency: number } | null = null;
 
-        const items: ItineraryItem[] = [];
-        let currentTime = DEFAULT_START_HOUR;
+        for (const spot of candidateSpots) {
+            if (assigned.has(spot.id)) continue;
 
-        // Late start if previous day had nightlife? (Simplified: if Nightlife interest, start later)
-        if (userPreferences.some(p => p.toLowerCase().includes('nightlife'))) {
-            currentTime = 11; // 11 AM start for nightlife lovers
+            for (let d = 0; d < daysInLocality; d++) {
+                const day = days[d];
+
+                // Calculate incremental travel time from LAST location
+                const travelMin = travelTimeMinutes(day.currentLocation, spot.location);
+                const travelHours = travelMin / 60;
+                const arrivalTime = day.currentTime + travelHours;
+
+                // Constraints: Is it open? Does return trip fit in Tmax?
+                if (!isSpotOpen(spot, arrivalTime)) continue;
+
+                const stayTime = spot.timeToSpend;
+                const returnTime = travelTimeMinutes(spot.location, depot) / 60;
+                const deltaTotal = travelHours + stayTime;
+
+                if (day.totalHours + deltaTotal + returnTime > maxHoursPerDay) continue;
+
+                const profit = scoreSpot(spot, userPreferences);
+                const efficiency = profit / (deltaTotal || 0.1);
+
+                if (!bestInsertion || efficiency > bestInsertion.efficiency) {
+                    bestInsertion = { spot, dayIdx: d, costTime: deltaTotal, efficiency };
+                }
+            }
         }
 
-        let currentLocation = cityCenter;
-        let totalHours = 0;
-        let spotsInDay = 0;
-        let lunchDone = false;
-        let dinnerDone = false;
-        let dayCost = 0;
+        if (!bestInsertion) break; // No more feasible insertions
 
-        // Get unassigned spots
-        const unassigned = selectedSpots.filter(s => !assigned.has(s.id));
+        // Apply Best Insertion
+        const { spot, dayIdx, costTime } = bestInsertion;
+        const day = days[dayIdx];
 
-        const daySpots = [...unassigned].sort((a, b) => {
-            const scoreA = scoreSpot(a, userPreferences);
-            const scoreB = scoreSpot(b, userPreferences);
-            // If scores are very different, take the higher one
-            if (Math.abs(scoreA - scoreB) > 30) return scoreB - scoreA;
+        const p2p = getP2PCost(day.currentLocation, spot.location,
+            day.items.length === 0 ? 'Hotel' : (day.items[day.items.length - 1].data as Spot).name,
+            spot.name, 'cab');
 
-            // Otherwise proximity
-            return haversineDistance(currentLocation, a.location) - haversineDistance(currentLocation, b.location);
+        day.items.push({
+            type: 'p2p',
+            data: p2p,
+            startTime: formatTime(day.currentTime),
+            endTime: formatTime(day.currentTime + (costTime - spot.timeToSpend)),
         });
 
-        for (const spot of daySpots) {
-            // Pacing Check: If we reached target, leave some for tomorrow
-            // Unless we are on the very last day or if time limit is not at all reached
-            if (spotsInDay >= idealSpotsPerDay && day < daysInLocality - 1) {
-                // If we have plenty of hours left and unassigned spots are huge, allow one more
-                if (totalHours < maxHoursPerDay * 0.4 && unassigned.length > (daysInLocality - day) * idealSpotsPerDay) {
-                    // continue adding
-                } else {
-                    break;
-                }
-            }
+        day.items.push({
+            type: 'spot',
+            data: spot,
+            startTime: formatTime(day.currentTime + (costTime - spot.timeToSpend)),
+            endTime: formatTime(day.currentTime + costTime),
+        });
 
-            if (totalHours >= maxHoursPerDay) break;
+        day.currentTime += costTime;
+        day.totalHours += costTime;
+        day.currentLocation = spot.location;
+        day.spotsCount++;
+        assigned.add(spot.id);
+    }
 
-            // Calculate travel time to this spot
-            const travelMin = travelTimeMinutes(currentLocation, spot.location);
-            const travelHours = travelMin / 60;
-            const arrivalTime = currentTime + travelHours;
+    // 3. Finalize Days (Return to Hotel, Food injection)
+    const dayPlans = days.map((day, idx) => {
+        const date = new Date(startDate);
+        date.setDate(date.getDate() + idx);
+        let dayCost = day.items.reduce((sum, item) => {
+            if (item.type === 'p2p') return sum + (item.data as any).cost;
+            if (item.type === 'spot') return sum + (item.data as any).entryFee;
+            return sum;
+        }, 0);
 
-            // Check if spot is open when we'd arrive
-            if (!isSpotOpen(spot, arrivalTime)) continue;
-
-            // Check if we can visit and return by max hours
-            const totalTimeNeeded = travelHours + spot.timeToSpend;
-            const returnTravel = travelTimeMinutes(spot.location, cityCenter) / 60;
-            if (totalHours + totalTimeNeeded + returnTravel > maxHoursPerDay) continue;
-
-            // Add P2P travel to spot
-            const p2p = getP2PCost(currentLocation, spot.location,
-                items.length === 0 ? 'Hotel' : (items[items.length - 1].data as Spot).name || 'Previous',
-                spot.name, 'cab');
-
-            items.push({
-                type: 'p2p',
-                data: p2p,
-                startTime: formatTime(currentTime),
-                endTime: formatTime(currentTime + travelHours),
-            });
-            dayCost += p2p.cost;
-            currentTime += travelHours;
-
-            // Add the spot
-            items.push({
-                type: 'spot',
-                data: spot,
-                startTime: formatTime(currentTime),
-                endTime: formatTime(currentTime + spot.timeToSpend),
-            });
-            dayCost += spot.entryFee;
-            currentTime += spot.timeToSpend;
-            totalHours += totalTimeNeeded;
-            currentLocation = spot.location;
-            assigned.add(spot.id);
-            spotsInDay++;
-
-            // Lunch break around 12:30-14:00
-            if (!lunchDone && currentTime >= 12.5 && currentTime <= 14) {
-                const lunch = findNearestRestaurant(currentLocation, restaurants, 'lunch', usedRestaurants);
-                if (lunch) {
-                    const lunchTravel = travelTimeMinutes(currentLocation, lunch.location) / 60;
-                    const lunchP2P = getP2PCost(currentLocation, lunch.location, spot.name, lunch.name, 'rickshaw');
-                    items.push({
-                        type: 'p2p', data: lunchP2P,
-                        startTime: formatTime(currentTime), endTime: formatTime(currentTime + lunchTravel),
-                    });
-                    dayCost += lunchP2P.cost;
-                    currentTime += lunchTravel;
-
-                    items.push({
-                        type: 'restaurant', data: lunch,
-                        startTime: formatTime(currentTime), endTime: formatTime(currentTime + 1),
-                        notes: '🍽️ Lunch',
-                    });
-                    dayCost += lunch.avgCostForTwo / 2;
-                    currentTime += 1;
-                    totalHours += lunchTravel + 1;
-                    currentLocation = lunch.location;
-                    usedRestaurants.add(lunch.id);
-                    lunchDone = true;
-                }
-            }
-
-            // Dinner around 19:30-21:00
-            if (!dinnerDone && currentTime >= 19.5 && currentTime <= 21) {
-                const dinner = findNearestRestaurant(currentLocation, restaurants, 'dinner', usedRestaurants);
-                if (dinner) {
-                    const dinnerTravel = travelTimeMinutes(currentLocation, dinner.location) / 60;
-                    const dinnerP2P = getP2PCost(currentLocation, dinner.location, spot.name, dinner.name, 'rickshaw');
-                    items.push({
-                        type: 'p2p', data: dinnerP2P,
-                        startTime: formatTime(currentTime), endTime: formatTime(currentTime + dinnerTravel),
-                    });
-                    dayCost += dinnerP2P.cost;
-                    currentTime += dinnerTravel;
-
-                    items.push({
-                        type: 'restaurant', data: dinner,
-                        startTime: formatTime(currentTime), endTime: formatTime(currentTime + 1),
-                        notes: '🍽️ Dinner',
-                    });
-                    dayCost += dinner.avgCostForTwo / 2;
-                    currentTime += 1;
-                    totalHours += dinnerTravel + 1;
-                    currentLocation = dinner.location;
-                    usedRestaurants.add(dinner.id);
-                    dinnerDone = true;
-                }
-            }
-        }
-
-        // Add return P2P to hotel/city center
-        if (items.length > 0) {
-            const returnP2P = getP2PCost(currentLocation, cityCenter, 'Last Stop', 'Hotel', 'cab');
-            const returnHours = returnP2P.duration / 60;
-            items.push({
+        // Add Return to Depot
+        if (day.items.length > 0) {
+            const returnP2P = getP2PCost(day.currentLocation, depot, 'Final Stop', 'Hotel', 'cab');
+            day.items.push({
                 type: 'p2p', data: returnP2P,
-                startTime: formatTime(currentTime), endTime: formatTime(currentTime + returnHours),
+                startTime: formatTime(day.currentTime),
+                endTime: formatTime(day.currentTime + returnP2P.duration / 60),
                 notes: '🏨 Return to hotel',
             });
             dayCost += returnP2P.cost;
         }
 
-        // If no lunch was added, add one in the middle
-        if (!lunchDone && restaurants.length > 0) {
-            const lunch = restaurants.find(r => !usedRestaurants.has(r.id) && (r.mealType === 'lunch' || r.mealType === 'any'));
+        // Inject Lunch/Dinner (Greedy)
+        const finalizedItems: ItineraryItem[] = [...day.items];
+
+        // Find best spots for food
+        const dayMainSpots = day.items.filter(i => i.type === 'spot').map(i => i.data as Spot);
+        if (dayMainSpots.length > 0) {
+            // Lunch
+            const midSpot = dayMainSpots[Math.floor(dayMainSpots.length / 2)];
+            const lunch = findNearestRestaurant(midSpot.location, restaurants, 'lunch', usedRestaurants);
             if (lunch) {
-                const midIdx = Math.floor(items.length / 2);
-                items.splice(midIdx, 0, {
-                    type: 'restaurant', data: lunch,
-                    startTime: '13:00', endTime: '14:00',
-                    notes: '🍽️ Lunch',
+                finalizedItems.push({
+                    type: 'restaurant', data: lunch, startTime: '13:00', endTime: '14:00', notes: '🍽️ Mid-day Meal'
                 });
                 dayCost += lunch.avgCostForTwo / 2;
                 usedRestaurants.add(lunch.id);
             }
         }
 
-        dayPlans.push({
-            dayNumber: day + 1,
-            date: dateStr,
+        return {
+            dayNumber: idx + 1,
+            date: date.toISOString().split('T')[0],
             locality,
             isTransitDay: false,
-            items,
+            items: finalizedItems.sort((a, b) => (a.startTime || '').localeCompare(b.startTime || '')),
             totalCost: Math.round(dayCost),
-        });
-    }
+        };
+    });
 
-    return dayPlans;
+    const unselectedSpots = qualified
+        .filter(q => !assigned.has(q.spot.id))
+        .map(q => q.spot);
+
+    return { dayPlans, unselectedSpots };
 }
 
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { localities, agentData, startDate, maxHoursPerDay = DEFAULT_MAX_HOURS, userPreferences = [] } = body;
+        const { localities, agentData, startDate, maxHoursPerDay = DEFAULT_MAX_HOURS, userPreferences = [], hotelLocation, arrivalHour } = body;
 
         const allDayPlans: DayPlan[] = [];
+        const allUnselectedSpots: Spot[] = [];
         let dayOffset = 0;
+        let plannedLocalitiesCount = 0;
 
         for (const loc of localities) {
             if (loc.isTransitDay) {
-                // Transit day — minimal plan
+                // ... same as before
                 const date = new Date(startDate);
                 date.setDate(date.getDate() + dayOffset);
                 allDayPlans.push({
@@ -374,15 +328,17 @@ export async function POST(request: NextRequest) {
             const spots = agentData.spots[loc.locality] || [];
             const restaurants = agentData.restaurants[loc.locality] || [];
 
-            const dayPlans = buildDayPlans({
+            const { dayPlans, unselectedSpots } = buildDayPlans({
                 spots,
                 restaurants,
                 daysInLocality: loc.days,
                 locality: loc.locality,
                 cityCenter: loc.center,
+                hotelLocation,
                 maxHoursPerDay,
                 userPreferences,
                 startDate: new Date(new Date(startDate).getTime() + dayOffset * 86400000).toISOString(),
+                arrivalHour: plannedLocalitiesCount === 0 ? arrivalHour : undefined,
             });
 
             // Re-number days
@@ -391,12 +347,40 @@ export async function POST(request: NextRequest) {
             }
 
             allDayPlans.push(...dayPlans);
+            allUnselectedSpots.push(...unselectedSpots);
             dayOffset += loc.days;
+            plannedLocalitiesCount++;
+        }
+
+        // Resilience: Detect "Empty Day Syndrome"
+        const emptyDays = allDayPlans.filter(dp => !dp.isTransitDay && dp.items.filter(i => i.type === 'spot').length === 0);
+        const suggestions: { type: 'shorten_trip'; message: string; recommendedDays: number }[] = [];
+
+        if (emptyDays.length > 0) {
+            // Find the last day that has actually has spots
+            let lastActiveDay = 0;
+            for (let i = allDayPlans.length - 1; i >= 0; i--) {
+                const hasSpots = allDayPlans[i].items.some(it => it.type === 'spot');
+                if (hasSpots) {
+                    lastActiveDay = allDayPlans[i].dayNumber;
+                    break;
+                }
+            }
+
+            if (lastActiveDay < allDayPlans.length) {
+                suggestions.push({
+                    type: 'shorten_trip',
+                    message: `It looks like we've covered the best of ${localities.map((l: any) => l.locality).join(', ')} in ${lastActiveDay} days. Would you like to shorten your trip to save costs?`,
+                    recommendedDays: lastActiveDay
+                });
+            }
         }
 
         return NextResponse.json({
             success: true,
             dayPlans: allDayPlans,
+            unselectedSpots: allUnselectedSpots,
+            suggestions
         });
     } catch (error) {
         console.error('Agent B error:', error);

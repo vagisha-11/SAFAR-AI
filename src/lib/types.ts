@@ -168,6 +168,7 @@ export interface FullItinerary {
   allTrains: Train[];
   interCityOptions?: Record<string, InterCityOption[]>; // keyed by Transit Locality
   selectedInterCitySegments?: Record<string, InterCityOption>; // keyed by Transit Locality
+  unselectedSpots?: Spot[];
 }
 
 // ---------- TRIP INPUT ----------
