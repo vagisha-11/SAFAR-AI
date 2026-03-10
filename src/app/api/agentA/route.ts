@@ -2,7 +2,7 @@
 // Safar AI — Agent A: Data Fetcher
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server';
-import { getHotels, getFlights, getTrains, getSpots, getRestaurants } from '@/lib/fakeApi';
+import { getHotels, getFlights, getTrains, getSpots, getRestaurants, getInterCityTravel } from '@/lib/fakeApi';
 import { LocalitySplit, AgentData } from '@/lib/types';
 
 export async function POST(request: NextRequest) {
@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
             hotels: {},
             flights: [],
             trains: [],
+            interCityTravel: {},
             spots: {},
             restaurants: {},
         };
@@ -66,10 +67,15 @@ export async function POST(request: NextRequest) {
             if (localities[i].isTransitDay) {
                 const parts = localities[i].locality.split(' to ');
                 if (parts.length === 2) {
-                    const transitFlights = getFlights(parts[0], parts[1], departureDate);
-                    const transitTrains = getTrains(parts[0], parts[1], departureDate);
+                    const source = parts[0];
+                    const dest = parts[1];
+                    const transitFlights = getFlights(source, dest, departureDate);
+                    const transitTrains = getTrains(source, dest, departureDate);
                     agentData.flights = [...agentData.flights, ...transitFlights];
                     agentData.trains = [...agentData.trains, ...transitTrains];
+
+                    // Specific inter-city travel options (Bus, Shared Taxi, Cab)
+                    agentData.interCityTravel[localities[i].locality] = getInterCityTravel(source, dest);
                 }
             }
         }

@@ -16,6 +16,7 @@ const POPULAR_DESTINATIONS = [
 const INTERESTS = [
     'Adventure', 'Heritage', 'Nature', 'Beach', 'Temple', 'Shopping',
     'Food', 'Photography', 'Nightlife', 'Trekking', 'Wildlife', 'Cultural',
+    'Museum', 'Religious', 'Sunrise/Sunset'
 ];
 
 export default function LandingPage() {
@@ -25,6 +26,9 @@ export default function LandingPage() {
     const [source, setSource] = useState('');
     const [departureDate, setDepartureDate] = useState('');
     const [returnDate, setReturnDate] = useState('');
+    const [isDateFlexible, setIsDateFlexible] = useState(false);
+    const [minDays, setMinDays] = useState('3');
+    const [maxDays, setMaxDays] = useState('7');
     const [budget, setBudgetLocal] = useState('50000');
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
@@ -35,16 +39,17 @@ export default function LandingPage() {
     };
 
     const handlePlanTrip = async () => {
-        if (!destination || !source || !departureDate || !returnDate) return;
-
         const tripInput: TripInput = {
             destination,
             source,
             departureDate,
-            returnDate,
+            returnDate: isDateFlexible ? departureDate : returnDate, // fallback
             budget: parseInt(budget) || 50000,
             preferences: selectedInterests,
             maxHoursPerDay: 14,
+            isDateFlexible,
+            minDays: parseInt(minDays),
+            maxDays: parseInt(maxDays),
         };
 
         setTripInput(tripInput);
@@ -57,11 +62,19 @@ export default function LandingPage() {
             const splitRes = await fetch('/api/localitySplitter', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ destination, source, departureDate, returnDate }),
+                body: JSON.stringify({ ...tripInput }),
             });
             const splitData = await splitRes.json();
             if (!splitData.success) throw new Error('Locality split failed');
             setLocalitySplit(splitData.split);
+
+            // Calculate adjusted return date for Agent A based on totalDays from split
+            let adjustedReturnDate = returnDate;
+            if (isDateFlexible) {
+                const depDate = new Date(departureDate);
+                depDate.setDate(depDate.getDate() + splitData.totalDays);
+                adjustedReturnDate = depDate.toISOString().split('T')[0];
+            }
 
             // Step 2: Agent A — Fetch Data
             setLoadingMessage('📡 Agent A is fetching hotels, flights, and attractions...');
@@ -73,7 +86,7 @@ export default function LandingPage() {
                     source,
                     destination,
                     departureDate,
-                    returnDate,
+                    returnDate: adjustedReturnDate,
                 }),
             });
             const agentAData = await agentARes.json();
@@ -234,16 +247,63 @@ export default function LandingPage() {
                             />
                         </div>
 
-                        {/* Return Date */}
-                        <div className="input-group">
-                            <label>🛬 Return</label>
-                            <input
-                                type="date"
-                                className="input-field"
-                                value={returnDate}
-                                onChange={(e) => setReturnDate(e.target.value)}
-                            />
+                        {/* Return Date / Duration Selection */}
+                        {!isDateFlexible ? (
+                            <div className="input-group">
+                                <label>🛬 Return</label>
+                                <input
+                                    type="date"
+                                    className="input-field"
+                                    value={returnDate}
+                                    onChange={(e) => setReturnDate(e.target.value)}
+                                />
+                            </div>
+                        ) : (
+                            <>
+                                <div className="input-group">
+                                    <label>📅 Min Days</label>
+                                    <input
+                                        type="number"
+                                        className="input-field"
+                                        value={minDays}
+                                        onChange={(e) => setMinDays(e.target.value)}
+                                        min="1"
+                                        max="15"
+                                    />
+                                </div>
+                                <div className="input-group">
+                                    <label>📅 Max Days</label>
+                                    <input
+                                        type="number"
+                                        className="input-field"
+                                        value={maxDays}
+                                        onChange={(e) => setMaxDays(e.target.value)}
+                                        min="1"
+                                        max="30"
+                                    />
+                                </div>
+                            </>
+                        )}
+                    </div>
+
+                    {/* Flexibility Toggle */}
+                    <div style={{
+                        display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24,
+                        padding: '12px 16px', borderRadius: 12, border: '1px solid rgba(99,102,241,0.2)',
+                        background: 'rgba(99,102,241,0.03)'
+                    }}>
+                        <div style={{ flex: 1 }}>
+                            <div style={{ fontWeight: 600, fontSize: 14, color: '#f0f0ff' }}>Flexible Duration</div>
+                            <div style={{ fontSize: 12, color: '#a0a0cc' }}>Let AI suggest the optimal trip length based on your budget and destination.</div>
                         </div>
+                        <label className="switch">
+                            <input
+                                type="checkbox"
+                                checked={isDateFlexible}
+                                onChange={(e) => setIsDateFlexible(e.target.checked)}
+                            />
+                            <span className="slider round"></span>
+                        </label>
                     </div>
 
                     {/* Budget */}
@@ -301,7 +361,7 @@ export default function LandingPage() {
                     <button
                         className="btn-primary"
                         onClick={handlePlanTrip}
-                        disabled={!destination || !source || !departureDate || !returnDate}
+                        disabled={!destination || !source || !departureDate || (!returnDate && !isDateFlexible)}
                         style={{ width: '100%', justifyContent: 'center', fontSize: 16, padding: '16px 32px' }}
                     >
                         ✨ Plan My Trip with AI

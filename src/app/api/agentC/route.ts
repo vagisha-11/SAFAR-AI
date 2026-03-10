@@ -4,7 +4,7 @@
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server';
 import {
-    DayPlan, Hotel, Flight, Train, AgentData,
+    DayPlan, Hotel, Flight, Train, AgentData, InterCityOption,
     FullItinerary, LocalitySplit, TripInput, BudgetAllocation,
 } from '@/lib/types';
 import { v4 as uuidv4 } from 'uuid';
@@ -56,6 +56,22 @@ function selectTravel(
     if (withinBudget.length > 0) return { type: withinBudget[0].type, data: withinBudget[0].data };
     if (allOptions.length > 0) return { type: allOptions[0].type, data: allOptions[0].data };
     return null;
+}
+
+/**
+ * Select inter-city travel (Bus/Taxi/Cab) within budget
+ */
+function selectInterCityTravel(
+    options: InterCityOption[],
+    transitBudget: number
+): InterCityOption | null {
+    if (!options || options.length === 0) return null;
+
+    const sorted = [...options].sort((a, b) => a.price - b.price);
+    const withinBudget = sorted.filter(o => o.price <= transitBudget);
+
+    // Pick the highest quality option (last in sorted withinBudget) that fits budget
+    return withinBudget.length > 0 ? withinBudget[withinBudget.length - 1] : sorted[0];
 }
 
 /**
@@ -134,16 +150,39 @@ export async function POST(request: NextRequest) {
         if (outboundTravel) travelCost += (outboundTravel.data as Flight).price || 0;
         if (returnTravel) travelCost += (returnTravel.data as Flight).price || 0;
 
-        // Assign hotels to day plans
+        // Assign hotels and transit travel to day plans
         const updatedDayPlans = dayPlans.map(dp => {
             const hotel = selectedHotels[dp.locality];
+
+            if (dp.isTransitDay) {
+                // Select inter-city transit for this transit day
+                const options = agentData.interCityTravel[dp.locality] || [];
+                const transitBudget = budget.travelBudget / localities.filter(l => l.isTransitDay).length;
+                const selectedTransit = selectInterCityTravel(options, transitBudget);
+
+                if (selectedTransit) {
+                    const transitItem = {
+                        type: 'intercity' as const,
+                        data: selectedTransit,
+                        startTime: selectedTransit.departureTimes[0] === 'Anytime' ? '09:00' : selectedTransit.departureTimes[0],
+                        endTime: '13:00', // Simplified duration for now
+                        notes: `🕒 Mode: ${selectedTransit.modeName} (${selectedTransit.type.replace('_', ' ')})`,
+                    };
+                    return {
+                        ...dp,
+                        items: [transitItem],
+                        totalCost: selectedTransit.price,
+                        hotel: hotel || undefined
+                    };
+                }
+            }
+
             return { ...dp, hotel: hotel || undefined };
         });
 
-        // If over budget, try cheaper hotels
+        // If over budget, try cheaper hotels (Normal defensive logic)
         let totalCost = activitiesCost + totalHotelCost + travelCost;
         if (totalCost > tripInput.budget) {
-            // Try to downgrade hotels
             for (const loc of nonTransitLocalities) {
                 const hotels = (agentData.hotels[loc.locality] || []).sort(
                     (a, b) => a.pricePerNight - b.pricePerNight
@@ -159,6 +198,95 @@ export async function POST(request: NextRequest) {
                     }
                 }
                 if (totalCost <= tripInput.budget) break;
+            }
+        } else if (totalCost < tripInput.budget * 0.95) {
+            // Balanced Upsell Pass: Invest surplus into better Transit OR Hotels based on Value
+            let surplus = tripInput.budget - totalCost;
+
+            const transitDayIndices = updatedDayPlans
+                .map((dp, idx) => dp.isTransitDay ? idx : -1)
+                .filter(idx => idx !== -1);
+
+            const selectedInterCity: Record<number, InterCityOption> = {};
+            transitDayIndices.forEach(idx => {
+                const item = updatedDayPlans[idx].items.find(i => i.type === 'intercity');
+                if (item) selectedInterCity[idx] = item.data as InterCityOption;
+            });
+
+            interface UpgradeOption {
+                type: 'hotel' | 'transit';
+                locality?: string;
+                dayIndex?: number;
+                currentPrice: number;
+                targetPrice: number;
+                targetData: any;
+                valueScore: number;
+            }
+
+            const getOptions = (): UpgradeOption[] => {
+                const options: UpgradeOption[] = [];
+                for (const loc of nonTransitLocalities) {
+                    const current = selectedHotels[loc.locality];
+                    if (!current) continue;
+                    const hotels = (agentData.hotels[loc.locality] || [])
+                        .filter(h => h.pricePerNight > current.pricePerNight)
+                        .sort((a, b) => a.pricePerNight - b.pricePerNight);
+                    for (const h of hotels) {
+                        const costDiff = (h.pricePerNight - current.pricePerNight) * loc.days;
+                        if (costDiff <= surplus && costDiff > 0) {
+                            options.push({
+                                type: 'hotel', locality: loc.locality,
+                                currentPrice: current.pricePerNight * loc.days,
+                                targetPrice: h.pricePerNight * loc.days,
+                                targetData: h,
+                                valueScore: (h.starRating - current.starRating) * 1000 / costDiff
+                            });
+                        }
+                    }
+                }
+                transitDayIndices.forEach(idx => {
+                    const current = selectedInterCity[idx];
+                    if (!current) return;
+                    const alternatives = (agentData.interCityTravel[updatedDayPlans[idx].locality] || [])
+                        .filter(opt => opt.price > current.price)
+                        .sort((a, b) => a.price - b.price);
+                    for (const alt of alternatives) {
+                        const costDiff = alt.price - current.price;
+                        if (costDiff <= surplus && costDiff > 0) {
+                            const qIdx = (m: string) => m === 'cab' ? 10 : (m === 'shared_taxi' ? 7 : 4);
+                            options.push({
+                                type: 'transit', dayIndex: idx,
+                                currentPrice: current.price, targetPrice: alt.price,
+                                targetData: alt,
+                                valueScore: (qIdx(alt.type) - qIdx(current.type)) * 500 / costDiff
+                            });
+                        }
+                    }
+                });
+                return options.sort((a, b) => b.valueScore - a.valueScore);
+            };
+
+            let iterations = 0;
+            while (surplus > 1000 && iterations < 15) {
+                const options = getOptions();
+                if (options.length === 0) break;
+                const best = options[0];
+                if (best.valueScore < 0.0001) break;
+                const costDiff = best.targetPrice - best.currentPrice;
+                if (best.type === 'hotel' && best.locality) {
+                    selectedHotels[best.locality] = best.targetData;
+                    totalHotelCost += costDiff;
+                } else if (best.type === 'transit' && best.dayIndex !== undefined) {
+                    selectedInterCity[best.dayIndex] = best.targetData;
+                    const item = updatedDayPlans[best.dayIndex].items.find(i => i.type === 'intercity');
+                    if (item) {
+                        item.data = best.targetData;
+                        updatedDayPlans[best.dayIndex].totalCost = best.targetData.price;
+                    }
+                }
+                totalCost += costDiff;
+                surplus -= costDiff;
+                iterations++;
             }
         }
 
@@ -195,10 +323,14 @@ export async function POST(request: NextRequest) {
             };
         }
 
-        // Recalculate total cost after injecting travel
+        // Sync upgraded hotels back to day plans
+        updatedDayPlans.forEach(dp => {
+            dp.hotel = selectedHotels[dp.locality] || undefined;
+        });
+
+        // Recalculate total cost
         totalCost = updatedDayPlans.reduce((sum, d) => sum + d.totalCost, 0) + totalHotelCost;
 
-        // Build final itinerary
         const itinerary: FullItinerary = {
             id: uuidv4(),
             tripInput,
@@ -210,6 +342,7 @@ export async function POST(request: NextRequest) {
             returnTravel: returnTravel ? { type: returnTravel.type, data: returnTravel.data } : undefined,
             allFlights: agentData.flights,
             allTrains: agentData.trains,
+            interCityOptions: agentData.interCityTravel,
         };
 
         return NextResponse.json({

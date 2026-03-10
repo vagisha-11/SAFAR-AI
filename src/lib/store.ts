@@ -4,7 +4,7 @@
 import { create } from 'zustand';
 import {
     TripInput, LocalitySplit, AgentData, FullItinerary,
-    DayPlan, Hotel, Review, BudgetAllocation,
+    DayPlan, Hotel, Review, BudgetAllocation, TravelSelection,
 } from './types';
 
 // ---------- STATE INTERFACE ----------
@@ -30,7 +30,7 @@ interface SafarState {
     budget: BudgetAllocation | null;
     setBudget: (budget: BudgetAllocation) => void;
     currentCost: number;
-    setCurrentCost: (cost: number) => void;
+    recalculateTotalCost: () => void;
 
     // UI State
     selectedDay: number | null; // null = entire trip
@@ -50,9 +50,11 @@ interface SafarState {
     reviews: Review[];
     addReview: (review: Review) => void;
 
-    // Selected hotel per locality
-    selectedHotels: Record<string, Hotel>;
+    // Selections
+    selectedHotels: Record<string, Hotel>; // locality -> hotel
     setSelectedHotel: (locality: string, hotel: Hotel) => void;
+    setSelectedTravel: (type: 'outbound' | 'return', travel: TravelSelection) => void;
+    setSelectedInterCitySegment: (locality: string, option: any) => void; // Using any for InterCityOption to avoid type issues if not exported correctly
 
     // Reset
     reset: () => void;
@@ -74,28 +76,67 @@ const initialState = {
     selectedHotels: {},
 };
 
-export const useSafarStore = create<SafarState>((set) => ({
+export const useSafarStore = create<SafarState>((set, get) => ({
     ...initialState,
 
     setTripInput: (input) => set({ tripInput: input }),
     setLocalitySplit: (split) => set({ localitySplit: split }),
     setAgentData: (data) => set({ agentData: data }),
-    setItinerary: (itinerary) =>
-        set({ itinerary, currentCost: itinerary.totalCost }),
-    updateDayPlan: (dayNumber, dayPlan) =>
+
+    setItinerary: (itinerary) => {
+        // Synchronize selectedHotels with what was initially chosen by Agent C
+        const initialHotels: Record<string, Hotel> = {};
+        for (const day of itinerary.days) {
+            if (day.hotel) initialHotels[day.locality] = day.hotel;
+        }
+        set({ itinerary, currentCost: itinerary.totalCost, selectedHotels: initialHotels });
+    },
+
+    updateDayPlan: (dayNumber, dayPlan) => {
         set((state) => {
             if (!state.itinerary) return {};
             const days = state.itinerary.days.map((d) =>
                 d.dayNumber === dayNumber ? dayPlan : d
             );
-            const totalCost = days.reduce((sum, d) => sum + d.totalCost, 0);
-            return {
-                itinerary: { ...state.itinerary, days, totalCost },
-                currentCost: totalCost,
-            };
-        }),
+            return { itinerary: { ...state.itinerary, days } };
+        });
+        get().recalculateTotalCost();
+    },
+
+    recalculateTotalCost: () => {
+        const { itinerary, selectedHotels, localitySplit } = get();
+        if (!itinerary) return;
+
+        let total = 0;
+
+        // 1. Sum cost of all activities in DayPlans
+        for (const day of itinerary.days) {
+            for (const item of day.items) {
+                if (item.type === 'spot') total += (item.data as any).entryFee || 0;
+                if (item.type === 'restaurant') total += ((item.data as any).avgCostForTwo / 2) || 0;
+                if (item.type === 'p2p') total += (item.data as any).cost || 0;
+                if (item.type === 'intercity') total += (item.data as any).price || 0;
+            }
+        }
+
+        // 2. Add selected hotels cost
+        for (const loc of localitySplit) {
+            if (loc.isTransitDay) continue;
+            const hotel = selectedHotels[loc.locality];
+            if (hotel) {
+                total += hotel.pricePerNight * loc.days;
+            }
+        }
+
+        // 3. Add inter-city travel cost
+        if (itinerary.outboundTravel) total += itinerary.outboundTravel.data.price || 0;
+        if (itinerary.returnTravel) total += itinerary.returnTravel.data.price || 0;
+
+        set({ currentCost: Math.round(total) });
+    },
+
     setBudget: (budget) => set({ budget }),
-    setCurrentCost: (cost) => set({ currentCost: cost }),
+
     setSelectedDay: (day) => set({ selectedDay: day }),
     setIsLoading: (loading) => set({ isLoading: loading }),
     setLoadingMessage: (msg) => set({ loadingMessage: msg }),
@@ -106,9 +147,72 @@ export const useSafarStore = create<SafarState>((set) => ({
         })),
     addReview: (review) =>
         set((state) => ({ reviews: [...state.reviews, review] })),
-    setSelectedHotel: (locality, hotel) =>
+
+    setSelectedHotel: (locality, hotel) => {
         set((state) => ({
             selectedHotels: { ...state.selectedHotels, [locality]: hotel },
-        })),
+        }));
+        get().recalculateTotalCost();
+    },
+
+    setSelectedTravel: (type, travel) => {
+        const { itinerary } = get();
+        if (!itinerary) return;
+
+        const nextItinerary = { ...itinerary };
+        if (type === 'outbound') nextItinerary.outboundTravel = travel;
+        else nextItinerary.returnTravel = travel;
+
+        // Update the items in day plans to show the new selection
+        const updatedDays = [...nextItinerary.days];
+        const dayIdx = type === 'outbound' ? 0 : updatedDays.length - 1;
+
+        if (dayIdx >= 0 && updatedDays[dayIdx]) {
+            const day = updatedDays[dayIdx];
+            // Remove existing travel of ALL types to replace with new selection
+            const filteredItems = day.items.filter(item => item.type !== 'flight' && item.type !== 'train');
+
+            const travelItem = {
+                type: travel.type,
+                data: travel.data,
+                startTime: new Date(travel.data.departureTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
+                endTime: new Date(travel.data.arrivalTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
+                notes: `${type === 'outbound' ? '✈️ Outbound' : '✈️ Return'}: ${travel.data.source} → ${travel.data.destination}`,
+            };
+
+            updatedDays[dayIdx] = {
+                ...day,
+                items: type === 'outbound' ? [travelItem, ...filteredItems] : [...filteredItems, travelItem],
+            };
+        }
+
+        set({ itinerary: { ...nextItinerary, days: updatedDays } });
+        get().recalculateTotalCost();
+    },
+
+    setSelectedInterCitySegment: (locality, option) => {
+        const { itinerary } = get();
+        if (!itinerary) return;
+
+        const nextItinerary = { ...itinerary };
+        const updatedDays = [...nextItinerary.days];
+        const dayIdx = updatedDays.findIndex(d => d.locality === locality && d.isTransitDay);
+
+        if (dayIdx >= 0) {
+            const day = updatedDays[dayIdx];
+            const transitItem = {
+                type: 'intercity' as const,
+                data: option,
+                startTime: option.departureTimes[0] === 'Anytime' ? '09:00' : option.departureTimes[0],
+                endTime: '13:00',
+                notes: `🕒 Mode: ${option.modeName} (${option.type.replace('_', ' ')})`,
+            };
+            updatedDays[dayIdx] = { ...day, items: [transitItem], totalCost: option.price };
+        }
+
+        set({ itinerary: { ...nextItinerary, days: updatedDays } });
+        get().recalculateTotalCost();
+    },
+
     reset: () => set(initialState),
 }));

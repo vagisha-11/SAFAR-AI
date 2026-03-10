@@ -22,22 +22,40 @@ interface AgentBInput {
     startDate: string;
 }
 
+const RELEVANCE_THRESHOLD = 25; // Minimum score to be considered if preferences are set
+
 /**
  * Score a spot based on priority:
  * 1. Popularity (tourist visits)
  * 2. Rating (recommendations)
- * 3. User preference match
+ * 3. User preference match (HEAVILY WEIGHTED)
  */
 function scoreSpot(spot: Spot, preferences: string[]): number {
-    let score = spot.popularity * 2 + spot.rating * 3;
+    let score = spot.popularity + spot.rating * 2;
 
-    // Boost for user preferences
+    if (preferences.length === 0) return score;
+
+    // Heavy boost for user preferences
+    let matched = false;
     for (const pref of preferences) {
-        if (spot.category.toLowerCase().includes(pref.toLowerCase()) ||
-            spot.name.toLowerCase().includes(pref.toLowerCase()) ||
-            spot.description.toLowerCase().includes(pref.toLowerCase())) {
-            score += 15;
+        const p = pref.toLowerCase();
+        if (spot.category.toLowerCase().includes(p) ||
+            spot.name.toLowerCase().includes(p) ||
+            spot.description.toLowerCase().includes(p)) {
+            score += 50;
+            matched = true;
         }
+    }
+
+    // Significant penalty for categorized spots that DON'T match ANY preference
+    // This prevents churches appearing in a nightlife trip
+    if (!matched && (
+        spot.category === 'Religious' ||
+        spot.category === 'Temple' ||
+        spot.category === 'Museum' ||
+        spot.category === 'Heritage'
+    )) {
+        score -= 40;
     }
 
     return score;
@@ -51,10 +69,10 @@ function isSpotOpen(spot: Spot, timeHour: number): boolean {
     const close = parseInt(spot.closingTime.split(':')[0]);
 
     if (close < open) {
-        // Overnight hours (e.g., 22:00 - 02:00)
+        // Overnight hours (e.g., 22:00 - 04:00)
         return timeHour >= open || timeHour < close;
     }
-    return timeHour >= open && timeHour < close;
+    return timeHour >= open && timeHour < (close === 0 ? 24 : close);
 }
 
 /**
@@ -69,8 +87,9 @@ function travelTimeMinutes(from: LatLng, to: LatLng): number {
  * Format hour number to "HH:MM" string
  */
 function formatTime(hourDecimal: number): string {
-    const hours = Math.floor(hourDecimal);
-    const minutes = Math.round((hourDecimal - hours) * 60);
+    const hourNormalized = hourDecimal % 24;
+    const hours = Math.floor(hourNormalized);
+    const minutes = Math.round((hourNormalized - hours) * 60);
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 }
 
@@ -106,20 +125,40 @@ function buildDayPlans(input: AgentBInput): DayPlan[] {
 
     // 1. Score and sort spots
     const scored = spots.map(s => ({ spot: s, score: scoreSpot(s, userPreferences) }));
-    scored.sort((a, b) => b.score - a.score);
 
-    // 2. Select top spots (up to ~6-8 per day target)
-    const maxSpotsTotal = Math.min(scored.length, daysInLocality * 7);
-    const selectedSpots = scored.slice(0, maxSpotsTotal).map(s => s.spot);
+    // 2. Filter by threshold if preferences exist
+    let qualified = scored;
+    if (userPreferences.length > 0) {
+        qualified = scored.filter(s => s.score >= RELEVANCE_THRESHOLD);
+        // Fallback: If no spots match threshold, take top 5 anyway
+        if (qualified.length === 0) {
+            qualified = scored.sort((a, b) => b.score - a.score).slice(0, 5);
+        }
+    }
 
-    // 3. Sort by closing time (visit spots with earlier closing times first)
+    qualified.sort((a, b) => b.score - a.score);
+
+    // 3. Select top spots (up to ~6 per day target for high relevance, less for filler)
+    const targetSpotsPerDayLimit = userPreferences.length > 0 ? 5 : 7;
+    const maxSpotsTotal = Math.min(qualified.length, daysInLocality * targetSpotsPerDayLimit);
+    const selectedSpots = qualified.slice(0, maxSpotsTotal).map(s => s.spot);
+
+    // Calculate Pacing: How many spots SHOULD ideally be in a day?
+    const idealSpotsPerDay = Math.ceil(selectedSpots.length / daysInLocality);
+
+    // 4. Sort by closing time (visit spots with earlier closing times first)
+    // BUT prioritize high-score items
     selectedSpots.sort((a, b) => {
+        const scoreA = scoreSpot(a, userPreferences);
+        const scoreB = scoreSpot(b, userPreferences);
+        if (Math.abs(scoreA - scoreB) > 20) return scoreB - scoreA;
+
         const closeA = parseInt(a.closingTime.split(':')[0]);
         const closeB = parseInt(b.closingTime.split(':')[0]);
-        return closeA - closeB;
+        return (closeA === 0 ? 24 : closeA) - (closeB === 0 ? 24 : closeB);
     });
 
-    // 4. Greedy clustering into day plans
+    // 5. Greedy clustering into day plans
     const dayPlans: DayPlan[] = [];
     const assigned = new Set<string>();
     const usedRestaurants = new Set<string>();
@@ -130,27 +169,45 @@ function buildDayPlans(input: AgentBInput): DayPlan[] {
         const dateStr = date.toISOString().split('T')[0];
 
         const items: ItineraryItem[] = [];
-        let currentTime = DEFAULT_START_HOUR; // Start at 8 AM
+        let currentTime = DEFAULT_START_HOUR;
+
+        // Late start if previous day had nightlife? (Simplified: if Nightlife interest, start later)
+        if (userPreferences.some(p => p.toLowerCase().includes('nightlife'))) {
+            currentTime = 11; // 11 AM start for nightlife lovers
+        }
+
         let currentLocation = cityCenter;
         let totalHours = 0;
+        let spotsInDay = 0;
         let lunchDone = false;
         let dinnerDone = false;
         let dayCost = 0;
 
-        // Get unassigned spots, prefer those close to current cluster
+        // Get unassigned spots
         const unassigned = selectedSpots.filter(s => !assigned.has(s.id));
 
-        // Sort by distance from city center for first pass, then by proximity
         const daySpots = [...unassigned].sort((a, b) => {
-            // Primary: closing time (visit early-closing spots first)
-            const closeA = parseInt(a.closingTime.split(':')[0]);
-            const closeB = parseInt(b.closingTime.split(':')[0]);
-            if (closeA !== closeB) return closeA - closeB;
-            // Secondary: distance from city center
-            return haversineDistance(cityCenter, a.location) - haversineDistance(cityCenter, b.location);
+            const scoreA = scoreSpot(a, userPreferences);
+            const scoreB = scoreSpot(b, userPreferences);
+            // If scores are very different, take the higher one
+            if (Math.abs(scoreA - scoreB) > 30) return scoreB - scoreA;
+
+            // Otherwise proximity
+            return haversineDistance(currentLocation, a.location) - haversineDistance(currentLocation, b.location);
         });
 
         for (const spot of daySpots) {
+            // Pacing Check: If we reached target, leave some for tomorrow
+            // Unless we are on the very last day or if time limit is not at all reached
+            if (spotsInDay >= idealSpotsPerDay && day < daysInLocality - 1) {
+                // If we have plenty of hours left and unassigned spots are huge, allow one more
+                if (totalHours < maxHoursPerDay * 0.4 && unassigned.length > (daysInLocality - day) * idealSpotsPerDay) {
+                    // continue adding
+                } else {
+                    break;
+                }
+            }
+
             if (totalHours >= maxHoursPerDay) break;
 
             // Calculate travel time to this spot
@@ -192,6 +249,7 @@ function buildDayPlans(input: AgentBInput): DayPlan[] {
             totalHours += totalTimeNeeded;
             currentLocation = spot.location;
             assigned.add(spot.id);
+            spotsInDay++;
 
             // Lunch break around 12:30-14:00
             if (!lunchDone && currentTime >= 12.5 && currentTime <= 14) {

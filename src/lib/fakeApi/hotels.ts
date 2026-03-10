@@ -7,14 +7,20 @@ import { v4 as uuidv4 } from 'uuid';
 // Pre-stored hotel data for major Indian localities
 const HOTEL_DATA: Record<string, Partial<Hotel>[]> = {
     'Manali': [
-        { name: 'The Himalayan Resort & Spa', starRating: 5, pricePerNight: 8500, propertyType: 'Resort', location: { lat: 32.2432, lng: 77.1892 } },
-        { name: 'Snow Valley Resorts', starRating: 4, pricePerNight: 5500, propertyType: 'Resort', location: { lat: 32.2396, lng: 77.1886 } },
-        { name: 'Hotel Mountain Trail', starRating: 3, pricePerNight: 2800, propertyType: 'Hotel', location: { lat: 32.2500, lng: 77.1776 } },
-        { name: 'Manali Heights Cottage', starRating: 3, pricePerNight: 3200, propertyType: 'Cottage', location: { lat: 32.2550, lng: 77.1800 } },
-        { name: 'The Orchard Homestay', starRating: 3, pricePerNight: 1800, propertyType: 'Homestay', location: { lat: 32.2480, lng: 77.1750 } },
-        { name: 'Backpackers Hostel Manali', starRating: 2, pricePerNight: 800, propertyType: 'Hostel', location: { lat: 32.2420, lng: 77.1900 } },
-        { name: 'Pine Forest Camp', starRating: 3, pricePerNight: 2200, propertyType: 'Camp', location: { lat: 32.2600, lng: 77.1850 } },
-        { name: 'The Johnson Lodge & Spa', starRating: 4, pricePerNight: 6200, propertyType: 'Hotel', location: { lat: 32.2445, lng: 77.1870 } },
+        { id: uuidv4(), name: 'Solang Valley Resort', starRating: 5, pricePerNight: 8500, address: 'Solang Valley', imageUrl: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800' },
+        { id: uuidv4(), name: 'Himalayan Heights', starRating: 4, pricePerNight: 4500, address: 'Old Manali', imageUrl: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=800' },
+    ],
+    'Kochi': [
+        { id: uuidv4(), name: 'Brunton Boatyard', starRating: 5, pricePerNight: 15000, propertyType: 'Hotel', location: { lat: 9.9658, lng: 76.2421 }, address: 'Fort Kochi', amenities: { wifi: true, spa: true, swimmingPool: true, balcony: true, elevator: true, caretaker: true, restaurant: true, kitchenAvailability: false, bar: true, barbeque: false, cafe: true, parking: true, bonfire: false, roomService: true, alcoholAllowed: true, petsAllowed: false, smokingAllowed: true, unmarriedCouplesAllowed: true }, bookingLink: '#' },
+        { id: uuidv4(), name: 'Fort House Hotel', starRating: 4, pricePerNight: 6000, propertyType: 'Hotel', location: { lat: 9.9620, lng: 76.2400 }, address: 'Fort Kochi', amenities: { wifi: true, spa: false, swimmingPool: false, balcony: true, elevator: false, caretaker: true, restaurant: true, kitchenAvailability: false, bar: false, barbeque: false, cafe: true, parking: true, bonfire: false, roomService: true, alcoholAllowed: true, petsAllowed: false, smokingAllowed: false, unmarriedCouplesAllowed: true }, bookingLink: '#' },
+    ],
+    'Munnar': [
+        { id: uuidv4(), name: 'The Panoramic Getaway', starRating: 5, pricePerNight: 12000, propertyType: 'Resort', location: { lat: 10.0500, lng: 77.0500 }, address: 'Chithirapuram', amenities: { wifi: true, spa: true, swimmingPool: true, balcony: true, elevator: true, caretaker: true, restaurant: true, kitchenAvailability: false, bar: true, barbeque: true, cafe: true, parking: true, bonfire: true, roomService: true, alcoholAllowed: true, petsAllowed: false, smokingAllowed: true, unmarriedCouplesAllowed: true }, bookingLink: '#' },
+        { id: uuidv4(), name: 'Tea County Munnar', starRating: 4, pricePerNight: 7500, propertyType: 'Resort', location: { lat: 10.0889, lng: 77.0595 }, address: 'Munnar Town', amenities: { wifi: true, spa: true, swimmingPool: false, balcony: true, elevator: false, caretaker: true, restaurant: true, kitchenAvailability: false, bar: true, barbeque: false, cafe: true, parking: true, bonfire: true, roomService: true, alcoholAllowed: true, petsAllowed: false, smokingAllowed: false, unmarriedCouplesAllowed: true }, bookingLink: '#' },
+    ],
+    'Alleppey': [
+        { id: uuidv4(), name: 'Sterling Lake Palace Resort', starRating: 5, pricePerNight: 11000, propertyType: 'Resort', location: { lat: 9.4981, lng: 76.3388 }, address: 'Punnamada', amenities: { wifi: true, spa: true, swimmingPool: true, balcony: true, elevator: true, caretaker: true, restaurant: true, kitchenAvailability: false, bar: true, barbeque: true, cafe: true, parking: true, bonfire: false, roomService: true, alcoholAllowed: true, petsAllowed: false, smokingAllowed: true, unmarriedCouplesAllowed: true }, bookingLink: '#' },
+        { id: uuidv4(), name: 'Lemon Tree Vembanad Lake', starRating: 4, pricePerNight: 5500, propertyType: 'Resort', location: { lat: 9.5500, lng: 76.3500 }, address: 'Muhamma', amenities: { wifi: true, spa: true, swimmingPool: true, balcony: true, elevator: false, caretaker: true, restaurant: true, kitchenAvailability: false, bar: false, barbeque: false, cafe: true, parking: true, bonfire: false, roomService: true, alcoholAllowed: true, petsAllowed: false, smokingAllowed: false, unmarriedCouplesAllowed: true }, bookingLink: '#' },
     ],
     'Delhi': [
         { name: 'The Imperial New Delhi', starRating: 5, pricePerNight: 18000, propertyType: 'Hotel', location: { lat: 28.6265, lng: 77.2186 } },

@@ -1,7 +1,7 @@
 'use client';
 
 import { useSafarStore } from '@/lib/store';
-import { Spot, P2PTravel, Restaurant, Flight, Train } from '@/lib/types';
+import { Spot, P2PTravel, Restaurant, Flight, Train, InterCityOption } from '@/lib/types';
 import FeedbackForm from './FeedbackForm';
 import { useState } from 'react';
 
@@ -191,6 +191,49 @@ export default function ItineraryPanel() {
                                                         {p2p.distance}km · {p2p.duration}min · ₹{p2p.cost}
                                                     </span>
                                                     {item.notes && <span style={{ color: '#818cf8' }}>{item.notes}</span>}
+                                                </div>
+                                            </div>
+                                        );
+                                    }
+
+                                    if (item.type === 'intercity') {
+                                        const transit = item.data as InterCityOption;
+                                        const icon = transit.type === 'bus' ? '🚌' : transit.type === 'shared_taxi' ? '🚐' : '🚕';
+                                        const accentColor = transit.type === 'bus' ? '#6366f1' : transit.type === 'shared_taxi' ? '#10b981' : '#f59e0b';
+
+                                        return (
+                                            <div key={`intercity-${idx}`} className="timeline-item travel">
+                                                <div className="glass-card" style={{
+                                                    padding: '12px 14px', marginBottom: 4,
+                                                    background: `rgba(${transit.type === 'bus' ? '99,102,241' : transit.type === 'shared_taxi' ? '16,185,129' : '245,158,11'}, 0.08)`,
+                                                    border: `1px solid ${accentColor}44`,
+                                                }}>
+                                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                                                        <div style={{ flex: 1 }}>
+                                                            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                                                                <span style={{ fontSize: 18 }}>{icon}</span>
+                                                                <span style={{ fontWeight: 600, fontSize: 14 }}>{transit.modeName}</span>
+                                                                <span className="badge" style={{ fontSize: 10, background: accentColor, color: '#fff' }}>
+                                                                    {transit.type.replace('_', ' ').toUpperCase()}
+                                                                </span>
+                                                            </div>
+                                                            <div style={{ fontSize: 13, color: '#a0a0cc', marginTop: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
+                                                                <span style={{ fontWeight: 600, color: '#f0f0ff' }}>{transit.source}</span>
+                                                                <span style={{ color: '#6b6b99' }}>→</span>
+                                                                <span style={{ fontWeight: 600, color: '#f0f0ff' }}>{transit.destination}</span>
+                                                            </div>
+                                                            <div style={{ fontSize: 11, color: '#6b6b99', marginTop: 4 }}>
+                                                                ⏱️ ~{Math.floor(transit.duration / 60)}h {transit.duration % 60}m
+                                                                {item.notes && <span style={{ color: accentColor, marginLeft: 8 }}>{item.notes}</span>}
+                                                            </div>
+                                                        </div>
+                                                        <div style={{ textAlign: 'right' }}>
+                                                            <div style={{ fontWeight: 700, fontSize: 16, color: '#10b981' }}>
+                                                                ₹{transit.price.toLocaleString('en-IN')}
+                                                            </div>
+                                                            <div style={{ fontSize: 10, color: '#6b6b99', marginTop: 2 }}>Ready for departure</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         );

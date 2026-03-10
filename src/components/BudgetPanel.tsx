@@ -16,17 +16,23 @@ export default function BudgetPanel() {
     const spotsCost = itinerary.days.reduce((sum, d) =>
         sum + d.items.filter(i => i.type === 'spot').reduce((s, i) => s + ((i.data as { entryFee?: number }).entryFee || 0), 0), 0
     );
-    const travelCost = itinerary.days.reduce((sum, d) =>
+    let interCityTravelCost = 0;
+    if (itinerary.outboundTravel) interCityTravelCost += itinerary.outboundTravel.data.price;
+    if (itinerary.returnTravel) interCityTravelCost += itinerary.returnTravel.data.price;
+
+    const localTravelCost = itinerary.days.reduce((sum, d) =>
         sum + d.items.filter(i => i.type === 'p2p').reduce((s, i) => s + ((i.data as { cost?: number }).cost || 0), 0), 0
     );
+    const totalTravelCost = localTravelCost + interCityTravelCost;
+
     const foodCost = itinerary.days.reduce((sum, d) =>
         sum + d.items.filter(i => i.type === 'restaurant').reduce((s, i) => s + (((i.data as { avgCostForTwo?: number }).avgCostForTwo || 0) / 2), 0), 0
     );
-    const hotelCost = currentCost - spotsCost - travelCost - foodCost;
+    const hotelCost = currentCost - spotsCost - totalTravelCost - foodCost;
 
     const categories = [
         { label: 'Accommodation', amount: Math.max(0, hotelCost), color: '#f59e0b', icon: '🏨' },
-        { label: 'Local Travel', amount: travelCost, color: '#6366f1', icon: '🚕' },
+        { label: 'Travel', amount: totalTravelCost, color: '#6366f1', icon: '🚕' },
         { label: 'Activities', amount: spotsCost, color: '#10b981', icon: '🎯' },
         { label: 'Food', amount: foodCost, color: '#ec4899', icon: '🍽️' },
     ];

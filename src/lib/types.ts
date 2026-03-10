@@ -117,12 +117,24 @@ export interface P2PTravel {
   cost: number; // INR
 }
 
+// ---------- INTER-CITY TRAVEL ----------
+export interface InterCityOption {
+  id: string;
+  source: string;
+  destination: string;
+  type: 'bus' | 'shared_taxi' | 'cab';
+  modeName: string;
+  price: number;
+  duration: number; // minutes
+  departureTimes: string[];
+}
+
 // ---------- ITINERARY ----------
-export type ItineraryItemType = 'hotel' | 'flight' | 'train' | 'spot' | 'p2p' | 'restaurant';
+export type ItineraryItemType = 'hotel' | 'flight' | 'train' | 'spot' | 'p2p' | 'restaurant' | 'intercity';
 
 export interface ItineraryItem {
   type: ItineraryItemType;
-  data: Hotel | Flight | Train | Spot | P2PTravel | Restaurant;
+  data: Hotel | Flight | Train | Spot | P2PTravel | Restaurant | InterCityOption;
   startTime?: string; // "HH:MM"
   endTime?: string; // "HH:MM"
   notes?: string;
@@ -154,6 +166,8 @@ export interface FullItinerary {
   returnTravel?: TravelSelection;
   allFlights: Flight[];
   allTrains: Train[];
+  interCityOptions?: Record<string, InterCityOption[]>; // keyed by Transit Locality
+  selectedInterCitySegments?: Record<string, InterCityOption>; // keyed by Transit Locality
 }
 
 // ---------- TRIP INPUT ----------
@@ -165,6 +179,9 @@ export interface TripInput {
   budget: number; // INR
   preferences: string[];
   maxHoursPerDay: number;
+  isDateFlexible: boolean;
+  minDays?: number;
+  maxDays?: number;
 }
 
 // ---------- LOCALITY SPLIT ----------
@@ -196,6 +213,7 @@ export interface AgentData {
   hotels: Record<string, Hotel[]>; // keyed by locality
   flights: Flight[];
   trains: Train[];
+  interCityTravel: Record<string, InterCityOption[]>; // keyed by "Source-Destination"
   spots: Record<string, Spot[]>; // keyed by locality
   restaurants: Record<string, Restaurant[]>; // keyed by locality
 }

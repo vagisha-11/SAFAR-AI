@@ -45,6 +45,18 @@ const RESTAURANTS_DATA: Record<string, Partial<Restaurant>[]> = {
         { name: 'Britannia & Co', cuisine: 'Parsi', avgCostForTwo: 800, rating: 4.5, location: { lat: 18.9340, lng: 72.8350 }, mealType: 'lunch' },
         { name: 'The Table', cuisine: 'European', avgCostForTwo: 3000, rating: 4.5, location: { lat: 18.9220, lng: 72.8310 }, mealType: 'dinner' },
     ],
+    'Kochi': [
+        { name: 'Rice Boat', cuisine: 'Seafood', avgCostForTwo: 3000, rating: 4.7, location: { lat: 9.9658, lng: 76.2421 }, mealType: 'dinner' },
+        { name: 'Kashi Art Cafe', cuisine: 'Cafe', avgCostForTwo: 800, rating: 4.5, location: { lat: 9.9680, lng: 76.2410 }, mealType: 'lunch' },
+    ],
+    'Munnar': [
+        { name: 'Saravana Bhavan Munnar', cuisine: 'South Indian', avgCostForTwo: 400, rating: 4.2, location: { lat: 10.0880, lng: 77.0590 }, mealType: 'any' },
+        { name: 'Rapsy Restaurant', cuisine: 'Multi-Cuisine', avgCostForTwo: 600, rating: 4.3, location: { lat: 10.0895, lng: 77.0605 }, mealType: 'lunch' },
+    ],
+    'Alleppey': [
+        { name: 'Thaff Delicacy', cuisine: 'Biryani/North Indian', avgCostForTwo: 700, rating: 4.1, location: { lat: 9.4930, lng: 76.3200 }, mealType: 'any' },
+        { name: 'Halais Restaurant', cuisine: 'Multi-Cuisine', avgCostForTwo: 800, rating: 4.0, location: { lat: 9.5000, lng: 76.3300 }, mealType: 'dinner' },
+    ],
 };
 
 function generateRestaurant(locality: string, index: number, center: LatLng): Restaurant {

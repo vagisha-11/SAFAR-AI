@@ -7,3 +7,4 @@ export { getTrains } from './trains';
 export { getSpots } from './spots';
 export { getRestaurants } from './restaurants';
 export { getP2PCost, getAllP2POptions, haversineDistance } from './p2pTravel';
+export { getInterCityTravel } from './interCityTravel';
