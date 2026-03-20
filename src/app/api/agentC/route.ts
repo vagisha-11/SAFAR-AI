@@ -115,303 +115,280 @@ function calculateDurationMin(start: string, end: string): number {
     return Math.max(0, Math.floor(diff / 60000));
 }
 
-export async function POST(request: NextRequest) {
-    try {
-        const body: AgentCInput = await request.json();
-        const { dayPlans, unselectedSpots, agentData, tripInput, localities } = body;
+export async function executeAgentC(body: AgentCInput) {
+    const { dayPlans, unselectedSpots, agentData, tripInput, localities } = body;
 
-        const totalDays = dayPlans.length;
-        const budget = allocateBudget(tripInput.budget, totalDays, localities);
+    const totalDays = dayPlans.length;
+    const budget = allocateBudget(tripInput.budget, totalDays, localities);
 
-        const activitiesCost = dayPlans.reduce((sum, d) => sum + d.totalCost, 0);
-        const nonTransitLocalities = localities.filter(l => !l.isTransitDay);
+    const activitiesCost = dayPlans.reduce((sum, d) => sum + d.totalCost, 0);
+    const nonTransitLocalities = localities.filter(l => !l.isTransitDay);
 
-        // MCKP: Multiple-Choice Knapsack Problem Framework
-        // Partially items into classes and select exactly one per class to maximize global utility.
+    interface MCKPItem {
+        classId: string;
+        data: any;
+        cost: number;
+        utility: number;
+        type: 'hotel' | 'flight' | 'train' | 'transit';
+    }
 
-        interface MCKPItem {
-            classId: string;
-            data: any;
-            cost: number;
-            utility: number;
-            type: 'hotel' | 'flight' | 'train' | 'transit';
+    const mckpClasses: MCKPItem[][] = [];
+
+    // 1. Hotel Partitions
+    for (const loc of nonTransitLocalities) {
+        const hotels = (agentData.hotels[loc.locality] || []);
+        const options: MCKPItem[] = hotels.map(h => ({
+            classId: `hotel_${loc.locality}`,
+            data: h,
+            cost: h.pricePerNight * loc.days,
+            utility: h.starRating * 100 + (h.propertyType === 'Resort' ? 50 : 0),
+            type: 'hotel',
+        }));
+        if (options.length === 0) {
+            options.push({ classId: `hotel_${loc.locality}`, data: null, cost: 0, utility: 0, type: 'hotel' });
         }
+        mckpClasses.push(options);
+    }
 
-        const mckpClasses: MCKPItem[][] = [];
+    // 2. Outbound Travel Partitions
+    const outboundOptions: MCKPItem[] = [
+        ...agentData.flights
+            .filter(f => f.source.toLowerCase() === tripInput.source.toLowerCase())
+            .map(f => ({
+                classId: 'outbound',
+                data: f,
+                cost: f.price,
+                utility: (20 - (calculateDurationMin(f.departureTime, f.arrivalTime) / 60)) * 10,
+                type: 'flight' as const,
+            })),
+        ...agentData.trains
+            .filter(t => t.source.toLowerCase() === tripInput.source.toLowerCase())
+            .map(t => ({
+                classId: 'outbound',
+                data: t,
+                cost: t.price,
+                utility: (40 - (calculateDurationMin(t.departureTime, t.arrivalTime) / 60)) * 5,
+                type: 'train' as const,
+            })),
+    ];
+    if (outboundOptions.length > 0) mckpClasses.push(outboundOptions);
 
-        // 1. Hotel Partitions
-        for (const loc of nonTransitLocalities) {
-            const hotels = (agentData.hotels[loc.locality] || []);
-            const options: MCKPItem[] = hotels.map(h => ({
-                classId: `hotel_${loc.locality}`,
-                data: h,
-                cost: h.pricePerNight * loc.days,
-                utility: h.starRating * 100 + (h.propertyType === 'Resort' ? 50 : 0),
-                type: 'hotel',
-            }));
-            if (options.length === 0) {
-                // Defensive fallback: create a dummy if no hotels exist
-                options.push({ classId: `hotel_${loc.locality}`, data: null, cost: 0, utility: 0, type: 'hotel' });
-            }
-            mckpClasses.push(options);
-        }
+    // 3. Return Travel Partitions
+    const returnOptions: MCKPItem[] = [
+        ...agentData.flights
+            .filter(f => f.destination.toLowerCase() === tripInput.source.toLowerCase())
+            .map(f => ({
+                classId: 'return',
+                data: f,
+                cost: f.price,
+                utility: (20 - (calculateDurationMin(f.departureTime, f.arrivalTime) / 60)) * 10,
+                type: 'flight' as const,
+            })),
+        ...agentData.trains
+            .filter(t => t.destination.toLowerCase() === tripInput.source.toLowerCase())
+            .map(t => ({
+                classId: 'return',
+                data: t,
+                cost: t.price,
+                utility: (40 - (calculateDurationMin(t.departureTime, t.arrivalTime) / 60)) * 5,
+                type: 'train' as const,
+            })),
+    ];
+    if (returnOptions.length > 0) mckpClasses.push(returnOptions);
 
-        // 2. Outbound Travel Partitions
-        const outboundOptions: MCKPItem[] = [
-            ...agentData.flights
-                .filter(f => f.source.toLowerCase() === tripInput.source.toLowerCase())
-                .map(f => ({
-                    classId: 'outbound',
-                    data: f,
-                    cost: f.price,
-                    utility: (20 - (calculateDurationMin(f.departureTime, f.arrivalTime) / 60)) * 10,
-                    type: 'flight' as const,
-                })),
-            ...agentData.trains
-                .filter(t => t.source.toLowerCase() === tripInput.source.toLowerCase())
-                .map(t => ({
-                    classId: 'outbound',
-                    data: t,
-                    cost: t.price,
-                    utility: (40 - (calculateDurationMin(t.departureTime, t.arrivalTime) / 60)) * 5,
-                    type: 'train' as const,
-                })),
-        ];
-        if (outboundOptions.length > 0) mckpClasses.push(outboundOptions);
+    // 4. Inter-City Transit Partitions
+    const updatedDayPlans = [...dayPlans];
+    const transitDayIndices = updatedDayPlans
+        .map((dp, idx) => dp.isTransitDay ? idx : -1)
+        .filter(idx => idx !== -1);
 
-        // 3. Return Travel Partitions
-        const returnOptions: MCKPItem[] = [
-            ...agentData.flights
-                .filter(f => f.destination.toLowerCase() === tripInput.source.toLowerCase())
-                .map(f => ({
-                    classId: 'return',
-                    data: f,
-                    cost: f.price,
-                    utility: (20 - (calculateDurationMin(f.departureTime, f.arrivalTime) / 60)) * 10,
-                    type: 'flight' as const,
-                })),
-            ...agentData.trains
-                .filter(t => t.destination.toLowerCase() === tripInput.source.toLowerCase())
-                .map(t => ({
-                    classId: 'return',
-                    data: t,
-                    cost: t.price,
-                    utility: (40 - (calculateDurationMin(t.departureTime, t.arrivalTime) / 60)) * 5,
-                    type: 'train' as const,
-                })),
-        ];
-        if (returnOptions.length > 0) mckpClasses.push(returnOptions);
+    transitDayIndices.forEach(idx => {
+        const loc = localities[idx];
+        const options = (agentData.interCityTravel[loc.locality] || []);
+        const mckpOptions: MCKPItem[] = options.map(opt => ({
+            classId: `transit_${idx}`,
+            data: opt,
+            cost: opt.price,
+            utility: opt.type === 'cab' ? 150 : (opt.type === 'shared_taxi' ? 80 : 30),
+            type: 'transit' as const,
+        }));
+        if (mckpOptions.length > 0) mckpClasses.push(mckpOptions);
+    });
 
-        // 4. Inter-City Transit Partitions
-        const updatedDayPlans = [...dayPlans];
-        const transitDayIndices = updatedDayPlans
-            .map((dp, idx) => dp.isTransitDay ? idx : -1)
-            .filter(idx => idx !== -1);
+    // 5. MCKP Solver (Greedy with Refinement)
+    let currentSelection: MCKPItem[] = mckpClasses.map(cls =>
+        [...cls].sort((a, b) => a.cost - b.cost)[0]
+    );
 
-        transitDayIndices.forEach(idx => {
-            const loc = localities[idx];
-            const options = (agentData.interCityTravel[loc.locality] || []);
-            const mckpOptions: MCKPItem[] = options.map(opt => ({
-                classId: `transit_${idx}`,
-                data: opt,
-                cost: opt.price,
-                utility: opt.type === 'cab' ? 150 : (opt.type === 'shared_taxi' ? 80 : 30),
-                type: 'transit' as const,
-            }));
-            if (mckpOptions.length > 0) mckpClasses.push(mckpOptions);
-        });
+    let totalVariableCost = currentSelection.reduce((s, i) => s + i.cost, 0);
+    let surplus = tripInput.budget - activitiesCost - totalVariableCost;
 
-        // 5. MCKP Solver (Greedy with Refinement)
-        let currentSelection: MCKPItem[] = mckpClasses.map(cls =>
-            [...cls].sort((a, b) => a.cost - b.cost)[0]
-        );
+    while (surplus > 0) {
+        let bestUpgrade: { classIdx: number, newItem: MCKPItem, efficiency: number } | null = null;
+        for (let i = 0; i < mckpClasses.length; i++) {
+            const current = currentSelection[i];
+            const alternatives = mckpClasses[i].filter(item => item.cost > current.cost);
 
-        let totalVariableCost = currentSelection.reduce((s, i) => s + i.cost, 0);
-        let surplus = tripInput.budget - activitiesCost - totalVariableCost;
+            for (const alt of alternatives) {
+                const costDiff = alt.cost - current.cost;
+                if (costDiff <= surplus) {
+                    const utilityGain = alt.utility - current.utility;
+                    const efficiency = utilityGain / (costDiff || 1);
 
-        // Iteratively upgrade based on marginal utility/cost
-        while (surplus > 0) {
-            let bestUpgrade: { classIdx: number, newItem: MCKPItem, efficiency: number } | null = null;
-
-            for (let i = 0; i < mckpClasses.length; i++) {
-                const current = currentSelection[i];
-                const alternatives = mckpClasses[i].filter(item => item.cost > current.cost);
-
-                for (const alt of alternatives) {
-                    const costDiff = alt.cost - current.cost;
-                    if (costDiff <= surplus) {
-                        const utilityGain = alt.utility - current.utility;
-                        const efficiency = utilityGain / (costDiff || 1);
-
-                        if (!bestUpgrade || efficiency > bestUpgrade.efficiency) {
-                            bestUpgrade = { classIdx: i, newItem: alt, efficiency };
-                        }
+                    if (!bestUpgrade || efficiency > bestUpgrade.efficiency) {
+                        bestUpgrade = { classIdx: i, newItem: alt, efficiency };
                     }
                 }
             }
-
-            if (!bestUpgrade || bestUpgrade.efficiency <= 0) break;
-
-            const costDiff = bestUpgrade.newItem.cost - currentSelection[bestUpgrade.classIdx].cost;
-            currentSelection[bestUpgrade.classIdx] = bestUpgrade.newItem;
-            surplus -= costDiff;
-            totalVariableCost += costDiff;
         }
 
-        // --- NEW: Survival Pruning ---
-        // If we are still over budget even with the cheapest assets, prune spots
-        let currentTotalCost = totalVariableCost + activitiesCost;
-        if (currentTotalCost > tripInput.budget) {
-            // Flatten all spots across all days to find those to prune
-            interface PrunableSpot {
-                dayIdx: number;
-                itemIdx: number;
-                cost: number;
-                utility: number;
-            }
+        if (!bestUpgrade || bestUpgrade.efficiency <= 0) break;
 
-            const prunable: PrunableSpot[] = [];
-            updatedDayPlans.forEach((day, dIdx) => {
-                day.items.forEach((item, iIdx) => {
-                    if (item.type === 'spot') {
-                        const s = item.data as Spot;
-                        prunable.push({
-                            dayIdx: dIdx,
-                            itemIdx: iIdx,
-                            cost: s.entryFee,
-                            utility: s.popularity + s.rating * 5, // Simple utility proxy
-                        });
-                    }
-                });
-            });
+        const costDiff = bestUpgrade.newItem.cost - currentSelection[bestUpgrade.classIdx].cost;
+        currentSelection[bestUpgrade.classIdx] = bestUpgrade.newItem;
+        surplus -= costDiff;
+        totalVariableCost += costDiff;
+    }
 
-            // Sort by "Efficiency" (lowest utility/cost first for pruning)
-            prunable.sort((a, b) => (a.utility / (a.cost || 1)) - (b.utility / (b.cost || 1)));
-
-            for (const p of prunable) {
-                if (currentTotalCost <= tripInput.budget) break;
-
-                const day = updatedDayPlans[p.dayIdx];
-                const item = day.items[p.itemIdx];
-                if (!item || item.type !== 'spot') continue;
-
-                // Remove it by marking its data with a special flag if we must keep index, 
-                // or just remove it if we don't care about subsequent p indices.
-                // Since we're iterating through a copy of indices, let's just null it out carefully with a type cast or use a filter.
-                currentTotalCost -= p.cost;
-                day.totalCost -= p.cost;
-                (day.items[p.itemIdx] as any)._toPrune = true;
-            }
-
-            // Clean up marked items
-            updatedDayPlans.forEach(day => {
-                day.items = day.items.filter(it => !(it as any)._toPrune);
-            });
+    // Survival Pruning
+    let currentTotalCost = totalVariableCost + activitiesCost;
+    if (currentTotalCost > tripInput.budget) {
+        interface PrunableSpot {
+            dayIdx: number; itemIdx: number; cost: number; utility: number;
         }
 
-        // Apply results
-        const selectedHotels: Record<string, Hotel> = {};
-        let outboundSelection: any = null;
-        let returnSelection: any = null;
-
-        currentSelection.forEach(item => {
-            if (item.type === 'hotel') {
-                const locName = item.classId.replace('hotel_', '');
-                if (item.data) selectedHotels[locName] = item.data;
-            } else if (item.classId === 'outbound') {
-                outboundSelection = { type: item.type, data: item.data };
-            } else if (item.classId === 'return') {
-                returnSelection = { type: item.type, data: item.data };
-            } else if (item.classId.startsWith('transit_')) {
-                const idx = parseInt(item.classId.replace('transit_', ''));
-                const option = item.data;
-                updatedDayPlans[idx] = {
-                    ...updatedDayPlans[idx],
-                    items: [{
-                        type: 'intercity',
-                        data: option,
-                        startTime: '09:00',
-                        endTime: '13:00',
-                        notes: `🛑 Transit: ${option.modeName}`,
-                    }],
-                    totalCost: option.price,
-                };
-            }
+        const prunable: PrunableSpot[] = [];
+        updatedDayPlans.forEach((day, dIdx) => {
+            day.items.forEach((item, iIdx) => {
+                if (item.type === 'spot') {
+                    const s = item.data as Spot;
+                    prunable.push({
+                        dayIdx: dIdx, itemIdx: iIdx, cost: s.entryFee,
+                        utility: s.popularity + s.rating * 5,
+                    });
+                }
+            });
         });
 
-        // Inject Travel to Days
-        if (outboundSelection && updatedDayPlans.length > 0) {
-            const { type, data } = outboundSelection;
-            // Filter out existing flights/trains to prevent duplicates
-            const filteredItems = updatedDayPlans[0].items.filter(item => item.type !== 'flight' && item.type !== 'train');
+        prunable.sort((a, b) => (a.utility / (a.cost || 1)) - (b.utility / (b.cost || 1)));
 
-            updatedDayPlans[0] = {
-                ...updatedDayPlans[0],
+        for (const p of prunable) {
+            if (currentTotalCost <= tripInput.budget) break;
+
+            const day = updatedDayPlans[p.dayIdx];
+            const item = day.items[p.itemIdx];
+            if (!item || item.type !== 'spot') continue;
+
+            currentTotalCost -= p.cost;
+            day.totalCost -= p.cost;
+            (day.items[p.itemIdx] as any)._toPrune = true;
+        }
+
+        updatedDayPlans.forEach(day => {
+            day.items = day.items.filter(it => !(it as any)._toPrune);
+        });
+    }
+
+    // Apply results
+    const selectedHotels: Record<string, Hotel> = {};
+    let outboundSelection: any = null;
+    let returnSelection: any = null;
+
+    currentSelection.forEach(item => {
+        if (item.type === 'hotel') {
+            const locName = item.classId.replace('hotel_', '');
+            if (item.data) selectedHotels[locName] = item.data;
+        } else if (item.classId === 'outbound') {
+            outboundSelection = { type: item.type, data: item.data };
+        } else if (item.classId === 'return') {
+            returnSelection = { type: item.type, data: item.data };
+        } else if (item.classId.startsWith('transit_')) {
+            const idx = parseInt(item.classId.replace('transit_', ''));
+            const option = item.data;
+            updatedDayPlans[idx] = {
+                ...updatedDayPlans[idx],
                 items: [{
-                    type, data,
-                    startTime: new Date(data.departureTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
-                    endTime: new Date(data.arrivalTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
-                    notes: `✈️ Outbound: ${data.source} → ${data.destination}`,
-                }, ...filteredItems],
-                // Recalculate cost of Day 0 correctly (activities + outbound travel)
-                totalCost: filteredItems.reduce((sum, it) => {
-                    if (it.type === 'spot') return sum + (it.data as any).entryFee;
-                    if (it.type === 'restaurant') return sum + (it.data as any).avgCostForTwo / 2;
-                    if (it.type === 'p2p') return sum + (it.data as any).cost;
-                    return sum;
-                }, 0) + data.price,
-            };
-        }
-
-        if (returnSelection && updatedDayPlans.length > 0) {
-            const { type, data } = returnSelection;
-            const lastIdx = updatedDayPlans.length - 1;
-            // Filter out existing flights/trains to prevent duplicates
-            const filteredItems = updatedDayPlans[lastIdx].items.filter(item => item.type !== 'flight' && item.type !== 'train');
-
-            updatedDayPlans[lastIdx] = {
-                ...updatedDayPlans[lastIdx],
-                items: [...filteredItems, {
-                    type, data,
-                    startTime: new Date(data.departureTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
-                    endTime: new Date(data.arrivalTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
-                    notes: `✈️ Return: ${data.source} → ${data.destination}`,
+                    type: 'intercity', data: option, startTime: '09:00', endTime: '13:00',
+                    notes: `🛑 Transit: ${option.modeName}`,
                 }],
-                // Recalculate cost of last day correctly
-                totalCost: filteredItems.reduce((sum, it) => {
-                    if (it.type === 'spot') return sum + (it.data as any).entryFee;
-                    if (it.type === 'restaurant') return sum + (it.data as any).avgCostForTwo / 2;
-                    if (it.type === 'p2p') return sum + (it.data as any).cost;
-                    return sum;
-                }, 0) + data.price,
+                totalCost: option.price,
             };
         }
+    });
 
-        // Sync hotels back
-        updatedDayPlans.forEach(dp => {
-            dp.hotel = selectedHotels[dp.locality] || undefined;
-        });
+    if (outboundSelection && updatedDayPlans.length > 0) {
+        const { type, data } = outboundSelection;
+        const filteredItems = updatedDayPlans[0].items.filter(item => item.type !== 'flight' && item.type !== 'train');
 
-        const finalCost = updatedDayPlans.reduce((sum, d) => sum + d.totalCost, 0) +
-            Object.entries(selectedHotels).reduce((sum, [locName, h]) => {
-                const loc = nonTransitLocalities.find(l => l.locality === locName);
-                return sum + (h.pricePerNight * (loc?.days || 0));
-            }, 0);
-
-        const itinerary: FullItinerary = {
-            id: uuidv4(),
-            tripInput,
-            localitySplit: localities,
-            days: updatedDayPlans,
-            totalCost: Math.round(finalCost),
-            budgetRemaining: Math.round(tripInput.budget - finalCost),
-            outboundTravel: outboundSelection,
-            returnTravel: returnSelection,
-            allFlights: agentData.flights,
-            allTrains: agentData.trains,
-            interCityOptions: agentData.interCityTravel,
-            unselectedSpots: unselectedSpots,
+        updatedDayPlans[0] = {
+            ...updatedDayPlans[0],
+            items: [{
+                type, data,
+                startTime: new Date(data.departureTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
+                endTime: new Date(data.arrivalTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
+                notes: `✈️ Outbound: ${data.source} → ${data.destination}`,
+            }, ...filteredItems],
+            totalCost: filteredItems.reduce((sum, it) => {
+                if (it.type === 'spot') return sum + (it.data as any).entryFee;
+                if (it.type === 'restaurant') return sum + (it.data as any).avgCostForTwo / 2;
+                if (it.type === 'p2p') return sum + (it.data as any).cost;
+                return sum;
+            }, 0) + data.price,
         };
+    }
+
+    if (returnSelection && updatedDayPlans.length > 0) {
+        const { type, data } = returnSelection;
+        const lastIdx = updatedDayPlans.length - 1;
+        const filteredItems = updatedDayPlans[lastIdx].items.filter(item => item.type !== 'flight' && item.type !== 'train');
+
+        updatedDayPlans[lastIdx] = {
+            ...updatedDayPlans[lastIdx],
+            items: [...filteredItems, {
+                type, data,
+                startTime: new Date(data.departureTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
+                endTime: new Date(data.arrivalTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
+                notes: `✈️ Return: ${data.source} → ${data.destination}`,
+            }],
+            totalCost: filteredItems.reduce((sum, it) => {
+                if (it.type === 'spot') return sum + (it.data as any).entryFee;
+                if (it.type === 'restaurant') return sum + (it.data as any).avgCostForTwo / 2;
+                if (it.type === 'p2p') return sum + (it.data as any).cost;
+                return sum;
+            }, 0) + data.price,
+        };
+    }
+
+    updatedDayPlans.forEach(dp => {
+        dp.hotel = selectedHotels[dp.locality] || undefined;
+    });
+
+    const finalCost = updatedDayPlans.reduce((sum, d) => sum + d.totalCost, 0) +
+        Object.entries(selectedHotels).reduce((sum, [locName, h]) => {
+            const loc = nonTransitLocalities.find(l => l.locality === locName);
+            return sum + (h.pricePerNight * (loc?.days || 0));
+        }, 0);
+
+    return {
+        id: uuidv4(),
+        tripInput,
+        localitySplit: localities,
+        days: updatedDayPlans,
+        totalCost: Math.round(finalCost),
+        budgetRemaining: Math.round(tripInput.budget - finalCost),
+        outboundTravel: outboundSelection,
+        returnTravel: returnSelection,
+        allFlights: agentData.flights,
+        allTrains: agentData.trains,
+        interCityOptions: agentData.interCityTravel,
+        unselectedSpots: unselectedSpots,
+    } as FullItinerary;
+}
+
+export async function POST(request: NextRequest) {
+    try {
+        const body: AgentCInput = await request.json();
+        const itinerary = await executeAgentC(body);
 
         return NextResponse.json({ success: true, itinerary });
     } catch (error) {

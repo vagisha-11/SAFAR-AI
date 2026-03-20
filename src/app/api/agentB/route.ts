@@ -20,6 +20,8 @@ interface AgentBInput {
     hotelLocation?: LatLng; // The "Depot" for TOPTW
     maxHoursPerDay: number;
     userPreferences?: string[];
+    mustExclude?: string[];
+    additionalNotes?: string;
     startDate: string;
     arrivalHour?: number;
     budget?: number;
@@ -33,7 +35,7 @@ const RELEVANCE_THRESHOLD = 25; // Minimum score to be considered if preferences
  * 2. Popularity (tourist visits)
  * 3. Rating (recommendations)
  */
-function scoreSpot(spot: Spot, preferences: string[], budget?: number): number {
+function scoreSpot(spot: Spot, preferences: string[], budget?: number, mustExclude: string[] = [], additionalNotes: string = ''): number {
     // Base profit: Rating and Popularity
     let profit = spot.popularity + spot.rating * 5;
 
@@ -43,6 +45,25 @@ function scoreSpot(spot: Spot, preferences: string[], budget?: number): number {
             profit -= 50; // Penalize expensive spots on low budget
         } else if (budget > 60000 && spot.entryFee > 1000) {
             profit += 30; // Boost "Premium" experiences on high budget
+        }
+    }
+
+    // Hard Penalty for Exclusions
+    if (mustExclude && mustExclude.length > 0) {
+        for (const ex of mustExclude) {
+            const eText = ex.toLowerCase();
+            if (spot.category.toLowerCase().includes(eText) || spot.name.toLowerCase().includes(eText) || spot.description.toLowerCase().includes(eText)) {
+                profit -= 200; // massive penalty ensuring TOPTW drops it
+            }
+        }
+    }
+
+    // Boost for Unstructured Additional Notes
+    if (additionalNotes) {
+        const notes = additionalNotes.toLowerCase();
+        // Simple heuristic matching
+        if (notes.includes(spot.category.toLowerCase()) || notes.includes(spot.name.toLowerCase())) {
+            profit += 80;
         }
     }
 
@@ -139,13 +160,13 @@ function findNearestRestaurant(
  * Maximizes aggregate Profit (User Interest) across all days M.
  */
 function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpots: Spot[] } {
-    const { spots, restaurants, daysInLocality, locality, cityCenter, hotelLocation, maxHoursPerDay, userPreferences = [], startDate, arrivalHour, budget } = input;
+    const { spots, restaurants, daysInLocality, locality, cityCenter, hotelLocation, maxHoursPerDay, userPreferences = [], mustExclude = [], additionalNotes = '', startDate, arrivalHour, budget } = input;
 
     // Use HotelLocation as Depot if available, otherwise CityCenter
     const depot = hotelLocation || cityCenter;
 
     // 1. Score and filter candidates
-    const scored = spots.map(s => ({ spot: s, score: scoreSpot(s, userPreferences, budget) }));
+    const scored = spots.map(s => ({ spot: s, score: scoreSpot(s, userPreferences, budget, mustExclude, additionalNotes) }));
     let qualified = scored.sort((a, b) => b.score - a.score);
 
     if (userPreferences.length > 0) {
@@ -168,7 +189,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
         // we respect the arrival hour if provided
         if (i === 0 && arrivalHour !== undefined) {
             startHour = arrivalHour + 1.5; // 1.5 hour buffer for airport/station exit + travel to hotel + check-in
-        } else if (userPreferences.some(p => p.toLowerCase().includes('nightlife'))) {
+        } else if ((userPreferences.some(p => p.toLowerCase().includes('nightlife'))) || additionalNotes.toLowerCase().includes('late')) {
             startHour = 11;
         }
 
@@ -211,7 +232,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
 
                 if (day.totalHours + deltaTotal + returnTime > maxHoursPerDay) continue;
 
-                const profit = scoreSpot(spot, userPreferences, budget);
+                const profit = scoreSpot(spot, userPreferences, budget, mustExclude, additionalNotes);
                 const efficiency = profit / (deltaTotal || 0.1);
 
                 if (!bestInsertion || efficiency > bestInsertion.efficiency) {
@@ -307,90 +328,95 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
     return { dayPlans, unselectedSpots };
 }
 
+export async function executeAgentB(body: any) {
+    const { localities, agentData, startDate, maxHoursPerDay = DEFAULT_MAX_HOURS, userPreferences = [], mustExclude = [], additionalNotes = '', hotelLocation, arrivalHour, budget } = body;
+
+    const allDayPlans: DayPlan[] = [];
+    const allUnselectedSpots: Spot[] = [];
+    let dayOffset = 0;
+    let plannedLocalitiesCount = 0;
+
+    for (const loc of localities) {
+        if (loc.isTransitDay) {
+            const date = new Date(startDate);
+            date.setDate(date.getDate() + dayOffset);
+            allDayPlans.push({
+                dayNumber: dayOffset + 1,
+                date: date.toISOString().split('T')[0],
+                locality: loc.locality,
+                isTransitDay: true,
+                items: [],
+                totalCost: 0,
+            });
+            dayOffset += 1;
+            continue;
+        }
+
+        const spots = agentData.spots[loc.locality] || [];
+        const restaurants = agentData.restaurants[loc.locality] || [];
+
+        const { dayPlans, unselectedSpots } = buildDayPlans({
+            spots,
+            restaurants,
+            daysInLocality: loc.days,
+            locality: loc.locality,
+            cityCenter: loc.center,
+            hotelLocation,
+            maxHoursPerDay,
+            userPreferences,
+            mustExclude,
+            additionalNotes,
+            startDate: new Date(new Date(startDate).getTime() + dayOffset * 86400000).toISOString(),
+            arrivalHour: plannedLocalitiesCount === 0 ? arrivalHour : undefined,
+            budget,
+        });
+
+        // Re-number days
+        for (const dp of dayPlans) {
+            dp.dayNumber = dayOffset + dp.dayNumber;
+        }
+
+        allDayPlans.push(...dayPlans);
+        allUnselectedSpots.push(...unselectedSpots);
+        dayOffset += loc.days;
+        plannedLocalitiesCount++;
+    }
+
+    // Resilience: Detect "Empty Day Syndrome"
+    const emptyDays = allDayPlans.filter(dp => !dp.isTransitDay && dp.items.filter(i => i.type === 'spot').length === 0);
+    const suggestions: { type: 'shorten_trip'; message: string; recommendedDays: number }[] = [];
+
+    if (emptyDays.length > 0) {
+        // Find the last day that has actually has spots
+        let lastActiveDay = 0;
+        for (let i = allDayPlans.length - 1; i >= 0; i--) {
+            const hasSpots = allDayPlans[i].items.some(it => it.type === 'spot');
+            if (hasSpots) {
+                lastActiveDay = allDayPlans[i].dayNumber;
+                break;
+            }
+        }
+
+        if (lastActiveDay < allDayPlans.length) {
+            suggestions.push({
+                type: 'shorten_trip',
+                message: `It looks like we've covered the best of ${localities.map((l: any) => l.locality).join(', ')} in ${lastActiveDay} days. Would you like to shorten your trip to save costs?`,
+                recommendedDays: lastActiveDay
+            });
+        }
+    }
+
+    return { dayPlans: allDayPlans, unselectedSpots: allUnselectedSpots, suggestions };
+}
+
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { localities, agentData, startDate, maxHoursPerDay = DEFAULT_MAX_HOURS, userPreferences = [], hotelLocation, arrivalHour, budget } = body;
-
-        const allDayPlans: DayPlan[] = [];
-        const allUnselectedSpots: Spot[] = [];
-        let dayOffset = 0;
-        let plannedLocalitiesCount = 0;
-
-        for (const loc of localities) {
-            if (loc.isTransitDay) {
-                // ... same as before
-                const date = new Date(startDate);
-                date.setDate(date.getDate() + dayOffset);
-                allDayPlans.push({
-                    dayNumber: dayOffset + 1,
-                    date: date.toISOString().split('T')[0],
-                    locality: loc.locality,
-                    isTransitDay: true,
-                    items: [],
-                    totalCost: 0,
-                });
-                dayOffset += 1;
-                continue;
-            }
-
-            const spots = agentData.spots[loc.locality] || [];
-            const restaurants = agentData.restaurants[loc.locality] || [];
-
-            const { dayPlans, unselectedSpots } = buildDayPlans({
-                spots,
-                restaurants,
-                daysInLocality: loc.days,
-                locality: loc.locality,
-                cityCenter: loc.center,
-                hotelLocation,
-                maxHoursPerDay,
-                userPreferences,
-                startDate: new Date(new Date(startDate).getTime() + dayOffset * 86400000).toISOString(),
-                arrivalHour: plannedLocalitiesCount === 0 ? arrivalHour : undefined,
-                budget,
-            });
-
-            // Re-number days
-            for (const dp of dayPlans) {
-                dp.dayNumber = dayOffset + dp.dayNumber;
-            }
-
-            allDayPlans.push(...dayPlans);
-            allUnselectedSpots.push(...unselectedSpots);
-            dayOffset += loc.days;
-            plannedLocalitiesCount++;
-        }
-
-        // Resilience: Detect "Empty Day Syndrome"
-        const emptyDays = allDayPlans.filter(dp => !dp.isTransitDay && dp.items.filter(i => i.type === 'spot').length === 0);
-        const suggestions: { type: 'shorten_trip'; message: string; recommendedDays: number }[] = [];
-
-        if (emptyDays.length > 0) {
-            // Find the last day that has actually has spots
-            let lastActiveDay = 0;
-            for (let i = allDayPlans.length - 1; i >= 0; i--) {
-                const hasSpots = allDayPlans[i].items.some(it => it.type === 'spot');
-                if (hasSpots) {
-                    lastActiveDay = allDayPlans[i].dayNumber;
-                    break;
-                }
-            }
-
-            if (lastActiveDay < allDayPlans.length) {
-                suggestions.push({
-                    type: 'shorten_trip',
-                    message: `It looks like we've covered the best of ${localities.map((l: any) => l.locality).join(', ')} in ${lastActiveDay} days. Would you like to shorten your trip to save costs?`,
-                    recommendedDays: lastActiveDay
-                });
-            }
-        }
+        const data = await executeAgentB(body);
 
         return NextResponse.json({
             success: true,
-            dayPlans: allDayPlans,
-            unselectedSpots: allUnselectedSpots,
-            suggestions
+            ...data
         });
     } catch (error) {
         console.error('Agent B error:', error);

@@ -183,6 +183,8 @@ export interface TripInput {
   isDateFlexible: boolean;
   minDays?: number;
   maxDays?: number;
+  mustExclude?: string[];
+  additionalNotes?: string;
 }
 
 // ---------- LOCALITY SPLIT ----------

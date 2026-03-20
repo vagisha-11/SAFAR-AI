@@ -1,10 +1,10 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import { useSafarStore } from '@/lib/store';
 import dynamic from 'next/dynamic';
 import ItineraryPanel from './ItineraryPanel';
 import BudgetPanel from './BudgetPanel';
-import PromptBar from './PromptBar';
 import HotelList from './HotelList';
 import TravelOptions from './TravelOptions';
 import ResiliencePanel from './ResiliencePanel';
@@ -13,29 +13,54 @@ import SpotExplorer from './SpotExplorer';
 // Leaflet must be loaded client-side only (no SSR)
 const MapView = dynamic(() => import('./MapView'), { ssr: false });
 
-export default function TripDashboard() {
-    const { tripInput, itinerary, selectedDay, setSelectedDay, setActiveStep, currentCost, budget } = useSafarStore();
+interface TripDashboardProps {
+    isChatCollapsed: boolean;
+    setIsChatCollapsed: (val: boolean) => void;
+    chatWidth: number;
+}
+
+export default function TripDashboard({ isChatCollapsed, setIsChatCollapsed, chatWidth }: TripDashboardProps) {
+    const { tripInput, itinerary, selectedDay, setSelectedDay, reset, currentCost } = useSafarStore();
+    const [rightPanelWidth, setRightPanelWidth] = useState(420);
+    const prevCollapsedRef = useRef(isChatCollapsed);
+
+    useEffect(() => {
+        if (isChatCollapsed !== prevCollapsedRef.current) {
+            if (isChatCollapsed) {
+                setRightPanelWidth(prev => prev + chatWidth);
+            } else {
+                setRightPanelWidth(prev => Math.max(420, prev - chatWidth));
+            }
+            prevCollapsedRef.current = isChatCollapsed;
+        }
+    }, [isChatCollapsed, chatWidth]);
 
     if (!itinerary || !tripInput) return null;
 
     const totalDays = itinerary.days.length;
 
     return (
-        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-            {/* Top Navigation Bar */}
+        // This component fills whatever container page.tsx gives it.
+        // The container in page.tsx must be: flex, flexDirection: column, height: 100%, overflow: hidden
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+
+            {/* ── TOP NAVIGATION BAR ── */}
+            {/* z-index 50 keeps it ABOVE leaflet tiles (z ~= 400 internally, but the map div clips it) */}
             <header style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                padding: '12px 24px',
+                padding: '10px 20px',
                 borderBottom: '1px solid rgba(99,102,241,0.15)',
-                background: 'rgba(10,10,26,0.95)',
+                background: 'rgba(10,10,26,0.98)',
                 backdropFilter: 'blur(20px)',
-                position: 'sticky', top: 0, zIndex: 100,
+                flexShrink: 0,          // ← never shrink; header always visible
+                zIndex: 50,
+                position: 'relative',   // ← establishes stacking context above map
             }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                     <button
-                        onClick={() => setActiveStep('input')}
+                        onClick={() => reset()}
                         className="btn-icon"
-                        title="Back to search"
+                        title="Start a new trip"
                     >
                         ←
                     </button>
@@ -62,19 +87,14 @@ export default function TripDashboard() {
 
                 {/* Day Selector - Horizontally Scrollable */}
                 <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 6,
-                    overflowX: 'auto',
-                    maxWidth: '40%',
-                    padding: '4px 0',
-                    scrollbarWidth: 'none', // Hide scrollbar for clean look
-                    msOverflowStyle: 'none'
+                    display: 'flex', alignItems: 'center', gap: 6,
+                    overflowX: 'auto', maxWidth: '40%', padding: '4px 0',
+                    scrollbarWidth: 'none',
                 }}>
                     <button
                         onClick={() => setSelectedDay(null)}
                         className={selectedDay === null ? 'btn-primary' : 'btn-secondary'}
-                        style={{ padding: '8px 16px', fontSize: 13, whiteSpace: 'nowrap' }}
+                        style={{ padding: '7px 14px', fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0 }}
                     >
                         Entire Trip
                     </button>
@@ -83,7 +103,7 @@ export default function TripDashboard() {
                             key={day.dayNumber}
                             onClick={() => setSelectedDay(day.dayNumber)}
                             className={selectedDay === day.dayNumber ? 'btn-primary' : 'btn-secondary'}
-                            style={{ padding: '8px 12px', fontSize: 13, minWidth: 36, whiteSpace: 'nowrap' }}
+                            style={{ padding: '7px 12px', fontSize: 13, minWidth: 36, whiteSpace: 'nowrap', flexShrink: 0 }}
                         >
                             D{day.dayNumber}
                         </button>
@@ -91,16 +111,14 @@ export default function TripDashboard() {
                 </div>
 
                 {/* Budget summary */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
                     <div style={{ textAlign: 'right' }}>
                         <div style={{ fontSize: 11, color: '#6b6b99', textTransform: 'uppercase', letterSpacing: 1 }}>Budget</div>
                         <div style={{ fontSize: 14, fontWeight: 600, color: '#818cf8' }}>
                             ₹{tripInput.budget.toLocaleString('en-IN')}
                         </div>
                     </div>
-                    <div style={{
-                        width: 1, height: 32, background: 'rgba(99,102,241,0.15)',
-                    }} />
+                    <div style={{ width: 1, height: 32, background: 'rgba(99,102,241,0.15)' }} />
                     <div style={{ textAlign: 'right' }}>
                         <div style={{ fontSize: 11, color: '#6b6b99', textTransform: 'uppercase', letterSpacing: 1 }}>Cost</div>
                         <div style={{
@@ -113,52 +131,86 @@ export default function TripDashboard() {
                 </div>
             </header>
 
-            {/* Main Content Area */}
-            <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr 420px', minHeight: 0 }}>
+            {/* ── RESTORE CHAT BAR ── */}
+            {isChatCollapsed && (
+                <div style={{
+                    flexShrink: 0, padding: '8px 20px',
+                    background: 'rgba(10,10,20,0.95)',
+                    borderBottom: '1px solid rgba(99,102,241,0.12)',
+                    display: 'flex', alignItems: 'center',
+                }}>
+                    <button
+                        className="collapse-btn"
+                        onClick={() => setIsChatCollapsed(false)}
+                        style={{
+                            background: 'rgba(22,22,38,0.9)', border: '1px solid rgba(99,102,241,0.2)',
+                            color: '#818cf8', cursor: 'pointer', borderRadius: '10px',
+                            padding: '6px 10px', fontSize: '12px', fontFamily: 'Inter,sans-serif',
+                            display: 'flex', alignItems: 'center', gap: '6px',
+                        }}
+                    >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                        Show Chat
+                    </button>
+                </div>
+            )}
+
+            {/* ── MAIN CONTENT AREA ── */}
+            {/* flex: 1, minHeight: 0 is the key — lets children control their own scroll */}
+            <div style={{ flex: 1, display: 'flex', minHeight: 0 }}>
+
                 {/* Left Panel — Map */}
-                <div style={{ position: 'relative', minHeight: 'calc(100vh - 60px)' }}>
+                {/* flex: 1 fills remaining space. overflow: hidden clips the Leaflet canvas */}
+                <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
                     <MapView />
                 </div>
 
+                {/* ── DRAG HANDLER ── */}
+                <div
+                    onPointerDown={(e) => {
+                        e.currentTarget.setPointerCapture(e.pointerId);
+                        const startX = e.clientX;
+                        const startWidth = rightPanelWidth;
+                        const onMove = (moveEvent: PointerEvent) => {
+                            const newWidth = Math.max(300, Math.min(startWidth - (moveEvent.clientX - startX), 1000));
+                            setRightPanelWidth(newWidth);
+                        };
+                        const onUp = (upEvent: PointerEvent) => {
+                            e.currentTarget?.releasePointerCapture(upEvent.pointerId);
+                            window.removeEventListener('pointermove', onMove);
+                            window.removeEventListener('pointerup', onUp);
+                        };
+                        window.addEventListener('pointermove', onMove);
+                        window.addEventListener('pointerup', onUp);
+                    }}
+                    style={{
+                        width: 12, cursor: 'col-resize', background: 'transparent',
+                        zIndex: 100, marginLeft: -6, marginRight: -6,
+                        position: 'relative'
+                    }}
+                />
+
                 {/* Right Panel — Itinerary + Hotels + Budget */}
                 <div style={{
+                    width: rightPanelWidth,
                     borderLeft: '1px solid rgba(99,102,241,0.15)',
                     display: 'flex', flexDirection: 'column',
                     background: 'rgba(17,17,40,0.98)',
-                    overflow: 'hidden',
+                    minHeight: 0,        // ← allow flex child to shrink below content height
+                    overflow: 'hidden',  // ← clip; actual scroll is on the inner div
                 }}>
-                    {/* Scrollable content */}
-                    <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px' }}>
-                        <ResiliencePanel />
-                        <SpotExplorer />
+                    {/* Scrollable content area */}
+                    <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px', minHeight: 0 }}>
                         <ItineraryPanel />
-                        <div style={{ marginTop: 20 }}>
-                            <TravelOptions />
-                        </div>
-                        <div style={{ marginTop: 20 }}>
-                            <HotelList />
-                        </div>
-                        <div style={{ marginTop: 20 }}>
-                            <BudgetPanel />
-                        </div>
+                        <div style={{ marginTop: 20 }}><ResiliencePanel /></div>
+                        <div style={{ marginTop: 20 }}><SpotExplorer /></div>
+                        <div style={{ marginTop: 20 }}><TravelOptions /></div>
+                        <div style={{ marginTop: 20 }}><HotelList /></div>
+                        <div style={{ marginTop: 20, marginBottom: 20 }}><BudgetPanel /></div>
                     </div>
-
-                    {/* Prompt bar at bottom */}
-                    <PromptBar />
                 </div>
-            </div>
-
-            {/* Floating Cost Badge */}
-            <div className="cost-badge glass" style={{
-                display: 'flex', flexDirection: 'column', alignItems: 'center',
-                bottom: 80, right: 440,
-            }}>
-                <span className="label">Total Cost</span>
-                <span style={{
-                    color: currentCost > tripInput.budget ? '#ef4444' : '#10b981',
-                }}>
-                    ₹{currentCost.toLocaleString('en-IN')}
-                </span>
             </div>
         </div>
     );

@@ -1,475 +1,361 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { useSafarStore } from '@/lib/store';
-import { TripInput } from '@/lib/types';
+import { useEffect, useRef, useState } from 'react';
+import { ChatPanel } from './ChatPanel';
 
-const POPULAR_DESTINATIONS = [
-    // ... rest remains same
-    { name: 'Goa', emoji: '🏖️', tagline: 'Beaches & Nightlife' },
-    { name: 'Manali', emoji: '🏔️', tagline: 'Mountains & Snow' },
-    { name: 'Jaipur', emoji: '🏰', tagline: 'Royal Heritage' },
-    { name: 'Kerala', emoji: '🌴', tagline: 'Backwaters & Tea' },
-    { name: 'Udaipur', emoji: '🏛️', tagline: 'City of Lakes' },
-    { name: 'Varanasi', emoji: '🕉️', tagline: 'Spiritual Capital' },
+type Message = {
+    id: string;
+    role: 'assistant' | 'user';
+    text: string;
+    isStreaming?: boolean;
+};
+
+interface LandingPageProps {
+    messages: Message[];
+    setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
+    onTripReady: (tripData: any) => void;
+}
+
+// Curated, verified Unsplash photo IDs — all confirmed working
+const PHOTO_POOL = [
+    { id: 'photo-1524492412937-b28074a47d70', label: 'Taj Mahal',   grad: 'linear-gradient(135deg,#1a1a4e,#3730a3)' },
+    { id: 'photo-1512343879784-a960bf40e7f2', label: 'Goa Beach',   grad: 'linear-gradient(135deg,#0c4a6e,#0891b2)' },
+    { id: 'photo-1476514525535-07fb3b4ae5f1', label: 'Mountains',   grad: 'linear-gradient(135deg,#134e4a,#065f46)' },
+    { id: 'photo-1565967511849-76a60a516170', label: 'Taj Sunset',  grad: 'linear-gradient(135deg,#7c2d12,#b45309)' },
+    { id: 'photo-1587474260584-136574528ed5', label: 'Delhi',       grad: 'linear-gradient(135deg,#312e81,#4338ca)' },
+    { id: 'photo-1518684079-3c830dcef090', label: 'Dubai',          grad: 'linear-gradient(135deg,#1e1b4b,#4c1d95)' },
+    { id: 'photo-1467269204594-9661b134dd2b', label: 'Paris',       grad: 'linear-gradient(135deg,#1c1917,#44403c)' },
+    { id: 'photo-1537996194471-e657df975ab4', label: 'Bali',        grad: 'linear-gradient(135deg,#14532d,#166534)' },
+    { id: 'photo-1552832230-c0197dd311b5', label: 'Rome',           grad: 'linear-gradient(135deg,#451a03,#92400e)' },
+    { id: 'photo-1506905925346-21bda4d32df4', label: 'Himalayas',   grad: 'linear-gradient(135deg,#0f172a,#1e3a5f)' },
+    { id: 'photo-1537953773345-d172ccf13cf1', label: 'Santorini',   grad: 'linear-gradient(135deg,#1e3a8a,#3b82f6)' },
+    { id: 'photo-1528543606781-2f6e6857f318', label: 'Maldives',    grad: 'linear-gradient(135deg,#164e63,#0e7490)' },
+    { id: 'photo-1507525428034-b723cf961d3e', label: 'Tropical',    grad: 'linear-gradient(135deg,#065f46,#059669)' },
+    { id: 'photo-1500375592092-40eb2168fd21', label: 'Ocean',       grad: 'linear-gradient(135deg,#0c4a6e,#075985)' },
+    { id: 'photo-1519046904884-53103b34b206', label: 'Beach',       grad: 'linear-gradient(135deg,#78350f,#d97706)' },
+    { id: 'photo-1566073771259-6a8506099945', label: 'Resort',      grad: 'linear-gradient(135deg,#134e4a,#0f766e)' },
+    { id: 'photo-1469854523086-cc02fe5d8800', label: 'Road Trip',   grad: 'linear-gradient(135deg,#1c1917,#3f3f46)' },
+    { id: 'photo-1501854140801-50d01698950b', label: 'Landscape',   grad: 'linear-gradient(135deg,#14532d,#15803d)' },
 ];
 
-const INTERESTS = [
-    'Adventure', 'Heritage', 'Nature', 'Beach', 'Temple', 'Shopping',
-    'Food', 'Photography', 'Nightlife', 'Trekking', 'Wildlife', 'Cultural',
-    'Museum', 'Religious', 'Sunrise/Sunset'
-];
 
-export default function LandingPage() {
-    const {
-        tripInput: storeTripInput,
-        activeStep,
-        setIsLoading,
-        setLoadingMessage,
-        setActiveStep,
-        setLocalitySplit,
-        setAgentData,
-        setItinerary,
-        setBudget,
-        setSelectedHotel,
-        itinerary,
-        setTripInput
-    } = useSafarStore();
+const GRID_COLS = 4;
+const ROWS_PER_COL = 5;
 
-    const [destination, setDestination] = useState('');
-    const [source, setSource] = useState('');
-    const [departureDate, setDepartureDate] = useState('');
-    const [returnDate, setReturnDate] = useState('');
-    const [isDateFlexible, setIsDateFlexible] = useState(false);
-    const [minDays, setMinDays] = useState('3');
-    const [maxDays, setMaxDays] = useState('7');
-    const [budget, setBudgetLocal] = useState('50000');
-    const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+function getShuffled<T>(arr: T[]): T[] {
+    return [...arr].sort(() => Math.random() - 0.5);
+}
 
-    // Sync local state if store changes (e.g. from applySuggestion)
+function buildGrid(pool: typeof PHOTO_POOL, shuffle = false) {
+    const source = shuffle ? getShuffled(pool) : pool;
+    const total = GRID_COLS * ROWS_PER_COL;
+    const filled: typeof PHOTO_POOL = [];
+    for (let i = 0; i < total; i++) filled.push(source[i % source.length]);
+    return filled;
+}
+
+// ── Travel backdrop grid ─────────────────────────────────────────────────────
+function TravelBackdrop({ interactionCount }: { interactionCount: number }) {
+    const [grid, setGrid] = useState<typeof PHOTO_POOL>(() => buildGrid(PHOTO_POOL, false));
+    const [mounted, setMounted] = useState(false);
+    const [swappingIdx, setSwappingIdx] = useState<number | null>(null);
+    const prevCount = useRef(interactionCount);
+
     useEffect(() => {
-        if (storeTripInput) {
-            setDestination(storeTripInput.destination);
-            setSource(storeTripInput.source);
-            setDepartureDate(storeTripInput.departureDate);
-            setReturnDate(storeTripInput.returnDate);
-            setBudgetLocal(storeTripInput.budget.toString());
-            setSelectedInterests(storeTripInput.preferences);
-            setIsDateFlexible(storeTripInput.isDateFlexible);
-        }
-    }, [storeTripInput]);
+        setGrid(buildGrid(PHOTO_POOL, true));
+        setMounted(true);
+    }, []);
 
-    const toggleInterest = (interest: string) => {
-        setSelectedInterests(prev =>
-            prev.includes(interest) ? prev.filter(i => i !== interest) : [...prev, interest]
-        );
-    };
-
-    const handlePlanTrip = async (forcedInput?: TripInput) => {
-        const tripInput: TripInput = forcedInput || {
-            destination,
-            source,
-            departureDate,
-            returnDate: isDateFlexible ? departureDate : returnDate,
-            budget: parseInt(budget) || 50000,
-            preferences: selectedInterests,
-            maxHoursPerDay: 14,
-            isDateFlexible,
-            minDays: parseInt(minDays),
-            maxDays: parseInt(maxDays),
-        };
-
-        if (!forcedInput) setTripInput(tripInput);
-        setIsLoading(true);
-        setActiveStep('planning');
-
-        try {
-            // Step 1: Locality Splitter
-            setLoadingMessage('🗺️ Agent A is analyzing your destination...');
-            const splitRes = await fetch('/api/localitySplitter', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...tripInput }),
-            });
-            const splitData = await splitRes.json();
-            if (!splitData.success) throw new Error('Locality split failed');
-            setLocalitySplit(splitData.split);
-
-            let adjustedReturnDate = tripInput.returnDate;
-            if (tripInput.isDateFlexible) {
-                const depDate = new Date(tripInput.departureDate);
-                depDate.setDate(depDate.getDate() + splitData.totalDays);
-                adjustedReturnDate = depDate.toISOString().split('T')[0];
-            }
-
-            // Step 2: Agent A — Fetch Data
-            setLoadingMessage('📡 Agent A is fetching hotels, flights, and attractions...');
-            const agentARes = await fetch('/api/agentA', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    localities: splitData.split,
-                    source: tripInput.source,
-                    destination: tripInput.destination,
-                    departureDate: tripInput.departureDate,
-                    returnDate: adjustedReturnDate,
-                }),
-            });
-            const agentAData = await agentARes.json();
-            if (!agentAData.success) throw new Error('Agent A failed');
-            setAgentData(agentAData.data);
-
-            // Step 3: Agent B — Build Itinerary
-            setLoadingMessage('🧠 Agent B is crafting your day-by-day itinerary...');
-
-            // Pre-calculate expected arrival time for Day 1
-            let arrivalHour = undefined;
-            const outboundFlights = (agentAData.data.flights || []).filter((f: any) => f.source.toLowerCase() === tripInput.source.toLowerCase());
-            const outboundTrains = (agentAData.data.trains || []).filter((t: any) => t.source.toLowerCase() === tripInput.source.toLowerCase());
-            const allOutbound = [...outboundFlights, ...outboundTrains].sort((a, b) => a.price - b.price);
-
-            if (allOutbound.length > 0) {
-                const arrivalTime = new Date(allOutbound[0].arrivalTime);
-                arrivalHour = arrivalTime.getHours() + arrivalTime.getMinutes() / 60;
-            }
-
-            const agentBRes = await fetch('/api/agentB', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    localities: splitData.split,
-                    agentData: agentAData.data,
-                    startDate: tripInput.departureDate,
-                    maxHoursPerDay: 14,
-                    userPreferences: tripInput.preferences,
-                    arrivalHour,
-                    budget: tripInput.budget,
-                }),
-            });
-            const agentBData = await agentBRes.json();
-            if (!agentBData.success) throw new Error('Agent B failed');
-
-            // Set suggestions for resilience
-            const { setSuggestions } = useSafarStore.getState();
-            setSuggestions(agentBData.suggestions || []);
-
-            // Step 4: Agent C — Budget Optimization
-            setLoadingMessage('💰 Agent C is optimizing your budget...');
-            const agentCRes = await fetch('/api/agentC', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    dayPlans: agentBData.dayPlans,
-                    unselectedSpots: agentBData.unselectedSpots,
-                    agentData: agentAData.data,
-                    tripInput,
-                    localities: splitData.split,
-                }),
-            });
-            const agentCData = await agentCRes.json();
-            if (!agentCData.success) throw new Error('Agent C failed');
-
-            setItinerary(agentCData.itinerary);
-            setBudget(agentCData.budgetAllocation);
-
-            if (agentCData.selectedHotels) {
-                for (const [locality, hotel] of Object.entries(agentCData.selectedHotels)) {
-                    setSelectedHotel(locality, hotel as any);
-                }
-            }
-
-            setActiveStep('results');
-        } catch (error) {
-            console.error('Trip planning failed:', error);
-            setLoadingMessage('❌ Something went wrong. Please try again.');
+    useEffect(() => {
+        if (!mounted || interactionCount === prevCount.current) return;
+        prevCount.current = interactionCount;
+        const positions = Array.from({ length: GRID_COLS * ROWS_PER_COL }, (_, i) => i);
+        const toSwap = getShuffled(positions).slice(0, 3);
+        toSwap.forEach((pos, i) => {
             setTimeout(() => {
-                setIsLoading(false);
-                setActiveStep('input');
-            }, 2000);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+                setSwappingIdx(pos);
+                setTimeout(() => {
+                    setGrid(prev => {
+                        const next = [...prev];
+                        const pool = PHOTO_POOL.filter(p => p.id !== prev[pos].id);
+                        next[pos] = pool[Math.floor(Math.random() * pool.length)];
+                        return next;
+                    });
+                    setSwappingIdx(null);
+                }, 400);
+            }, i * 180);
+        });
+    }, [interactionCount, mounted]);
 
-    // Auto-trigger planning if in planning mode (e.g. from applySuggestion)
-    const isPlanningRef = useRef(false);
-    useEffect(() => {
-        if (activeStep === 'planning' && !itinerary && storeTripInput && !isPlanningRef.current) {
-            isPlanningRef.current = true;
-            handlePlanTrip(storeTripInput).finally(() => {
-                isPlanningRef.current = false;
-            });
-        }
-    }, [activeStep, storeTripInput?.returnDate, itinerary]);
+    const cols: typeof PHOTO_POOL[] = Array.from({ length: GRID_COLS }, (_, c) =>
+        grid.slice(c * ROWS_PER_COL, (c + 1) * ROWS_PER_COL)
+    );
+    const rowHeights = [22, 18, 26, 16, 18];
 
     return (
-        <div style={{ minHeight: '100vh', position: 'relative' }}>
-            {/* Ambient background effects */}
-            <div style={{
-                position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none',
+        <div style={{ position: 'fixed', inset: 0, zIndex: 0, display: 'flex', gap: 4, padding: 4, overflow: 'hidden' }}>
+            {cols.map((col, ci) => (
+                <div key={ci} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 4, marginTop: ci % 2 === 1 ? '-4%' : '0' }}>
+                    {col.map((photo, ri) => {
+                        const globalIdx = ci * ROWS_PER_COL + ri;
+                        const isSwapping = swappingIdx === globalIdx;
+                        const animDelay = (ci * 0.08 + ri * 0.06).toFixed(2);
+                        return (
+                            <div key={`${photo.id}-${globalIdx}`} style={{
+                                flex: `0 0 ${rowHeights[ri % rowHeights.length]}%`,
+                                borderRadius: 12, overflow: 'hidden', position: 'relative',
+                                transition: 'opacity 0.4s ease, transform 0.4s ease',
+                                // Gradient fallback colour shown when image fails
+                                background: photo.grad,
+                                opacity: isSwapping ? 0 : 1,
+                                transform: isSwapping ? 'scale(0.96)' : 'scale(1)',
+                                animation: `gridItemIn 0.7s ${animDelay}s cubic-bezier(0.16,1,0.3,1) both`,
+                            }}>
+                                <img
+                                    src={`https://images.unsplash.com/${photo.id}?auto=format&fit=crop&w=480&q=75`}
+                                    alt={photo.label}
+                                    loading="lazy"
+                                    onError={(e) => {
+                                        // Hide broken img; parent div's gradient shows through
+                                        (e.currentTarget as HTMLImageElement).style.display = 'none';
+                                    }}
+                                    style={{
+                                        width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+                                        animation: `kenBurns ${14 + (globalIdx % 5) * 3}s ease-in-out infinite alternate`,
+                                    }}
+                                />
+                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(4,4,14,0.1) 0%, rgba(4,4,14,0.38) 100%)' }} />
+                            </div>
+
+                        );
+                    })}
+                </div>
+            ))}
+            {/* Full-screen overlay */}
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(4,4,14,0.72)', backdropFilter: 'blur(2px)' }} />
+        </div>
+    );
+}
+
+// ── Intro phases ─────────────────────────────────────────────────────────────
+// 'splash'  → centered logo only, fills screen
+// 'rise'    → logo rises + shrinks toward header (CSS transition)
+// 'chat'    → normal layout, header stays in place, chat fades in
+type IntroPhase = 'splash' | 'rise' | 'chat';
+
+export default function LandingPage({ messages, setMessages, onTripReady }: LandingPageProps) {
+    const [phase, setPhase] = useState<IntroPhase>('splash');
+    const [interactionCount, setInteractionCount] = useState(0);
+    const prevMsgLen = useRef(messages.length);
+
+    // Drive the intro sequence
+    useEffect(() => {
+        // Phase 1 → 2: show splash for 1.8 s, then start rising
+        const t1 = setTimeout(() => setPhase('rise'), 1800);
+        // Phase 2 → 3: rise animation takes ~0.7 s, then reveal chat
+        const t2 = setTimeout(() => setPhase('chat'), 2600);
+        return () => { clearTimeout(t1); clearTimeout(t2); };
+    }, []);
+
+    // Count interactions to trigger image swaps
+    useEffect(() => {
+        if (messages.length > prevMsgLen.current) {
+            setInteractionCount(c => c + 1);
+        }
+        prevMsgLen.current = messages.length;
+    }, [messages.length]);
+
+    return (
+        <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+
+            <style>{`
+                @keyframes gridItemIn {
+                    from { opacity: 0; transform: scale(0.88) translateY(12px); }
+                    to   { opacity: 1; transform: scale(1) translateY(0); }
+                }
+                @keyframes kenBurns {
+                    from { transform: scale(1) translate(0, 0); }
+                    to   { transform: scale(1.12) translate(-2%, -2%); }
+                }
+                @keyframes splashLogoIn {
+                    0%   { opacity: 0; transform: scale(0.7) translateY(30px); }
+                    60%  { opacity: 1; transform: scale(1.04) translateY(-4px); }
+                    100% { opacity: 1; transform: scale(1) translateY(0); }
+                }
+                @keyframes splashSubIn {
+                    from { opacity: 0; transform: translateY(14px); }
+                    to   { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes msgIn {
+                    from { opacity: 0; transform: translateY(14px); }
+                    to   { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes blink { 0%,80%,100% { transform: scale(0); } 40% { transform: scale(1); } }
+                @keyframes chatReveal {
+                    from { opacity: 0; transform: translateY(32px) scale(0.98); }
+                    to   { opacity: 1; transform: translateY(0) scale(1); }
+                }
+                @keyframes headerReveal {
+                    from { opacity: 0; }
+                    to   { opacity: 1; }
+                }
+                @keyframes pulseRing {
+                    0%   { box-shadow: 0 0 0 0 rgba(217,70,239,0.4); }
+                    70%  { box-shadow: 0 0 0 22px rgba(217,70,239,0); }
+                    100% { box-shadow: 0 0 0 0 rgba(217,70,239,0); }
+                }
+            `}</style>
+
+            {/* ── TRAVEL PHOTO GRID BACKDROP ── */}
+            <TravelBackdrop interactionCount={interactionCount} />
+
+            {/* ════════════════════════════════════════
+                SPLASH PHASE — centered logo
+            ════════════════════════════════════════ */}
+            {(phase === 'splash' || phase === 'rise') && (
+                <div style={{
+                    position: 'fixed', inset: 0, zIndex: 20,
+                    display: 'flex', flexDirection: 'column',
+                    alignItems: 'center', justifyContent: 'center',
+                    // During 'rise', animate the whole block upward and shrink it
+                    transition: phase === 'rise'
+                        ? 'transform 0.75s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease'
+                        : 'none',
+                    transform: phase === 'rise' ? 'translateY(-38vh) scale(0.45)' : 'translateY(0) scale(1)',
+                    opacity: phase === 'rise' ? 0 : 1,
+                    transformOrigin: 'center top',
+                    pointerEvents: 'none',
+                }}>
+                    {/* Glow ring behind the icon */}
+                    <div style={{
+                        width: 100, height: 100, borderRadius: '50%',
+                        background: 'linear-gradient(135deg, #6366f1, #d946ef)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: 44,
+                        boxShadow: '0 0 60px rgba(99,102,241,0.6), 0 0 120px rgba(217,70,239,0.3)',
+                        animation: 'splashLogoIn 0.9s cubic-bezier(0.16,1,0.3,1) forwards, pulseRing 2s 1s ease-out infinite',
+                        marginBottom: 24,
+                    }}>
+                        ✈️
+                    </div>
+
+                    <div style={{
+                        fontFamily: 'Outfit, sans-serif', fontSize: 56, fontWeight: 800,
+                        background: 'linear-gradient(135deg, #ffffff 0%, #c4b5fd 40%, #f0abfc 80%)',
+                        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                        letterSpacing: '-1px', lineHeight: 1,
+                        animation: 'splashLogoIn 0.9s 0.1s cubic-bezier(0.16,1,0.3,1) both',
+                        marginBottom: 14,
+                    }}>
+                        Safar AI
+                    </div>
+
+                    <div style={{
+                        fontFamily: 'DM Sans, Inter, sans-serif',
+                        fontSize: 17, fontWeight: 400, fontStyle: 'italic',
+                        color: 'rgba(255,255,255,0.55)',
+                        letterSpacing: '0.3px',
+                        animation: 'splashSubIn 0.7s 0.6s cubic-bezier(0.16,1,0.3,1) both',
+                    }}>
+                        Your intelligent travel companion
+                    </div>
+                </div>
+            )}
+
+            {/* ════════════════════════════════════════
+                CHAT PHASE — normal header + chat
+            ════════════════════════════════════════ */}
+
+            {/* Header — fades in once splash is done */}
+            <header style={{
+                padding: '16px 28px', position: 'relative', zIndex: 10,
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                background: 'rgba(4,4,14,0.55)',
+                backdropFilter: 'blur(24px)',
+                borderBottom: '1px solid rgba(255,255,255,0.07)',
+                flexShrink: 0,
+                opacity: phase === 'chat' ? 1 : 0,
+                transition: 'opacity 0.5s ease',
+                animation: phase === 'chat' ? 'headerReveal 0.5s ease forwards' : 'none',
             }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <div style={{
+                        width: 40, height: 40, borderRadius: 12,
+                        background: 'linear-gradient(135deg, #6366f1, #d946ef)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: 18, boxShadow: '0 4px 20px rgba(99,102,241,0.45)',
+                    }}>✈️</div>
+                    <div>
+                        <div style={{
+                            fontFamily: 'Outfit, sans-serif', fontSize: 22, fontWeight: 800,
+                            background: 'linear-gradient(135deg, #ffffff, #e879f9)',
+                            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                            lineHeight: 1.1,
+                        }}>Safar AI</div>
+                        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'DM Sans, sans-serif' }}>
+                            Your intelligent travel companion
+                        </div>
+                    </div>
+                </div>
+                <span style={{
+                    fontSize: 12, color: 'rgba(255,255,255,0.45)',
+                    padding: '6px 14px', borderRadius: 99,
+                    background: 'rgba(99,102,241,0.12)',
+                    border: '1px solid rgba(99,102,241,0.2)',
+                    fontFamily: 'DM Sans, sans-serif',
+                }}>🤖 Azure OpenAI</span>
+            </header>
+
+            {/* Chat panel — slides up after splash */}
+            <div style={{
+                flex: 1,
+                minHeight: 0,          /* ← CRITICAL: allows flex child to shrink below content size */
+                position: 'relative', zIndex: 5,
+                display: 'flex', flexDirection: 'column',
+                maxWidth: 800, width: '100%', margin: '0 auto',
+                padding: '20px 20px 0',
+                opacity: phase === 'chat' ? 1 : 0,
+                transform: phase === 'chat' ? 'translateY(0)' : 'translateY(40px)',
+                transition: 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1)',
+                pointerEvents: phase === 'chat' ? 'auto' : 'none',
+            }}>
+                {/* Frosted glass card */}
                 <div style={{
-                    position: 'absolute', top: -200, right: -200, width: 600, height: 600,
-                    borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)',
-                    filter: 'blur(60px)',
-                }} />
-                <div style={{
-                    position: 'absolute', bottom: -100, left: -100, width: 500, height: 500,
-                    borderRadius: '50%', background: 'radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%)',
-                    filter: 'blur(60px)',
-                }} />
+                    flex: 1,
+                    minHeight: 0,      /* ← CRITICAL: same reason */
+                    display: 'flex', flexDirection: 'column',
+                    background: 'rgba(8,8,22,0.65)',
+                    backdropFilter: 'blur(28px)',
+                    WebkitBackdropFilter: 'blur(28px)',
+                    border: '1px solid rgba(255,255,255,0.09)',
+                    borderRadius: '24px 24px 0 0',
+                    overflow: 'hidden',
+                    boxShadow: '0 -4px 60px rgba(99,102,241,0.12), 0 0 0 1px rgba(255,255,255,0.04)',
+                }}>
+                    <ChatPanel
+                        messages={messages}
+                        setMessages={setMessages}
+                        onTripReady={onTripReady}
+                        fontSize={16}
+                    />
+                </div>
             </div>
 
-            <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto', padding: '40px 24px' }}>
-                {/* Header */}
-                <nav style={{
-                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                    marginBottom: 60,
-                }} className="animate-fade-in">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                        <div style={{
-                            width: 44, height: 44, borderRadius: 12,
-                            background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            fontSize: 22, boxShadow: '0 4px 12px rgba(99,102,241,0.3)',
-                        }}>✈️</div>
-                        <span style={{
-                            fontFamily: 'Outfit, sans-serif', fontSize: 24, fontWeight: 700,
-                            background: 'linear-gradient(135deg, #f0f0ff, #818cf8)',
-                            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                        }}>Safar AI</span>
-                    </div>
-                    <div style={{ display: 'flex', gap: 8 }}>
-                        <span className="badge">🤖 3 AI Agents</span>
-                        <span className="badge badge-success">Microsoft AI Unlocked</span>
-                    </div>
-                </nav>
-
-                {/* Hero */}
-                <div style={{ textAlign: 'center', marginBottom: 48 }} className="animate-slide-up">
-                    <h1 className="hero-title" style={{ marginBottom: 16 }}>
-                        Your AI-Powered<br />Travel Companion
-                    </h1>
-                    <p className="hero-subtitle" style={{ margin: '0 auto 32px' }}>
-                        Three intelligent agents collaborate to create your perfect itinerary —
-                        with smart budgeting, map-based exploration, and real-time updates.
-                    </p>
-                </div>
-
-                {/* Main Input Form */}
-                <div className="glass" style={{
-                    maxWidth: 900, margin: '0 auto', padding: 36,
-                    animation: 'slideUp 0.8s ease-out 0.2s both',
-                }}>
-                    <div style={{
-                        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                        gap: 20, marginBottom: 24,
-                    }}>
-                        {/* Source */}
-                        <div className="input-group">
-                            <label>📍 Starting Point</label>
-                            <input
-                                type="text"
-                                className="input-field"
-                                placeholder="e.g., Delhi"
-                                value={source}
-                                onChange={(e) => setSource(e.target.value)}
-                                list="cities"
-                            />
-                        </div>
-
-                        {/* Destination */}
-                        <div className="input-group">
-                            <label>🎯 Destination</label>
-                            <input
-                                type="text"
-                                className="input-field"
-                                placeholder="e.g., Goa, Rajasthan"
-                                value={destination}
-                                onChange={(e) => setDestination(e.target.value)}
-                                list="cities"
-                            />
-                        </div>
-
-                        {/* Departure Date */}
-                        <div className="input-group">
-                            <label>🛫 Departure</label>
-                            <input
-                                type="date"
-                                className="input-field"
-                                value={departureDate}
-                                onChange={(e) => setDepartureDate(e.target.value)}
-                            />
-                        </div>
-
-                        {/* Return Date / Duration Selection */}
-                        {!isDateFlexible ? (
-                            <div className="input-group">
-                                <label>🛬 Return</label>
-                                <input
-                                    type="date"
-                                    className="input-field"
-                                    value={returnDate}
-                                    onChange={(e) => setReturnDate(e.target.value)}
-                                />
-                            </div>
-                        ) : (
-                            <>
-                                <div className="input-group">
-                                    <label>📅 Min Days</label>
-                                    <input
-                                        type="number"
-                                        className="input-field"
-                                        value={minDays}
-                                        onChange={(e) => setMinDays(e.target.value)}
-                                        min="1"
-                                        max="15"
-                                    />
-                                </div>
-                                <div className="input-group">
-                                    <label>📅 Max Days</label>
-                                    <input
-                                        type="number"
-                                        className="input-field"
-                                        value={maxDays}
-                                        onChange={(e) => setMaxDays(e.target.value)}
-                                        min="1"
-                                        max="30"
-                                    />
-                                </div>
-                            </>
-                        )}
-                    </div>
-
-                    {/* Flexibility Toggle */}
-                    <div style={{
-                        display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24,
-                        padding: '12px 16px', borderRadius: 12, border: '1px solid rgba(99,102,241,0.2)',
-                        background: 'rgba(99,102,241,0.03)'
-                    }}>
-                        <div style={{ flex: 1 }}>
-                            <div style={{ fontWeight: 600, fontSize: 14, color: '#f0f0ff' }}>Flexible Duration</div>
-                            <div style={{ fontSize: 12, color: '#a0a0cc' }}>Let AI suggest the optimal trip length based on your budget and destination.</div>
-                        </div>
-                        <label className="switch">
-                            <input
-                                type="checkbox"
-                                checked={isDateFlexible}
-                                onChange={(e) => setIsDateFlexible(e.target.checked)}
-                            />
-                            <span className="slider round"></span>
-                        </label>
-                    </div>
-
-                    {/* Budget */}
-                    <div className="input-group" style={{ marginBottom: 24 }}>
-                        <label>💰 Budget (INR)</label>
-                        <input
-                            type="number"
-                            className="input-field"
-                            placeholder="e.g., 50000"
-                            value={budget}
-                            onChange={(e) => setBudgetLocal(e.target.value)}
-                            min="5000"
-                            step="5000"
-                        />
-                    </div>
-
-                    {/* Interests */}
-                    <div style={{ marginBottom: 28 }}>
-                        <label style={{
-                            fontSize: 12, fontWeight: 600, color: '#a0a0cc',
-                            textTransform: 'uppercase', letterSpacing: 0.5,
-                            display: 'block', marginBottom: 10,
-                        }}>🎨 Your Interests</label>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                            {INTERESTS.map(interest => (
-                                <button
-                                    key={interest}
-                                    onClick={() => toggleInterest(interest)}
-                                    style={{
-                                        padding: '8px 16px',
-                                        borderRadius: 9999,
-                                        fontSize: 13,
-                                        fontWeight: 500,
-                                        cursor: 'pointer',
-                                        transition: 'all 0.2s ease',
-                                        fontFamily: 'Inter, sans-serif',
-                                        border: selectedInterests.includes(interest)
-                                            ? '1px solid #6366f1'
-                                            : '1px solid rgba(99,102,241,0.15)',
-                                        background: selectedInterests.includes(interest)
-                                            ? 'rgba(99,102,241,0.2)'
-                                            : 'rgba(99,102,241,0.05)',
-                                        color: selectedInterests.includes(interest)
-                                            ? '#818cf8'
-                                            : '#a0a0cc',
-                                    }}
-                                >
-                                    {interest}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Submit Button */}
-                    <button
-                        className="btn-primary"
-                        onClick={() => handlePlanTrip()}
-                        disabled={!destination || !source || !departureDate || (!returnDate && !isDateFlexible)}
-                        style={{ width: '100%', justifyContent: 'center', fontSize: 16, padding: '16px 32px' }}
-                    >
-                        ✨ Plan My Trip with AI
-                    </button>
-                </div>
-
-                {/* Popular Destinations */}
-                <div style={{ marginTop: 48, textAlign: 'center' }} className="animate-fade-in" >
-                    <h3 style={{
-                        fontFamily: 'Outfit, sans-serif', fontSize: 18, fontWeight: 600,
-                        color: '#a0a0cc', marginBottom: 20,
-                    }}>Popular Destinations</h3>
-                    <div style={{
-                        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-                        gap: 12, maxWidth: 800, margin: '0 auto',
-                    }}>
-                        {POPULAR_DESTINATIONS.map(dest => (
-                            <button
-                                key={dest.name}
-                                onClick={() => setDestination(dest.name)}
-                                className="glass-card"
-                                style={{
-                                    padding: '20px 16px', textAlign: 'center', cursor: 'pointer',
-                                    border: destination === dest.name
-                                        ? '1px solid #6366f1'
-                                        : '1px solid rgba(99,102,241,0.15)',
-                                }}
-                            >
-                                <div style={{ fontSize: 28, marginBottom: 8 }}>{dest.emoji}</div>
-                                <div style={{ fontWeight: 600, fontSize: 15, color: '#f0f0ff' }}>{dest.name}</div>
-                                <div style={{ fontSize: 12, color: '#a0a0cc', marginTop: 4 }}>{dest.tagline}</div>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                {/* City Datalist */}
-                <datalist id="cities">
-                    {['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Kolkata', 'Hyderabad', 'Jaipur', 'Goa',
-                        'Manali', 'Shimla', 'Udaipur', 'Varanasi', 'Kerala', 'Agra', 'Lucknow', 'Amritsar',
-                        'Rishikesh', 'Darjeeling', 'Leh', 'Srinagar', 'Jodhpur', 'Mysore', 'Ooty', 'Munnar',
-                        'Pondicherry', 'Pushkar', 'Jaisalmer', 'Pune', 'Ahmedabad',
-                    ].map(city => <option key={city} value={city} />)}
-                </datalist>
-
-                {/* Footer */}
-                <footer style={{
-                    textAlign: 'center', marginTop: 60, padding: '24px 0',
-                    borderTop: '1px solid rgba(99,102,241,0.1)',
-                    color: '#6b6b99', fontSize: 13,
-                }}>
-                    <p>Built with 🤖 AutoGen Agents + Azure AI for Microsoft AI Unlocked Hackathon</p>
-                </footer>
+            {/* Footer hint */}
+            <div style={{
+                position: 'relative', zIndex: 10,
+                padding: '10px', textAlign: 'center',
+                color: 'rgba(255,255,255,0.2)', fontSize: 12,
+                fontFamily: 'DM Sans, sans-serif',
+                background: 'rgba(4,4,14,0.6)',
+                backdropFilter: 'blur(20px)',
+                maxWidth: 800, width: '100%', margin: '0 auto',
+                borderRadius: '0 0 20px 20px',
+                borderTop: '1px solid rgba(255,255,255,0.05)',
+                opacity: phase === 'chat' ? 1 : 0,
+                transition: 'opacity 0.5s 0.3s ease',
+            }}>
+                Chat freely — backgrounds change as you explore ✨
             </div>
         </div>
     );
