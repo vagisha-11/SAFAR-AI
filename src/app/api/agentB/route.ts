@@ -404,6 +404,7 @@ export async function executeAgentB(body: any) {
 
     const allDayPlans: DayPlan[] = [];
     const allUnselectedSpots: Spot[] = [];
+    const validLocalities: typeof localities = [];
     let dayOffset = 0;
     let plannedLocalitiesCount = 0;
 
@@ -420,6 +421,7 @@ export async function executeAgentB(body: any) {
                 totalCost: 0,
             });
             dayOffset += 1;
+            validLocalities.push(loc);
             continue;
         }
 
@@ -442,6 +444,13 @@ export async function executeAgentB(body: any) {
             budget,
         });
 
+        // Ensure a locality is only created if at least one attraction is associated with it
+        const hasSpots = dayPlans.some(dp => dp.items.some(i => i.type === 'spot'));
+        if (!hasSpots && dayPlans.length > 0) {
+            // Drop this locality entirely to save days/time
+            continue;
+        }
+
         // Re-number days
         for (const dp of dayPlans) {
             dp.dayNumber = dayOffset + dp.dayNumber;
@@ -451,6 +460,7 @@ export async function executeAgentB(body: any) {
         allUnselectedSpots.push(...unselectedSpots);
         dayOffset += loc.days;
         plannedLocalitiesCount++;
+        validLocalities.push(loc);
     }
 
     // Resilience: Detect "Empty Day Syndrome"
@@ -477,7 +487,7 @@ export async function executeAgentB(body: any) {
         }
     }
 
-    return { dayPlans: allDayPlans, unselectedSpots: allUnselectedSpots, suggestions };
+    return { dayPlans: allDayPlans, unselectedSpots: allUnselectedSpots, suggestions, validLocalities };
 }
 
 export async function POST(request: NextRequest) {

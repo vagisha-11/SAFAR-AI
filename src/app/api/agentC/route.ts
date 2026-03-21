@@ -6,12 +6,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { AzureOpenAI } from 'openai';
 import {
     DayPlan, Hotel, Flight, Train, AgentData, InterCityOption,
-    FullItinerary, LocalitySplit, TripInput, BudgetAllocation, Spot,
+    FullItinerary, LocalitySplit, TripInput, BudgetAllocation, Spot, P2PTravel
 } from '@/lib/types';
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
 import path from 'path';
-import { haversineDistance } from '@/lib/fakeApi';
+import { haversineDistance, getP2PCost } from '@/lib/fakeApi';
 
 const aiClient = new AzureOpenAI({
     endpoint: process.env.AZURE_OPENAI_ENDPOINT || '',
@@ -391,6 +391,88 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
             };
         }
     });
+
+    // 6. Fix 0km Depot P2P issue and inject Hotel-to-Hotel Transit
+    const addMinutes = (timeStr: string, mins: number) => {
+        if (!timeStr) return timeStr;
+        const [h, m] = timeStr.split(':').map(Number);
+        if (isNaN(h) || isNaN(m)) return timeStr;
+        const totalMins = Math.round(h * 60 + m + mins);
+        const newH = Math.floor(totalMins / 60) % 24;
+        const newM = totalMins % 60;
+        return `${String(newH).padStart(2, '0')}:${String(newM).padStart(2, '0')}`;
+    };
+
+    // First fix the 0km P2P logic that links depot to Spot 1 or Spot N to depot using ACTUAL hotel locations
+    for (const currDay of updatedDayPlans) {
+        if (currDay.isTransitDay) continue;
+        const realHotel = selectedHotels[currDay.locality];
+        if (!realHotel || !realHotel.location) continue;
+
+        // Find the first P2P which starts at "Hotel"
+        const firstP2PIdx = currDay.items.findIndex(it => it.type === 'p2p' && (it.data as P2PTravel)?.fromName === 'Hotel');
+        if (firstP2PIdx !== -1) {
+            const oldP2P = currDay.items[firstP2PIdx].data as P2PTravel;
+            // Provide actual hotel location as starting point and recalculate
+            const newP2PData = await getP2PCost(realHotel.location, oldP2P.to, realHotel.name, oldP2P.toName, 'cab');
+            
+            // Adjust day cost block manually
+            currDay.totalCost -= oldP2P.cost;
+            currDay.totalCost += newP2PData.cost;
+            
+            currDay.items[firstP2PIdx].data = newP2PData;
+        }
+
+        // Find the last P2P which ends at "Hotel"
+        // Iterate backwards
+        for (let i = currDay.items.length - 1; i >= 0; i--) {
+            const item = currDay.items[i];
+            if (item.type === 'p2p' && (item.data as P2PTravel)?.toName === 'Hotel') {
+                const oldP2P = item.data as P2PTravel;
+                const newP2PData = await getP2PCost(oldP2P.from, realHotel.location, oldP2P.fromName, realHotel.name, 'cab');
+                currDay.totalCost -= oldP2P.cost;
+                currDay.totalCost += newP2PData.cost;
+                item.data = newP2PData;
+                break; // only do it for the final return trip
+            }
+        }
+    }
+
+    // Now insert hotel-to-hotel transit for consecutive separate localities
+    for (let i = 1; i < updatedDayPlans.length; i++) {
+        const prevDay = updatedDayPlans[i - 1];
+        const currDay = updatedDayPlans[i];
+        
+        if (!prevDay.isTransitDay && !currDay.isTransitDay && prevDay.locality !== currDay.locality) {
+            const hotelA = selectedHotels[prevDay.locality];
+            const hotelB = selectedHotels[currDay.locality];
+            
+            if (hotelA && hotelB && hotelA.id !== hotelB.id && hotelA.location && hotelB.location) {
+                // Generate genuine P2P option with correct numeric formatting, mode, and emojis
+                const p2pData = await getP2PCost(hotelA.location, hotelB.location, hotelA.name, hotelB.name, 'cab');
+                
+                const startTime = currDay.items[0]?.startTime || '09:00';
+                const endTime = addMinutes(startTime, p2pData.duration);
+                
+                const p2pTransfer = {
+                    type: 'p2p',
+                    data: p2pData,
+                    startTime,
+                    endTime,
+                    notes: `🏨 Transfer from ${hotelA.name} to ${hotelB.name}`
+                };
+                
+                // Shift subsequent items using the exact duration from the new P2P
+                currDay.items.forEach(item => {
+                    if (item.startTime) item.startTime = addMinutes(item.startTime, p2pData.duration);
+                    if (item.endTime) item.endTime = addMinutes(item.endTime, p2pData.duration);
+                });
+                
+                currDay.items.unshift(p2pTransfer as any);
+                currDay.totalCost += p2pData.cost;
+            }
+        }
+    }
 
     if (outboundSelection && updatedDayPlans.length > 0) {
         const { type, data } = outboundSelection;

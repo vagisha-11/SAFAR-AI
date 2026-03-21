@@ -55,7 +55,7 @@ graph.addNode("AgentB", async (state) => {
         mustExclude: state.tripInput.mustExclude,
         additionalNotes: state.tripInput.additionalNotes,
     });
-    return { dayPlans: data.dayPlans, unselectedSpots: data.unselectedSpots, suggestions: data.suggestions };
+    return { dayPlans: data.dayPlans, unselectedSpots: data.unselectedSpots, suggestions: data.suggestions, localities: data.validLocalities };
 });
 
 graph.addNode("AgentC", async (state) => {
