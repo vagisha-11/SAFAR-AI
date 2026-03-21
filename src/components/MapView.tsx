@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import Map, { Marker, Popup, Source, Layer, MapRef } from 'react-map-gl/maplibre';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useSafarStore } from '@/lib/store';
-import { Spot, Restaurant, LatLng } from '@/lib/types';
+import { Spot, Restaurant, LatLng, RouteInfo } from '@/lib/types';
+import { decodePolyline } from '@/lib/decodePolyline';
 
 // Custom marker icons
 const SpotIcon = () => (
@@ -29,11 +30,13 @@ const OLA_MAPS_STYLES = {
 };
 
 export default function MapView() {
-    const { itinerary, selectedDay, selectedHotels, selectedPlaceId, setSelectedPlaceId } = useSafarStore();
+    const { itinerary, selectedDay, selectedHotels, selectedPlaceId, setSelectedPlaceId, setDayRoutes } = useSafarStore();
     const mapRef = useRef<MapRef>(null);
     const [mapStyleKey, setMapStyleKey] = useState<keyof typeof OLA_MAPS_STYLES>('2d-light');
     const [popupInfo, setPopupInfo] = useState<{ id: string, type: 'spot' | 'restaurant' | 'hotel', data: any, dayNum?: number } | null>(null);
     const [contextMenuPopup, setContextMenuPopup] = useState<{lat: number, lng: number, placeName: string, address: string} | null>(null);
+    // Real road route features fetched from Ola Directions API (fallback: empty = use straight-line)
+    const [actualRouteFeatures, setActualRouteFeatures] = useState<any[]>([]);
 
     // Transform request to append Ola Maps API key
     const transformRequest = (url: string) => {
@@ -112,6 +115,99 @@ export default function MapView() {
         return { spots, restaurants, routeFeatures, allPoints, hotelMarkers };
     }, [itinerary, selectedDay, selectedHotels]);
 
+    // Fetch real road routes from Ola Directions Basic API whenever waypoints change
+    useEffect(() => {
+        if (!itinerary) {
+            setActualRouteFeatures([]);
+            setDayRoutes([]);
+            return;
+        }
+
+        const apiKey = process.env.NEXT_PUBLIC_OLA_MAPS_API_KEY || '';
+        const dayColors = ['#6366f1', '#f59e0b', '#10b981', '#ec4899', '#8b5cf6', '#06b6d4', '#f97316', '#ef4444'];
+
+        const daysToProcess = selectedDay
+            ? itinerary.days.filter(d => d.dayNumber === selectedDay)
+            : itinerary.days;
+
+        const fetchRoutesForDay = async () => {
+            const newFeatures: any[] = [];
+            const newRouteInfos: RouteInfo[] = [];
+
+            await Promise.all(daysToProcess.map(async (day) => {
+                // Build ordered waypoints: hotel → spots/restaurants → hotel
+                const orderedPoints: { lat: number; lng: number }[] = [];
+
+                // Start with hotel
+                const hotel = day.hotel || selectedHotels[day.locality];
+                if (hotel) orderedPoints.push(hotel.location);
+
+                // Add spots/restaurants in schedule order
+                for (const item of day.items) {
+                    if (item.type === 'spot') orderedPoints.push((item.data as Spot).location);
+                    else if (item.type === 'restaurant') orderedPoints.push((item.data as Restaurant).location);
+                }
+
+                // Close loop back to hotel
+                if (hotel && orderedPoints.length > 1) orderedPoints.push(hotel.location);
+
+                if (orderedPoints.length < 2) return;
+
+                const origin = `${orderedPoints[0].lat},${orderedPoints[0].lng}`;
+                const destination = `${orderedPoints[orderedPoints.length - 1].lat},${orderedPoints[orderedPoints.length - 1].lng}`;
+                const middlePoints = orderedPoints.slice(1, -1);
+                const waypointsParam = middlePoints.length > 0
+                    ? `&waypoints=${middlePoints.map(p => `${p.lat},${p.lng}`).join('|')}`
+                    : '';
+
+                const url = `https://api.olamaps.io/routing/v1/directions/basic?origin=${origin}&destination=${destination}${waypointsParam}&api_key=${apiKey}`;
+
+                try {
+                    const res = await fetch(url, { method: 'POST' });
+                    const data = await res.json();
+
+                    const route = data?.routes?.[0];
+                    if (!route) return;
+
+                    // Decode the polyline to get real road coordinates
+                    const encoded = route.overview_polyline;
+                    const coordinates = encoded ? decodePolyline(encoded) : null;
+
+                    // Sum all leg durations for total ETA
+                    const etaSeconds: number = (route.legs || []).reduce(
+                        (acc: number, leg: any) => acc + (leg?.duration?.value || 0),
+                        0
+                    );
+
+                    if (coordinates && coordinates.length > 1) {
+                        const color = dayColors[(day.dayNumber - 1) % dayColors.length];
+                        newFeatures.push({
+                            type: 'Feature',
+                            properties: { color, dayNum: day.dayNumber },
+                            geometry: { type: 'LineString', coordinates },
+                        });
+                        newRouteInfos.push({
+                            dayNumber: day.dayNumber,
+                            encodedPolyline: encoded,
+                            etaSeconds,
+                            coordinates,
+                        });
+                    }
+                } catch (err) {
+                    console.warn(`Directions API failed for day ${day.dayNumber}, using straight-line fallback.`, err);
+                }
+            }));
+
+            // Only override the straight-line routes if we got at least one real route
+            if (newFeatures.length > 0) setActualRouteFeatures(newFeatures);
+            else setActualRouteFeatures([]);  // will fall back to straight-line routeFeatures
+            if (newRouteInfos.length > 0) setDayRoutes(newRouteInfos);
+        };
+
+        fetchRoutesForDay();
+    // Rebuild routes when itinerary days, selected day, or hotel selection changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [itinerary, selectedDay, selectedHotels]);
     // Programmatically open popup when selectedPlaceId changes
     useEffect(() => {
         if (selectedPlaceId) {
@@ -292,14 +388,19 @@ export default function MapView() {
                         </div>
                     </Popup>
                 )}
-                {/* Routes */}
-                {routeFeatures.map((feature, i) => (
+                {/* Routes — use real road paths from Directions API, fall back to straight-line */}
+                {(actualRouteFeatures.length > 0 ? actualRouteFeatures : routeFeatures).map((feature, i) => (
                     <Source key={`route-source-${i}`} id={`route-source-${i}`} type="geojson" data={feature}>
-                        <Layer 
-                            id={`route-layer-${i}`} 
-                            type="line" 
-                            layout={{ 'line-join': 'round', 'line-cap': 'round' }} 
-                            paint={{ 'line-color': feature.properties.color, 'line-width': 5, 'line-opacity': 0.8, 'line-dasharray': [1, 2] }} 
+                        <Layer
+                            id={`route-layer-${i}`}
+                            type="line"
+                            layout={{ 'line-join': 'round', 'line-cap': 'round' }}
+                            paint={{
+                                'line-color': feature.properties.color,
+                                'line-width': actualRouteFeatures.length > 0 ? 4 : 5,
+                                'line-opacity': 0.85,
+                                ...( actualRouteFeatures.length === 0 ? { 'line-dasharray': [1, 2] } : {} ),
+                            }}
                         />
                     </Source>
                 ))}

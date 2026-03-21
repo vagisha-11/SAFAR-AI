@@ -1,0 +1,1456 @@
+window.MyChatBot = {
+    run: function(config) {
+        this.baseUrl = config.baseUrl;
+        this.token = config.userToken || null;
+        this.conversationEnded = false;
+        this.lastOptions = [];
+        this.supportFormData = {};
+        this.supportFormStep = null;
+        this.notificationServiceUrl = null;
+        this.customerEmail = null;
+        this.customerName = null;
+        this.emailTemplate = null;
+        this.supportEmail = null;
+        this.uploadedImages = [];
+        this.init();
+    },
+
+    init: function() {
+        if (document.getElementById('my-chat-widget-container')) return;
+
+        const chatHost = document.createElement('div');
+        chatHost.id = 'my-chat-widget-container';
+        document.body.appendChild(chatHost);
+        const shadow = chatHost.attachShadow({ mode: 'open' });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .chat-launcher {
+                position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px;
+                background: transparent; cursor: pointer;
+                display: flex; align-items: center; justify-content: center;
+                z-index: 99999; transition: transform 0.3s ease, filter 0.3s ease;
+                filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+            }
+            .chat-launcher:hover { 
+                transform: scale(1.15);
+                filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
+            }
+            .chat-launcher.rotate-open {
+                animation: rotateClockwise 0.5s ease forwards;
+            }
+            .chat-launcher.rotate-close {
+                animation: rotateAntiClockwise 0.5s ease forwards;
+            }
+            @keyframes rotateClockwise {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            @keyframes rotateAntiClockwise {
+                from { transform: rotate(360deg); }
+                to { transform: rotate(0deg); }
+            }
+            .chat-launcher #launcher-icon {
+                display: flex; align-items: center; justify-content: center;
+                background: transparent; width: 100%; height: 100%;
+            }
+            .chat-launcher img {
+                width: 60px; height: 60px; object-fit: contain;
+                background: transparent;
+            }
+            .unread-badge {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                background: #ff3b30;
+                color: white;
+                font-size: 7px;
+                font-weight: 700;
+                min-width: 14px;
+                height: 14px;
+                border-radius: 7px;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                padding: 0 2px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+                border: 1.5px solid white;
+                z-index: 100000;
+                line-height: 1;
+            }
+            .unread-badge.show {
+                display: flex;
+                animation: badgePop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+            @keyframes badgePop {
+                0% { transform: scale(0); }
+                50% { transform: scale(1.2); }
+                100% { transform: scale(1); }
+            }
+            .chat-window {
+                position: fixed; bottom: 90px; right: 20px; width: 380px; height: 550px;
+                background: white; border-radius: 10px; box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+                display: flex; flex-direction: column; overflow: hidden;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                z-index: 99999; border: 1px solid #e1e1e1;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(30px) scale(0.98);
+                transition: opacity 0.3s cubic-bezier(.4,0,.2,1), transform 0.3s cubic-bezier(.4,0,.2,1);
+            }
+            .chat-window.open {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0) scale(1);
+            }
+            .chat-header {
+                background: linear-gradient(135deg, #4ba34c 0%, #3d8a3e 100%);
+                color: white; padding: 15px; font-weight: 600;
+                display: flex; justify-content: space-between; align-items: center;
+            }
+            .chat-messages {
+                flex: 1; padding: 15px; overflow-y: auto; background: #f9f9f9;
+                display: flex; flex-direction: column; gap: 10px;
+                word-wrap: break-word;
+            }
+            .message-wrapper {
+                display: flex; gap: 8px; align-items: flex-end; margin-bottom: 5px;
+            }
+            .message-wrapper.user { flex-direction: row-reverse; }
+            .avatar {
+                width: 48px; height: 48px;
+                display: flex; align-items: center; justify-content: center;
+                flex-shrink: 0;
+            }
+            .avatar.bot {
+                background: transparent;
+            }
+            .avatar.bot img {
+                width: 48px; height: 48px; object-fit: contain;
+            }
+            .avatar.user {
+                background: white;
+                border-radius: 50%;
+                border: 2px solid #4ba34c;
+            }
+            .message {
+                padding: 10px 14px; border-radius: 12px; max-width: 75%; font-size: 14px; line-height: 1.5;
+                word-wrap: break-word; overflow-wrap: break-word;
+            }
+            .bot-msg { 
+                background: white; color: #333;
+                border-bottom-left-radius: 2px; border: 1px solid #e1e1e1;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            }
+            .bot-msg a {
+                color: #4ba34c; text-decoration: none; font-weight: 500;
+                word-break: break-all;
+            }
+            .bot-msg a:hover {
+                text-decoration: underline;
+            }
+            .user-msg { 
+                background: #4ba34c; color: white;
+                border-bottom-right-radius: 2px;
+            }
+            .options-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 12px;
+                margin-left: 48px;
+                margin-bottom: 10px;
+                align-self: flex-start;
+                width: calc(100% - 96px);
+            }
+            .option-btn {
+                background: white; border: 2px solid #4ba34c; color: #4ba34c;
+                padding: 8px 16px; border-radius: 8px; cursor: pointer;
+                font-size: 13px; transition: all 0.3s; 
+                margin-bottom: 0;
+                margin-left: 0;
+                text-align: left;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            }
+            .option-btn:hover { 
+                background: #4ba34c; 
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(75, 163, 76, 0.2);
+            }
+            .support-btn {
+                background: linear-gradient(135deg, #4ba34c 0%, #3d8a3e 100%);
+                color: white;
+                font-weight: 600;
+            }
+            .support-btn:hover {
+                background: linear-gradient(135deg, #3d8a3e 0%, #4ba34c 100%);
+            }
+            .input-container {
+                display: flex; gap: 8px; align-self: flex-start; align-items: center;
+                width: calc(100% - 70px); margin-left: 48px; margin-bottom: 10px;
+                background: white; padding: 6px; border-radius: 25px;
+                border: 2px solid #e1e1e1; transition: all 0.3s;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                box-sizing: border-box;
+            }
+            .input-container:focus-within {
+                border-color: #4ba34c;
+                box-shadow: 0 4px 12px rgba(75, 163, 76, 0.15);
+            }
+            .chat-input {
+                flex: 1; padding: 8px 14px; border: none;
+                border-radius: 20px; font-size: 14px; outline: none;
+                font-family: inherit; background: transparent;
+                color: #333;
+                min-width: 150px;
+            }
+            .chat-input::placeholder {
+                color: #999;
+                font-style: italic;
+            }
+            .chat-input:focus {
+                outline: none;
+            }
+            .submit-btn, .cancel-btn {
+                width: 28px; height: 28px; border-radius: 50%;
+                border: none; cursor: pointer; font-size: 13px;
+                display: flex; align-items: center; justify-content: center;
+                transition: all 0.3s; flex-shrink: 0;
+                font-weight: bold;
+            }
+            .submit-btn {
+                background: linear-gradient(135deg, #4ba34c 0%, #3d8a3e 100%);
+                color: white; box-shadow: 0 2px 6px rgba(75, 163, 76, 0.3);
+            }
+            .submit-btn:hover {
+                background: linear-gradient(135deg, #3d8a3e 0%, #4ba34c 100%);
+                transform: scale(1.1) rotate(15deg);
+                box-shadow: 0 4px 12px rgba(75, 163, 76, 0.4);
+            }
+            .submit-btn:active {
+                transform: scale(0.95);
+            }
+            .cancel-btn {
+                background: #f5f5f5; color: #666;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .cancel-btn:hover {
+                background: #ff5252; color: white;
+                transform: scale(1.1) rotate(-15deg);
+                box-shadow: 0 4px 12px rgba(255, 82, 82, 0.3);
+            }
+            .cancel-btn:active {
+                transform: scale(0.95);
+            }
+            .input-label {
+                margin-left: 48px; font-size: 12px; color: #666;
+                margin-bottom: 5px; font-weight: 500;
+            }
+            .input-wrapper {
+                align-self: flex-start; width: 100%; box-sizing: border-box;
+            }
+            .file-upload-container {
+                margin-left: 48px; margin-bottom: 10px; align-self: flex-start;
+                display: flex; flex-direction: column; gap: 8px;
+            }
+            .file-upload-label {
+                font-size: 12px; color: #666; font-weight: 500;
+            }
+            .file-upload-btn {
+                background: white; border: 2px dashed #4ba34c;
+                color: #4ba34c; padding: 12px 20px; border-radius: 8px;
+                cursor: pointer; font-size: 13px; transition: all 0.3s;
+                display: flex; align-items: center; gap: 8px; max-width: 250px;
+            }
+            .file-upload-btn:hover {
+                background: #f0f9f5; border-color: #3d8a3e;
+            }
+            .file-upload-input {
+                display: none;
+            }
+            .uploaded-images {
+                display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px;
+            }
+            .image-preview {
+                position: relative; width: 60px; height: 60px;
+                border-radius: 4px; overflow: hidden; border: 1px solid #e1e1e1;
+            }
+            .image-preview img {
+                width: 100%; height: 100%; object-fit: cover;
+            }
+            .image-remove {
+                position: absolute; top: -5px; right: -5px;
+                background: #ff5252; color: white; border: none;
+                width: 18px; height: 18px; border-radius: 50%;
+                cursor: pointer; font-size: 10px; display: flex;
+                align-items: center; justify-content: center;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            }
+            .image-remove:hover {
+                background: #ff1744;
+            }
+            .yes-no-container {
+                display: flex; gap: 10px; margin-left: 48px; align-self: flex-start;
+                margin-bottom: 10px;
+            }
+            .yes-no-btn {
+                background: white; border: 2px solid #4ba34c; color: #4ba34c;
+                padding: 10px 24px; border-radius: 25px; cursor: pointer;
+                font-size: 14px; transition: all 0.3s; font-weight: 600;
+                min-width: 80px; text-align: center;
+            }
+            .yes-no-btn:hover { 
+                background: #4ba34c; color: white; 
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(75, 163, 76, 0.3);
+            }
+            .new-chat-container {
+                display: flex; justify-content: center; margin: 15px 0;
+                padding: 10px;
+            }
+            .new-chat-btn {
+                background: linear-gradient(135deg, #4ba34c 0%, #3d8a3e 100%);
+                color: white; border: none; padding: 12px 28px;
+                border-radius: 25px; cursor: pointer; font-size: 14px;
+                font-weight: 600; transition: all 0.3s;
+                box-shadow: 0 2px 8px rgba(75, 163, 76, 0.3);
+                display: flex; align-items: center; gap: 8px;
+            }
+            .new-chat-btn:hover {
+                background: linear-gradient(135deg, #3d8a3e 0%, #4ba34c 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(75, 163, 76, 0.4);
+            }
+            .new-chat-btn:active {
+                transform: translateY(0);
+                box-shadow: 0 2px 6px rgba(75, 163, 76, 0.3);
+            }
+            .loading-dots {
+                display: flex; gap: 8px; align-items: flex-end; margin-bottom: 5px;
+            }
+            .loading-dots .avatar {
+                width: 40px; height: 40px;
+                display: flex; align-items: center; justify-content: center;
+                flex-shrink: 0; background: transparent;
+            }
+            .loading-dots .avatar img {
+                width: 40px; height: 40px; object-fit: contain;
+            }
+            .dots-container {
+                background: white; border: 1px solid #e1e1e1;
+                padding: 10px 14px; border-radius: 12px;
+                border-bottom-left-radius: 2px;
+                display: flex; gap: 4px; align-items: center;
+            }
+            .dot {
+                width: 8px; height: 8px; border-radius: 50%;
+                background: #4ba34c; animation: bounce 1.4s infinite;
+            }
+            .dot:nth-child(2) { animation-delay: 0.2s; }
+            .dot:nth-child(3) { animation-delay: 0.4s; }
+            @keyframes bounce {
+                0%, 60%, 100% { transform: translateY(0); }
+                30% { transform: translateY(-10px); }
+            }
+            .divider {
+                width: calc(100% - 40px);
+                height: 1px;
+                background: linear-gradient(to right, transparent, #e1e1e1 20%, #e1e1e1 80%, transparent);
+                margin: 15px 0 15px 40px;
+                align-self: flex-start;
+            }
+            .welcome-popup {
+                position: fixed; bottom: 100px; right: 20px;
+                background: white; border-radius: 12px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+                padding: 16px 20px; max-width: 280px;
+                display: none; z-index: 99998;
+                border: 2px solid #4ba34c;
+                animation: slideInUp 0.4s ease, fadeOut 0.3s ease 4.7s forwards;
+            }
+            .welcome-popup::after {
+                content: '';
+                position: absolute;
+                bottom: -12px;
+                right: 25px;
+                width: 0;
+                height: 0;
+                border-left: 12px solid transparent;
+                border-right: 12px solid transparent;
+                border-top: 12px solid white;
+                filter: drop-shadow(0 4px 3px rgba(0,0,0,0.1));
+            }
+            .welcome-popup::before {
+                content: '';
+                position: absolute;
+                bottom: -15px;
+                right: 23px;
+                width: 0;
+                height: 0;
+                border-left: 14px solid transparent;
+                border-right: 14px solid transparent;
+                border-top: 14px solid #4ba34c;
+                z-index: -1;
+            }
+            @keyframes slideInUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(10px); }
+            }
+            .welcome-popup.show {
+                display: block;
+            }
+            .welcome-popup-header {
+                display: flex; align-items: center; gap: 10px;
+                margin-bottom: 8px;
+            }
+            .welcome-popup-avatar {
+                width: 36px; height: 36px;
+                background: transparent;
+                display: flex; align-items: center; justify-content: center;
+                flex-shrink: 0;
+            }
+            .welcome-popup-avatar img {
+                width: 36px; height: 36px; object-fit: contain;
+            }
+            .welcome-popup-title {
+                font-weight: 600; color: #4ba34c;
+                font-size: 15px;
+            }
+            .welcome-popup-message {
+                color: #333; font-size: 14px; line-height: 1.5;
+                margin-bottom: 12px;
+            }
+            .welcome-popup-cta {
+                background: linear-gradient(135deg, #4ba34c 0%, #3d8a3e 100%);
+                color: white; border: none; padding: 8px 16px;
+                border-radius: 20px; cursor: pointer; font-size: 13px;
+                font-weight: 600; width: 100%; transition: all 0.3s;
+            }
+            .welcome-popup-cta:hover {
+                background: linear-gradient(135deg, #3d8a3e 0%, #4ba34c 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(75, 163, 76, 0.3);
+            }
+            .welcome-popup-close {
+                position: absolute; top: 8px; right: 8px;
+                background: transparent; border: none;
+                color: #999; cursor: pointer; font-size: 16px;
+                width: 24px; height: 24px; border-radius: 50%;
+                display: flex; align-items: center; justify-content: center;
+                transition: all 0.2s;
+            }
+            .welcome-popup-close:hover {
+                background: #f5f5f5; color: #666;
+            }
+        `;
+        shadow.appendChild(style);
+
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = `
+            <div class="chat-launcher" id="launcher">
+                <span id="launcher-icon">
+                    <img src="${this.baseUrl}/static/logo.png" alt="Krutrim Logo" style="background: transparent;" />
+                </span>
+                <span class="unread-badge" id="unreadBadge">0</span>
+            </div>
+            <div class="chat-window" id="window">
+                <div class="chat-header">
+                    <span>Krutrim Assistant</span>
+                </div>
+                <div class="chat-messages" id="messages"></div>
+            </div>
+            <div class="welcome-popup" id="welcomePopup">
+                <button class="welcome-popup-close" id="popupClose">✕</button>
+                <div class="welcome-popup-header">
+                    <div class="welcome-popup-avatar">
+                        <img src="${this.baseUrl}/static/logo.png" alt="Krutrim Logo" />
+                    </div>
+                    <div class="welcome-popup-title">Hi, This is Krutrim Chatbot!</div>
+                </div>
+                <div class="welcome-popup-message">
+                    How can I help you today? Ask me anything about Krutrim Cloud services.
+                </div>
+                <button class="welcome-popup-cta" id="popupCta">Start Chat</button>
+            </div>
+        `;
+        shadow.appendChild(wrapper);
+
+        const launcher = shadow.getElementById('launcher');
+        const launcherIcon = shadow.getElementById('launcher-icon');
+        const chatWindow = shadow.getElementById('window');
+        const messagesContainer = shadow.getElementById('messages');
+        const welcomePopup = shadow.getElementById('welcomePopup');
+        const popupClose = shadow.getElementById('popupClose');
+        const popupCta = shadow.getElementById('popupCta');
+        const unreadBadge = shadow.getElementById('unreadBadge');
+        
+        // Personalize welcome popup if user is logged in
+        const userName = localStorage.getItem('userName') || localStorage.getItem('username');
+        if (userName) {
+            const popupTitle = welcomePopup.querySelector('.welcome-popup-title');
+            if (popupTitle) {
+                const displayName = userName.replace(/_/g, ' ');
+                popupTitle.innerHTML = `Hi <strong>${displayName}</strong>, This is Krutrim Chatbot!`;
+            }
+        }
+        
+        let isOpen = false;
+        let hasLoaded = false;
+        let popupShown = false;
+        let unreadCount = 0;
+
+        // Close popup manually
+        popupClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            welcomePopup.classList.remove('show');
+        });
+
+        // Open chat when clicking popup CTA
+        popupCta.addEventListener('click', () => {
+            welcomePopup.classList.remove('show');
+            if (!isOpen) {
+                toggleChat();
+            }
+        });
+
+        const toggleChat = () => {
+            launcher.classList.remove('rotate-open', 'rotate-close');
+            if (!isOpen) {
+                launcher.classList.add('rotate-open');
+            } else {
+                launcher.classList.add('rotate-close');
+            }
+            isOpen = !isOpen;
+            // Update chatbot's isOpen reference
+            this.isOpen = isOpen;
+            // Change launcher icon
+            if (isOpen) {
+                // Close icon (X) with green circle
+                launcherIcon.innerHTML = `
+                  <span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="30" cy="30" r="24" fill="#4ba34c"/>
+                      <line x1="22" y1="22" x2="38" y2="38" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                      <line x1="38" y1="22" x2="22" y2="38" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                `;
+            } else {
+                launcherIcon.innerHTML = `<img src="${this.baseUrl}/static/logo.png" alt="Krutrim Logo" style="width: 60px; height: 60px; object-fit: contain; background: transparent;" />`;
+            }
+            // Animate chat window open/close with class
+            if (isOpen) {
+                chatWindow.classList.add('open');
+                // Clear unread badge when opening chat
+                unreadCount = 0;
+                unreadBadge.classList.remove('show');
+                unreadBadge.textContent = '0';
+            } else {
+                chatWindow.classList.remove('open');
+            }
+            if (isOpen && !hasLoaded) {
+                this.loadConfig().then(() => {
+                    this.loadInitialMessages(messagesContainer);
+                });
+                hasLoaded = true;
+            }
+        };
+        launcher.addEventListener('click', toggleChat);
+        
+        this.elements = { 
+            messagesContainer, 
+            chatWindow: chatWindow, 
+            toggleChat: toggleChat,
+            unreadBadge: unreadBadge,
+            isOpen: () => isOpen,
+            incrementUnread: () => {
+                if (!isOpen) {
+                    unreadCount++;
+                    unreadBadge.textContent = unreadCount > 99 ? '99+' : unreadCount;
+                    unreadBadge.classList.add('show');
+                }
+            }
+        };
+        
+        // Store isOpen reference for addMessage
+        this.isOpen = isOpen;
+        
+        // Show welcome popup after a short delay
+        setTimeout(() => {
+            if (!popupShown && !isOpen) {
+                welcomePopup.classList.add('show');
+                popupShown = true;
+                // Show unread badge immediately with the popup
+                this.elements.incrementUnread();
+                
+                // Auto-hide after 5 seconds
+                setTimeout(() => {
+                    welcomePopup.classList.remove('show');
+                }, 5000);
+            }
+        }, 1500);
+    },
+
+    loadConfig: async function() {
+        try {
+            const response = await fetch(`${this.baseUrl}/config`);
+            const config = await response.json();
+            this.notificationServiceUrl = config.notificationServiceUrl;
+            this.customerEmail = config.customerEmail;
+            this.customerName = config.customerName;
+            this.emailTemplate = config.emailTemplate;
+            this.supportEmail = config.supportEmail;
+        } catch (error) {
+            console.error('Failed to load config:', error);
+            // Fallback to default values
+            this.notificationServiceUrl = 'http://10.230.150.37:31072/v1/notifications';
+            this.customerEmail = 'cloudsupport@olakrutrim.com';
+            this.customerName = 'Krutrim Support Team';
+            this.emailTemplate = 'krutrimCustomerSupportForms';
+            this.supportEmail = 'cloudsupport@olakrutrim.com';
+        }
+    },
+
+    loadInitialMessages: async function(container) {
+        try {
+            const response = await fetch(`${this.baseUrl}/init`);
+            const data = await response.json();
+            
+            // Check if user is logged in to personalize greeting
+            const userName = localStorage.getItem('userName') || localStorage.getItem('username');
+            
+            if (userName) {
+                // Personalized greeting for logged-in users
+                const displayName = userName.replace(/_/g, ' ');
+                this.addMessage(`Hello <strong>${displayName}</strong>! How can I help you today?`, false);
+            } else {
+                // Default greeting
+                this.addMessage(data.message, false);
+            }
+            
+            // Store initial options for later use (e.g., when cancelling support form)
+            this.lastOptions = data.options || [];
+            this.addOptionsWithSupport(data.options);
+        } catch (error) {
+            console.error(error);
+            this.addMessage("Unable to connect to support.", false);
+        }
+    },
+
+    startNewChat: function() {
+        // Clear all messages
+        this.elements.messagesContainer.innerHTML = '';
+        
+        // Reset state
+        this.conversationEnded = false;
+        this.supportFormData = {};
+        this.supportFormStep = null;
+        
+        // Load initial messages
+        this.loadInitialMessages();
+    },
+
+    addNewChatButton: function() {
+        const container = document.createElement('div');
+        container.className = 'new-chat-container';
+        
+        const newChatBtn = document.createElement('button');
+        newChatBtn.className = 'new-chat-btn';
+        newChatBtn.textContent = 'Start New Chat';
+        newChatBtn.onclick = () => this.startNewChat();
+        
+        container.appendChild(newChatBtn);
+        this.elements.messagesContainer.appendChild(container);
+        this.elements.messagesContainer.scrollTop = this.elements.messagesContainer.scrollHeight;
+    },
+
+    handleOptionClick: async function(option) {
+        this.addMessage(option.text, true);
+        this.showLoading();
+        
+        try {
+            const response = await fetch(`${this.baseUrl}/ask`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: option.id })
+            });
+            const data = await response.json();
+            
+            // Simulate minimum loading time for better UX
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            this.hideLoading();
+            this.addMessage(data.response, false);
+            this.addDivider();
+            
+            // Store options for potential reopen
+            this.lastOptions = data.additional_options || [];
+            
+            setTimeout(() => {
+                this.addMessage("Do you need help with anything else?", false);
+                this.addYesNoButtons(this.lastOptions);
+            }, 500);
+        } catch (error) {
+            this.hideLoading();
+            this.addMessage("Error getting response.", false);
+        }
+    },
+
+    handleL1SupportClick: function() {
+        this.addMessage("Contact Support", true);
+        this.supportFormData = {};
+        this.supportFormStep = 'name';
+        this.uploadedImages = [];
+        
+        // Check if user is logged in (check localStorage for user details)
+        const isLoggedIn = this.checkUserLoggedIn();
+        
+        setTimeout(() => {
+            this.addMessage("I'll help you contact our support team. Please provide the following information:", false);
+            
+            if (isLoggedIn) {
+                // User is logged in - skip name and email, go to mobile
+                setTimeout(() => {
+                    this.addMessage("What is your mobile number?", false);
+                    this.supportFormStep = 'mobile';
+                    this.addTextInput('mobile');
+                }, 500);
+            } else {
+                // User is not logged in - start with name
+                setTimeout(() => {
+                    this.addMessage("What is your name?", false);
+                    this.addTextInput('name');
+                }, 500);
+            }
+        }, 300);
+    },
+
+    checkUserLoggedIn: function() {
+        // Check localStorage for user details
+        // Priority: Direct string values first, then JSON objects
+        try {
+            // First, check for direct string values (most common in your UI)
+            const userName = localStorage.getItem('userName') || localStorage.getItem('username');
+            const userEmail = localStorage.getItem('userEmail') || localStorage.getItem('email');
+            
+            if (userName && userEmail) {
+                this.supportFormData.name = userName.replace(/_/g, ' ');
+                this.supportFormData.mailId = userEmail;
+                console.log('User logged in (direct storage):', { userName, userEmail });
+                return true;
+            }
+            
+            // Fallback: Try JSON objects from common keys
+            const possibleKeys = ['user', 'userData', 'userInfo', 'authUser', 'currentUser', 'profile'];
+            
+            for (const key of possibleKeys) {
+                const userDataStr = localStorage.getItem(key);
+                if (userDataStr) {
+                    try {
+                        const userData = JSON.parse(userDataStr);
+                        
+                        // Check if we have name and email
+                        const name = userData.name || userData.username || userData.fullName || userData.displayName;
+                        const email = userData.email || userData.emailAddress || userData.mail;
+                        
+                        if (name && email) {
+                            // Pre-fill the form data
+                            this.supportFormData.name = name.replace(/_/g, ' ');
+                            this.supportFormData.mailId = email;
+                            console.log('User logged in (JSON):', { name, email });
+                            return true;
+                        }
+                    } catch (e) {
+                        // Not valid JSON, try next key
+                        continue;
+                    }
+                }
+            }
+            
+            return false;
+        } catch (error) {
+            console.error('Error checking localStorage:', error);
+            return false;
+        }
+    },
+
+    addTextInput: function(fieldName) {
+        const inputWrapper = document.createElement('div');
+        inputWrapper.className = 'input-wrapper';
+        inputWrapper.id = 'active-input-wrapper';
+        
+        // Add label for better UX
+        const label = document.createElement('div');
+        label.className = 'input-label';
+        label.textContent = fieldName === 'name' ? 'Your Name' : 
+                           fieldName === 'mailId' ? 'Email Address' :
+                           fieldName === 'mobile' ? 'Mobile Number' :
+                           'Query Details';
+        
+        const inputContainer = document.createElement('div');
+        inputContainer.className = 'input-container';
+        inputContainer.id = 'active-input';
+        
+        const input = document.createElement('input');
+        input.type = fieldName === 'mailId' ? 'email' : 
+                     fieldName === 'mobile' ? 'tel' : 'text';
+        input.className = 'chat-input';
+        input.placeholder = 
+                           fieldName === 'qurey' ? 'Please describe your issue in detail...' :
+                           '';
+        input.setAttribute('autocomplete', fieldName === 'name' ? 'name' : 
+                                          fieldName === 'mailId' ? 'email' : 
+                                          fieldName === 'mobile' ? 'tel' : 'off');
+        
+        if (fieldName === 'mobile') {
+            input.maxLength = 10;
+            input.pattern = '[0-9]*';
+            input.inputMode = 'numeric';
+        }
+        
+        const submitBtn = document.createElement('button');
+        submitBtn.className = 'submit-btn';
+        submitBtn.innerHTML = '✓';
+        submitBtn.title = 'Submit';
+        submitBtn.onclick = () => this.handleInputSubmit(fieldName, input.value);
+        
+        const cancelBtn = document.createElement('button');
+        cancelBtn.className = 'cancel-btn';
+        cancelBtn.innerHTML = '✕';
+        cancelBtn.title = 'Cancel';
+        cancelBtn.onclick = () => this.cancelSupportForm();
+        
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.handleInputSubmit(fieldName, input.value);
+            }
+        });
+        
+        // Add validation for name field - only allow letters and spaces
+        if (fieldName === 'name') {
+            input.addEventListener('input', (e) => {
+                const value = e.target.value;
+                // Remove any character that is not a letter or space
+                const filteredValue = value.replace(/[^a-zA-Z\s]/g, '');
+                if (value !== filteredValue) {
+                    e.target.value = filteredValue;
+                }
+            });
+        }
+        
+        // Add validation for mobile field - only allow numbers
+        if (fieldName === 'mobile') {
+            input.addEventListener('input', (e) => {
+                const value = e.target.value;
+                // Remove any character that is not a digit
+                const filteredValue = value.replace(/[^0-9]/g, '');
+                if (value !== filteredValue) {
+                    e.target.value = filteredValue;
+                }
+            });
+        }
+        
+        // Add validation for email field - convert to lowercase
+        if (fieldName === 'mailId') {
+            input.addEventListener('input', (e) => {
+                const value = e.target.value;
+                // Convert to lowercase
+                const lowerValue = value.toLowerCase();
+                if (value !== lowerValue) {
+                    e.target.value = lowerValue;
+                }
+            });
+        }
+        
+        // Add input animation on type
+        input.addEventListener('input', () => {
+            if (input.value.length > 0) {
+                submitBtn.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    submitBtn.style.transform = 'scale(1)';
+                }, 200);
+            }
+        });
+        
+        inputContainer.appendChild(input);
+        inputContainer.appendChild(submitBtn);
+        inputContainer.appendChild(cancelBtn);
+        
+        inputWrapper.appendChild(label);
+        inputWrapper.appendChild(inputContainer);
+        
+        this.elements.messagesContainer.appendChild(inputWrapper);
+        this.elements.messagesContainer.scrollTop = this.elements.messagesContainer.scrollHeight;
+        
+        // Focus with slight delay for better UX
+        setTimeout(() => input.focus(), 100);
+    },
+
+    handleInputSubmit: function(fieldName, value) {
+        const inputWrapper = this.elements.messagesContainer.querySelector('#active-input-wrapper');
+        if (inputWrapper) {
+            // Add fade out animation
+            inputWrapper.style.opacity = '0';
+            inputWrapper.style.transform = 'translateY(-10px)';
+            setTimeout(() => inputWrapper.remove(), 200);
+        }
+        
+        if (!value || value.trim() === '') {
+            this.addMessage("Please provide a valid input.", false);
+            setTimeout(() => this.addTextInput(fieldName), 500);
+            return;
+        }
+        
+        if (fieldName === 'mailId' && !this.isValidEmail(value)) {
+            this.addMessage("Please provide a valid email address.", false);
+            setTimeout(() => this.addTextInput(fieldName), 500);
+            return;
+        }
+        
+        if (fieldName === 'mobile' && !this.isValidMobile(value)) {
+            this.addMessage("Please provide a valid 10-digit mobile number.", false);
+            setTimeout(() => this.addTextInput(fieldName), 500);
+            return;
+        }
+        
+        this.addMessage(value, true);
+        this.supportFormData[fieldName] = value;
+        
+        if (fieldName === 'name') {
+            this.supportFormStep = 'mailId';
+            setTimeout(() => {
+                this.addMessage("What is your email address?", false);
+                this.addTextInput('mailId');
+            }, 300);
+        } else if (fieldName === 'mailId') {
+            this.supportFormStep = 'mobile';
+            setTimeout(() => {
+                this.addMessage("What is your mobile number?", false);
+                this.addTextInput('mobile');
+            }, 300);
+        } else if (fieldName === 'mobile') {
+            this.supportFormStep = 'availableTime';
+            setTimeout(() => {
+                this.addMessage("When are you available for us to contact you?", false);
+                this.addTimeSlotOptions();
+            }, 300);
+        } else if (fieldName === 'queryType') {
+            this.supportFormStep = 'query';
+            setTimeout(() => {
+                this.addMessage("Please describe your query in detail:", false);
+                this.addTextInput('query');
+            }, 300);
+        } else if (fieldName === 'query') {
+            this.supportFormStep = 'images';
+            setTimeout(() => {
+                this.addMessage("Would you like to attach any images? (Optional)", false);
+                this.addImageUpload();
+            }, 300);
+        }
+    },
+
+    isValidEmail: function(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    },
+
+    isValidMobile: function(mobile) {
+        const mobileRegex = /^[6-9]\d{9}$/;
+        return mobileRegex.test(mobile.replace(/\s+/g, ''));
+    },
+
+    addImageUpload: function() {
+        const uploadContainer = document.createElement('div');
+        uploadContainer.className = 'file-upload-container';
+        uploadContainer.id = 'active-upload-container';
+        
+        const label = document.createElement('div');
+        label.className = 'file-upload-label';
+        label.textContent = 'Upload Images (Optional)';
+        
+        const hint = document.createElement('div');
+        hint.style.fontSize = '11px';
+        hint.style.color = '#999';
+        hint.style.marginBottom = '8px';
+        hint.textContent = 'Accepted: JPEG, JPG, PNG • Max 2MB each • Max 5 images';
+        
+        const uploadBtn = document.createElement('label');
+        uploadBtn.className = 'file-upload-btn';
+        uploadBtn.innerHTML = '📎 Choose Images';
+        
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.className = 'file-upload-input';
+        fileInput.accept = 'image/jpeg,image/jpg,image/png';
+        fileInput.multiple = true;
+        fileInput.onchange = (e) => this.handleImageSelect(e);
+        
+        uploadBtn.appendChild(fileInput);
+        
+        const previewContainer = document.createElement('div');
+        previewContainer.className = 'uploaded-images';
+        previewContainer.id = 'image-preview-container';
+        
+        // Add action buttons
+        const actionContainer = document.createElement('div');
+        actionContainer.style.display = 'flex';
+        actionContainer.style.gap = '10px';
+        actionContainer.style.marginTop = '10px';
+        
+        const skipBtn = document.createElement('button');
+        skipBtn.className = 'option-btn';
+        skipBtn.textContent = 'Skip & Continue';
+        skipBtn.onclick = () => this.finishImageUpload();
+        
+        const doneBtn = document.createElement('button');
+        doneBtn.className = 'option-btn support-btn';
+        doneBtn.textContent = 'Done';
+        doneBtn.onclick = () => this.finishImageUpload();
+        
+        actionContainer.appendChild(skipBtn);
+        actionContainer.appendChild(doneBtn);
+        
+        uploadContainer.appendChild(label);
+        uploadContainer.appendChild(hint);
+        uploadContainer.appendChild(uploadBtn);
+        uploadContainer.appendChild(previewContainer);
+        uploadContainer.appendChild(actionContainer);
+        
+        this.elements.messagesContainer.appendChild(uploadContainer);
+        this.elements.messagesContainer.scrollTop = this.elements.messagesContainer.scrollHeight;
+    },
+
+    handleImageSelect: function(event) {
+        const files = Array.from(event.target.files);
+        const previewContainer = this.elements.messagesContainer.querySelector('#image-preview-container');
+        
+        // Check if adding these files would exceed the limit
+        if (this.uploadedImages.length + files.length > 5) {
+            this.addMessage(`You can only upload a maximum of 5 images. Currently have ${this.uploadedImages.length} image(s).`, false);
+            event.target.value = '';
+            return;
+        }
+        
+        files.forEach(file => {
+            // Validate file type
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            if (!allowedTypes.includes(file.type)) {
+                this.addMessage(`Invalid file type: ${file.name}. Only JPEG, JPG, and PNG are allowed.`, false);
+                return;
+            }
+            
+            // Validate file size (2MB)
+            const maxSize = 2 * 1024 * 1024; // 2MB in bytes
+            if (file.size > maxSize) {
+                this.addMessage(`File too large: ${file.name}. Maximum size is 2MB. Current size: ${(file.size / (1024 * 1024)).toFixed(2)}MB`, false);
+                return;
+            }
+            
+            // Add to uploaded images array
+            this.uploadedImages.push(file);
+            
+            // Create preview
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const previewDiv = document.createElement('div');
+                previewDiv.className = 'image-preview';
+                
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'image-remove';
+                removeBtn.innerHTML = '✕';
+                removeBtn.onclick = () => {
+                    const index = this.uploadedImages.indexOf(file);
+                    if (index > -1) {
+                        this.uploadedImages.splice(index, 1);
+                    }
+                    previewDiv.remove();
+                };
+                
+                previewDiv.appendChild(img);
+                previewDiv.appendChild(removeBtn);
+                previewContainer.appendChild(previewDiv);
+            };
+            reader.readAsDataURL(file);
+        });
+        
+        // Reset the input value to allow selecting the same file again
+        event.target.value = '';
+    },
+
+    finishImageUpload: function() {
+        const uploadContainer = this.elements.messagesContainer.querySelector('#active-upload-container');
+        if (uploadContainer) {
+            uploadContainer.remove();
+        }
+        
+        if (this.uploadedImages.length > 0) {
+            this.addMessage(`${this.uploadedImages.length} image(s) attached`, true);
+        } else {
+            this.addMessage("No images attached", true);
+        }
+        
+        this.supportFormStep = 'confirm';
+        setTimeout(() => {
+            this.confirmAndSubmitSupport();
+        }, 300);
+    },
+
+    addTimeSlotOptions: function() {
+        const timeSlots = [
+            { id: 'morning', text: 'Morning (9 AM - 12 PM)' },
+            { id: 'afternoon', text: 'Afternoon (12 PM - 4 PM)' },
+            { id: 'evening', text: 'Evening (4 PM - 7 PM)' },
+            { id: 'anytime', text: 'Anytime' }
+        ];
+        
+        const gridContainer = document.createElement('div');
+        gridContainer.className = 'options-grid';
+        
+        timeSlots.forEach(slot => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = slot.text;
+            btn.onclick = () => {
+                this.supportFormData.availableTime = slot.text;
+                this.addMessage(slot.text, true);
+                this.supportFormStep = 'queryType';
+                setTimeout(() => {
+                    this.addMessage("What type of query do you have?", false);
+                    this.addQueryTypeOptions();
+                }, 300);
+            };
+            gridContainer.appendChild(btn);
+        });
+        
+        this.elements.messagesContainer.appendChild(gridContainer);
+        this.elements.messagesContainer.scrollTop = this.elements.messagesContainer.scrollHeight;
+    },
+
+    addQueryTypeOptions: function() {
+        const queryTypes = [
+            { id: 'cloud_support', text: 'Cloud Support' },
+            { id: 'billing', text: 'Billing & Payment' },
+            { id: 'others', text: 'Others' }
+        ];
+        
+        const gridContainer = document.createElement('div');
+        gridContainer.className = 'options-grid';
+        
+        queryTypes.forEach(type => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = type.text;
+            btn.onclick = () => {
+                this.supportFormData.queryType = type.text;
+                this.addMessage(type.text, true);
+                this.supportFormStep = 'query';
+                setTimeout(() => {
+                    this.addMessage("Please describe your query in detail:", false);
+                    this.addTextInput('query');
+                }, 300);
+            };
+            gridContainer.appendChild(btn);
+        });
+        
+        this.elements.messagesContainer.appendChild(gridContainer);
+        this.elements.messagesContainer.scrollTop = this.elements.messagesContainer.scrollHeight;
+    },
+
+    confirmAndSubmitSupport: function() {
+        this.addMessage("Thank you! Let me submit your query to our support team...", false);
+        this.showLoading();
+        
+        setTimeout(async () => {
+            try {
+                // Create FormData for multipart/form-data submission
+                const formData = new FormData();
+                formData.append('userEmail', this.supportFormData.mailId);
+                formData.append('name', this.supportFormData.name);
+                formData.append('mobile', this.supportFormData.mobile);
+                formData.append('availableTime', this.supportFormData.availableTime);
+                formData.append('queryType', this.supportFormData.queryType);
+                formData.append('message', this.supportFormData.query);
+                formData.append('apiKey', this.token || 'cloudsupport@olakrutrim.com');
+                
+                // Add images only if they exist
+                if (this.uploadedImages && this.uploadedImages.length > 0) {
+                    this.uploadedImages.forEach((image) => {
+                        formData.append('images', image);
+                    });
+                }
+                
+                const response = await fetch(`${this.baseUrl}/submit-support`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                this.hideLoading();
+                
+                if (result.success) {
+                    this.addMessage("Your query has been successfully submitted to our support team. We'll get back to you soon at " + this.supportFormData.mailId + " or call you at " + this.supportFormData.mobile, false);
+                } else {
+                    this.addMessage("Sorry, there was an error: " + result.message + ". Please try again or contact " + this.supportEmail + " directly.", false);
+                }
+                
+                this.resetSupportForm();
+                this.addDivider();
+                
+                setTimeout(() => {
+                    this.addMessage("Do you need help with anything else?", false);
+                    this.addYesNoButtons(this.lastOptions);
+                }, 1000);
+                
+            } catch (error) {
+                this.hideLoading();
+                console.error('Support form error:', error);
+                this.addMessage("Sorry, there was an error submitting your query. Please try again or contact " + this.supportEmail + " directly.", false);
+                this.resetSupportForm();
+                this.addDivider();
+                setTimeout(() => {
+                    this.addNewChatButton();
+                }, 500);
+            }
+        }, 800);
+    },
+
+    cancelSupportForm: function() {
+        const inputWrapper = this.elements.messagesContainer.querySelector('#active-input-wrapper');
+        if (inputWrapper) {
+            // Add fade out animation
+            inputWrapper.style.opacity = '0';
+            inputWrapper.style.transform = 'translateY(-10px)';
+            setTimeout(() => inputWrapper.remove(), 200);
+        }
+        
+        this.addMessage("Cancel", true);
+        this.resetSupportForm();
+        
+        setTimeout(() => {
+            this.addMessage("Support form cancelled. How else can I help you?", false);
+            this.addOptionsWithSupport(this.lastOptions);
+        }, 300);
+    },
+
+    resetSupportForm: function() {
+        this.supportFormData = {};
+        this.supportFormStep = null;
+        this.uploadedImages = [];
+    },
+
+    showLoading: function() {
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'loading-dots';
+        loadingDiv.id = 'loading-indicator';
+        loadingDiv.innerHTML = `
+            <div class="avatar bot">
+                <img src="${this.baseUrl}/static/logo.png" alt="Bot" style="width: 48px; height: 48px; object-fit: contain; background: transparent;" />
+            </div>
+            <div class="dots-container">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        `;
+        this.elements.messagesContainer.appendChild(loadingDiv);
+        this.elements.messagesContainer.scrollTop = this.elements.messagesContainer.scrollHeight;
+    },
+
+    hideLoading: function() {
+        const loadingDiv = this.elements.messagesContainer.querySelector('#loading-indicator');
+        if (loadingDiv) {
+            loadingDiv.remove();
+        }
+    },
+
+    addMessage: function(text, isUser) {
+        const wrapper = document.createElement('div');
+        wrapper.className = `message-wrapper ${isUser ? 'user' : 'bot'}`;
+        
+        const avatar = document.createElement('div');
+        avatar.className = `avatar ${isUser ? 'user' : 'bot'}`;
+        
+        if (isUser) {
+            // User avatar - person icon with green outline
+            avatar.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="8" r="4" fill="#4ba34c"/>
+                    <path d="M4 20c0-4 3.5-7 8-7s8 3 8 7" stroke="#4ba34c" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            `;
+        } else {
+            // Bot avatar - Krutrim logo
+            avatar.innerHTML = `
+                <img src="${this.baseUrl}/static/logo.png" alt="Bot" style="width: 48px; height: 48px; object-fit: contain; background: transparent;" />
+            `;
+        }
+        
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${isUser ? 'user-msg' : 'bot-msg'}`;
+        
+        // Convert URLs to clickable links
+        if (!isUser) {
+            msgDiv.innerHTML = this.linkify(text);
+        } else {
+            msgDiv.textContent = text;
+        }
+        
+        
+        wrapper.appendChild(avatar);
+        wrapper.appendChild(msgDiv);
+        
+        this.elements.messagesContainer.appendChild(wrapper);
+        this.elements.messagesContainer.scrollTop = this.elements.messagesContainer.scrollHeight;
+        
+        // Increment unread badge for bot messages when chat is closed
+        if (!isUser && !this.isOpen) {
+            this.elements.incrementUnread();
+        }
+    },
+
+    linkify: function(text) {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, function(url) {
+            return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+        });
+    },
+
+    addDivider: function() {
+        const divider = document.createElement('div');
+        divider.className = 'divider';
+        this.elements.messagesContainer.appendChild(divider);
+    },
+
+    addYesNoButtons: function(options) {
+        const container = document.createElement('div');
+        container.className = 'yes-no-container';
+        
+        const yesBtn = document.createElement('button');
+        yesBtn.className = 'yes-no-btn';
+        yesBtn.textContent = 'Yes';
+        yesBtn.onclick = () => {
+            container.remove();
+            this.addMessage("Yes", true);
+            this.conversationEnded = false;
+            setTimeout(() => {
+                this.addMessage("Great! What would you like to know?", false);
+                this.addOptionsWithSupport(options);
+            }, 300);
+        };
+        
+        const noBtn = document.createElement('button');
+        noBtn.className = 'yes-no-btn';
+        noBtn.textContent = 'No';
+        noBtn.onclick = () => {
+            container.remove();
+            this.addMessage("No", true);
+            this.conversationEnded = true;
+            setTimeout(() => {
+                this.addMessage("Thank you for using Krutrim Assistant! Have a great day!", false);
+                this.addDivider();
+                setTimeout(() => {
+                    this.addNewChatButton();
+                }, 1000);
+            }, 300);
+        };
+        
+        container.appendChild(yesBtn);
+        container.appendChild(noBtn);
+        this.elements.messagesContainer.appendChild(container);
+        this.elements.messagesContainer.scrollTop = this.elements.messagesContainer.scrollHeight;
+    },
+
+    addOptionsWithSupport: function(options) {
+        const gridContainer = document.createElement('div');
+        gridContainer.className = 'options-grid';
+        
+        if(Array.isArray(options) && options.length > 0) {
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt.text;
+                btn.onclick = () => this.handleOptionClick(opt);
+                gridContainer.appendChild(btn);
+            });
+        }
+        
+        // Add Contact Support button
+        const supportBtn = document.createElement('button');
+        supportBtn.className = 'option-btn support-btn';
+        supportBtn.textContent = 'Contact Support';
+        supportBtn.onclick = () => this.handleL1SupportClick();
+        gridContainer.appendChild(supportBtn);
+        
+        this.elements.messagesContainer.appendChild(gridContainer);
+        this.elements.messagesContainer.scrollTop = this.elements.messagesContainer.scrollHeight;
+    },
+
+    addMessageWithOptions: function(text, options) {
+        // Create wrapper for the entire block
+        const wrapper = document.createElement('div');
+        wrapper.className = 'message-wrapper bot';
+        
+        // Add bot avatar
+        const avatar = document.createElement('div');
+        avatar.className = 'avatar bot';
+        avatar.innerHTML = `
+            <img src="${this.baseUrl}/static/logo.png" alt="Bot" style="width: 48px; height: 48px; object-fit: contain; background: transparent;" />
+        `;
+        
+        // Create container for message + options
+        const contentContainer = document.createElement('div');
+        contentContainer.style.display = 'flex';
+        contentContainer.style.flexDirection = 'column';
+        contentContainer.style.gap = '12px';
+        contentContainer.style.maxWidth = '75%';
+        
+        // Add message text
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'message bot-msg';
+        msgDiv.innerHTML = this.linkify(text);
+        contentContainer.appendChild(msgDiv);
+        
+        // Add options grid
+        const gridContainer = document.createElement('div');
+        gridContainer.className = 'options-grid';
+        gridContainer.style.marginLeft = '0';
+        gridContainer.style.width = '100%';
+        
+        if(Array.isArray(options) && options.length > 0) {
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt.text;
+                btn.onclick = () => this.handleOptionClick(opt);
+                gridContainer.appendChild(btn);
+            });
+        }
+        
+        // Add Contact Support button
+        const supportBtn = document.createElement('button');
+        supportBtn.className = 'option-btn support-btn';
+        supportBtn.textContent = 'Contact Support';
+        supportBtn.onclick = () => this.handleL1SupportClick();
+        gridContainer.appendChild(supportBtn);
+        
+        contentContainer.appendChild(gridContainer);
+        
+        wrapper.appendChild(avatar);
+        wrapper.appendChild(contentContainer);
+        
+        this.elements.messagesContainer.appendChild(wrapper);
+        this.elements.messagesContainer.scrollTop = this.elements.messagesContainer.scrollHeight;
+    },
+
+    addOptions: function(options) {
+        this.addOptionsWithSupport(options);
+    }
+};

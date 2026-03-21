@@ -129,6 +129,14 @@ export interface InterCityOption {
   departureTimes: string[];
 }
 
+// ---------- ROUTE INFO (Directions API) ----------
+export interface RouteInfo {
+  dayNumber: number;
+  encodedPolyline: string;         // from routes[0].overview_polyline
+  etaSeconds: number;              // total from sum of routes[0].legs[*].duration.value
+  coordinates: [number, number][]; // decoded [lng, lat] pairs for GeoJSON
+}
+
 // ---------- ITINERARY ----------
 export type ItineraryItemType = 'hotel' | 'flight' | 'train' | 'spot' | 'p2p' | 'restaurant' | 'intercity';
 
@@ -169,6 +177,7 @@ export interface FullItinerary {
   interCityOptions?: Record<string, InterCityOption[]>; // keyed by Transit Locality
   selectedInterCitySegments?: Record<string, InterCityOption>; // keyed by Transit Locality
   unselectedSpots?: Spot[];
+  dayRoutes?: RouteInfo[]; // real road routes per day from Directions API
 }
 
 // ---------- TRIP INPUT ----------
