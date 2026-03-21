@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useSafarStore } from '@/lib/store';
-import { TripInput } from '@/lib/types';
+import { TripInput, Flight, Train } from '@/lib/types';
 
 const POPULAR_DESTINATIONS = [
     // ... rest remains same
@@ -122,15 +122,24 @@ export default function LandingPage() {
             // Step 3: Agent B — Build Itinerary
             setLoadingMessage('🧠 Agent B is crafting your day-by-day itinerary...');
 
-            // Pre-calculate expected arrival time for Day 1
-            let arrivalHour = undefined;
+            // Pre-calculate expected arrival hour for Day 1 (from cheapest outbound travel)
+            let arrivalHour: number | undefined;
             const outboundFlights = (agentAData.data.flights || []).filter((f: any) => f.source.toLowerCase() === tripInput.source.toLowerCase());
             const outboundTrains = (agentAData.data.trains || []).filter((t: any) => t.source.toLowerCase() === tripInput.source.toLowerCase());
             const allOutbound = [...outboundFlights, ...outboundTrains].sort((a, b) => a.price - b.price);
-
             if (allOutbound.length > 0) {
                 const arrivalTime = new Date(allOutbound[0].arrivalTime);
                 arrivalHour = arrivalTime.getHours() + arrivalTime.getMinutes() / 60;
+            }
+
+            // Pre-calculate departure hour for the last day (from cheapest return travel)
+            let lastDayDepartureHour: number | undefined;
+            const returnFlights = (agentAData.data.flights || []).filter((f: Flight) => f.destination.toLowerCase() === tripInput.source.toLowerCase());
+            const returnTrains = (agentAData.data.trains || []).filter((t: Train) => t.destination.toLowerCase() === tripInput.source.toLowerCase());
+            const allReturn = [...returnFlights, ...returnTrains].sort((a, b) => a.price - b.price);
+            if (allReturn.length > 0) {
+                const departureTime = new Date(allReturn[0].departureTime);
+                lastDayDepartureHour = departureTime.getHours() + departureTime.getMinutes() / 60;
             }
 
             const agentBRes = await fetch('/api/agentB', {
@@ -143,6 +152,7 @@ export default function LandingPage() {
                     maxHoursPerDay: 14,
                     userPreferences: tripInput.preferences,
                     arrivalHour,
+                    lastDayDepartureHour,
                     budget: tripInput.budget,
                 }),
             });
