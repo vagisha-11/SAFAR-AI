@@ -1,0 +1,342 @@
+[
+  {
+    "id": "7f327999-8f78-4950-864d-de59a93ad04a",
+    "name": "Parvati River",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.0201,
+      "lng": 77.3203
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A pristine river flowing through Kasol, perfect for riverside walks and picnics with stunning Himalayan views.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "c88c0d27-3ef7-471a-9c66-9caad1b54743",
+    "name": "Tosh Village",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.0442,
+      "lng": 77.3121
+    },
+    "timeToSpend": 3,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A charming mountain village known for its scenic beauty, traditional Himachali culture, and vibrant cafes.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "83de72f9-1718-4f8b-8c1b-dfef58ecd0d5",
+    "name": "Kheerganga Trek",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.0345,
+      "lng": 77.3022
+    },
+    "timeToSpend": 5,
+    "openingTime": "05:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A famous trek leading to natural hot springs surrounded by lush forests and panoramic mountain views.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "ed672797-d274-4dec-8d76-85699a5db1d1",
+    "name": "Malana Village",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.0934,
+      "lng": 77.2925
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "An ancient village with a unique culture and self-governance, famous for its distinct architecture and local customs.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "5678c3f7-9ec8-4423-b0cb-d75b4a6d4eec",
+    "name": "Kasol Market",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.0178,
+      "lng": 77.32
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Bustling local market offering handicrafts, local produce, and a variety of cafes serving Israeli and Himachali cuisine.",
+    "rating": 4.4,
+    "popularity": 9
+  },
+  {
+    "id": "e232e8ee-c98d-4a58-b776-fcfe082575cf",
+    "name": "Chalal Village",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.015,
+      "lng": 77.318
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A quaint village near Kasol known for its peaceful ambiance, scenic trails, and traditional wooden houses.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "c38fc5e1-ea8f-4b53-b0a0-e3dcd5dbb7aa",
+    "name": "Manikaran Sahib Gurudwara",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.0273,
+      "lng": 77.3209
+    },
+    "timeToSpend": 1,
+    "openingTime": "04:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A sacred Sikh pilgrimage site famous for its hot springs and beautiful architecture nestled in the mountains.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "2633c5a2-2d6a-486c-96b1-2b10f888a66a",
+    "name": "Rudra Nag Waterfall",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.0225,
+      "lng": 77.315
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A serene waterfall located near Kasol, ideal for nature lovers seeking tranquility and scenic beauty.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "06a1b0c4-6826-4981-ad8a-97cea2504e88",
+    "name": "Bhuntar Airport",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.0411,
+      "lng": 77.1539
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "06:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "The nearest airport to Kasol, serving as the gateway to the Parvati Valley and surrounding Himalayan destinations.",
+    "rating": 4,
+    "popularity": 6
+  },
+  {
+    "id": "96a0e4fe-626e-44b3-a641-d2a4d0fc902e",
+    "name": "Garhwal Trekking Base Camp",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.03,
+      "lng": 77.31
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "Starting point for various treks in the Parvati Valley, offering equipment rental and local guide services.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "cc7e97d0-aeb3-44af-bb58-f27626f0dc39",
+    "name": "Rudra Nag Temple",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.0227,
+      "lng": 77.3147
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A small but revered temple dedicated to Lord Shiva, located near the Rudra Nag waterfall.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "ae045883-805b-4550-a20d-c3a24c3f7316",
+    "name": "Pin Parvati Pass Trek",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.1,
+      "lng": 77.25
+    },
+    "timeToSpend": 5,
+    "openingTime": "05:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A challenging high-altitude trek connecting Parvati Valley to Spiti Valley, offering breathtaking mountain vistas.",
+    "rating": 4.9,
+    "popularity": 9
+  },
+  {
+    "id": "71b01c07-176e-4c24-939c-9e324829d850",
+    "name": "Kasol Israeli Cafe Street",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.0175,
+      "lng": 77.3195
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A street lined with cafes serving authentic Israeli cuisine, popular among tourists and backpackers.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "4b5836d1-2d77-456b-8e58-a9f2f474a87f",
+    "name": "Manikaran Hot Springs",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.0275,
+      "lng": 77.321
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Natural hot springs believed to have medicinal properties, attracting visitors for bathing and relaxation.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "cb4a61f1-85e4-4d05-adfa-351348851f04",
+    "name": "Kasol Riverside Camping",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.018,
+      "lng": 77.3205
+    },
+    "timeToSpend": 3,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "Experience camping by the Parvati River with bonfires, star gazing, and local music in a serene environment.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "0395c1f2-0e89-48c2-bfc9-7306893c69a8",
+    "name": "Pulga Village",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.05,
+      "lng": 77.31
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A small village known for its apple orchards, peaceful surroundings, and traditional Himachali lifestyle.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "a52896f3-9b0f-492c-9756-609977396026",
+    "name": "Rudra Nag River Walk",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.021,
+      "lng": 77.316
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A scenic walking trail along the Rudra Nag river, perfect for a peaceful stroll amidst nature.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "8073ef37-4d5d-40fa-a303-29312901619d",
+    "name": "Kasol Yoga and Meditation Center",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.019,
+      "lng": 77.321
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 200,
+    "category": "Cultural",
+    "description": "A tranquil center offering yoga and meditation sessions with Himalayan mountain views for rejuvenation.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "d9aab6de-868f-4ba5-9087-9ae7be5b0231",
+    "name": "Kullu Valley Viewpoint",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.03,
+      "lng": 77.33
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A panoramic viewpoint offering breathtaking vistas of the Kullu Valley and surrounding snow-capped peaks.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "64c20966-6000-4dc5-af38-addf482dbe6b",
+    "name": "Kasol Art and Handicraft Shop",
+    "address": "Kasol",
+    "location": {
+      "lat": 32.017,
+      "lng": 77.319
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A shop showcasing local handicrafts, traditional woolens, and unique souvenirs made by Himachali artisans.",
+    "rating": 4.4,
+    "popularity": 7
+  }
+]
