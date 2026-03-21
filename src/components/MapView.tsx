@@ -24,8 +24,8 @@ const HotelIcon = () => (
 );
 
 const OLA_MAPS_STYLES = {
-    '2d-light': { name: '2D Light', url: 'https://api.olamaps.io/tiles/vector/v1/styles/default-light/style.json', pitch: 0 },
-    '3d-dark': { name: '3D Dark', url: 'https://api.olamaps.io/tiles/vector/v1/styles/default-dark/style.json', pitch: 60 },
+    '2d-light': { name: '2D Light', url: 'https://api.olamaps.io/tiles/vector/v1/styles/default-light-standard/style.json', pitch: 0 },
+    '3d-dark': { name: '3D Dark', url: 'https://api.olamaps.io/tiles/vector/v1/styles/default-dark-standard/style.json', pitch: 60 },
     'satellite': { name: 'Satellite', url: 'https://api.olamaps.io/tiles/vector/v1/styles/default-satellite/style.json', pitch: 0 }
 };
 
