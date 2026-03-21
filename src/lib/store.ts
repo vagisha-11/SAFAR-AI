@@ -4,7 +4,7 @@
 import { create } from 'zustand';
 import {
     TripInput, LocalitySplit, AgentData, FullItinerary,
-    DayPlan, Hotel, Review, BudgetAllocation, TravelSelection,
+    DayPlan, Hotel, Review, BudgetAllocation, TravelSelection, RouteInfo,
 } from './types';
 
 // ---------- STATE INTERFACE ----------
@@ -65,6 +65,10 @@ interface SafarState {
     setSuggestions: (suggestions: any[]) => void;
     applySuggestion: (suggestion: any) => void;
 
+    // Day Routes (from Ola Directions API — for Agent B ETA data)
+    dayRoutes: RouteInfo[];
+    setDayRoutes: (routes: RouteInfo[]) => void;
+
     // Reset
     reset: () => void;
 }
@@ -85,6 +89,7 @@ const initialState = {
     selectedHotels: {},
     suggestions: [],
     selectedPlaceId: null,
+    dayRoutes: [],
 };
 
 export const useSafarStore = create<SafarState>((set, get) => ({
@@ -236,6 +241,8 @@ export const useSafarStore = create<SafarState>((set, get) => ({
     },
 
     setSelectedPlaceId: (id) => set({ selectedPlaceId: id }),
+
+    setDayRoutes: (routes) => set({ dayRoutes: routes }),
 
     addSpotToDay: (dayNumber, spot) => {
         const { itinerary } = get();

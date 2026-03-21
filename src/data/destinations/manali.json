@@ -1,0 +1,342 @@
+[
+  {
+    "id": "143de8a3-f57d-45d6-9a73-64773a02096f",
+    "name": "Hadimba Devi Temple",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2396,
+      "lng": 77.1887
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "Ancient wooden temple surrounded by cedar forests, dedicated to goddess Hadimba.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "79a84408-e5ab-403b-924e-37086b5fa92f",
+    "name": "Solang Valley",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2719,
+      "lng": 77.1773
+    },
+    "timeToSpend": 4,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "Popular adventure hub offering skiing, paragliding, and zorbing with stunning mountain views.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "0aef55a4-4b37-482b-a39d-3cda73e7bd91",
+    "name": "Manu Temple",
+    "address": "Manali",
+    "location": {
+      "lat": 32.239,
+      "lng": 77.1895
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Religious",
+    "description": "Temple dedicated to sage Manu, believed to be the creator of the world in Hindu mythology.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "58a20c2a-6875-4bbe-8304-90c97759ee60",
+    "name": "Old Manali Market",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2398,
+      "lng": 77.188
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Shopping",
+    "description": "Bustling market with handicrafts, woollens, souvenirs, and quaint cafes.",
+    "rating": 4.3,
+    "popularity": 9
+  },
+  {
+    "id": "47c85eaf-cf1e-4e53-a048-97fd892a1d0b",
+    "name": "Jogini Waterfall",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2435,
+      "lng": 77.191
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Scenic waterfall reached by a pleasant trek through pine forests near Vashisht village.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "a400a565-97ef-41ce-a01b-7b97af3a4b0b",
+    "name": "Vashisht Hot Springs",
+    "address": "Manali",
+    "location": {
+      "lat": 32.244,
+      "lng": 77.1915
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Natural sulphur hot springs believed to have medicinal properties, located near ancient temples.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "03131fd2-98ff-43ce-9a09-8a855c9a9e85",
+    "name": "Tibetan Monastery Manali",
+    "address": "Manali",
+    "location": {
+      "lat": 32.237,
+      "lng": 77.188
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Colorful monastery showcasing Tibetan culture, art, and prayer rituals.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "1fed7498-bd74-49b6-b6d1-9fe81f11bb8e",
+    "name": "Beas River Rafting",
+    "address": "Manali",
+    "location": {
+      "lat": 32.25,
+      "lng": 77.18
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 1200,
+    "category": "Adventure",
+    "description": "Thrilling white-water rafting experience on the Beas River with expert guides.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "88e9311e-f370-4bce-a7c4-be458d3a4346",
+    "name": "Manali Sanctuary",
+    "address": "Manali",
+    "location": {
+      "lat": 32.23,
+      "lng": 77.19
+    },
+    "timeToSpend": 3,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "Protected wildlife sanctuary with diverse flora and fauna, ideal for nature walks and bird watching.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "434a91b5-6cc3-42c5-9daf-c6c0009b624b",
+    "name": "Ridge Manali",
+    "address": "Manali",
+    "location": {
+      "lat": 32.239,
+      "lng": 77.1885
+    },
+    "timeToSpend": 1,
+    "openingTime": "Open 24 hours",
+    "closingTime": "Open 24 hours",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "Central open space in Manali offering panoramic views of the surrounding mountains.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "6fc49885-6905-44e4-a413-cd39cc48e2f3",
+    "name": "Manali Night Market",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2395,
+      "lng": 77.1882
+    },
+    "timeToSpend": 2,
+    "openingTime": "18:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Nightlife",
+    "description": "Vibrant night market with street food, handicrafts, and live music.",
+    "rating": 4.2,
+    "popularity": 8
+  },
+  {
+    "id": "53cb8341-fed8-4d02-b052-350b1a48c897",
+    "name": "Naggar Castle",
+    "address": "Manali",
+    "location": {
+      "lat": 32.228,
+      "lng": 77.167
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "Historic hilltop castle with stunning architecture and views over the Kullu Valley.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "dfafabda-06f9-40da-a9b9-33fa209b8250",
+    "name": "Cafe 1947",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2397,
+      "lng": 77.1881
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Experience",
+    "description": "Popular riverside cafe offering Italian cuisine and a cozy ambiance.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "f7dd93db-a5cf-403b-8216-420545bf4628",
+    "name": "Manali Adventure Park",
+    "address": "Manali",
+    "location": {
+      "lat": 32.27,
+      "lng": 77.18
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 500,
+    "category": "Adventure",
+    "description": "Adventure park with activities like ziplining, rock climbing, and rope courses.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "d1e48ab8-b022-456b-8e4d-aa24afebea71",
+    "name": "Van Vihar National Park",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2375,
+      "lng": 77.1875
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "Small national park with walking trails and diverse Himalayan flora and fauna.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "5a2503d4-052d-4a18-b4ff-b65b69a2d9fe",
+    "name": "Manali Gompa",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2372,
+      "lng": 77.1878
+    },
+    "timeToSpend": 1,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Religious",
+    "description": "Serene Buddhist monastery with beautiful murals and prayer halls.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "5c10a40e-3bee-4ea8-968a-5453916f4084",
+    "name": "Manali Ice Skating Rink",
+    "address": "Manali",
+    "location": {
+      "lat": 32.239,
+      "lng": 77.188
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "20:00",
+    "entryFee": 300,
+    "category": "Entertainment",
+    "description": "One of the few natural ice skating rinks in India, open during winter months.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "f62284d3-bc92-485b-b218-78bbf521e2b9",
+    "name": "Manali Ropeway",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2395,
+      "lng": 77.1883
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 200,
+    "category": "Experience",
+    "description": "Cable car ride offering panoramic views of Manali and the surrounding mountains.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "5ae5bc69-0998-4c0d-85e6-c2a7e25ab3c3",
+    "name": "Johnson's Cafe",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2396,
+      "lng": 77.1884
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Experience",
+    "description": "Popular cafe known for its continental dishes and lively atmosphere.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "25228150-5c97-452c-a1d8-ce80e94d6839",
+    "name": "Manali Arts and Crafts Centre",
+    "address": "Manali",
+    "location": {
+      "lat": 32.238,
+      "lng": 77.188
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Centre showcasing traditional Himachali arts, crafts, and cultural performances.",
+    "rating": 4.2,
+    "popularity": 6
+  }
+]

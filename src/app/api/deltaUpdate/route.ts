@@ -35,7 +35,7 @@ function parseTimeToHour(timeStr: string): number {
     return h + m / 60;
 }
 
-function addPlaceToDay(dayPlan: DayPlan, spot: Spot, depot: { lat: number; lng: number } | null): DayPlan {
+async function addPlaceToDay(dayPlan: DayPlan, spot: Spot, depot: { lat: number; lng: number } | null): Promise<DayPlan> {
     const items = [...dayPlan.items];
 
     // Separate the "Return to Hotel" P2P from the rest (it's always last)
@@ -45,8 +45,6 @@ function addPlaceToDay(dayPlan: DayPlan, spot: Spot, depot: { lat: number; lng: 
     const workItems = returnIdx >= 0 ? items.slice(0, returnIdx) : items;
 
     // Find all spot items to determine chronological positions to test insertion
-    // Strategy: find the slot between consecutive spot items that MINIMIZES additional total travel
-    // If no spots exist yet, just insert at beginning
     const spotItems = workItems.filter(i => i.type === 'spot');
 
     let bestInsertAfterIdx = workItems.length; // default: append at end of work items
@@ -58,7 +56,6 @@ function addPlaceToDay(dayPlan: DayPlan, spot: Spot, depot: { lat: number; lng: 
         bestExtraCost = 0;
     } else {
         // Evaluate inserting after each existing spot item
-        // Extra cost = dist(prev → new) + dist(new → next) - dist(prev → next)
         for (let i = 0; i <= spotItems.length; i++) {
             const prevLoc = i === 0
                 ? (depot || spot.location)
@@ -74,13 +71,12 @@ function addPlaceToDay(dayPlan: DayPlan, spot: Spot, depot: { lat: number; lng: 
 
             if (extraDist < bestExtraCost) {
                 bestExtraCost = extraDist;
-                // Find where this spot slot is in the full workItems array
                 if (i === 0) {
                     bestInsertAfterIdx = 0;
                 } else {
                     const targetSpot = spotItems[i - 1];
                     const absIdx = workItems.findIndex(it => it === targetSpot);
-                    bestInsertAfterIdx = absIdx + 1; // insert right after this spot
+                    bestInsertAfterIdx = absIdx + 1;
                 }
             }
         }
@@ -97,7 +93,7 @@ function addPlaceToDay(dayPlan: DayPlan, spot: Spot, depot: { lat: number; lng: 
     }
 
     // Build the new P2P + Spot items
-    const p2p = getP2PCost(prevLocation, spot.location, 'Previous Stop', spot.name, 'cab');
+    const p2p = await getP2PCost(prevLocation, spot.location, 'Previous Stop', spot.name, 'cab');
     const travelHours = p2p.duration / 60;
     const arrivalTime = prevEndTime + travelHours;
     const departTime = arrivalTime + spot.timeToSpend;
@@ -168,7 +164,7 @@ export async function POST(request: NextRequest) {
                 const dayIdx = updatedItinerary.days.findIndex(d => d.dayNumber === targetDay);
                 if (dayIdx >= 0) {
                     updatedItinerary.days = [...updatedItinerary.days];
-                    updatedItinerary.days[dayIdx] = addPlaceToDay(updatedItinerary.days[dayIdx], payload.spot, null);
+                    updatedItinerary.days[dayIdx] = await addPlaceToDay(updatedItinerary.days[dayIdx], payload.spot, null);
                 }
                 break;
             }
@@ -237,7 +233,7 @@ export async function POST(request: NextRequest) {
                 if (affectedLocalities.size > 0 && updatedItinerary.unselectedSpots) {
                     const pool = [...updatedItinerary.unselectedSpots];
 
-                    updatedItinerary.days = updatedItinerary.days.map(day => {
+                    updatedItinerary.days = await Promise.all(updatedItinerary.days.map(async day => {
                         if (!affectedLocalities.has(day.locality) || day.isTransitDay) return day;
 
                         // Find candidate for this locality
@@ -250,10 +246,10 @@ export async function POST(request: NextRequest) {
 
                         if (candidateIdx >= 0) {
                             const candidate = pool.splice(candidateIdx, 1)[0];
-                            return addPlaceToDay(day, candidate, null);
+                            return await addPlaceToDay(day, candidate, null);
                         }
                         return day;
-                    });
+                    }));
 
                     updatedItinerary.unselectedSpots = pool;
                 }

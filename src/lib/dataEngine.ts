@@ -13,7 +13,7 @@ const client = new AzureOpenAI({
 
 const DATA_DIR = path.join(process.cwd(), 'src', 'data', 'destinations');
 
-export async function fetchOrGenerateSpots(locality: string): Promise<Spot[]> {
+export async function fetchOrGenerateSpots(locality: string, days: number = 2): Promise<Spot[]> {
     const safeName = locality.toLowerCase().replace(/[^a-z0-9_]/g, '_');
     const filePath = path.join(DATA_DIR, `${safeName}.json`);
 
@@ -23,27 +23,27 @@ export async function fetchOrGenerateSpots(locality: string): Promise<Spot[]> {
         return JSON.parse(data) as Spot[];
     } catch (e) {
         // 2. Fallback: LLM Generation
-        // This stops the algorithm from failing on unknown locations and makes the DB self-building!
-        console.log(`[DataEngine] Cache miss for ${locality}. Invoking LLM to generate 20 highly accurate spots...`);
+        const spotCount = Math.max(20, Math.min(40, days * 4));
+        console.log(`[DataEngine] Cache miss for ${locality}. Generating ${spotCount} spots for ${days} days...`);
         
         const systemPrompt = `You are an expert Indian travel database builder.
-Your job is to return a raw JSON array of exactly 20 highly accurate, famous, or unique tourist spots, activities, or restaurants in the locality: "${locality}".
-Include a healthy mix of Nature, Heritage, Temple/Religious, Adventure, Cultural, Shopping, and Nightlife/Entertainment.
+Your job is to return a raw JSON array of exactly ${spotCount} highly accurate, famous, or unique tourist spots in the locality: "${locality}".
+Since the user is staying for ${days} days, provide a very dense and diverse list including hidden gems, unique local experiences, and popular landmarks.
 
 RULES:
-- Respond ONLY with raw valid JSON. No markdown ticks, no \`\`\`json. Just the array.
-- Each object in the array MUST strictly follow this exact schema:
+- Respond ONLY with raw valid JSON.
+- Each object must follow the schema:
 {
-  "name": "Exact name of the place",
-  "location": { "lat": <accurate float latitude>, "lng": <accurate float longitude> },
-  "timeToSpend": <float hours between 0.5 and 5>,
-  "openingTime": "<HH:MM>",
-  "closingTime": "<HH:MM>",
-  "entryFee": <integer in INR, 0 if free>,
-  "category": "<one of: Nature, Heritage, Temple, Beach, Adventure, Shopping, Cultural, Museum, Religious, Experience, Entertainment, Landmark, Nightlife>",
-  "description": "<one sentence vivid description>",
-  "rating": <float between 3.5 and 5.0>,
-  "popularity": <integer between 5 and 10>
+  "name": "Name",
+  "location": { "lat": <float>, "lng": <float> },
+  "timeToSpend": <float 0.5-5>,
+  "openingTime": "HH:MM",
+  "closingTime": "HH:MM",
+  "entryFee": <int>,
+  "category": "<Nature|Heritage|Temple|Adventure|Cultural|Landmark|etc>",
+  "description": "<vivid sentence>",
+  "rating": <float 3.5-5.0>,
+  "popularity": <int 5-10>
 }`;
 
         try {

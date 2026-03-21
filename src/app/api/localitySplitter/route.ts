@@ -110,15 +110,42 @@ export async function executeLocalitySplitter(body: any) {
 
     // For flexible dates, use ideal day recommendation from LLM — but NEVER cap based on budget.
     // Budget constraints are handled downstream by Agent C's allocation algorithms.
-    if (isDateFlexible) {
-        // Get the first split to read idealDays from LLM
+    // If dates are flexible, use ideal day recommendation from LLM — but ONLY if no specific duration was detected in the dates.
+    if (isDateFlexible && totalDays <= 1) {
         const prelimSplit = await askLLMForLocalitySplit(destination, totalDays);
         const recommendedDays = (prelimSplit[0] as any).idealDays || 5;
         totalDays = Math.min(maxDays || 14, Math.max(minDays || 2, recommendedDays));
+    } else {
+        // Even if dates result in a duration, respect the explicit min/max duration constraints if provided
+        const min = minDays || totalDays;
+        const max = maxDays || Math.max(totalDays, 14);
+        totalDays = Math.min(max, Math.max(min, totalDays));
     }
 
     // Live LLM Call to dynamically route regions into precise cities
-    let split = await askLLMForLocalitySplit(destination, totalDays);
+    const systemPrompt = `You are a strict data-routing AI for Safar AI, an Indian travel planner.
+The user wants to travel to: "${destination}" for ${totalDays} days.
+Your job is to partition these ${totalDays} days across logical cities or hubs.
+
+RULES:
+1. If the destination is a broad state/region (e.g., "Sikkim"), break it down into 2-3 standard tourist cities.
+2. If the destination is a single city (e.g., "Manali") but the duration (${totalDays} days) is longer than the typical stay (3-4 days), you MUST suggest 1-2 nearby hubs or regional extensions (e.g. Kasol, Solang, or Shimla) to fill the time. 
+3. Return a "durationAdvisory" if you added nearby cities to fill a long duration.
+4. Output a raw JSON array of objects.
+
+JSON Schema:
+{
+  "locality": "City Name",
+  "days": <int>,
+  "durationAdvisory": "string or null",
+  "idealDays": <int>,
+  "center": { "lat": <float>, "lng": <float> }
+}
+
+- The sum of "days" must exactly equal ${totalDays}.`;
+
+    let split = await askLLMWithCustomPrompt(systemPrompt);
+    const durationAdvisory = split.find((s: any) => s.durationAdvisory)?.durationAdvisory || null;
 
     // Adjust days to fit total mathematically (defensive logic against math-hallucination from LLM)
     let assignedDays = split.reduce((sum: number, s: any) => sum + s.days, 0);
@@ -134,13 +161,36 @@ export async function executeLocalitySplitter(body: any) {
         }
     }
 
-    // Transparent budget advisory (non-blocking) — sent to frontend for optional display
-    const estimatedCostPerDay = 4500; // Conservative estimate for decent travel
+    // Transparent budget advisory (non-blocking)
+    const estimatedCostPerDay = 4500;
     const budgetWarning = budget && (budget / totalDays) < estimatedCostPerDay
-        ? `Your budget of ₹${budget.toLocaleString('en-IN')} for ${totalDays} days works out to ~₹${Math.floor(budget / totalDays).toLocaleString('en-IN')}/day. We'll design the best backpacker-friendly itinerary within this budget!`
+        ? `Your budget of ₹${budget.toLocaleString('en-IN')} for ${totalDays} days is tight (~₹${Math.floor(budget / totalDays).toLocaleString('en-IN')}/day). We'll design a smart, cost-effective plan!`
         : null;
 
-    return { totalDays, source, destination, split, budgetWarning };
+    return { totalDays, source, destination, split, budgetWarning, durationAdvisory };
+}
+
+async function askLLMWithCustomPrompt(prompt: string) {
+    try {
+        const response = await client.chat.completions.create({
+            model: process.env.AZURE_OPENAI_DEPLOYMENT!,
+            messages: [{ role: 'system', content: prompt }],
+            temperature: 0.1,
+            max_tokens: 600,
+        });
+
+        const content = response.choices[0]?.message?.content?.trim() || "[]";
+        const cleanJson = content.replace(/^```json/i, '').replace(/^```/, '').replace(/```$/, '').trim();
+        const parsed = JSON.parse(cleanJson);
+        return parsed.map((s: any) => ({
+            ...s,
+            isTransitDay: false,
+            center: CITY_CENTERS[s.locality] || s.center || { lat: 20.5937, lng: 78.9629 },
+        }));
+    } catch (e) {
+        console.error("LLM Prompt failed", e);
+        return [];
+    }
 }
 
 export async function POST(request: NextRequest) {

@@ -1,0 +1,342 @@
+[
+  {
+    "id": "e9cf27ab-ac82-49bc-8377-175de104e6db",
+    "name": "Solang Valley Ropeway",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2678,
+      "lng": 77.1603
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "A thrilling cable car ride offering panoramic views of the snow-capped peaks and lush green valleys.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "6009efb2-0cff-428d-9f5c-ac13d3b7e508",
+    "name": "Paragliding at Solang Valley",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2685,
+      "lng": 77.161
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "16:00",
+    "entryFee": 2500,
+    "category": "Adventure",
+    "description": "Experience the adrenaline rush of paragliding over the stunning Solang Valley with expert instructors.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "d0a05d95-16fa-4dc2-a2ea-987d5ecab825",
+    "name": "Snow Scooter Rides",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2692,
+      "lng": 77.1598
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "16:00",
+    "entryFee": 800,
+    "category": "Adventure",
+    "description": "Fun-filled snow scooter rides on the snowy slopes, perfect for winter adventure enthusiasts.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "cc1d77a2-1f37-4c63-a449-dbd80df05a2c",
+    "name": "Solang Valley Ski School",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2669,
+      "lng": 77.1605
+    },
+    "timeToSpend": 4,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 1500,
+    "category": "Adventure",
+    "description": "Learn skiing from professional instructors in this popular ski school located in the heart of Solang Valley.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "ed7b0cc5-36ed-4d7a-ae7a-7b9a05047470",
+    "name": "Anjani Mahadev Temple",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.271,
+      "lng": 77.162
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A serene temple dedicated to Lord Shiva, nestled amidst the scenic beauty of Solang Valley.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "96b542ec-7b89-47b7-a907-87e83156213b",
+    "name": "Solang Valley Camping Site",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2655,
+      "lng": 77.158
+    },
+    "timeToSpend": 5,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "entryFee": 1200,
+    "category": "Nature",
+    "description": "Enjoy a night under the stars with well-equipped tents and bonfire experiences in the lap of nature.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "f75a58c0-172a-460f-bdaf-e43a41c078ac",
+    "name": "Ropeway Viewpoint",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.268,
+      "lng": 77.1615
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A perfect spot to capture breathtaking views of the Solang Valley and the surrounding mountains.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "440ee028-3df2-47b2-9deb-4ec2ba3ff472",
+    "name": "Ice Skating Rink",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.267,
+      "lng": 77.16
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 600,
+    "category": "Adventure",
+    "description": "Enjoy ice skating on a well-maintained rink during the winter months, suitable for all skill levels.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "10aca675-753b-456a-84bb-d7cbf8b84ba3",
+    "name": "Solang Valley Horse Riding",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2695,
+      "lng": 77.159
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 500,
+    "category": "Adventure",
+    "description": "Explore the valley on horseback with guided rides through scenic trails.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "fa315c2e-9bd8-4ad4-8bd1-e30a71b5093f",
+    "name": "Beas River Viewpoint",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.27,
+      "lng": 77.163
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A tranquil spot to admire the flowing Beas River with the backdrop of majestic mountains.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "957a3075-3488-41ff-bf0c-019fd37131a9",
+    "name": "Solang Valley Local Market",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.266,
+      "lng": 77.1607
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Browse through local handicrafts, souvenirs, and taste authentic Himachali snacks.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "d63e37e0-5e33-4921-8920-b0c3f3cb68cb",
+    "name": "Raghunath Temple",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.272,
+      "lng": 77.164
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A peaceful temple dedicated to Lord Rama, known for its intricate wood carvings and spiritual ambiance.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "0cfc1e69-350b-42b2-b723-5dee6ed7f4c1",
+    "name": "Solang Valley Photography Walk",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2675,
+      "lng": 77.1602
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Guided photography tours capturing the valley’s natural beauty, flora, and fauna.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "4fd789ba-dae7-4452-8306-4bc3cc735397",
+    "name": "Zipline Adventure",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2688,
+      "lng": 77.1612
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 1000,
+    "category": "Adventure",
+    "description": "Experience the thrill of flying across the valley on a high-speed zipline.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "b77d9332-401a-40b3-8e09-c1e6347afe7b",
+    "name": "Solang Valley Mountain Biking",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2658,
+      "lng": 77.1595
+    },
+    "timeToSpend": 3,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 1200,
+    "category": "Adventure",
+    "description": "Explore rugged mountain trails on a guided biking tour through Solang Valley’s diverse terrain.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "84e2394c-159e-40fc-9cac-25250cb74fef",
+    "name": "Solang Valley Rock Climbing",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.269,
+      "lng": 77.1608
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "16:00",
+    "entryFee": 900,
+    "category": "Adventure",
+    "description": "Challenge yourself with rock climbing sessions suitable for beginners and experts alike.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "1ad3bac4-36ef-40df-8ab4-566f25cf0394",
+    "name": "Solang Valley Nature Trail",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2665,
+      "lng": 77.161
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A peaceful walking trail through pine forests and meadows, ideal for bird watching and nature lovers.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "9277d01d-f571-4aba-be15-01d3a6a7e7bd",
+    "name": "Solang Valley Hot Air Balloon Ride",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2672,
+      "lng": 77.1609
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "09:00",
+    "entryFee": 3500,
+    "category": "Adventure",
+    "description": "Soar above the valley at sunrise in a hot air balloon for an unforgettable aerial experience.",
+    "rating": 4.9,
+    "popularity": 9
+  },
+  {
+    "id": "48b58111-2252-4e11-937d-a1109d337b08",
+    "name": "Solang Valley Local Cuisine Experience",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2663,
+      "lng": 77.1601
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Taste traditional Himachali dishes prepared by local families in a homely setting.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "641236c6-5324-4125-b992-ad8228aeb785",
+    "name": "Solang Valley Sunset Point",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2683,
+      "lng": 77.1625
+    },
+    "timeToSpend": 1,
+    "openingTime": "16:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Watch the sun set behind the majestic Himalayan peaks, casting golden hues over the valley.",
+    "rating": 4.6,
+    "popularity": 8
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "id": "c24c8cd0-11c5-4336-8bee-29667e495377",
+    "name": "Johnson's Cafe",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2396,
+      "lng": 77.1887
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 1200,
+    "rating": 4.5,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "937455d4-c329-4284-9243-f7c4642fe741",
+    "name": "The Lazy Dog",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2381,
+      "lng": 77.1899
+    },
+    "cuisine": "North Indian, Continental",
+    "avgCostForTwo": 1500,
+    "rating": 4.3,
+    "openingTime": "10:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "4be4cc7f-5958-477b-87f8-59503326f18a",
+    "name": "Cafe 1947",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2374,
+      "lng": 77.188
+    },
+    "cuisine": "Italian, Continental",
+    "avgCostForTwo": 1300,
+    "rating": 4.6,
+    "openingTime": "09:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "8ac7c198-bf82-4da9-b1b1-8831420d0289",
+    "name": "Drifters' Inn & Cafe",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2389,
+      "lng": 77.1905
+    },
+    "cuisine": "Local Authentic, North Indian",
+    "avgCostForTwo": 900,
+    "rating": 4.2,
+    "openingTime": "07:30",
+    "closingTime": "21:30",
+    "mealType": "any"
+  },
+  {
+    "id": "fe2b0208-7ebc-4d5e-949e-73cfd1b6bbf8",
+    "name": "Renaissance Manali",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2403,
+      "lng": 77.1875
+    },
+    "cuisine": "Fine Dining, North Indian",
+    "avgCostForTwo": 2500,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "afe1309a-aab0-436e-a4cd-19579865ff95",
+    "name": "Cafe Sol",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2391,
+      "lng": 77.1868
+    },
+    "cuisine": "Continental, Cafe",
+    "avgCostForTwo": 1100,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "1f469547-5fa6-44cd-a508-dc60613533f3",
+    "name": "Chopsticks",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2377,
+      "lng": 77.1912
+    },
+    "cuisine": "Chinese, Asian",
+    "avgCostForTwo": 1000,
+    "rating": 4.1,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "39f3214d-493d-475f-8fa7-6b0f10a9df49",
+    "name": "Cafe Medley",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2399,
+      "lng": 77.189
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 900,
+    "rating": 4.3,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "3aecf5dd-1ab3-46f2-9f64-2a4de62ca2cf",
+    "name": "Himachali Rasoi",
+    "address": "Manali",
+    "location": {
+      "lat": 32.241,
+      "lng": 77.1883
+    },
+    "cuisine": "Local Authentic, North Indian",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "daa0a68e-2154-4c00-a504-1b54ab26a18b",
+    "name": "Manali Street Food Hub",
+    "address": "Manali",
+    "location": {
+      "lat": 32.2385,
+      "lng": 77.19
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 400,
+    "rating": 4,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  }
+]
