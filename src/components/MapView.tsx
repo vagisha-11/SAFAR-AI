@@ -64,16 +64,21 @@ export default function MapView() {
 
         for (const day of daysToShow) {
             const routePoints: [number, number][] = [];
+            let hotelPoint: [number, number] | null = null;
             const color = dayColors[(day.dayNumber - 1) % dayColors.length];
 
             if (day.hotel) {
                 hotelMarkers.push({ hotel: day.hotel, locality: day.locality });
-                routePoints.push([day.hotel.location.lng, day.hotel.location.lat]); // Maplibre uses [lng, lat]
+                const pt: [number, number] = [day.hotel.location.lng, day.hotel.location.lat];
+                routePoints.push(pt); // Maplibre uses [lng, lat]
+                hotelPoint = pt;
                 allPoints.push({ lat: day.hotel.location.lat, lng: day.hotel.location.lng });
             } else if (selectedHotels[day.locality]) {
                 const h = selectedHotels[day.locality];
                 hotelMarkers.push({ hotel: h, locality: day.locality });
-                routePoints.push([h.location.lng, h.location.lat]);
+                const pt: [number, number] = [h.location.lng, h.location.lat];
+                routePoints.push(pt);
+                hotelPoint = pt;
                 allPoints.push({ lat: h.location.lat, lng: h.location.lng });
             }
 
@@ -89,6 +94,10 @@ export default function MapView() {
                     routePoints.push([rest.location.lng, rest.location.lat]);
                     allPoints.push(rest.location);
                 }
+            }
+
+            if (hotelPoint && routePoints.length > 1) {
+                routePoints.push(hotelPoint);
             }
 
             if (routePoints.length > 1) {
