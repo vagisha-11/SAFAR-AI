@@ -1,0 +1,152 @@
+[
+  {
+    "id": "ad070227-7aff-4674-8bf7-36c82c977f83",
+    "name": "Gunpowder",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.6001,
+      "lng": 73.7553
+    },
+    "cuisine": "South Indian, Local Authentic",
+    "avgCostForTwo": 1200,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "lunch"
+  },
+  {
+    "id": "bf4a5425-16ea-48f2-9e5a-6bce418313b8",
+    "name": "Vinayak Family Restaurant",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.5835,
+      "lng": 73.7537
+    },
+    "cuisine": "Seafood, Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "5b323e49-9eff-46ef-9e55-e2c825e84ec6",
+    "name": "Thalassa",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.6009,
+      "lng": 73.7541
+    },
+    "cuisine": "Mediterranean, Greek, Seafood",
+    "avgCostForTwo": 2000,
+    "rating": 4.6,
+    "openingTime": "17:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "ac4dd4a7-77f1-4a3e-b689-bb4c48ce685a",
+    "name": "Artjuna Cafe",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.5978,
+      "lng": 73.7582
+    },
+    "cuisine": "Continental, Cafe",
+    "avgCostForTwo": 900,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "15459f9e-408d-4e46-ba66-9f71c173f762",
+    "name": "Mum’s Kitchen",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.5843,
+      "lng": 73.7545
+    },
+    "cuisine": "Goan, Local Authentic",
+    "avgCostForTwo": 1500,
+    "rating": 4.8,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "f2064243-31b1-4718-9917-1817c610c2fb",
+    "name": "Cafe Alchemia",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.5989,
+      "lng": 73.7567
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.3,
+    "openingTime": "07:30",
+    "closingTime": "21:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "94b90067-52dd-4291-a523-f06e7c53b312",
+    "name": "Viva Panjim",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.5849,
+      "lng": 73.7502
+    },
+    "cuisine": "Goan, Seafood",
+    "avgCostForTwo": 1300,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "e5ad1731-bc16-4d51-941b-c6d2b3900c99",
+    "name": "Anand Seafood Restaurant",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.5971,
+      "lng": 73.755
+    },
+    "cuisine": "Seafood, Local Authentic",
+    "avgCostForTwo": 900,
+    "rating": 4.4,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "0280e686-6c23-43e9-b5c1-992135b6457c",
+    "name": "Cafe Chocolatti",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.5995,
+      "lng": 73.7578
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 600,
+    "rating": 4.2,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "f03b7185-da61-4db7-9bce-cfdd5d268a17",
+    "name": "Britto's",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.6005,
+      "lng": 73.754
+    },
+    "cuisine": "Seafood, Continental",
+    "avgCostForTwo": 1400,
+    "rating": 4.5,
+    "openingTime": "10:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  }
+]

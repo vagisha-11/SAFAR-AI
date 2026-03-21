@@ -7,6 +7,8 @@
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server';
 import { AzureOpenAI } from 'openai';
+import fs from 'fs';
+import path from 'path';
 
 const client = new AzureOpenAI({
     endpoint: process.env.AZURE_OPENAI_ENDPOINT!,
@@ -19,7 +21,7 @@ const SYSTEM_PROMPT = `You are Safar AI, a highly efficient, warm, and concise t
 Your goal is to help the user plan a trip by quickly gathering 5 specific pieces of information without wasting their time.
 
 REQUIRED INFORMATION:
-1. Source city (where they are travelling FROM) 
+1. Source city (where they are travelling FROM)
 2. Destination (city, region, or theme)
 3. Travel dates (exact dates, OR simply confirm if their dates are "flexible")
 4. Budget in INR
@@ -43,11 +45,8 @@ Once you know all 5 fields, do not ask any more questions. Give a quick 1-senten
 [/TRIP_READY]
 
 Rules for the JSON:
-- CRITICAL: NEVER EMIT [TRIP_READY] UNLESS YOU HAVE EXPLICITLY CONFIRMED THE SOURCE CITY ("where are you flying from?"). If they say "make an Andaman itinerary for 8 days", DO NOT emit [TRIP_READY]. You MUST respond purely by asking them for their source and budget.
-- If dates are flexible, set isDateFlexible=true, set departureDate to their mentioned start date (or today+7 if unspecified). 
-- If the user explicitly mentioned a duration (e.g. "8 days", "1 week"), set both minDays and maxDays to that exact number. 
-- Otherwise, hardcode minDays=2 and maxDays=14. The backend routing engine will override these if the user didn't specify a preference.
-- If dates are fixed (e.g. Oct 12 to Oct 16), set isDateFlexible=false, minDays=maxDays=number of days between dates.
+- If dates are flexible, DO NOT ASK FOR MIN/MAX DAYS. Set isDateFlexible=true, set departureDate to their mentioned start date (or today+7 if unspecified). Hardcode minDays=2 and maxDays=14. The backend routing engine will override these anyway.
+- If dates are fixed, set isDateFlexible=false, minDays=maxDays=number of days between dates.
 - budget must be an integer in INR (e.g. if they say "50k" → 50000).
 - preferences is an array of strings from: Adventure, Heritage, Nature, Beach, Temple, Shopping, Food, Photography, Nightlife, Trekking, Wildlife, Cultural, Museum, Religious, Sunrise/Sunset.
 - mustExclude is an array of strings representing things the user explicitly DOES NOT WANT (e.g. "Temples", "Seafood", "Trekking").
@@ -59,6 +58,24 @@ Today's date is ${new Date().toISOString().split('T')[0]}.`;
 export async function POST(request: NextRequest) {
     try {
         const { messages } = await request.json();
+
+        // Write prompt context to file
+        try {
+            const contextPath = path.join(process.cwd(), 'prompt_context.txt');
+            const userMessages = messages.filter((m: any) => m.role === 'user');
+            
+            // If this is the start of a flow, reset the file.
+            if (userMessages.length === 1) {
+                fs.writeFileSync(contextPath, "=== USER PROMPT CONTEXT ===\n", 'utf-8');
+            }
+            
+            const lastUserMsg = userMessages[userMessages.length - 1];
+            if (lastUserMsg) {
+                fs.appendFileSync(contextPath, `User: ${lastUserMsg.content}\n`, 'utf-8');
+            }
+        } catch (e) {
+            console.error("Failed to write prompt_context.txt", e);
+        }
 
         const response = await client.chat.completions.create({
             model: process.env.AZURE_OPENAI_DEPLOYMENT!,

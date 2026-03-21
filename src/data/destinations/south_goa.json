@@ -1,0 +1,342 @@
+[
+  {
+    "id": "1afd5697-55bc-43b7-bfa1-ece78cf6f7f2",
+    "name": "Palolem Beach",
+    "address": "South Goa",
+    "location": {
+      "lat": 14.987,
+      "lng": 74.0276
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A crescent-shaped beach famous for its serene waters, vibrant nightlife, and colorful beach huts.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "76f29414-b05f-45bd-bace-7229c693aec4",
+    "name": "Cola Beach",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.0103,
+      "lng": 74.0221
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A hidden gem with a freshwater lagoon meeting the Arabian Sea, perfect for solitude and nature lovers.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "0b9185c7-6d37-4fed-97c2-4660c89503c0",
+    "name": "Cotigao Wildlife Sanctuary",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.0412,
+      "lng": 74.0235
+    },
+    "timeToSpend": 4,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "Dense forest reserve offering trekking trails and sightings of rare birds and wildlife.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "7c94f81a-c9ae-4b6e-97f6-a0a1fd9be6c9",
+    "name": "Agonda Beach",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.0031,
+      "lng": 74.0239
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A tranquil beach known for its clean sands, turtle nesting sites, and laid-back vibe.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "bc94cb8a-aa52-431a-ae5c-abda1aa89611",
+    "name": "Palácio do Deão",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.0124,
+      "lng": 74.0278
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Heritage",
+    "description": "An 18th-century Portuguese palace showcasing colonial architecture and lush gardens.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "aa08c0c0-fbfe-46ca-9aff-33cd9792cd22",
+    "name": "Shri Manguesh Temple",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.4905,
+      "lng": 73.9557
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A beautiful temple dedicated to Lord Shiva, known for its intricate carvings and peaceful ambiance.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "fc5e95d0-6b0b-4de4-bbe3-39106232cdfb",
+    "name": "Butterfly Beach",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.0025,
+      "lng": 74.0301
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Secluded beach accessible by boat, famous for its butterflies and pristine surroundings.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "18b31dec-5093-456c-ab28-7a4b514b8889",
+    "name": "Dudhsagar Waterfalls",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.3145,
+      "lng": 74.3144
+    },
+    "timeToSpend": 4,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 100,
+    "category": "Nature",
+    "description": "Majestic four-tiered waterfall cascading down the Western Ghats, surrounded by lush greenery.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "ced55abd-8a93-4450-93d8-bbcca186f68c",
+    "name": "Cabo de Rama Fort",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.0289,
+      "lng": 74.0273
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "Historic fort offering panoramic views of the Arabian Sea and a glimpse into Goa's past.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "7618e141-da7a-4c4c-be7a-36b7204af760",
+    "name": "Talpona Beach",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.01,
+      "lng": 74.02
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Quiet and less crowded beach ideal for peaceful walks and sunset views.",
+    "rating": 4.5,
+    "popularity": 6
+  },
+  {
+    "id": "5f909655-ffe8-4c18-81e3-1da5b71a7c08",
+    "name": "Netravali Wildlife Sanctuary",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.15,
+      "lng": 74.05
+    },
+    "timeToSpend": 4,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 60,
+    "category": "Nature",
+    "description": "A biodiversity hotspot with dense forests, waterfalls, and rich flora and fauna.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "268d5763-62fc-4876-aa1c-6c91870e61c6",
+    "name": "Palolem Market",
+    "address": "South Goa",
+    "location": {
+      "lat": 14.9875,
+      "lng": 74.027
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Vibrant local market offering handicrafts, souvenirs, and authentic Goan street food.",
+    "rating": 4.3,
+    "popularity": 9
+  },
+  {
+    "id": "d9e3de65-16ae-478a-bec1-4d753f5f2edd",
+    "name": "Galjibaga Beach (Turtle Beach)",
+    "address": "South Goa",
+    "location": {
+      "lat": 14.96,
+      "lng": 74.03
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Known for turtle nesting, this pristine beach offers a rare wildlife experience.",
+    "rating": 4.7,
+    "popularity": 6
+  },
+  {
+    "id": "b056ffad-76c0-4682-81b4-ffb0318cac0a",
+    "name": "Rajbagh Beach",
+    "address": "South Goa",
+    "location": {
+      "lat": 15,
+      "lng": 74.025
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A quiet beach with golden sands and calm waters, perfect for relaxation and swimming.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "f0366079-d5c8-48a0-b1a6-5ae4c21db5df",
+    "name": "Chandreshwar Temple",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.02,
+      "lng": 74.035
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "Ancient temple dedicated to Lord Shiva, known for its spiritual atmosphere and architecture.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "ff768c4c-1d42-4db1-be9c-ae3ad3e4c7ed",
+    "name": "Palolem Kayaking",
+    "address": "South Goa",
+    "location": {
+      "lat": 14.987,
+      "lng": 74.0276
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "Experience kayaking along the scenic coastline and explore hidden coves and beaches.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "3225a364-39ca-4a65-90c8-4462d1d1b5eb",
+    "name": "Sunset Cruise on Sal River",
+    "address": "South Goa",
+    "location": {
+      "lat": 15,
+      "lng": 74.02
+    },
+    "timeToSpend": 2,
+    "openingTime": "16:00",
+    "closingTime": "19:00",
+    "entryFee": 500,
+    "category": "Adventure",
+    "description": "Enjoy a serene boat cruise along the Sal River with stunning sunset views and local wildlife.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "eff079d7-1ba7-49ef-927d-1750a87206c0",
+    "name": "Agonda Turtle Conservation Project",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.0031,
+      "lng": 74.0239
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Participate in conservation efforts and learn about endangered sea turtles nesting on Agonda Beach.",
+    "rating": 4.8,
+    "popularity": 7
+  },
+  {
+    "id": "785e972a-d92c-410e-bd37-f0ac55970001",
+    "name": "Benaulim Beach",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.012,
+      "lng": 73.993
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A long stretch of golden sand beach with calm waters, ideal for swimming and sunbathing.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "93a2e4a4-83d3-4653-b926-51413a4985a2",
+    "name": "Sernabatim Beach",
+    "address": "South Goa",
+    "location": {
+      "lat": 15.0105,
+      "lng": 74
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A quiet beach with rocky outcrops and scenic views, perfect for photography and solitude.",
+    "rating": 4.4,
+    "popularity": 6
+  }
+]

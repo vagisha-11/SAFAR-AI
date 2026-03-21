@@ -9,6 +9,9 @@ import {
     FullItinerary, LocalitySplit, TripInput, BudgetAllocation, Spot,
 } from '@/lib/types';
 import { v4 as uuidv4 } from 'uuid';
+import fs from 'fs';
+import path from 'path';
+import { haversineDistance } from '@/lib/fakeApi';
 
 const aiClient = new AzureOpenAI({
     endpoint: process.env.AZURE_OPENAI_ENDPOINT || '',
@@ -142,16 +145,81 @@ export async function executeAgentC(body: AgentCInput) {
 
     const mckpClasses: MCKPItem[][] = [];
 
+    let promptContext = '';
+    try {
+        promptContext = fs.readFileSync(path.join(process.cwd(), 'prompt_context.txt'), 'utf-8');
+    } catch {
+        promptContext = 'No user conversational context available.';
+    }
+
     // 1. Hotel Partitions
     for (const loc of nonTransitLocalities) {
         const hotels = (agentData.hotels[loc.locality] || []);
-        const options: MCKPItem[] = hotels.map(h => ({
-            classId: `hotel_${loc.locality}`,
-            data: h,
-            cost: h.pricePerNight * loc.days,
-            utility: h.starRating * 100 + (h.propertyType === 'Resort' ? 50 : 0),
-            type: 'hotel',
-        }));
+        const locSpots = agentData.spots[loc.locality] || [];
+
+        const enhancedHotels = hotels.map(h => {
+            let sumDistances = 0;
+            if (h.location) {
+                for (const spot of locSpots) {
+                    sumDistances += haversineDistance(h.location, spot.location);
+                }
+            }
+            const effectiveTravelOverhead = Math.round((sumDistances * 18) / (loc.days || 1));
+            const adjustedPrice = h.pricePerNight + effectiveTravelOverhead;
+            const deterministicUtility = h.starRating * 100 + (h.propertyType === 'Resort' ? 50 : 0);
+            
+            return { ...h, adjustedPrice, deterministicUtility };
+        });
+
+        let hotelScores: Record<string, number> = {};
+        if (enhancedHotels.length > 0 && process.env.AZURE_OPENAI_ENDPOINT) {
+            const llmPrompt = `You are an expert travel assistant.
+The user's conversational context is:
+${promptContext}
+The user's total trip budget is: ${tripInput.budget} INR.
+
+Below is a list of candidate hotels for the locality "${loc.locality}".
+For each hotel, consider its name, star rating, amenities, and the 'adjustedPrice' (base price + effective travel overhead). 
+Provide a suitability score from 1 to 100 for each hotel based on value, quality, and context.
+
+Return ONLY a raw JSON object where keys are the hotel IDs and values are the numerical scores. 
+DO NOT include markdown formatting or \`\`\`json.
+
+Hotels:
+${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: h.starRating, propertyType: h.propertyType, amenities: h.amenities, adjustedPrice: h.adjustedPrice })), null, 2)}`;
+
+            try {
+                const response = await aiClient.chat.completions.create({
+                    model: process.env.AZURE_OPENAI_DEPLOYMENT!,
+                    messages: [{ role: 'system', content: llmPrompt }],
+                    temperature: 0.1,
+                });
+                
+                let rawResult = response.choices[0]?.message?.content?.trim() || '{}';
+                if (rawResult.startsWith('```json')) rawResult = rawResult.slice(7);
+                if (rawResult.startsWith('```')) rawResult = rawResult.slice(3);
+                if (rawResult.endsWith('```')) rawResult = rawResult.slice(0, -3);
+                hotelScores = JSON.parse(rawResult.trim());
+            } catch (err) {
+                console.error("Hotel scoring LLM failed:", err);
+            }
+        }
+
+        const options: MCKPItem[] = enhancedHotels.map(h => {
+            const llmScore = hotelScores[h.id] || 50; 
+            const deterministicNorm = Math.min(100, Math.max(0, (h.deterministicUtility / 550) * 100));
+            const finalScore = (llmScore * 0.6) + (deterministicNorm * 0.4);
+            const scaledUtility = Math.round(finalScore * 5.5);
+
+            return {
+                classId: `hotel_${loc.locality}`,
+                data: h,
+                cost: h.pricePerNight * loc.days,
+                utility: scaledUtility,
+                type: 'hotel',
+            };
+        });
+
         if (options.length === 0) {
             options.push({ classId: `hotel_${loc.locality}`, data: null, cost: 0, utility: 0, type: 'hotel' });
         }
@@ -161,22 +229,16 @@ export async function executeAgentC(body: AgentCInput) {
     // 2. Outbound Travel Partitions
     const outboundOptions: MCKPItem[] = [
         ...agentData.flights
-            .filter(f => 
-                f.source.toLowerCase().includes(tripInput.source.toLowerCase()) || 
-                tripInput.source.toLowerCase().includes(f.source.toLowerCase())
-            )
+            .filter(f => f.source.toLowerCase() === tripInput.source.toLowerCase())
             .map(f => ({
                 classId: 'outbound',
                 data: f,
                 cost: f.price,
-                utility: (24 - (calculateDurationMin(f.departureTime, f.arrivalTime) / 60)) * 10,
+                utility: (20 - (calculateDurationMin(f.departureTime, f.arrivalTime) / 60)) * 10,
                 type: 'flight' as const,
             })),
         ...agentData.trains
-            .filter(t => 
-                t.source.toLowerCase().includes(tripInput.source.toLowerCase()) || 
-                tripInput.source.toLowerCase().includes(t.source.toLowerCase())
-            )
+            .filter(t => t.source.toLowerCase() === tripInput.source.toLowerCase())
             .map(t => ({
                 classId: 'outbound',
                 data: t,
@@ -190,22 +252,16 @@ export async function executeAgentC(body: AgentCInput) {
     // 3. Return Travel Partitions
     const returnOptions: MCKPItem[] = [
         ...agentData.flights
-            .filter(f => 
-                f.destination.toLowerCase().includes(tripInput.source.toLowerCase()) || 
-                tripInput.source.toLowerCase().includes(f.destination.toLowerCase())
-            )
+            .filter(f => f.destination.toLowerCase() === tripInput.source.toLowerCase())
             .map(f => ({
                 classId: 'return',
                 data: f,
                 cost: f.price,
-                utility: (24 - (calculateDurationMin(f.departureTime, f.arrivalTime) / 60)) * 10,
+                utility: (20 - (calculateDurationMin(f.departureTime, f.arrivalTime) / 60)) * 10,
                 type: 'flight' as const,
             })),
         ...agentData.trains
-            .filter(t => 
-                t.destination.toLowerCase().includes(tripInput.source.toLowerCase()) || 
-                tripInput.source.toLowerCase().includes(t.destination.toLowerCase())
-            )
+            .filter(t => t.destination.toLowerCase() === tripInput.source.toLowerCase())
             .map(t => ({
                 classId: 'return',
                 data: t,
@@ -360,17 +416,22 @@ export async function executeAgentC(body: AgentCInput) {
     if (returnSelection && updatedDayPlans.length > 0) {
         const { type, data } = returnSelection;
         const lastIdx = updatedDayPlans.length - 1;
-        
-        // Append return travel to the end of the last day's items
+        const filteredItems = updatedDayPlans[lastIdx].items.filter(item => item.type !== 'flight' && item.type !== 'train');
+
         updatedDayPlans[lastIdx] = {
             ...updatedDayPlans[lastIdx],
-            items: [...updatedDayPlans[lastIdx].items, {
+            items: [...filteredItems, {
                 type, data,
                 startTime: new Date(data.departureTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
                 endTime: new Date(data.arrivalTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
                 notes: `✈️ Return: ${data.source} → ${data.destination}`,
             }],
-            totalCost: updatedDayPlans[lastIdx].totalCost + data.price,
+            totalCost: filteredItems.reduce((sum, it) => {
+                if (it.type === 'spot') return sum + (it.data as any).entryFee;
+                if (it.type === 'restaurant') return sum + (it.data as any).avgCostForTwo / 2;
+                if (it.type === 'p2p') return sum + (it.data as any).cost;
+                return sum;
+            }, 0) + data.price,
         };
     }
 
@@ -392,7 +453,6 @@ YOUR TASKS:
    - Remove any spots or meals scheduled too close to or after leaving for the airport/station.
    - For example, if departure is at 14:00, skip Dinner.
 4. Shift the "startTime" and "endTime" of the surviving items so they flow chronologically after arrival (or before departure) without overlapping.
-5. IMPORTANT: NEVER REMOVE the flight or train item object itself from the list. It is the anchor for the entire day. Only remove or shift activities and meals around it.
 
 REPLY ONLY WITH THE RAW JSON ARRAY representing the updated "items" array. Match the exact object structure you receive.
 Do not wrap it in \`\`\`json. Output nothing but the JSON array.

@@ -1,0 +1,342 @@
+[
+  {
+    "id": "38891fd4-40be-4fad-87c5-5f8a1c2470ff",
+    "name": "Fort Aguada",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.4929,
+      "lng": 73.7741
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 25,
+    "category": "Heritage",
+    "description": "A 17th-century Portuguese fort with a lighthouse offering panoramic views of the Arabian Sea and a glimpse into colonial history.",
+    "rating": 4.6,
+    "popularity": 10
+  },
+  {
+    "id": "a8de51ba-a4c2-4e52-9fd7-db06084ddaf4",
+    "name": "Calangute Beach",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.544,
+      "lng": 73.7576
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "One of North Goa's largest and liveliest beaches, famous for water sports, vibrant nightlife, and beach shacks.",
+    "rating": 4.3,
+    "popularity": 10
+  },
+  {
+    "id": "da279360-bb67-46f0-838c-c07255caf15f",
+    "name": "Chapora Fort",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.6021,
+      "lng": 73.7418
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A scenic hilltop fort offering breathtaking views of Vagator Beach and the Arabian Sea, popular for sunset watching.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "7c36169b-bc3c-4c65-acf8-096ef37e3a4b",
+    "name": "Anjuna Flea Market",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.6003,
+      "lng": 73.7447
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A vibrant weekly market featuring local handicrafts, clothes, jewelry, and street food, reflecting Goa's bohemian spirit.",
+    "rating": 4.2,
+    "popularity": 9
+  },
+  {
+    "id": "f585cc09-0340-4762-a508-03c90c7bbc5b",
+    "name": "Morjim Beach",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.6329,
+      "lng": 73.7628
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A tranquil beach known for olive ridley turtle nesting and a peaceful atmosphere away from the crowds.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "9f93d01a-b8ce-4922-a462-339701b990c3",
+    "name": "St. Alex Church",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.5512,
+      "lng": 73.7583
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A beautiful 17th-century baroque-style church with ornate interiors and a serene ambiance in Calangute.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "178c13f6-8689-4436-a691-25e74ad89f22",
+    "name": "Baga Beach",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.5507,
+      "lng": 73.7579
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A bustling beach famous for nightlife, water sports, and vibrant beach shacks serving local cuisine.",
+    "rating": 4.4,
+    "popularity": 10
+  },
+  {
+    "id": "1545b4e1-2e34-432c-8145-1c7ded2b7002",
+    "name": "Sao Joao Festival Experience",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.6,
+      "lng": 73.75
+    },
+    "timeToSpend": 3,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Experience the lively and colorful Sao Joao festival celebrated with traditional music, dance, and jumping into wells.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "92b6b1fc-3a2b-4d34-a9ff-044587639b81",
+    "name": "Dudhsagar Waterfalls (Day Trip)",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.3143,
+      "lng": 74.3136
+    },
+    "timeToSpend": 5,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A majestic four-tiered waterfall located on the Goa-Karnataka border, surrounded by lush forests and wildlife.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "4573aa00-1f13-406f-b7de-711bc7d85846",
+    "name": "Mandrem Beach",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.6579,
+      "lng": 73.765
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A quiet and pristine beach ideal for relaxation, yoga, and spotting dolphins in the early morning.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "4f712900-a543-4069-b8b6-5b677f22848b",
+    "name": "Arambol Sweet Water Lake",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.7001,
+      "lng": 73.7354
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A serene freshwater lake near Arambol Beach, perfect for a peaceful swim and surrounded by lush greenery.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "049da173-cf76-4766-9253-f9596eabdea4",
+    "name": "Ashvem Beach",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.6645,
+      "lng": 73.7657
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A less crowded, scenic beach with golden sands and calm waters, ideal for sunbathing and beachside cafes.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "d7d06047-9aeb-446f-9c06-16496c9d0e5e",
+    "name": "Naval Aviation Museum",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.504,
+      "lng": 73.8141
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "An engaging museum showcasing the history of Indian Naval Aviation with aircraft displays and memorabilia.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "fc84d799-0c59-4944-870a-01d3a09def95",
+    "name": "Vagator Beach",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.6025,
+      "lng": 73.7407
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A dramatic beach with red cliffs, lively shacks, and a popular spot for sunset views and beach parties.",
+    "rating": 4.4,
+    "popularity": 9
+  },
+  {
+    "id": "0b6c46de-f3e5-48ff-acbf-449b4d9368ab",
+    "name": "Shanta Durga Temple",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.5833,
+      "lng": 73.8083
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A stunning temple dedicated to Goddess Shantadurga, featuring unique architecture blending Hindu and Portuguese styles.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "ec873e8d-9648-4cc9-a66e-6b2827c82594",
+    "name": "Mandovi River Cruise",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.496,
+      "lng": 73.8278
+    },
+    "timeToSpend": 2,
+    "openingTime": "17:00",
+    "closingTime": "20:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "Enjoy a scenic evening cruise on the Mandovi River with live music, dance, and stunning views of Panaji city lights.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "a96aafc9-6540-4694-b567-27a9f494231a",
+    "name": "Butterfly Beach",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.54,
+      "lng": 73.74
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A hidden gem accessible by boat, known for its crescent shape, butterflies, and pristine natural beauty.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "f67bc660-2511-45d2-a790-5c0c2beb1884",
+    "name": "Big Foot Museum",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.7002,
+      "lng": 73.7357
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "An open-air museum showcasing Goan rural life with life-size statues and traditional village scenes.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "585d544c-de47-4669-b103-306e5303e160",
+    "name": "Mandrem Yoga Shala",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.6575,
+      "lng": 73.7653
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 200,
+    "category": "Wellness",
+    "description": "A peaceful yoga retreat offering authentic classes and workshops amidst the serene Mandrem beach environment.",
+    "rating": 4.8,
+    "popularity": 7
+  },
+  {
+    "id": "969ef1b3-2880-4adc-9af9-fc94c7ae6226",
+    "name": "Tito's Lane",
+    "address": "North Goa",
+    "location": {
+      "lat": 15.5509,
+      "lng": 73.7578
+    },
+    "timeToSpend": 2,
+    "openingTime": "18:00",
+    "closingTime": "02:00",
+    "entryFee": 0,
+    "category": "Nightlife",
+    "description": "The heart of Goa's nightlife with numerous clubs, bars, and restaurants pulsating with music and energy till late night.",
+    "rating": 4.4,
+    "popularity": 10
+  }
+]
