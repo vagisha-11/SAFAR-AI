@@ -26,7 +26,7 @@ function formatTime(hourDecimal: number): string {
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 }
 
-function addPlaceToDay(dayPlan: DayPlan, spot: Spot): DayPlan {
+async function addPlaceToDay(dayPlan: DayPlan, spot: Spot): Promise<DayPlan> {
     const items = [...dayPlan.items];
 
     // Find insertion point (before last P2P return trip)
@@ -45,7 +45,7 @@ function addPlaceToDay(dayPlan: DayPlan, spot: Spot): DayPlan {
     }
 
     // Add P2P travel to new spot
-    const p2p = getP2PCost(lastLocation, spot.location, 'Previous', spot.name, 'cab');
+    const p2p = await getP2PCost(lastLocation, spot.location, 'Previous', spot.name, 'cab');
     const lastEndTime = insertIdx > 0 && items[insertIdx - 1].endTime
         ? parseFloat(items[insertIdx - 1].endTime!.replace(':', '.'))
         : 8;
@@ -111,7 +111,7 @@ export async function POST(request: NextRequest) {
                 const dayIdx = updatedItinerary.days.findIndex(d => d.dayNumber === targetDay);
                 if (dayIdx >= 0) {
                     updatedItinerary.days = [...updatedItinerary.days];
-                    updatedItinerary.days[dayIdx] = addPlaceToDay(updatedItinerary.days[dayIdx], payload.spot);
+                    updatedItinerary.days[dayIdx] = await addPlaceToDay(updatedItinerary.days[dayIdx], payload.spot);
                 }
                 break;
             }
@@ -180,7 +180,7 @@ export async function POST(request: NextRequest) {
                 if (affectedLocalities.size > 0 && updatedItinerary.unselectedSpots) {
                     const pool = [...updatedItinerary.unselectedSpots];
 
-                    updatedItinerary.days = updatedItinerary.days.map(day => {
+                    updatedItinerary.days = await Promise.all(updatedItinerary.days.map(async day => {
                         if (!affectedLocalities.has(day.locality) || day.isTransitDay) return day;
 
                         // Find candidate for this locality
@@ -193,10 +193,10 @@ export async function POST(request: NextRequest) {
 
                         if (candidateIdx >= 0) {
                             const candidate = pool.splice(candidateIdx, 1)[0];
-                            return addPlaceToDay(day, candidate);
+                            return await addPlaceToDay(day, candidate);
                         }
                         return day;
-                    });
+                    }));
 
                     updatedItinerary.unselectedSpots = pool;
                 }

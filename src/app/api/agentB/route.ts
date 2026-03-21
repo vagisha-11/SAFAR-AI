@@ -4,7 +4,7 @@
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server';
 import { Spot, Restaurant, DayPlan, ItineraryItem, LatLng, P2PTravel } from '@/lib/types';
-import { getP2PCost, haversineDistance } from '@/lib/fakeApi';
+import { getP2PCost, haversineDistance, getOlaRoute } from '@/lib/fakeApi';
 import { v4 as uuidv4 } from 'uuid';
 
 const ROAD_SPEED_KMH = 25; // Average road speed in a city
@@ -113,9 +113,9 @@ function isSpotOpen(spot: Spot, timeHour: number): boolean {
 /**
  * Calculate travel time between two points in minutes
  */
-function travelTimeMinutes(from: LatLng, to: LatLng): number {
-    const dist = haversineDistance(from, to) * 1.3; // 30% road factor
-    return (dist / ROAD_SPEED_KMH) * 60;
+async function travelTimeMinutes(from: LatLng, to: LatLng): Promise<number> {
+    const { duration } = await getOlaRoute(from, to);
+    return duration;
 }
 
 /**
@@ -132,26 +132,28 @@ function formatTime(hourDecimal: number): string {
  * Find optimal restaurant for a meal that minimizes the detour distance
  * detour = distance(prev, restaurant) + distance(restaurant, next)
  */
-function findOptimalRestaurant(
+async function findOptimalRestaurant(
     prevLocation: LatLng,
     nextLocation: LatLng,
     restaurants: Restaurant[],
     mealType: 'lunch' | 'dinner',
     usedRestaurants: Set<string>
-): Restaurant | null {
+): Promise<Restaurant | null> {
     const candidates = restaurants.filter(
         r => !usedRestaurants.has(r.id) && (r.mealType === mealType || r.mealType === 'any')
     );
 
     if (candidates.length === 0) return null;
 
-    candidates.sort((a, b) => {
-        const detourA = haversineDistance(prevLocation, a.location) + haversineDistance(a.location, nextLocation);
-        const detourB = haversineDistance(prevLocation, b.location) + haversineDistance(b.location, nextLocation);
-        return detourA - detourB;
-    });
+    const scored = await Promise.all(candidates.map(async (a) => {
+        const detour1 = await getOlaRoute(prevLocation, a.location);
+        const detour2 = await getOlaRoute(a.location, nextLocation);
+        return { restaurant: a, detour: detour1.distance + detour2.distance };
+    }));
 
-    return candidates[0];
+    scored.sort((a, b) => a.detour - b.detour);
+
+    return scored[0].restaurant;
 }
 
 /**
@@ -163,7 +165,7 @@ function findOptimalRestaurant(
  * TOPTW-inspired Simultaneous Multi-Day Solver
  * Maximizes aggregate Profit (User Interest) across all days M.
  */
-function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpots: Spot[] } {
+async function buildDayPlans(input: AgentBInput): Promise<{ dayPlans: DayPlan[], unselectedSpots: Spot[] }> {
     const { spots, restaurants, daysInLocality, locality, cityCenter, hotelLocation, maxHoursPerDay, userPreferences = [], mustExclude = [], additionalNotes = '', startDate, arrivalHour, budget } = input;
 
     // Use HotelLocation as Depot if available, otherwise CityCenter
@@ -223,7 +225,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
                 const day = days[d];
 
                 // Calculate incremental travel time from LAST location
-                const travelMin = travelTimeMinutes(day.currentLocation, spot.location);
+                const travelMin = await travelTimeMinutes(day.currentLocation, spot.location);
                 const travelHours = travelMin / 60;
                 const arrivalTime = day.currentTime + travelHours;
 
@@ -231,7 +233,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
                 if (!isSpotOpen(spot, arrivalTime)) continue;
 
                 const stayTime = spot.timeToSpend;
-                const returnTime = travelTimeMinutes(spot.location, depot) / 60;
+                const returnTime = (await travelTimeMinutes(spot.location, depot)) / 60;
                 const deltaTotal = travelHours + stayTime;
 
                 if (day.totalHours + deltaTotal + returnTime > maxHoursPerDay) continue;
@@ -251,7 +253,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
         const { spot, dayIdx, costTime } = bestInsertion;
         const day = days[dayIdx];
 
-        const p2p = getP2PCost(day.currentLocation, spot.location,
+        const p2p = await getP2PCost(day.currentLocation, spot.location,
             day.items.length === 0 ? 'Hotel' : (day.items[day.items.length - 1].data as Spot).name,
             spot.name, 'cab');
 
@@ -277,7 +279,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
     }
 
     // 3. Finalize Days (Return to Hotel, Food injection)
-    const dayPlans = days.map((day, idx) => {
+    const dayPlans = await Promise.all(days.map(async (day, idx) => {
         const date = new Date(startDate);
         date.setDate(date.getDate() + idx);
         
@@ -302,7 +304,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
             const spot = spotsList[j];
             
             // 1. P2P to spot
-            const p2pToSpot = getP2PCost(currentLocation, spot.location, currentName, spot.name, 'cab');
+            const p2pToSpot = await getP2PCost(currentLocation, spot.location, currentName, spot.name, 'cab');
             finalizedItems.push({
                 type: 'p2p',
                 data: p2pToSpot,
@@ -327,10 +329,10 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
             // 3. Check for Lunch
             if (j === lunchIdx) {
                 const nextLoc = j + 1 < spotsList.length ? spotsList[j+1].location : depot;
-                const lunch = findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'lunch', usedRestaurants);
+                const lunch = await findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'lunch', usedRestaurants);
                 if (lunch) {
                     usedRestaurants.add(lunch.id);
-                    const p2pToLunch = getP2PCost(currentLocation, lunch.location, currentName, lunch.name, 'cab');
+                    const p2pToLunch = await getP2PCost(currentLocation, lunch.location, currentName, lunch.name, 'cab');
                     finalizedItems.push({ type: 'p2p', data: p2pToLunch, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + p2pToLunch.duration / 60) });
                     dayCost += p2pToLunch.cost;
                     currentDecTime += p2pToLunch.duration / 60;
@@ -346,10 +348,10 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
             // 4. Check for Dinner
             if (j === dinnerIdx) {
                 const nextLoc = depot; // Dinner is last
-                const dinner = findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'dinner', usedRestaurants);
+                const dinner = await findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'dinner', usedRestaurants);
                 if (dinner) {
                     usedRestaurants.add(dinner.id);
-                    const p2pToDinner = getP2PCost(currentLocation, dinner.location, currentName, dinner.name, 'cab');
+                    const p2pToDinner = await getP2PCost(currentLocation, dinner.location, currentName, dinner.name, 'cab');
                     finalizedItems.push({ type: 'p2p', data: p2pToDinner, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + p2pToDinner.duration / 60) });
                     dayCost += p2pToDinner.cost;
                     currentDecTime += p2pToDinner.duration / 60;
@@ -365,7 +367,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
 
         // 5. Return to Depot
         if (currentName !== 'Hotel') {
-            const returnP2P = getP2PCost(currentLocation, depot, currentName, 'Hotel', 'cab');
+            const returnP2P = await getP2PCost(currentLocation, depot, currentName, 'Hotel', 'cab');
             finalizedItems.push({
                 type: 'p2p', data: returnP2P,
                 startTime: formatTime(currentDecTime),
@@ -383,7 +385,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
             items: finalizedItems,
             totalCost: Math.round(dayCost),
         };
-    });
+    }));
 
     const unselectedSpots = spots
         .filter(s => !assigned.has(s.id));
@@ -418,7 +420,7 @@ export async function executeAgentB(body: any) {
         const spots = agentData.spots[loc.locality] || [];
         const restaurants = agentData.restaurants[loc.locality] || [];
 
-        const { dayPlans, unselectedSpots } = buildDayPlans({
+        const { dayPlans, unselectedSpots } = await buildDayPlans({
             spots,
             restaurants,
             daysInLocality: loc.days,
