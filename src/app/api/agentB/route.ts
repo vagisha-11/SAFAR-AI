@@ -129,10 +129,12 @@ function formatTime(hourDecimal: number): string {
 }
 
 /**
- * Find nearest restaurant for a meal
+ * Find optimal restaurant for a meal that minimizes the detour distance
+ * detour = distance(prev, restaurant) + distance(restaurant, next)
  */
-function findNearestRestaurant(
-    location: LatLng,
+function findOptimalRestaurant(
+    prevLocation: LatLng,
+    nextLocation: LatLng,
     restaurants: Restaurant[],
     mealType: 'lunch' | 'dinner',
     usedRestaurants: Set<string>
@@ -143,9 +145,11 @@ function findNearestRestaurant(
 
     if (candidates.length === 0) return null;
 
-    candidates.sort(
-        (a, b) => haversineDistance(location, a.location) - haversineDistance(location, b.location)
-    );
+    candidates.sort((a, b) => {
+        const detourA = haversineDistance(prevLocation, a.location) + haversineDistance(a.location, nextLocation);
+        const detourB = haversineDistance(prevLocation, b.location) + haversineDistance(b.location, nextLocation);
+        return detourA - detourB;
+    });
 
     return candidates[0];
 }
@@ -276,40 +280,99 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
     const dayPlans = days.map((day, idx) => {
         const date = new Date(startDate);
         date.setDate(date.getDate() + idx);
-        let dayCost = day.items.reduce((sum, item) => {
-            if (item.type === 'p2p') return sum + (item.data as any).cost;
-            if (item.type === 'spot') return sum + (item.data as any).entryFee;
-            return sum;
-        }, 0);
+        
+        let finalizedItems: ItineraryItem[] = [];
+        let dayCost = 0;
 
-        // Add Return to Depot
-        if (day.items.length > 0) {
-            const returnP2P = getP2PCost(day.currentLocation, depot, 'Final Stop', 'Hotel', 'cab');
-            day.items.push({
+        const timeToDec = (t: string) => {
+            const [h, m] = (t || '00:00').split(':').map(Number);
+            return h + m / 60;
+        };
+
+        let currentDecTime = day.items[0] ? timeToDec(day.items[0].startTime!) : (idx === 0 && arrivalHour ? arrivalHour + 1.5 : DEFAULT_START_HOUR);
+        let currentLocation = depot;
+        let currentName = 'Hotel';
+
+        const spotsList = day.items.filter(i => i.type === 'spot').map(i => i.data as Spot);
+        const lunchIdx = Math.max(0, Math.floor((spotsList.length - 1) / 2));
+        const dinnerIdx = Math.max(0, spotsList.length - 1);
+
+        // Rebuild sequentially
+        for (let j = 0; j < spotsList.length; j++) {
+            const spot = spotsList[j];
+            
+            // 1. P2P to spot
+            const p2pToSpot = getP2PCost(currentLocation, spot.location, currentName, spot.name, 'cab');
+            finalizedItems.push({
+                type: 'p2p',
+                data: p2pToSpot,
+                startTime: formatTime(currentDecTime),
+                endTime: formatTime(currentDecTime + p2pToSpot.duration / 60)
+            });
+            dayCost += p2pToSpot.cost;
+            currentDecTime += p2pToSpot.duration / 60;
+
+            // 2. Spot
+            finalizedItems.push({
+                type: 'spot',
+                data: spot,
+                startTime: formatTime(currentDecTime),
+                endTime: formatTime(currentDecTime + spot.timeToSpend)
+            });
+            dayCost += spot.entryFee;
+            currentDecTime += spot.timeToSpend;
+            currentLocation = spot.location;
+            currentName = spot.name;
+
+            // 3. Check for Lunch
+            if (j === lunchIdx) {
+                const nextLoc = j + 1 < spotsList.length ? spotsList[j+1].location : depot;
+                const lunch = findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'lunch', usedRestaurants);
+                if (lunch) {
+                    usedRestaurants.add(lunch.id);
+                    const p2pToLunch = getP2PCost(currentLocation, lunch.location, currentName, lunch.name, 'cab');
+                    finalizedItems.push({ type: 'p2p', data: p2pToLunch, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + p2pToLunch.duration / 60) });
+                    dayCost += p2pToLunch.cost;
+                    currentDecTime += p2pToLunch.duration / 60;
+
+                    finalizedItems.push({ type: 'restaurant', data: lunch, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + 1.0), notes: '🍽️ Lunch' });
+                    dayCost += lunch.avgCostForTwo / 2;
+                    currentDecTime += 1.0;
+                    currentLocation = lunch.location;
+                    currentName = lunch.name;
+                }
+            }
+
+            // 4. Check for Dinner
+            if (j === dinnerIdx) {
+                const nextLoc = depot; // Dinner is last
+                const dinner = findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'dinner', usedRestaurants);
+                if (dinner) {
+                    usedRestaurants.add(dinner.id);
+                    const p2pToDinner = getP2PCost(currentLocation, dinner.location, currentName, dinner.name, 'cab');
+                    finalizedItems.push({ type: 'p2p', data: p2pToDinner, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + p2pToDinner.duration / 60) });
+                    dayCost += p2pToDinner.cost;
+                    currentDecTime += p2pToDinner.duration / 60;
+
+                    finalizedItems.push({ type: 'restaurant', data: dinner, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + 1.5), notes: '🍽️ Dinner' });
+                    dayCost += dinner.avgCostForTwo / 2;
+                    currentDecTime += 1.5;
+                    currentLocation = dinner.location;
+                    currentName = dinner.name;
+                }
+            }
+        }
+
+        // 5. Return to Depot
+        if (currentName !== 'Hotel') {
+            const returnP2P = getP2PCost(currentLocation, depot, currentName, 'Hotel', 'cab');
+            finalizedItems.push({
                 type: 'p2p', data: returnP2P,
-                startTime: formatTime(day.currentTime),
-                endTime: formatTime(day.currentTime + returnP2P.duration / 60),
+                startTime: formatTime(currentDecTime),
+                endTime: formatTime(currentDecTime + returnP2P.duration / 60),
                 notes: '🏨 Return to hotel',
             });
             dayCost += returnP2P.cost;
-        }
-
-        // Inject Lunch/Dinner (Greedy)
-        const finalizedItems: ItineraryItem[] = [...day.items];
-
-        // Find best spots for food
-        const dayMainSpots = day.items.filter(i => i.type === 'spot').map(i => i.data as Spot);
-        if (dayMainSpots.length > 0) {
-            // Lunch
-            const midSpot = dayMainSpots[Math.floor(dayMainSpots.length / 2)];
-            const lunch = findNearestRestaurant(midSpot.location, restaurants, 'lunch', usedRestaurants);
-            if (lunch) {
-                finalizedItems.push({
-                    type: 'restaurant', data: lunch, startTime: '13:00', endTime: '14:00', notes: '🍽️ Mid-day Meal'
-                });
-                dayCost += lunch.avgCostForTwo / 2;
-                usedRestaurants.add(lunch.id);
-            }
         }
 
         return {
@@ -317,7 +380,7 @@ function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpo
             date: date.toISOString().split('T')[0],
             locality,
             isTransitDay: false,
-            items: finalizedItems.sort((a, b) => (a.startTime || '').localeCompare(b.startTime || '')),
+            items: finalizedItems,
             totalCost: Math.round(dayCost),
         };
     });

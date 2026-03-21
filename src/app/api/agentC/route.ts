@@ -3,11 +3,19 @@
 // Adjusts hotel and travel to fit budget
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server';
+import { AzureOpenAI } from 'openai';
 import {
     DayPlan, Hotel, Flight, Train, AgentData, InterCityOption,
     FullItinerary, LocalitySplit, TripInput, BudgetAllocation, Spot,
 } from '@/lib/types';
 import { v4 as uuidv4 } from 'uuid';
+
+const aiClient = new AzureOpenAI({
+    endpoint: process.env.AZURE_OPENAI_ENDPOINT || '',
+    apiKey: process.env.AZURE_OPENAI_API_KEY || '',
+    apiVersion: process.env.AZURE_OPENAI_API_VERSION || '2023-05-15',
+    deployment: process.env.AZURE_OPENAI_DEPLOYMENT || '',
+});
 
 interface AgentCInput {
     dayPlans: DayPlan[];
@@ -357,6 +365,73 @@ export async function executeAgentC(body: AgentCInput) {
                 return sum;
             }, 0) + data.price,
         };
+    }
+
+    // Helper to call GPT to adjust meals/spots around flight times
+    async function adjustMealsAndSpotsWithGPT(dayPlan: DayPlan, role: 'first_day' | 'last_day'): Promise<DayPlan> {
+        if (!process.env.AZURE_OPENAI_ENDPOINT) return dayPlan;
+        try {
+            const prompt = `You are Safar AI's itinerary corrector. 
+This is the ${role === 'first_day' ? 'First Day' : 'Final Day'} of the user's trip.
+The current scheduled items for this day are provided below in JSON format.
+There is a flight or train included in these items which dictates when the user arrives (if First Day) or departs (if Final Day).
+
+YOUR TASKS:
+1. Examine the flight/train arrival and departure times.
+2. If this is the First Day: The user shouldn't do anything before they arrive + a 2 hour buffer for baggage/transit. 
+   - Remove any spots or activities scheduled BEFORE they arrive and are ready.
+   - For meals, if they arrive after 18:00 (6 PM), REMOVE Lunch. If they arrive earlier, keep Lunch or shift it to a late lunch. "check arrival after say 6pm for no lunch. skipping lunch should ONLY BE THE CASE IF THEY ARRIVE PRETTY LATE".
+3. If this is the Final Day: The user shouldn't do anything within 3 hours BEFORE their departure time.
+   - Remove any spots or meals scheduled too close to or after leaving for the airport/station.
+   - For example, if departure is at 14:00, skip Dinner.
+4. Shift the "startTime" and "endTime" of the surviving items so they flow chronologically after arrival (or before departure) without overlapping.
+
+REPLY ONLY WITH THE RAW JSON ARRAY representing the updated "items" array. Match the exact object structure you receive.
+Do not wrap it in \`\`\`json. Output nothing but the JSON array.
+
+INPUT ITEMS:
+${JSON.stringify(dayPlan.items, null, 2)}`;
+
+            const response = await aiClient.chat.completions.create({
+                model: process.env.AZURE_OPENAI_DEPLOYMENT!,
+                messages: [{ role: 'system', content: prompt }],
+                temperature: 0.1,
+            });
+
+            const rawResult = response.choices[0]?.message?.content?.trim();
+            if (rawResult) {
+                let jsonString = rawResult;
+                if (jsonString.startsWith('\`\`\`json')) jsonString = jsonString.slice(7);
+                if (jsonString.startsWith('\`\`\`')) jsonString = jsonString.slice(3);
+                if (jsonString.endsWith('\`\`\`')) jsonString = jsonString.slice(0, -3);
+                
+                const newItems = JSON.parse(jsonString.trim());
+                if (Array.isArray(newItems)) {
+                    let newCost = newItems.reduce((sum, item: any) => {
+                        if (item.type === 'spot') return sum + (item.data?.entryFee || 0);
+                        if (item.type === 'restaurant') return sum + ((item.data?.avgCostForTwo || 0) / 2);
+                        if (item.type === 'p2p') return sum + (item.data?.cost || 0);
+                        if (item.type === 'flight' || item.type === 'train') return sum + (item.data?.price || 0);
+                        return sum;
+                    }, 0);
+                    return { ...dayPlan, items: newItems, totalCost: newCost };
+                }
+            }
+        } catch (err) {
+            console.error("GPT Adjustment failed for", role, ":", err);
+        }
+        return dayPlan;
+    }
+
+    // Agent C specifically invokes GPT to intelligently adapt day plans to exact transport constraints
+    if (updatedDayPlans.length > 0 && outboundSelection) {
+        updatedDayPlans[0] = await adjustMealsAndSpotsWithGPT(updatedDayPlans[0], 'first_day');
+    }
+    
+    // Always adjust the last day if there is a departure, even for 1-day trips
+    if (updatedDayPlans.length > 0 && returnSelection) {
+        const lastIdx = updatedDayPlans.length - 1;
+        updatedDayPlans[lastIdx] = await adjustMealsAndSpotsWithGPT(updatedDayPlans[lastIdx], 'last_day');
     }
 
     updatedDayPlans.forEach(dp => {
