@@ -163,6 +163,12 @@ export default function MapView() {
         }
     };
 
+    const handleMapClick = (e: any) => {
+        setPopupInfo(null);
+        setContextMenuPopup(null);
+        setSelectedPlaceId(null);
+    };
+
     const handleMapRightClick = async (e: any) => {
         e.originalEvent.preventDefault();
         try {
@@ -247,6 +253,7 @@ export default function MapView() {
                 mapStyle={OLA_MAPS_STYLES[mapStyleKey].url}
                 transformRequest={transformRequest}
                 onContextMenu={handleMapRightClick}
+                onClick={handleMapClick}
                 style={{ width: '100%', height: '100%' }}
                 interactiveLayerIds={[]}
             >
