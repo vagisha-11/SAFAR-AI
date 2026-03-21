@@ -4,10 +4,17 @@
 import { P2PTravel, LatLng, P2PMode } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 
-// Cost per km in INR
+// Cost per km in INR (realistic Indian market rates)
 const RATE_PER_KM: Record<P2PMode, number> = {
-    cab: 15,
-    rickshaw: 5,
+    cab: 18,       // ~Ola/Uber pricing
+    rickshaw: 10,  // ~Auto-rickshaw rate
+    walk: 0,
+};
+
+// Minimum base fare to prevent absurdly cheap short trips
+const BASE_FARE: Record<P2PMode, number> = {
+    cab: 100,    // Minimum cab fare (₹100)
+    rickshaw: 30, // Minimum auto fare (₹30)
     walk: 0,
 };
 
@@ -49,7 +56,8 @@ export function getP2PCost(
     // Add 30% for road distance vs straight line
     const roadDistance = distance * 1.3;
     const duration = (roadDistance / SPEED[mode]) * 60; // in minutes
-    const cost = Math.round(roadDistance * RATE_PER_KM[mode]);
+    // Apply base fare + per-km rate, ensuring minimum charge is respected
+    const cost = Math.max(BASE_FARE[mode], Math.round(roadDistance * RATE_PER_KM[mode]));
 
     return {
         id: uuidv4(),

@@ -1,0 +1,342 @@
+[
+  {
+    "id": "4b033f10-f90e-4d5c-adc8-75ed28d9e687",
+    "name": "Cellular Jail",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6667,
+      "lng": 92.7446
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Heritage",
+    "description": "A historic colonial prison known for its brutal treatment of Indian freedom fighters.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "605665c4-a77a-445e-8d15-2e50a9ab9336",
+    "name": "Corbyn's Cove Beach",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6349,
+      "lng": 92.7386
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Beach",
+    "description": "A scenic beach with palm-lined shores and calm waters perfect for swimming and relaxation.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "3548b37d-90ac-4e9e-bfcb-be75e05b49a1",
+    "name": "Anthropological Museum",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6675,
+      "lng": 92.744
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Museum",
+    "description": "Showcases the culture, traditions, and lifestyle of the indigenous tribes of the Andaman Islands.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "8558045a-69ff-404e-9b88-e8c0ba358eae",
+    "name": "Chatham Saw Mill",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.675,
+      "lng": 92.765
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "16:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "One of Asia's oldest and largest sawmills surrounded by lush forest, offering guided tours.",
+    "rating": 4.1,
+    "popularity": 7
+  },
+  {
+    "id": "bad9afcc-5733-402b-bce4-f8257301f206",
+    "name": "Mount Harriet National Park",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.645,
+      "lng": 92.72
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A biodiversity hotspot with trekking trails, rare flora and fauna, and panoramic views of the sea.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "32956860-6030-4a4f-8fa9-85e027ae3d83",
+    "name": "Samudrika Naval Marine Museum",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.667,
+      "lng": 92.7445
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Museum",
+    "description": "Displays marine life, corals, and the history of the Andaman Islands with interactive exhibits.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "9c030a73-992d-4a54-bd9f-1a138313dc07",
+    "name": "Viper Island",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6755,
+      "lng": 92.76
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "16:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "An island with ruins of a British-era jail and gallows, accessible by boat from Port Blair.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "fafa9acd-3e6f-46b4-918f-527e4941ca23",
+    "name": "Junglighat Market",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6678,
+      "lng": 92.745
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Shopping",
+    "description": "A bustling local market offering fresh seafood, spices, handicrafts, and souvenirs.",
+    "rating": 4,
+    "popularity": 8
+  },
+  {
+    "id": "016f19f8-346f-4d9e-ae07-9f84fd6ed543",
+    "name": "Shri Krishna Mandir",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6673,
+      "lng": 92.7448
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A beautiful Hindu temple dedicated to Lord Krishna, known for its peaceful ambiance.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "eabd1c5b-602e-408a-99d2-93d7326d65cc",
+    "name": "Light and Sound Show at Cellular Jail",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6667,
+      "lng": 92.7446
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "18:30",
+    "closingTime": "20:00",
+    "entryFee": 50,
+    "category": "Entertainment",
+    "description": "A captivating evening show narrating the history of the Cellular Jail through lights and sound.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "ec4b183e-0e03-4d5b-b6e9-fa4b12b83eaa",
+    "name": "Coral Reef Snorkeling",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.65,
+      "lng": 92.72
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "16:00",
+    "entryFee": 1200,
+    "category": "Adventure",
+    "description": "Experience vibrant coral reefs and marine life through guided snorkeling tours near Port Blair.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "2554b9f6-33be-4cc6-814c-ba561a442577",
+    "name": "Phoenix Bay Jetty",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.667,
+      "lng": 92.7455
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "The main ferry terminal connecting Port Blair to nearby islands, bustling with local activity.",
+    "rating": 4,
+    "popularity": 7
+  },
+  {
+    "id": "bef5b7e7-0dda-451e-8f77-dc0054a69163",
+    "name": "Andaman Water Sports Complex",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.633,
+      "lng": 92.738
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 500,
+    "category": "Adventure",
+    "description": "Offers jet skiing, banana boat rides, and other thrilling water sports at Corbyn's Cove Beach.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "ccd8c7e1-fb47-4aea-a02e-6566fba9aa84",
+    "name": "Sagarika Government Emporium",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.668,
+      "lng": 92.7452
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Shopping",
+    "description": "A government-run emporium selling authentic tribal handicrafts, shell jewelry, and souvenirs.",
+    "rating": 4.2,
+    "popularity": 8
+  },
+  {
+    "id": "ed75dc3e-3270-442d-be16-486d3b1ec1c7",
+    "name": "Ross Island",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.666,
+      "lng": 92.765
+    },
+    "timeToSpend": 4,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "An island with ruins of British colonial buildings, lush greenery, and roaming deer.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "71332a93-51ce-4d9c-aed4-904a4a0f21a8",
+    "name": "Chidiya Tapu",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6,
+      "lng": 92.72
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A birdwatcher's paradise with a sunset viewpoint and mangrove forests near Port Blair.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "420b0e8e-21ac-486d-8d54-d4342cf869ee",
+    "name": "Andaman Club",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6685,
+      "lng": 92.744
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Nightlife",
+    "description": "A popular nightlife spot offering live music, bar, and dance floor in Port Blair.",
+    "rating": 4.1,
+    "popularity": 7
+  },
+  {
+    "id": "056ccdfa-fa75-4f13-8856-1106c4cf0993",
+    "name": "Lighthouse at Chidiya Tapu",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.5995,
+      "lng": 92.7195
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "A scenic lighthouse offering panoramic views of the sea and surrounding islands.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "8089c884-641a-4050-88fe-d4f75cd5602d",
+    "name": "Fisherman’s Wharf",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.67,
+      "lng": 92.746
+    },
+    "timeToSpend": 2,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Experience",
+    "description": "A vibrant spot to enjoy fresh seafood and local cuisine with waterfront views.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "f03eef48-1fa3-44b1-909f-e678a073c2f9",
+    "name": "Andaman Sea Kayaking",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.634,
+      "lng": 92.7385
+    },
+    "timeToSpend": 3,
+    "openingTime": "07:00",
+    "closingTime": "16:00",
+    "entryFee": 800,
+    "category": "Adventure",
+    "description": "Guided kayaking tours exploring the calm waters and mangroves around Port Blair.",
+    "rating": 4.6,
+    "popularity": 8
+  }
+]

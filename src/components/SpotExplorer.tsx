@@ -1,7 +1,6 @@
 'use client';
 
 import { useSafarStore } from '@/lib/store';
-import { Spot } from '@/lib/types';
 import { useState } from 'react';
 
 export default function SpotExplorer() {
@@ -12,15 +11,30 @@ export default function SpotExplorer() {
         return null;
     }
 
-    const unselectedSpots = itinerary.unselectedSpots;
-    const filteredSpots = unselectedSpots.filter(s =>
+    // Determine target day & locality from the currently selected day
+    const activeDayPlan = selectedDay
+        ? itinerary.days.find(d => d.dayNumber === selectedDay && !d.isTransitDay)
+        : itinerary.days.find(d => !d.isTransitDay); // default to first non-transit day
+
+    const activeLocality = activeDayPlan?.locality;
+    const targetDay = activeDayPlan?.dayNumber || 1;
+
+    // LOCALITY FILTER: Only show spots that belong to the active day's locality.
+    // Prevents showing Darjeeling spots when user is on a Gangtok day, etc.
+    const localityFilteredSpots = activeLocality
+        ? itinerary.unselectedSpots.filter(s => {
+            const locality = activeLocality.toLowerCase();
+            // Match against address field (which is set to the locality name by dataEngine)
+            return s.address?.toLowerCase().includes(locality) || s.address === activeLocality;
+        })
+        : itinerary.unselectedSpots;
+
+    const filteredSpots = localityFilteredSpots.filter(s =>
         s.name.toLowerCase().includes(search.toLowerCase()) ||
         s.category.toLowerCase().includes(search.toLowerCase())
     );
 
-    // If a day is selected, we add to that specific day. 
-    // If "Entire Trip" is selected, we add to the first day by default.
-    const targetDay = selectedDay || 1;
+    if (filteredSpots.length === 0 && !search) return null;
 
     return (
         <div style={{
@@ -37,14 +51,16 @@ export default function SpotExplorer() {
                         color: '#f0f0ff', marginBottom: 4
                     }}>Explore More Places</h3>
                     <p style={{ fontSize: 12, color: '#a0a0cc' }}>
-                        Didn't find what you like? Add these qualified alternatives.
+                        {activeLocality
+                            ? `Qualified alternatives for ${activeLocality} · Day ${targetDay}`
+                            : `Didn't find what you like? Add these qualified alternatives.`}
                     </p>
                 </div>
                 <div style={{
                     padding: '4px 10px', borderRadius: 20, background: 'rgba(99,102,241,0.15)',
                     fontSize: 12, color: '#818cf8', fontWeight: 600
                 }}>
-                    {unselectedSpots.length} potentials
+                    {filteredSpots.length} in {activeLocality || 'trip'}
                 </div>
             </div>
 
@@ -100,7 +116,7 @@ export default function SpotExplorer() {
                         <button
                             onClick={() => addSpotToDay(targetDay, spot)}
                             className="btn-secondary"
-                            style={{ padding: '8px 12px', fontSize: 12, borderRadius: 10 }}
+                            style={{ padding: '8px 12px', fontSize: 12, borderRadius: 10, whiteSpace: 'nowrap' }}
                         >
                             + Day {targetDay}
                         </button>

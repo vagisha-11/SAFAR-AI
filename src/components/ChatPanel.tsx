@@ -113,11 +113,74 @@ interface ChatProps {
 
 export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fontSize = 13 }: ChatProps) {
     const [inputValue, setInputValue] = useState('');
+    const [interimText, setInterimText] = useState('');
     const [isBotTyping, setIsBotTyping] = useState(false);
     const [isReady, setIsReady] = useState(false);
+    const [isListening, setIsListening] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const hasGreeted = useRef(false);
+    const recognitionRef = useRef<any>(null);
+
+    useEffect(() => {
+        // Initialize SpeechRecognition on mount
+        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.continuous = true; // Keeps listening until manually toggled off
+            recognition.interimResults = true; // Stream results live as user speaks
+            recognition.lang = 'en-IN'; // Indian English optimization
+
+            recognition.onresult = (event: any) => {
+                let finalAddition = '';
+                let interimAddition = '';
+
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        finalAddition += event.results[i][0].transcript;
+                    } else {
+                        interimAddition += event.results[i][0].transcript;
+                    }
+                }
+
+                if (finalAddition) {
+                    setInputValue(prev => (prev + ' ' + finalAddition).trim());
+                }
+                setInterimText(interimAddition);
+            };
+
+            recognition.onerror = (event: any) => {
+                console.error("Speech recognition error:", event.error);
+                setIsListening(false);
+                setInterimText('');
+            };
+
+            recognition.onend = () => {
+                setIsListening(false);
+                setInterimText('');
+            };
+
+            recognitionRef.current = recognition;
+        }
+    }, []);
+
+    const toggleListening = () => {
+        if (!recognitionRef.current) {
+            alert("Voice recognition is not supported in your browser. Please try Chrome or Safari.");
+            return;
+        }
+        if (isListening) {
+            recognitionRef.current.stop();
+            setIsListening(false);
+        } else {
+            try {
+                recognitionRef.current.start();
+                setIsListening(true);
+            } catch (e) {
+                console.error("Already started", e);
+            }
+        }
+    };
 
     const scrollToBottom = useCallback((smooth = true) => {
         messagesEndRef.current?.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
@@ -180,11 +243,22 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
     useEffect(() => {
         if (hasGreeted.current || messages.length > 0) return;
         hasGreeted.current = true;
-        // Provide a neutral, immediate greeting directly rather than calling the LLM
+        
+        const GREETINGS = [
+            "Hey there! Where are you thinking of heading? Or do you have a vibe in mind, like beaches, mountains, or maybe something cultural?",
+            "Welcome! Are we planning a relaxing getaway, an adventurous trek, or exploring a newly discovered city today?",
+            "Hi! Ready for a new adventure? Tell me a bit about what kind of trip you're looking for.",
+            "Hello! Do you have a specific destination in mind, or should we figure out the perfect spot together based on your interests?",
+            "Hey! Whether it's a quick weekend escape or a massive holiday, I'm here to build the perfect itinerary. Where to?"
+        ];
+        
+        const randomGreeting = GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
+
+        // Provide a neutral, immediate greeting directly rather than hitting the LLM API on load.
         setMessages([{
             id: 'welcome_msg',
             role: 'assistant',
-            text: 'Hey there! Where are you thinking of heading? Or do you have a vibe in mind, like beaches, mountains, or maybe something cultural?',
+            text: randomGreeting,
             isStreaming: false
         }]);
     }, [setMessages, messages.length]);
@@ -304,8 +378,11 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
                             ref={inputRef}
                             type="text"
                             placeholder={isBotTyping ? 'Thinking...' : 'Message Safar AI...'}
-                            value={inputValue}
-                            onChange={(e) => setInputValue(e.target.value)}
+                            value={inputValue + (interimText ? ' ' + interimText : '')}
+                            onChange={(e) => {
+                                setInputValue(e.target.value);
+                                setInterimText(''); // Override dictation if user types manually
+                            }}
                             disabled={isBotTyping}
                             autoFocus
                             style={{
@@ -318,6 +395,32 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
                                 transition: 'border 0.2s',
                             }}
                         />
+                        <button type="button"
+                            onClick={toggleListening}
+                            disabled={isBotTyping}
+                            style={{
+                                width: 38, height: 38, borderRadius: '10px', flexShrink: 0,
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                background: isListening ? 'rgba(239, 68, 68, 0.2)' : 'rgba(255,255,255,0.05)',
+                                border: isListening ? '1px solid rgba(239, 68, 68, 0.5)' : '1px solid rgba(255,255,255,0.1)',
+                                cursor: 'pointer', opacity: isBotTyping ? 0.4 : 1,
+                                transition: 'all 0.2s',
+                                animation: isListening ? 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' : 'none',
+                                color: isListening ? '#f87171' : '#cbd5e1'
+                            }}
+                            title="Dictate with Voice">
+                            {isListening ? (
+                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3Z" />
+                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2h2v2a5 5 0 0 0 10 0v-2h2Z" />
+                                    <path d="M11 20v2h2v-2h-2Z" />
+                                </svg>
+                            ) : (
+                                <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
+                                </svg>
+                            )}
+                        </button>
                         <button type="submit"
                             disabled={!inputValue.trim() || isBotTyping}
                             style={{

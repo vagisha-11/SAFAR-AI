@@ -16,6 +16,7 @@ const AgentStateAnnotation = Annotation.Root({
     unselectedSpots: Annotation<any[]>({ reducer: (x, y) => y ?? x, default: () => [] }),
     suggestions: Annotation<any[]>({ reducer: (x, y) => y ?? x, default: () => [] }),
     finalItinerary: Annotation<any>({ reducer: (x, y) => y ?? x }),
+    budgetWarning: Annotation<string | null>({ reducer: (x, y) => y ?? x, default: () => null }),
     error: Annotation<string>({ reducer: (x, y) => y ?? x }),
 });
 
@@ -26,7 +27,7 @@ const graph = new StateGraph(AgentStateAnnotation);
 graph.addNode("LocalitySplitter", async (state) => {
     try {
         const data = await executeLocalitySplitter(state.tripInput);
-        return { localities: data.split };
+        return { localities: data.split, budgetWarning: data.budgetWarning ?? null };
     } catch(e: any) { 
         return { error: `LocalitySplitter failed: ${e.message}` }; 
     }
@@ -109,7 +110,8 @@ export async function POST(request: NextRequest) {
             itinerary: result.finalItinerary,
             localities: result.localities,
             agentData: result.agentData,
-            suggestions: result.suggestions
+            suggestions: result.suggestions,
+            budgetWarning: result.budgetWarning ?? null,
         });
     } catch(error) {
         console.error('LangGraph Orchestrator error:', error);

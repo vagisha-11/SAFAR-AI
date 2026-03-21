@@ -1,0 +1,152 @@
+[
+  {
+    "id": "866b6d73-4903-4a1b-b84c-5fb4cbdd96ab",
+    "name": "Ananda Restaurant",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6671,
+      "lng": 92.7456
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "25e1ab7c-62b9-4ef6-ad73-63f12cb8dd59",
+    "name": "New Lighthouse Restaurant",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6648,
+      "lng": 92.7469
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.2,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "31afea1c-fbf4-4672-9bbe-d95b52c8c3b1",
+    "name": "Full Moon Cafe",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6675,
+      "lng": 92.7477
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 1200,
+    "rating": 4.6,
+    "openingTime": "08:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "cdf89b46-4094-4924-9296-02f8c188bb71",
+    "name": "Anju Coco Resto",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6643,
+      "lng": 92.7482
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 700,
+    "rating": 4.3,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "1395d2ea-2d7f-4c6b-af00-5e9bc50422fa",
+    "name": "Cafe Inn",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.668,
+      "lng": 92.7445
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 500,
+    "rating": 4,
+    "openingTime": "07:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "a0e3bdee-8fd2-4d24-9c13-d46c3a2a7c4c",
+    "name": "Amaya",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6657,
+      "lng": 92.745
+    },
+    "cuisine": "Fine Dining, Indian",
+    "avgCostForTwo": 1500,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "27581ff2-c6a2-494a-b6e9-85e526079a50",
+    "name": "Havelock Island Food Stall",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6679,
+      "lng": 92.7495
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 300,
+    "rating": 4.1,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "be5d2401-83aa-4fcb-8df0-cbee21168d82",
+    "name": "Annapurna Restaurant",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6639,
+      "lng": 92.746
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "5cf90be5-7d35-46a0-99df-c40fb878e90c",
+    "name": "Cafe Del Sol",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6665,
+      "lng": 92.747
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 600,
+    "rating": 4.3,
+    "openingTime": "07:30",
+    "closingTime": "21:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "714abfc6-be4c-4a91-8253-278919bbf633",
+    "name": "Sea Breeze Restaurant",
+    "address": "Port Blair",
+    "location": {
+      "lat": 11.6682,
+      "lng": 92.7462
+    },
+    "cuisine": "Seafood, Local Authentic",
+    "avgCostForTwo": 900,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "dinner"
+  }
+]

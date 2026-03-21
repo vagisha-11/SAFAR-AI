@@ -27,7 +27,7 @@ interface AgentBInput {
     budget?: number;
 }
 
-const RELEVANCE_THRESHOLD = 25; // Minimum score to be considered if preferences are set
+const RELEVANCE_THRESHOLD = 15; // Lowered threshold: let more diverse spots qualify (popular ones score high regardless)
 
 /**
  * Score a spot (Profit Pi) based on priority:
@@ -39,16 +39,22 @@ function scoreSpot(spot: Spot, preferences: string[], budget?: number, mustExclu
     // Base profit: Rating and Popularity
     let profit = spot.popularity + spot.rating * 5;
 
+    // === POPULARITY FLOOR: Iconic spots are ALWAYS surfaced regardless of preference ===
+    // This ensures famous landmarks (Cellular Jail, Taj, etc.) are never filtered out.
+    if (spot.popularity >= 8) {
+        profit += 70; // Unconditional boost for must-visit landmarks
+    }
+
     // Budget Sensitivity
     if (budget !== undefined) {
         if (budget < 20000 && spot.entryFee > 500) {
-            profit -= 50; // Penalize expensive spots on low budget
+            profit -= 40; // Penalize expensive spots on tight budget
         } else if (budget > 60000 && spot.entryFee > 1000) {
             profit += 30; // Boost "Premium" experiences on high budget
         }
     }
 
-    // Hard Penalty for Exclusions
+    // Hard Penalty for Exclusions (user said "no temples" etc.)
     if (mustExclude && mustExclude.length > 0) {
         for (const ex of mustExclude) {
             const eText = ex.toLowerCase();
@@ -61,7 +67,6 @@ function scoreSpot(spot: Spot, preferences: string[], budget?: number, mustExclu
     // Boost for Unstructured Additional Notes
     if (additionalNotes) {
         const notes = additionalNotes.toLowerCase();
-        // Simple heuristic matching
         if (notes.includes(spot.category.toLowerCase()) || notes.includes(spot.name.toLowerCase())) {
             profit += 80;
         }
@@ -69,20 +74,21 @@ function scoreSpot(spot: Spot, preferences: string[], budget?: number, mustExclu
 
     if (preferences.length === 0) return profit;
 
-    // Semantic Boost
+    // Semantic Boost: User's stated interests get a strong priority boost
     let matched = false;
     for (const pref of preferences) {
         const p = pref.toLowerCase();
         if (spot.category.toLowerCase().includes(p) ||
             spot.name.toLowerCase().includes(p) ||
             spot.description.toLowerCase().includes(p)) {
-            profit += 100; // Large profit boost for matches
+            profit += 100; // Large profit boost for preference matches
             matched = true;
         }
     }
 
-    // Dynamic Category Penalty (Instead of static -40)
-    // If it's a "Static" category and NO preference matches it, penalize
+    // Soft Penalty for low-relevance categories when preferences are set.
+    // Reduced from -60 to -25: allows these spots to fill itinerary slots naturally
+    // when there aren't enough preference-matched spots for the day.
     if (!matched && (
         spot.category === 'Religious' ||
         spot.category === 'Temple' ||
@@ -90,7 +96,7 @@ function scoreSpot(spot: Spot, preferences: string[], budget?: number, mustExclu
         spot.category === 'Heritage' ||
         spot.category === 'Cultural'
     )) {
-        profit -= 60;
+        profit -= 25; // Soft penalty, not a hard exclusion
     }
 
     return profit;
@@ -162,8 +168,8 @@ function findNearestRestaurant(
 function buildDayPlans(input: AgentBInput): { dayPlans: DayPlan[], unselectedSpots: Spot[] } {
     const { spots, restaurants, daysInLocality, locality, cityCenter, hotelLocation, maxHoursPerDay, userPreferences = [], mustExclude = [], additionalNotes = '', startDate, arrivalHour, budget } = input;
 
-    // Use HotelLocation as Depot if available, otherwise CityCenter
-    const depot = hotelLocation || cityCenter;
+    // Use HotelLocation as Depot. If missing, flexibly use the first spot's precision coordinates (LLM fallback). Finally, cityCenter.
+    const depot = hotelLocation || (spots.length > 0 ? spots[0].location : cityCenter);
 
     // 1. Score and filter candidates
     const scored = spots.map(s => ({ spot: s, score: scoreSpot(s, userPreferences, budget, mustExclude, additionalNotes) }));

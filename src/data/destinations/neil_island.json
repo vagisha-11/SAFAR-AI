@@ -1,0 +1,342 @@
+[
+  {
+    "id": "037c0262-b5ac-4a3d-b6dc-595b212e740f",
+    "name": "Laxmanpur Beach",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8483,
+      "lng": 92.7407
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Beach",
+    "description": "A pristine beach known for its stunning sunset views and natural rock formations.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "fba669b0-185a-44d4-a878-1e924a93dec6",
+    "name": "Bharatpur Beach",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8441,
+      "lng": 92.7415
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Beach",
+    "description": "Popular for snorkeling and coral reefs, offering vibrant marine life experiences.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "67b1fc1d-2972-4c2c-8842-387cff7d2b7e",
+    "name": "Natural Bridge (Howrah Bridge)",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8472,
+      "lng": 92.741
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A naturally formed coral rock bridge shaped like the famous Howrah Bridge in Kolkata.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "5a8ba25a-0e6c-4144-8a5a-f02a278aa604",
+    "name": "Neil Island Jetty",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.848,
+      "lng": 92.74
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "Main arrival point to Neil Island with scenic views of the sea and boats.",
+    "rating": 4.2,
+    "popularity": 8
+  },
+  {
+    "id": "03ef3759-57c2-43cc-8db3-6c568797c70b",
+    "name": "Sitapur Beach",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8597,
+      "lng": 92.7443
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Beach",
+    "description": "A quiet and less crowded beach ideal for peaceful walks and bird watching.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "be213a10-6fbb-409e-b227-aa60e75922a8",
+    "name": "Ram Nagar Beach",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.851,
+      "lng": 92.7425
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Beach",
+    "description": "Known for its coral reefs and crystal-clear waters, perfect for snorkeling.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "c9a00159-eb04-43d8-994e-fca6b0a89cbb",
+    "name": "Neil Island Market",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8475,
+      "lng": 92.7405
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Shopping",
+    "description": "Local market offering handicrafts, souvenirs, and fresh produce from the island.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "4ebe31b3-fb14-41ca-9064-d26be9a2aa24",
+    "name": "Neil Island Lighthouse",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.849,
+      "lng": 92.739
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "Historic lighthouse offering panoramic views of the island and sea.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "8776cf1a-cbb9-408e-a569-ba3a7db3cd01",
+    "name": "Coral Reef Snorkeling",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8445,
+      "lng": 92.7418
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "16:00",
+    "entryFee": 500,
+    "category": "Adventure",
+    "description": "Guided snorkeling tours exploring vibrant coral reefs and marine biodiversity.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "0e2d47b0-73d4-400b-8166-ea2820f79deb",
+    "name": "Neil Island Kayaking",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.845,
+      "lng": 92.742
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 400,
+    "category": "Adventure",
+    "description": "Kayaking experience through calm waters around the island's scenic coastline.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "f0506148-c1cf-4373-8a82-37dd9cd88e58",
+    "name": "Neil Island Temple",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8465,
+      "lng": 92.7408
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A small but culturally significant Hindu temple visited by locals and tourists alike.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "68b34520-ec68-4c1d-81f1-a2fcfdb383dd",
+    "name": "Island Cultural Festival",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.847,
+      "lng": 92.7405
+    },
+    "timeToSpend": 4,
+    "openingTime": "18:00",
+    "closingTime": "22:00",
+    "entryFee": 200,
+    "category": "Cultural",
+    "description": "Annual festival showcasing local dance, music, and traditional cuisine.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "66bba639-534f-4256-a29a-d02ee19458c4",
+    "name": "Sunset Point",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8485,
+      "lng": 92.7409
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "16:30",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A perfect spot to witness breathtaking sunsets over the Bay of Bengal.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "92b3a2d8-adb4-4a82-b5e0-d8a80ff7f851",
+    "name": "Neil Island Night Market",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8478,
+      "lng": 92.7403
+    },
+    "timeToSpend": 2,
+    "openingTime": "18:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Nightlife",
+    "description": "Vibrant night market with local food stalls, handicrafts, and live music.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "37e096e5-b471-42b1-84b4-6fcfc8e5be83",
+    "name": "Sea Turtle Conservation Experience",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8495,
+      "lng": 92.7412
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 300,
+    "category": "Experience",
+    "description": "Participate in sea turtle conservation efforts and learn about marine ecology.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "af13ecbf-840f-45bd-9309-d87b190b2ead",
+    "name": "Neil Island Cycling Tour",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.847,
+      "lng": 92.74
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 350,
+    "category": "Adventure",
+    "description": "Guided cycling tours around the island exploring beaches, villages, and nature.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "49c19f4a-dade-49cd-9296-e63272c3a425",
+    "name": "Local Seafood Restaurant",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8473,
+      "lng": 92.7406
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Experience",
+    "description": "Enjoy fresh and authentic seafood dishes prepared with local spices and flavors.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "a475c4e9-d764-44b3-9175-58e1273a3e3d",
+    "name": "Neil Island Museum",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8468,
+      "lng": 92.7404
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Museum",
+    "description": "Exhibits showcasing the island’s history, culture, and marine biodiversity.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "fed5c1bd-324d-4432-961d-74d85e886fe4",
+    "name": "Coral Garden Diving",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.844,
+      "lng": 92.7417
+    },
+    "timeToSpend": 4,
+    "openingTime": "08:00",
+    "closingTime": "16:00",
+    "entryFee": 1200,
+    "category": "Adventure",
+    "description": "Scuba diving experience exploring vibrant coral gardens and underwater life.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "6105d1fa-8d03-46f9-9bf2-9e6d2037a04c",
+    "name": "Neil Island Yoga Retreat",
+    "address": "Neil Island",
+    "location": {
+      "lat": 11.8482,
+      "lng": 92.7408
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "08:00",
+    "entryFee": 600,
+    "category": "Experience",
+    "description": "Morning yoga sessions amidst serene natural surroundings for relaxation and wellness.",
+    "rating": 4.7,
+    "popularity": 8
+  }
+]

@@ -21,56 +21,113 @@ interface DeltaRequest {
 }
 
 function formatTime(hourDecimal: number): string {
-    const hours = Math.floor(hourDecimal);
-    const minutes = Math.round((hourDecimal - hours) * 60);
+    const h = hourDecimal % 24;
+    const hours = Math.floor(h);
+    const minutes = Math.round((h - hours) * 60);
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 }
 
-function addPlaceToDay(dayPlan: DayPlan, spot: Spot): DayPlan {
+/** Parse "HH:MM" to a decimal hour (e.g. "14:30" → 14.5) */
+function parseTimeToHour(timeStr: string): number {
+    const parts = timeStr.split(':');
+    const h = parseInt(parts[0] || '8', 10);
+    const m = parseInt(parts[1] || '0', 10);
+    return h + m / 60;
+}
+
+function addPlaceToDay(dayPlan: DayPlan, spot: Spot, depot: { lat: number; lng: number } | null): DayPlan {
     const items = [...dayPlan.items];
 
-    // Find insertion point (before last P2P return trip)
-    let insertIdx = items.length;
-    if (items.length > 0 && items[items.length - 1].notes?.includes('Return')) {
-        insertIdx = items.length - 1;
-    }
+    // Separate the "Return to Hotel" P2P from the rest (it's always last)
+    const returnIdx = items.findIndex(i => i.type === 'p2p' && i.notes?.includes('Return'));
+    const returnItem = returnIdx >= 0 ? items[returnIdx] : null;
+    // Work only with the items before the return trip
+    const workItems = returnIdx >= 0 ? items.slice(0, returnIdx) : items;
 
-    // Determine current position
-    let lastLocation = spot.location; // fallback
-    if (insertIdx > 0) {
-        const prevItem = items[insertIdx - 1];
-        if (prevItem.type === 'spot') {
-            lastLocation = (prevItem.data as Spot).location;
+    // Find all spot items to determine chronological positions to test insertion
+    // Strategy: find the slot between consecutive spot items that MINIMIZES additional total travel
+    // If no spots exist yet, just insert at beginning
+    const spotItems = workItems.filter(i => i.type === 'spot');
+
+    let bestInsertAfterIdx = workItems.length; // default: append at end of work items
+    let bestExtraCost = Infinity;
+
+    if (spotItems.length === 0) {
+        // No spots yet — insert as the first item
+        bestInsertAfterIdx = 0;
+        bestExtraCost = 0;
+    } else {
+        // Evaluate inserting after each existing spot item
+        // Extra cost = dist(prev → new) + dist(new → next) - dist(prev → next)
+        for (let i = 0; i <= spotItems.length; i++) {
+            const prevLoc = i === 0
+                ? (depot || spot.location)
+                : (spotItems[i - 1].data as Spot).location;
+            const nextLoc = i === spotItems.length
+                ? (depot || spot.location)
+                : (spotItems[i].data as Spot).location;
+
+            const dPrevNew = haversineDistance(prevLoc, spot.location);
+            const dNewNext = haversineDistance(spot.location, nextLoc);
+            const dPrevNext = haversineDistance(prevLoc, nextLoc);
+            const extraDist = dPrevNew + dNewNext - dPrevNext;
+
+            if (extraDist < bestExtraCost) {
+                bestExtraCost = extraDist;
+                // Find where this spot slot is in the full workItems array
+                if (i === 0) {
+                    bestInsertAfterIdx = 0;
+                } else {
+                    const targetSpot = spotItems[i - 1];
+                    const absIdx = workItems.findIndex(it => it === targetSpot);
+                    bestInsertAfterIdx = absIdx + 1; // insert right after this spot
+                }
+            }
         }
     }
 
-    // Add P2P travel to new spot
-    const p2p = getP2PCost(lastLocation, spot.location, 'Previous', spot.name, 'cab');
-    const lastEndTime = insertIdx > 0 && items[insertIdx - 1].endTime
-        ? parseFloat(items[insertIdx - 1].endTime!.replace(':', '.'))
-        : 8;
+    // Determine the previous location and time at the insertion point
+    let prevEndTime = parseTimeToHour('08:00');
+    let prevLocation = depot || spot.location;
 
+    if (bestInsertAfterIdx > 0 && workItems[bestInsertAfterIdx - 1]) {
+        const prev = workItems[bestInsertAfterIdx - 1];
+        if (prev.endTime) prevEndTime = parseTimeToHour(prev.endTime);
+        if (prev.type === 'spot') prevLocation = (prev.data as Spot).location;
+    }
+
+    // Build the new P2P + Spot items
+    const p2p = getP2PCost(prevLocation, spot.location, 'Previous Stop', spot.name, 'cab');
     const travelHours = p2p.duration / 60;
-    const arrivalTime = lastEndTime + travelHours;
+    const arrivalTime = prevEndTime + travelHours;
+    const departTime = arrivalTime + spot.timeToSpend;
 
-    items.splice(insertIdx, 0, {
+    const newP2P: any = {
         type: 'p2p',
         data: p2p,
-        startTime: formatTime(lastEndTime),
+        startTime: formatTime(prevEndTime),
         endTime: formatTime(arrivalTime),
-    });
+    };
 
-    items.splice(insertIdx + 1, 0, {
+    const newSpot: any = {
         type: 'spot',
         data: spot,
         startTime: formatTime(arrivalTime),
-        endTime: formatTime(arrivalTime + spot.timeToSpend),
-    });
+        endTime: formatTime(departTime),
+    };
 
+    // Insert into workItems at the best position
+    workItems.splice(bestInsertAfterIdx, 0, newP2P, newSpot);
+
+    // Reconstruct with "Return to Hotel" at the very end
+    const finalItems = returnItem ? [...workItems, returnItem] : workItems;
+
+    // Recalculate cost
     const newCost = dayPlan.totalCost + p2p.cost + spot.entryFee;
 
-    return { ...dayPlan, items, totalCost: Math.round(newCost) };
+    return { ...dayPlan, items: finalItems, totalCost: Math.round(newCost) };
 }
+
 
 function removePlaceFromDay(dayPlan: DayPlan, spotId: string): DayPlan {
     const items: ItineraryItem[] = [];
@@ -111,7 +168,7 @@ export async function POST(request: NextRequest) {
                 const dayIdx = updatedItinerary.days.findIndex(d => d.dayNumber === targetDay);
                 if (dayIdx >= 0) {
                     updatedItinerary.days = [...updatedItinerary.days];
-                    updatedItinerary.days[dayIdx] = addPlaceToDay(updatedItinerary.days[dayIdx], payload.spot);
+                    updatedItinerary.days[dayIdx] = addPlaceToDay(updatedItinerary.days[dayIdx], payload.spot, null);
                 }
                 break;
             }
@@ -193,7 +250,7 @@ export async function POST(request: NextRequest) {
 
                         if (candidateIdx >= 0) {
                             const candidate = pool.splice(candidateIdx, 1)[0];
-                            return addPlaceToDay(day, candidate);
+                            return addPlaceToDay(day, candidate, null);
                         }
                         return day;
                     });

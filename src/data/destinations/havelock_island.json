@@ -1,0 +1,342 @@
+[
+  {
+    "id": "911ead7c-2f5c-478b-931f-de2183141a22",
+    "name": "Radhanagar Beach",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9496,
+      "lng": 92.6586
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Beach",
+    "description": "A pristine white sandy beach known for its stunning sunsets and crystal-clear waters.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "eb8947f1-8357-4cd8-9c34-e6407795a3e0",
+    "name": "Elephant Beach",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9601,
+      "lng": 92.6784
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "Popular for snorkeling and water sports with vibrant coral reefs and marine life.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "a6e3cc0b-2d94-4674-9698-a1b1ccfd590b",
+    "name": "Kalapathar Beach",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9553,
+      "lng": 92.6641
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Beach",
+    "description": "A quiet beach with black rocks and turquoise waters, perfect for peaceful walks and photography.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "f8c42eeb-801a-4929-939a-52566192f689",
+    "name": "Havelock Island Jetty",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.949,
+      "lng": 92.658
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "The main ferry terminal connecting Havelock Island with Port Blair and other islands.",
+    "rating": 4,
+    "popularity": 7
+  },
+  {
+    "id": "1d86f114-232d-4d75-b4ee-691a5d917f57",
+    "name": "Vijaynagar Beach",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.955,
+      "lng": 92.67
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Beach",
+    "description": "A serene beach ideal for swimming and sunbathing with fewer crowds.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "45175e42-f23c-4e5e-bcf3-eeb0c26ea805",
+    "name": "Dive India",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9498,
+      "lng": 92.6588
+    },
+    "timeToSpend": 4,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A renowned scuba diving center offering certified courses and guided dives around Havelock.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "f91e6ca9-eb69-461c-adee-0324c97b30e9",
+    "name": "SeaShell Havelock",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9495,
+      "lng": 92.659
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Nightlife",
+    "description": "A popular beachside bar and restaurant known for live music and vibrant nightlife.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "66588137-64aa-4409-a91b-99b74ec820fb",
+    "name": "Barefoot at Havelock",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9502,
+      "lng": 92.6605
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A boutique resort offering cultural experiences, yoga, and local cuisine.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "795a3aa5-fb6a-406e-87ac-1e201ecdbb0a",
+    "name": "Havelock Market",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9497,
+      "lng": 92.6587
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Shopping",
+    "description": "A bustling local market selling handicrafts, souvenirs, and fresh produce.",
+    "rating": 4.2,
+    "popularity": 8
+  },
+  {
+    "id": "b23229b6-1547-4786-828b-d5030ce760f7",
+    "name": "Mangrove Creek Kayaking",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.952,
+      "lng": 92.665
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:30",
+    "closingTime": "16:30",
+    "entryFee": 500,
+    "category": "Adventure",
+    "description": "Explore the lush mangrove forests by kayak, spotting wildlife and enjoying serene nature.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "dc8c6650-eede-41d5-84c6-ed441d208563",
+    "name": "Neil's Water Sports",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.96,
+      "lng": 92.678
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "Offers snorkeling, jet skiing, and banana boat rides near Elephant Beach.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "5ffc54e9-da5d-4dc4-88d8-9a8082cc1a78",
+    "name": "Havelock Island Lighthouse",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.953,
+      "lng": 92.667
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "A historic lighthouse offering panoramic views of the island and sea.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "5a02d4e7-1688-46df-9280-508d358b6564",
+    "name": "Blue Corals Beach Resort Restaurant",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9499,
+      "lng": 92.6592
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Experience",
+    "description": "A beachfront restaurant serving fresh seafood and local delicacies with ocean views.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "94d97fee-c403-4af5-a87f-7129f381a718",
+    "name": "Havelock Island Temple",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.951,
+      "lng": 92.66
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A small local Hindu temple offering spiritual solace and cultural insight.",
+    "rating": 4,
+    "popularity": 6
+  },
+  {
+    "id": "e7fdd535-4249-4068-96d5-71d37ad0ecec",
+    "name": "Scuba Shack",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9494,
+      "lng": 92.6589
+    },
+    "timeToSpend": 4,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "Professional scuba diving center with courses and guided dives around Havelock's reefs.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "2bf0a2bc-bd16-4ca8-8273-27026f1da161",
+    "name": "Havelock Island Cultural Festival",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.949,
+      "lng": 92.6585
+    },
+    "timeToSpend": 3,
+    "openingTime": "18:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Annual festival showcasing local dance, music, and crafts celebrating island heritage.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "204c46c7-94c8-4ffc-88a9-f3fb3ec00ff0",
+    "name": "Havelock Island Night Market",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9496,
+      "lng": 92.6583
+    },
+    "timeToSpend": 2,
+    "openingTime": "18:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Nightlife",
+    "description": "A lively night market with street food, handicrafts, and live entertainment.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "c899ab5d-d1aa-4a42-af8c-8822edc863a3",
+    "name": "Coral Reef Snorkeling",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9605,
+      "lng": 92.6785
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "07:00",
+    "closingTime": "16:00",
+    "entryFee": 400,
+    "category": "Adventure",
+    "description": "Guided snorkeling tours to explore vibrant coral reefs teeming with marine life.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "344e51d9-bced-4aff-965c-c34368431cb0",
+    "name": "Havelock Island Kayaking Experience",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9515,
+      "lng": 92.661
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:30",
+    "closingTime": "17:00",
+    "entryFee": 350,
+    "category": "Adventure",
+    "description": "Kayak through calm waters and mangroves, enjoying the island’s natural beauty up close.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "c3e5665b-316a-422d-8f8d-8ddf26223cf8",
+    "name": "The Barefoot Bar",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.95,
+      "lng": 92.66
+    },
+    "timeToSpend": 2,
+    "openingTime": "17:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Nightlife",
+    "description": "A cozy beach bar offering cocktails, live music, and a relaxed atmosphere.",
+    "rating": 4.4,
+    "popularity": 7
+  }
+]

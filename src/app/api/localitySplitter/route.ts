@@ -67,7 +67,8 @@ Each object must have exactly these keys:
   "locality": "City Name (e.g. 'Gangtok' or 'Jaipur')",
   "days": <integer>,
   "isTransitDay": false,
-  "idealDays": <integer, how many days someone SHOULD ideally spend in this city>
+  "idealDays": <integer, how many days someone SHOULD ideally spend in this city>,
+  "center": { "lat": <accurate float latitude>, "lng": <accurate float longitude> }
 }
 
 RULES:
@@ -91,8 +92,8 @@ RULES:
         return parsed.map((s: any) => ({
             ...s,
             isTransitDay: s.isTransitDay || false,
-            // Attach coordinates if we know them, otherwise random dummy coordinates in India
-            center: CITY_CENTERS[s.locality] || { lat: 20.5937 + (Math.random() - 0.5) * 10, lng: 78.9629 + (Math.random() - 0.5) * 10 },
+            // Attach coordinates if we know them, otherwise rely on the LLM's accurate generation
+            center: CITY_CENTERS[s.locality] || s.center || { lat: 20.5937 + (Math.random() - 0.5) * 10, lng: 78.9629 + (Math.random() - 0.5) * 10 },
         }));
     } catch (e) {
         console.error("Locality Splitter LLM failed! Using safe fallback.", e);
@@ -107,24 +108,17 @@ export async function executeLocalitySplitter(body: any) {
     const ret = new Date(returnDate);
     let totalDays = Math.max(1, Math.ceil((ret.getTime() - dep.getTime()) / (1000 * 60 * 60 * 24)));
 
+    // For flexible dates, use ideal day recommendation from LLM — but NEVER cap based on budget.
+    // Budget constraints are handled downstream by Agent C's allocation algorithms.
+    if (isDateFlexible) {
+        // Get the first split to read idealDays from LLM
+        const prelimSplit = await askLLMForLocalitySplit(destination, totalDays);
+        const recommendedDays = (prelimSplit[0] as any).idealDays || 5;
+        totalDays = Math.min(maxDays || 14, Math.max(minDays || 2, recommendedDays));
+    }
+
     // Live LLM Call to dynamically route regions into precise cities
     let split = await askLLMForLocalitySplit(destination, totalDays);
-
-    // Algorithmic Suggestion Strategy
-    if (isDateFlexible) {
-        let recommendedDays = (split[0] as any).idealDays || 3;
-
-        // Budget-Aware Scaling: Estimate ~Rs. 6000 per day for a standard comfortable trip
-        const estimatedCostPerDay = 6000;
-        const budgetMaxDays = Math.floor(budget / estimatedCostPerDay);
-
-        if (budgetMaxDays < recommendedDays) {
-            recommendedDays = Math.max(minDays || 1, budgetMaxDays);
-        }
-
-        totalDays = Math.min(maxDays || 10, Math.max(minDays || 1, recommendedDays));
-        split = await askLLMForLocalitySplit(destination, totalDays);
-    }
 
     // Adjust days to fit total mathematically (defensive logic against math-hallucination from LLM)
     let assignedDays = split.reduce((sum: number, s: any) => sum + s.days, 0);
@@ -140,7 +134,13 @@ export async function executeLocalitySplitter(body: any) {
         }
     }
 
-    return { totalDays, source, destination, split };
+    // Transparent budget advisory (non-blocking) — sent to frontend for optional display
+    const estimatedCostPerDay = 4500; // Conservative estimate for decent travel
+    const budgetWarning = budget && (budget / totalDays) < estimatedCostPerDay
+        ? `Your budget of ₹${budget.toLocaleString('en-IN')} for ${totalDays} days works out to ~₹${Math.floor(budget / totalDays).toLocaleString('en-IN')}/day. We'll design the best backpacker-friendly itinerary within this budget!`
+        : null;
+
+    return { totalDays, source, destination, split, budgetWarning };
 }
 
 export async function POST(request: NextRequest) {

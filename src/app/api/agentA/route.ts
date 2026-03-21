@@ -1,9 +1,8 @@
-// ============================================================
-// Safar AI — Agent A: Data Fetcher
-// ============================================================
 import { NextRequest, NextResponse } from 'next/server';
-import { getHotels, getFlights, getTrains, getSpots, getRestaurants, getInterCityTravel } from '@/lib/fakeApi';
+import { getTrains, getInterCityTravel } from '@/lib/fakeApi';
 import { LocalitySplit, AgentData } from '@/lib/types';
+import { fetchOrGenerateSpots, fetchOrGenerateRestaurants } from '@/lib/dataEngine';
+import { generateHeuristicFlights, generateHeuristicHotels } from '@/lib/pricingHeuristics';
 
 export async function executeAgentA(params: {
     localities: LocalitySplit[];
@@ -23,19 +22,23 @@ export async function executeAgentA(params: {
         restaurants: {},
     };
 
-    // Fetch data for each locality
+    // Fetch data for each locality dynamically
     for (const loc of localities) {
         if (loc.isTransitDay) continue;
 
         const localityName = loc.locality;
-        agentData.hotels[localityName] = getHotels(localityName);
-        agentData.spots[localityName] = getSpots(localityName);
-        agentData.restaurants[localityName] = getRestaurants(localityName);
+        agentData.hotels[localityName] = generateHeuristicHotels(localityName);
+        
+        // This invokes the LLM if the database doesn't natively have the Locality 
+        agentData.spots[localityName] = await fetchOrGenerateSpots(localityName);
+        
+        // Generate authentic restaurants uniquely sourced from the LLM cache
+        agentData.restaurants[localityName] = await fetchOrGenerateRestaurants(localityName);
     }
 
-    // Fetch flights and trains from source to first locality
+    // Generate algorithmically sound flights from source to first locality
     const firstLocality = localities.find(l => !l.isTransitDay)?.locality || destination;
-    agentData.flights = getFlights(source, firstLocality, departureDate);
+    agentData.flights = generateHeuristicFlights(source, firstLocality, departureDate);
     agentData.trains = getTrains(source, firstLocality, departureDate);
 
     // Fetch return flights and trains
@@ -43,7 +46,7 @@ export async function executeAgentA(params: {
     if (lastLocality !== firstLocality) {
         agentData.flights = [
             ...agentData.flights,
-            ...getFlights(lastLocality, source, returnDate),
+            ...generateHeuristicFlights(lastLocality, source, returnDate),
         ];
         agentData.trains = [
             ...agentData.trains,
@@ -52,7 +55,7 @@ export async function executeAgentA(params: {
     } else {
         agentData.flights = [
             ...agentData.flights,
-            ...getFlights(firstLocality, source, returnDate),
+            ...generateHeuristicFlights(firstLocality, source, returnDate),
         ];
         agentData.trains = [
             ...agentData.trains,
@@ -67,7 +70,7 @@ export async function executeAgentA(params: {
             if (parts.length === 2) {
                 const sourceCity = parts[0];
                 const destCity = parts[1];
-                const transitFlights = getFlights(sourceCity, destCity, departureDate);
+                const transitFlights = generateHeuristicFlights(sourceCity, destCity, departureDate);
                 const transitTrains = getTrains(sourceCity, destCity, departureDate);
                 agentData.flights = [...agentData.flights, ...transitFlights];
                 agentData.trains = [...agentData.trains, ...transitTrains];
