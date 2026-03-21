@@ -1,108 +1,54 @@
 'use client';
 
-import { useEffect, useMemo, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, useMapEvents } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import Map, { Marker, Popup, Source, Layer, MapRef } from 'react-map-gl/maplibre';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { useSafarStore } from '@/lib/store';
-import { Spot, P2PTravel, Restaurant, LatLng } from '@/lib/types';
+import { Spot, Restaurant, LatLng } from '@/lib/types';
 
 // Custom marker icons
-const spotIcon = new L.DivIcon({
-    html: '<div style="width:28px;height:28px;background:linear-gradient(135deg,#6366f1,#4f46e5);border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3)"><span style="transform:rotate(45deg);font-size:11px;color:white">📍</span></div>',
-    className: '',
-    iconSize: [28, 28],
-    iconAnchor: [14, 28],
-    popupAnchor: [0, -28],
-});
+const SpotIcon = () => (
+    <div style={{width: 28, height: 28, background: 'linear-gradient(135deg, #6366f1, #4f46e5)', borderRadius: '50% 50% 50% 0', transform: 'rotate(-45deg)', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.3)', cursor: 'pointer'}}>
+        <span style={{transform: 'rotate(45deg)', fontSize: 11, color: 'white'}}>📍</span>
+    </div>
+);
 
-const restaurantIcon = new L.DivIcon({
-    html: '<div style="width:24px;height:24px;background:linear-gradient(135deg,#10b981,#059669);border-radius:50%;border:2px solid white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.3);font-size:12px">🍽️</div>',
-    className: '',
-    iconSize: [24, 24],
-    iconAnchor: [12, 24],
-    popupAnchor: [0, -24],
-});
+const RestaurantIcon = () => (
+    <div style={{width: 24, height: 24, background: 'linear-gradient(135deg, #10b981, #059669)', borderRadius: '50%', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 6px rgba(0,0,0,0.3)', fontSize: 12, cursor: 'pointer'}}>🍽️</div>
+);
 
-const hotelIcon = new L.DivIcon({
-    html: '<div style="width:26px;height:26px;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:50%;border:2px solid white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.3);font-size:12px">🏨</div>',
-    className: '',
-    iconSize: [26, 26],
-    iconAnchor: [13, 26],
-    popupAnchor: [0, -26],
-});
+const HotelIcon = () => (
+    <div style={{width: 26, height: 26, background: 'linear-gradient(135deg, #f59e0b, #d97706)', borderRadius: '50%', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 6px rgba(0,0,0,0.3)', fontSize: 12, cursor: 'pointer'}}>🏨</div>
+);
 
-// Auto-fit bounds component
-function FitBounds({ points }: { points: LatLng[] }) {
-    const map = useMap();
-    useEffect(() => {
-        if (points.length > 0) {
-            const bounds = L.latLngBounds(points.map(p => [p.lat, p.lng]));
-            map.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
-        }
-    }, [points, map]);
-    return null;
-}
-
-// Click-to-add handler
-function MapClickHandler() {
-    const { itinerary, selectedDay } = useSafarStore();
-
-    useMapEvents({
-        click: async (e) => {
-            const { lat, lng } = e.latlng;
-            // For now, show a simple prompt to add a place
-            const name = window.prompt(
-                `Add a place at (${lat.toFixed(4)}, ${lng.toFixed(4)})?\nEnter a name for this place:`
-            );
-            if (!name) return;
-
-            const newSpot: Spot = {
-                id: `custom-${Date.now()}`,
-                name,
-                address: `Custom place at ${lat.toFixed(4)}, ${lng.toFixed(4)}`,
-                location: { lat, lng },
-                timeToSpend: 1,
-                openingTime: '00:00',
-                closingTime: '23:59',
-                entryFee: 0,
-                category: 'Custom',
-                description: `User-added place: ${name}`,
-                rating: 4.0,
-                popularity: 5,
-            };
-
-            try {
-                const res = await fetch('/api/deltaUpdate', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        action: 'add_place',
-                        itinerary,
-                        payload: { spot: newSpot, dayNumber: selectedDay || 1 },
-                    }),
-                });
-                const data = await res.json();
-                if (data.success) {
-                    useSafarStore.getState().setItinerary(data.itinerary);
-                }
-            } catch (err) {
-                console.error('Failed to add place:', err);
-            }
-        },
-    });
-
-    return null;
-}
+const OLA_MAPS_STYLES = {
+    '2d-light': { name: '2D Light', url: 'https://api.olamaps.io/tiles/vector/v1/styles/default-light-standard/style.json', pitch: 0 },
+    '3d-dark': { name: '3D Dark', url: 'https://api.olamaps.io/tiles/vector/v1/styles/default-dark-standard/style.json', pitch: 60 },
+    'satellite': { name: 'Satellite', url: 'https://api.olamaps.io/tiles/vector/v1/styles/default-satellite-standard/style.json', pitch: 0 }
+};
 
 export default function MapView() {
     const { itinerary, selectedDay, selectedHotels, selectedPlaceId, setSelectedPlaceId } = useSafarStore();
-    const markerRefs = useRef<Record<string, L.Marker>>({});
+    const mapRef = useRef<MapRef>(null);
+    const [mapStyleKey, setMapStyleKey] = useState<keyof typeof OLA_MAPS_STYLES>('2d-light');
+    const [popupInfo, setPopupInfo] = useState<{ id: string, type: 'spot' | 'restaurant' | 'hotel', data: any, dayNum?: number } | null>(null);
+    const [contextMenuPopup, setContextMenuPopup] = useState<{lat: number, lng: number, placeName: string, address: string} | null>(null);
 
-    // Collect all points to display
-    const { spots, restaurants, routes, allPoints, hotelMarkers } = useMemo(() => {
-        // ... (Memo logic keeps same)
-        if (!itinerary) return { spots: [], restaurants: [], routes: [], allPoints: [], hotelMarkers: [] };
+    // Transform request to append Ola Maps API key
+    const transformRequest = (url: string) => {
+        const apiKey = process.env.NEXT_PUBLIC_OLA_MAPS_API_KEY || '';
+        if (url.includes('api.olamaps.io')) {
+            const urlObj = new URL(url);
+            urlObj.searchParams.set('api_key', apiKey);
+            return { url: urlObj.toString() };
+        }
+        return { url };
+    };
+
+    // Data parsing
+    const { spots, restaurants, routeFeatures, allPoints, hotelMarkers } = useMemo(() => {
+        if (!itinerary) return { spots: [], restaurants: [], routeFeatures: [], allPoints: [], hotelMarkers: [] };
 
         const daysToShow = selectedDay
             ? itinerary.days.filter(d => d.dayNumber === selectedDay)
@@ -110,7 +56,7 @@ export default function MapView() {
 
         const spots: { spot: Spot; dayNum: number }[] = [];
         const restaurants: { restaurant: Restaurant; dayNum: number }[] = [];
-        const routes: { points: [number, number][]; dayNum: number; color: string }[] = [];
+        const routeFeatures: any[] = [];
         const allPoints: LatLng[] = [];
         const hotelMarkers: { hotel: { name: string; location: LatLng }; locality: string }[] = [];
 
@@ -120,55 +66,84 @@ export default function MapView() {
             const routePoints: [number, number][] = [];
             const color = dayColors[(day.dayNumber - 1) % dayColors.length];
 
-            // Add hotel marker
             if (day.hotel) {
                 hotelMarkers.push({ hotel: day.hotel, locality: day.locality });
-                routePoints.push([day.hotel.location.lat, day.hotel.location.lng]);
-                allPoints.push(day.hotel.location);
+                routePoints.push([day.hotel.location.lng, day.hotel.location.lat]); // Maplibre uses [lng, lat]
+                allPoints.push({ lat: day.hotel.location.lat, lng: day.hotel.location.lng });
             } else if (selectedHotels[day.locality]) {
                 const h = selectedHotels[day.locality];
                 hotelMarkers.push({ hotel: h, locality: day.locality });
-                routePoints.push([h.location.lat, h.location.lng]);
-                allPoints.push(h.location);
+                routePoints.push([h.location.lng, h.location.lat]);
+                allPoints.push({ lat: h.location.lat, lng: h.location.lng });
             }
 
             for (const item of day.items) {
                 if (item.type === 'spot') {
                     const spot = item.data as Spot;
                     spots.push({ spot, dayNum: day.dayNumber });
-                    routePoints.push([spot.location.lat, spot.location.lng]);
+                    routePoints.push([spot.location.lng, spot.location.lat]);
                     allPoints.push(spot.location);
                 } else if (item.type === 'restaurant') {
                     const rest = item.data as Restaurant;
                     restaurants.push({ restaurant: rest, dayNum: day.dayNumber });
-                    routePoints.push([rest.location.lat, rest.location.lng]);
+                    routePoints.push([rest.location.lng, rest.location.lat]);
                     allPoints.push(rest.location);
                 }
             }
 
             if (routePoints.length > 1) {
-                routes.push({ points: routePoints, dayNum: day.dayNumber, color });
+                routeFeatures.push({
+                    type: 'Feature',
+                    properties: { color, dayNum: day.dayNumber },
+                    geometry: { type: 'LineString', coordinates: routePoints }
+                });
             }
         }
 
-        return { spots, restaurants, routes, allPoints, hotelMarkers };
+        return { spots, restaurants, routeFeatures, allPoints, hotelMarkers };
     }, [itinerary, selectedDay, selectedHotels]);
 
     // Programmatically open popup when selectedPlaceId changes
     useEffect(() => {
-        if (selectedPlaceId && markerRefs.current[selectedPlaceId]) {
-            markerRefs.current[selectedPlaceId].openPopup();
+        if (selectedPlaceId) {
+            const spotMatch = spots.find(s => s.spot.id === selectedPlaceId);
+            if (spotMatch) {
+                setPopupInfo({ id: spotMatch.spot.id, type: 'spot', data: spotMatch.spot, dayNum: spotMatch.dayNum });
+                mapRef.current?.flyTo({ center: [spotMatch.spot.location.lng, spotMatch.spot.location.lat], zoom: 14 });
+                return;
+            }
+            const restMatch = restaurants.find(r => r.restaurant.id === selectedPlaceId);
+            if (restMatch) {
+                setPopupInfo({ id: restMatch.restaurant.id, type: 'restaurant', data: restMatch.restaurant, dayNum: restMatch.dayNum });
+                mapRef.current?.flyTo({ center: [restMatch.restaurant.location.lng, restMatch.restaurant.location.lat], zoom: 14 });
+            }
         }
-    }, [selectedPlaceId]);
+    }, [selectedPlaceId, spots, restaurants]);
 
-    // Default center (India)
-    const defaultCenter: [number, number] = allPoints.length > 0
-        ? [allPoints[0].lat, allPoints[0].lng]
-        : [20.5937, 78.9629];
+    // Fit bounds on init/change
+    useEffect(() => {
+        if (allPoints.length > 0 && mapRef.current) {
+            // Maplibre uses [lng, lat] for bounds
+            const lngs = allPoints.map(p => p.lng);
+            const lats = allPoints.map(p => p.lat);
+            const bounds: [number, number, number, number] = [
+                Math.min(...lngs),
+                Math.min(...lats),
+                Math.max(...lngs),
+                Math.max(...lats)
+            ];
+            mapRef.current.fitBounds(bounds, { padding: 50, duration: 1000, maxZoom: 15 });
+        }
+    }, [allPoints]);
 
+    const defaultCenter = allPoints.length > 0
+        ? { longitude: allPoints[0].lng, latitude: allPoints[0].lat, zoom: 12 }
+        : { longitude: 78.9629, latitude: 20.5937, zoom: 4 };
+
+    // Handlers
     const removeSpot = async (spotId: string) => {
-        // ... (Keep removeSpot logic same)
         if (!itinerary) return;
+        setPopupInfo(null);
         try {
             const res = await fetch('/api/deltaUpdate', {
                 method: 'POST',
@@ -188,46 +163,144 @@ export default function MapView() {
         }
     };
 
+    const handleMapRightClick = async (e: any) => {
+        e.originalEvent.preventDefault();
+        try {
+            // Prevent adding a spot when clicking a marker
+            if (e.originalEvent.target.closest('.maplibregl-marker') || e.originalEvent.target.closest('.maplibregl-popup')) {
+                return;
+            }
+
+            const lng = e.lngLat.lng;
+            const lat = e.lngLat.lat;
+
+            // Reverse Geocoding with Ola Maps
+            let placeName = `Custom place at ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+            let address = placeName;
+            
+            try {
+                const apiKey = process.env.NEXT_PUBLIC_OLA_MAPS_API_KEY || '';
+                const res = await fetch(`https://api.olamaps.io/places/v1/reverse-geocode?latlng=${lat},${lng}&api_key=${apiKey}`);
+                const data = await res.json();
+                if (data && data.results && data.results.length > 0) {
+                    placeName = data.results[0].formatted_address.split(',')[0] || placeName;
+                    address = data.results[0].formatted_address || address;
+                }
+            } catch (err) {
+                console.error("Reverse geocoding failed:", err);
+            }
+
+            setContextMenuPopup({ lat, lng, placeName, address });
+        } catch (err) {
+            console.error('Failed to handle right click:', err);
+        }
+    };
+
+    const confirmAddContextPlace = async () => {
+        if (!contextMenuPopup || !itinerary) return;
+        
+        const { lat, lng, placeName, address } = contextMenuPopup;
+        const name = window.prompt(`Location found: ${placeName}\nEnter a name for this place:`, placeName);
+        if (!name) return; // User cancelled
+
+        const newSpot: Spot = {
+            id: `custom-${Date.now()}`,
+            name,
+            address,
+            location: { lat, lng },
+            timeToSpend: 1,
+            openingTime: '00:00',
+            closingTime: '23:59',
+            entryFee: 0,
+            category: 'Custom',
+            description: `User-added place: ${name}`,
+            rating: 4.0,
+            popularity: 5,
+        };
+
+        setContextMenuPopup(null);
+
+        try {
+            const res = await fetch('/api/deltaUpdate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'add_place',
+                    itinerary,
+                    payload: { spot: newSpot, dayNumber: selectedDay || 1 },
+                }),
+            });
+            const data = await res.json();
+            if (data.success) {
+                useSafarStore.getState().setItinerary(data.itinerary);
+            }
+        } catch (err) {
+            console.error('Failed to add place:', err);
+        }
+    };
+
     return (
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-            <MapContainer
-                center={defaultCenter}
-                zoom={12}
+            <Map
+                ref={mapRef}
+                initialViewState={{...defaultCenter, pitch: OLA_MAPS_STYLES[mapStyleKey].pitch}}
+                mapStyle={OLA_MAPS_STYLES[mapStyleKey].url}
+                transformRequest={transformRequest}
+                onContextMenu={handleMapRightClick}
                 style={{ width: '100%', height: '100%' }}
-                zoomControl={true}
+                interactiveLayerIds={[]}
             >
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-
-                <FitBounds points={allPoints} />
-                <MapClickHandler />
-
-                {/* Route polylines */}
-                {routes.map((route, i) => (
-                    <Polyline
-                        key={`route-${i}`}
-                        positions={route.points}
-                        pathOptions={{
-                            color: '#1e3a8a', // Bold Dark Blue
-                            weight: 5,       // Bolder
-                            opacity: 0.8,
-                            dashArray: '5, 15', // More visible dots
-                            lineCap: 'round'
-                        }}
-                    />
+                {/* Context Menu Popup */}
+                {contextMenuPopup && (
+                    <Popup
+                        longitude={contextMenuPopup.lng}
+                        latitude={contextMenuPopup.lat}
+                        anchor="bottom"
+                        onClose={() => setContextMenuPopup(null)}
+                        closeButton={true}
+                        closeOnClick={false}
+                    >
+                        <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 200, padding: 8 }}>
+                            <strong style={{ fontSize: 13, display: 'block', marginBottom: 6 }}>{contextMenuPopup.placeName}</strong>
+                            <p style={{ fontSize: 11, color: '#666', margin: '0 0 10px 0' }}>{contextMenuPopup.address}</p>
+                            <button
+                                onClick={confirmAddContextPlace}
+                                style={{
+                                    padding: '6px 12px', borderRadius: 6, background: '#10b981', 
+                                    color: 'white', border: 'none', fontSize: 12, cursor: 'pointer',
+                                    width: '100%', fontWeight: 600
+                                }}
+                            >
+                                + Add to Itinerary
+                            </button>
+                        </div>
+                    </Popup>
+                )}
+                {/* Routes */}
+                {routeFeatures.map((feature, i) => (
+                    <Source key={`route-source-${i}`} id={`route-source-${i}`} type="geojson" data={feature}>
+                        <Layer 
+                            id={`route-layer-${i}`} 
+                            type="line" 
+                            layout={{ 'line-join': 'round', 'line-cap': 'round' }} 
+                            paint={{ 'line-color': feature.properties.color, 'line-width': 5, 'line-opacity': 0.8, 'line-dasharray': [1, 2] }} 
+                        />
+                    </Source>
                 ))}
 
                 {/* Hotel markers */}
                 {hotelMarkers.map((h, i) => (
-                    <Marker key={`hotel-${i}`} position={[h.hotel.location.lat, h.hotel.location.lng]} icon={hotelIcon}>
-                        <Popup>
-                            <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 160 }}>
-                                <strong style={{ color: '#f59e0b' }}>🏨 {h.hotel.name}</strong>
-                                <p style={{ fontSize: 12, margin: '4px 0', color: '#666' }}>{h.locality}</p>
-                            </div>
-                        </Popup>
+                    <Marker 
+                        key={`hotel-${i}`} 
+                        longitude={h.hotel.location.lng} 
+                        latitude={h.hotel.location.lat} 
+                        anchor="bottom"
+                        onClick={e => {
+                            e.originalEvent.stopPropagation();
+                            setPopupInfo({ id: `hotel-${i}`, type: 'hotel', data: h });
+                        }}
+                    >
+                        <HotelIcon />
                     </Marker>
                 ))}
 
@@ -235,40 +308,16 @@ export default function MapView() {
                 {spots.map(({ spot, dayNum }) => (
                     <Marker
                         key={spot.id}
-                        position={[spot.location.lat, spot.location.lng]}
-                        icon={spotIcon}
-                        ref={(ref) => { if (ref) markerRefs.current[spot.id] = ref; }}
+                        longitude={spot.location.lng}
+                        latitude={spot.location.lat}
+                        anchor="bottom"
+                        onClick={e => {
+                            e.originalEvent.stopPropagation();
+                            setPopupInfo({ id: spot.id, type: 'spot', data: spot, dayNum });
+                            setSelectedPlaceId(spot.id);
+                        }}
                     >
-                        <Popup>
-                            <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 200 }}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
-                                    <strong style={{ fontSize: 14 }}>{spot.name}</strong>
-                                    <span style={{
-                                        background: '#6366f1', color: 'white', fontSize: 10,
-                                        padding: '2px 6px', borderRadius: 4,
-                                    }}>Day {dayNum}</span>
-                                </div>
-                                <p style={{ fontSize: 12, color: '#666', margin: '4px 0' }}>{spot.description}</p>
-                                <div style={{ fontSize: 11, color: '#888', display: 'flex', gap: 8, marginBottom: 6 }}>
-                                    <span>⏰ {spot.openingTime}-{spot.closingTime}</span>
-                                    <span>⏱️ {spot.timeToSpend}h</span>
-                                    {spot.entryFee > 0 && <span>₹{spot.entryFee}</span>}
-                                </div>
-                                <div style={{ display: 'flex', gap: 8 }}>
-                                    <span style={{ fontSize: 11, color: '#f59e0b' }}>{'⭐'.repeat(Math.round(spot.rating))}</span>
-                                </div>
-                                <button
-                                    onClick={() => removeSpot(spot.id)}
-                                    style={{
-                                        marginTop: 8, padding: '4px 12px', borderRadius: 4,
-                                        background: '#ef4444', color: 'white', border: 'none',
-                                        fontSize: 11, cursor: 'pointer', width: '100%',
-                                    }}
-                                >
-                                    ✕ Remove from itinerary
-                                </button>
-                            </div>
-                        </Popup>
+                        <SpotIcon />
                     </Marker>
                 ))}
 
@@ -276,31 +325,119 @@ export default function MapView() {
                 {restaurants.map(({ restaurant, dayNum }) => (
                     <Marker
                         key={restaurant.id}
-                        position={[restaurant.location.lat, restaurant.location.lng]}
-                        icon={restaurantIcon}
-                        ref={(ref) => { if (ref) markerRefs.current[restaurant.id] = ref; }}
+                        longitude={restaurant.location.lng}
+                        latitude={restaurant.location.lat}
+                        anchor="bottom"
+                        onClick={e => {
+                            e.originalEvent.stopPropagation();
+                            setPopupInfo({ id: restaurant.id, type: 'restaurant', data: restaurant, dayNum });
+                            setSelectedPlaceId(restaurant.id);
+                        }}
                     >
-                        <Popup>
-                            <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 160 }}>
-                                <strong style={{ fontSize: 14, color: '#10b981' }}>🍽️ {restaurant.name}</strong>
-                                <p style={{ fontSize: 12, color: '#666', margin: '4px 0' }}>{restaurant.cuisine}</p>
-                                <p style={{ fontSize: 11, color: '#888' }}>
-                                    Avg ₹{restaurant.avgCostForTwo} for two · Day {dayNum}
-                                </p>
-                            </div>
-                        </Popup>
+                        <RestaurantIcon />
                     </Marker>
                 ))}
-            </MapContainer>
+
+                {/* Popups */}
+                {popupInfo && popupInfo.type === 'spot' && (
+                    <Popup
+                        longitude={popupInfo.data.location.lng}
+                        latitude={popupInfo.data.location.lat}
+                        anchor="top"
+                        onClose={() => setPopupInfo(null)}
+                        closeButton={true}
+                        closeOnClick={false}
+                    >
+                        <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 200, padding: 8 }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                                <strong style={{ fontSize: 14 }}>{popupInfo.data.name}</strong>
+                                <span style={{ background: '#6366f1', color: 'white', fontSize: 10, padding: '2px 6px', borderRadius: 4 }}>Day {popupInfo.dayNum}</span>
+                            </div>
+                            <p style={{ fontSize: 12, color: '#666', margin: '4px 0' }}>{popupInfo.data.description}</p>
+                            <div style={{ fontSize: 11, color: '#888', display: 'flex', gap: 8, marginBottom: 6 }}>
+                                <span>⏰ {popupInfo.data.openingTime}-{popupInfo.data.closingTime}</span>
+                                <span>⏱️ {popupInfo.data.timeToSpend}h</span>
+                                {popupInfo.data.entryFee > 0 && <span>₹{popupInfo.data.entryFee}</span>}
+                            </div>
+                            <div style={{ display: 'flex', gap: 8 }}>
+                                <span style={{ fontSize: 11, color: '#f59e0b' }}>{'⭐'.repeat(Math.round(popupInfo.data.rating))}</span>
+                            </div>
+                            <button
+                                onClick={() => removeSpot(popupInfo.data.id)}
+                                style={{ marginTop: 8, padding: '4px 12px', borderRadius: 4, background: '#ef4444', color: 'white', border: 'none', fontSize: 11, cursor: 'pointer', width: '100%' }}
+                            >
+                                ✕ Remove from itinerary
+                            </button>
+                        </div>
+                    </Popup>
+                )}
+
+                {popupInfo && popupInfo.type === 'restaurant' && (
+                    <Popup
+                        longitude={popupInfo.data.location.lng}
+                        latitude={popupInfo.data.location.lat}
+                        anchor="top"
+                        onClose={() => setPopupInfo(null)}
+                        closeButton={true}
+                    >
+                        <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 160, padding: 8 }}>
+                            <strong style={{ fontSize: 14, color: '#10b981' }}>🍽️ {popupInfo.data.name}</strong>
+                            <p style={{ fontSize: 12, color: '#666', margin: '4px 0' }}>{popupInfo.data.cuisine}</p>
+                            <p style={{ fontSize: 11, color: '#888' }}>
+                                Avg ₹{popupInfo.data.avgCostForTwo} for two · Day {popupInfo.dayNum}
+                            </p>
+                        </div>
+                    </Popup>
+                )}
+
+                {popupInfo && popupInfo.type === 'hotel' && (
+                    <Popup
+                        longitude={popupInfo.data.hotel.location.lng}
+                        latitude={popupInfo.data.hotel.location.lat}
+                        anchor="top"
+                        onClose={() => setPopupInfo(null)}
+                        closeButton={true}
+                    >
+                        <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 160, padding: 8 }}>
+                            <strong style={{ color: '#f59e0b' }}>🏨 {popupInfo.data.hotel.name}</strong>
+                            <p style={{ fontSize: 12, margin: '4px 0', color: '#666' }}>{popupInfo.data.locality}</p>
+                        </div>
+                    </Popup>
+                )}
+            </Map>
+
+            {/* Map Style Manager Toggle */}
+            <div style={{
+                position: 'absolute', top: 12, right: 12, zIndex: 10,
+                display: 'flex', gap: 6, background: 'rgba(10,10,26,0.85)', padding: 6, borderRadius: 8,
+                border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(8px)'
+            }}>
+                {(Object.keys(OLA_MAPS_STYLES) as Array<keyof typeof OLA_MAPS_STYLES>).map((key) => (
+                    <button
+                        key={key}
+                        onClick={() => {
+                            setMapStyleKey(key);
+                            mapRef.current?.setPitch(OLA_MAPS_STYLES[key].pitch);
+                        }}
+                        style={{
+                            padding: '6px 12px', borderRadius: 6, fontSize: 12, fontWeight: 600,
+                            background: mapStyleKey === key ? '#6366f1' : 'transparent',
+                            color: mapStyleKey === key ? '#fff' : '#a0a0cc',
+                            border: 'none', cursor: 'pointer', transition: 'all 0.2s'
+                        }}
+                    >
+                        {OLA_MAPS_STYLES[key].name}
+                    </button>
+                ))}
+            </div>
 
             {/* Horizontal Spot Carousel (Scrollbar on the map) */}
             {selectedDay && (spots.length > 0 || restaurants.length > 0) && (
                 <div style={{
                     position: 'absolute', bottom: 80, left: '50%', transform: 'translateX(-50%)',
-                    width: '90%', zIndex: 1000,
+                    width: '90%', zIndex: 10,
                     display: 'flex', gap: 12, overflowX: 'auto', padding: '12px 0',
-                    scrollbarWidth: 'thin',
-                    scrollbarColor: 'rgba(99,102,241,0.5) transparent',
+                    scrollbarWidth: 'thin', scrollbarColor: 'rgba(99,102,241,0.5) transparent',
                 }}>
                     {[...spots, ...restaurants.map(r => ({ spot: r.restaurant as any, dayNum: r.dayNum, type: 'food' }))].map((item, idx) => {
                         const isSpot = 'spot' in item;
@@ -313,8 +450,6 @@ export default function MapView() {
                                 className="glass"
                                 onClick={() => {
                                     setSelectedPlaceId(data.id);
-                                    const marker = markerRefs.current[data.id];
-                                    if (marker) marker.openPopup();
                                 }}
                                 style={{
                                     minWidth: 200, padding: '10px 14px', borderRadius: 12,
@@ -344,8 +479,8 @@ export default function MapView() {
 
             {/* Map Legend */}
             <div className="glass" style={{
-                position: 'absolute', bottom: 20, left: 20, zIndex: 1000,
-                padding: '12px 16px', display: 'flex', gap: 16, fontSize: 12,
+                position: 'absolute', bottom: 20, left: 20, zIndex: 10,
+                padding: '12px 16px', display: 'flex', gap: 16, fontSize: 12, pointerEvents: 'none'
             }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                     <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#6366f1' }} />
