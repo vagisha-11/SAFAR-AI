@@ -176,10 +176,10 @@ export default function LandingPage({ messages, setMessages, onTripReady }: Land
 
     // Drive the intro sequence
     useEffect(() => {
-        // Phase 1 → 2: show splash for 3.0 s, then start rising
-        const t1 = setTimeout(() => setPhase('rise'), 3000);
+        // Phase 1 → 2: show splash for 1.8 s, then start rising
+        const t1 = setTimeout(() => setPhase('rise'), 1800);
         // Phase 2 → 3: rise animation takes ~0.7 s, then reveal chat
-        const t2 = setTimeout(() => setPhase('chat'), 3800);
+        const t2 = setTimeout(() => setPhase('chat'), 2600);
         return () => { clearTimeout(t1); clearTimeout(t2); };
     }, []);
 
