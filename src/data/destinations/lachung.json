@@ -1,0 +1,342 @@
+[
+  {
+    "id": "cbf30625-5443-4fce-aaf8-912daccdc270",
+    "name": "Yumthang Valley",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.7961,
+      "lng": 88.6167
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "Known as the 'Valley of Flowers', Yumthang Valley offers breathtaking views of rhododendrons, hot springs, and snow-capped peaks.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "3e123a0f-c951-4777-bb52-7b6af2cf0351",
+    "name": "Shingba Rhododendron Sanctuary",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.7975,
+      "lng": 88.62
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "A vibrant sanctuary showcasing over 40 species of rhododendrons, ideal for nature walks and bird watching.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "ea7e5229-cbda-4133-bc36-362ae1f508d8",
+    "name": "Lachung Monastery",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.808,
+      "lng": 88.615
+    },
+    "timeToSpend": 1,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A serene Buddhist monastery offering spiritual solace and insight into local religious practices.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "218fa6c3-c524-4666-b863-ce0cb8460c00",
+    "name": "Hot Springs of Yumthang",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.795,
+      "lng": 88.618
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "Natural hot springs where visitors can relax amidst the chilly mountain air and scenic surroundings.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "aebb5e9e-74b2-4ee4-903f-4fe616a20485",
+    "name": "Zero Point (Yumesamdong)",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.831,
+      "lng": 88.628
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "16:00",
+    "entryFee": 100,
+    "category": "Adventure",
+    "description": "A high-altitude snow-covered plateau offering stunning panoramic views and thrilling snow activities.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "6b105e79-283c-4f2c-a7b4-058f116f9fd1",
+    "name": "Lachung Bazaar",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.807,
+      "lng": 88.614
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A lively local market where visitors can experience authentic Sikkimese culture and shop for handicrafts.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "bc9b2618-0068-47c6-b30d-1bbe1d8ba17e",
+    "name": "Chopta Valley",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.79,
+      "lng": 88.61
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 40,
+    "category": "Nature",
+    "description": "A pristine valley surrounded by dense forests and snow-capped mountains, perfect for trekking and photography.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "87e61716-4ef9-45db-93a6-730e685e61c8",
+    "name": "Thangu Village",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.84,
+      "lng": 88.63
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A remote mountain village offering a glimpse into traditional lifestyles and stunning alpine scenery.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "b4d667de-d696-47cb-86d0-af8aca15e9a9",
+    "name": "Singba Rhododendron Sanctuary Trek",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.798,
+      "lng": 88.619
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Adventure",
+    "description": "A scenic trekking route through dense rhododendron forests with opportunities to spot rare flora and fauna.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "05ce5258-6059-49f9-91b1-b0edd486234a",
+    "name": "Lachung River",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.805,
+      "lng": 88.613
+    },
+    "timeToSpend": 1,
+    "openingTime": "Open 24 hours",
+    "closingTime": "Open 24 hours",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A crystal-clear river flowing through the village, ideal for peaceful walks and nature photography.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "c51101b6-6fc4-4c47-b842-d6d24efbd7cb",
+    "name": "Singba Rhododendron Sanctuary Bird Watching",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.799,
+      "lng": 88.6205
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "16:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "A hotspot for bird enthusiasts to spot rare Himalayan birds amidst vibrant rhododendron blooms.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "4a68d39c-a5f5-4774-9a40-27863cbecca2",
+    "name": "Lachung Cultural Museum",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.806,
+      "lng": 88.615
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A small museum showcasing the rich cultural heritage and history of the Lachung region.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "ac1e2972-4f12-4bff-a32b-22daf1baef7f",
+    "name": "Lachung Viewpoint",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.81,
+      "lng": 88.617
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A scenic viewpoint offering panoramic vistas of the surrounding Himalayan ranges and valleys.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "43ebb48e-b1e9-412b-83c0-724addf51826",
+    "name": "Local Sikkimese Homestay Experience",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.8075,
+      "lng": 88.6145
+    },
+    "timeToSpend": 3,
+    "openingTime": "Flexible",
+    "closingTime": "Flexible",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Immerse yourself in local life by staying with a Sikkimese family, enjoying traditional food and customs.",
+    "rating": 4.9,
+    "popularity": 9
+  },
+  {
+    "id": "a15c3184-10c4-4f56-8ec3-af502879a0fc",
+    "name": "Lachung Waterfall",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.809,
+      "lng": 88.618
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 10,
+    "category": "Nature",
+    "description": "A picturesque waterfall nestled in the hills near Lachung, perfect for a refreshing stop during hikes.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "14bc61c9-f792-45f0-a7dd-42f68399e75a",
+    "name": "Mountain Biking Trails around Lachung",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.805,
+      "lng": 88.62
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "Thrilling mountain biking routes offering adrenaline-pumping rides through rugged Himalayan terrain.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "a326bd73-f1b7-4a5c-9a14-c82c47174a3f",
+    "name": "Lachung Local Handicraft Workshop",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.8065,
+      "lng": 88.6135
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "16:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "Participate in workshops to learn traditional Sikkimese handicrafts and take home unique souvenirs.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "83d674cf-4808-4577-8e3a-c4b077fea7d7",
+    "name": "Lachung Local Cuisine Tasting",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.807,
+      "lng": 88.615
+    },
+    "timeToSpend": 1,
+    "openingTime": "11:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Savor authentic Sikkimese dishes like momo, thukpa, and gundruk in local eateries.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "01540432-240c-469f-9a1d-9fe34cd11643",
+    "name": "Lachung River Rafting",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.804,
+      "lng": 88.612
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "16:00",
+    "entryFee": 150,
+    "category": "Adventure",
+    "description": "Experience thrilling river rafting on the Lachung River with stunning mountain backdrops.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "bb35666f-73e4-42cb-b874-7bbc997d1d93",
+    "name": "Lachung Local Festival (Losar)",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.807,
+      "lng": 88.615
+    },
+    "timeToSpend": 2,
+    "openingTime": "Varies",
+    "closingTime": "Varies",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Celebrate the vibrant Losar festival with traditional dances, music, and local rituals unique to Lachung.",
+    "rating": 4.9,
+    "popularity": 10
+  }
+]

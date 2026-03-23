@@ -1,0 +1,152 @@
+[
+  {
+    "id": "9d1b10e4-8417-47bc-8763-d4aa424d3919",
+    "name": "Chail Palace Restaurant",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9632,
+      "lng": 77.2521
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "2d9f3407-ec38-4add-80a1-4255671e013a",
+    "name": "The Chail Chalet",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9645,
+      "lng": 77.251
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 1200,
+    "rating": 4.7,
+    "openingTime": "07:30",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "c21e901f-de2c-4b59-b9cc-b565adc14c82",
+    "name": "Cafe Chail",
+    "address": "Chail",
+    "location": {
+      "lat": 30.962,
+      "lng": 77.2535
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 600,
+    "rating": 4.3,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "cceaff5e-ee83-465c-8eaf-ac24fcfe0364",
+    "name": "The Pinewood Diner",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9615,
+      "lng": 77.254
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "b1deab51-af72-4dc8-b4b3-fc00b1e733b8",
+    "name": "Chail Street Food Hub",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9638,
+      "lng": 77.2525
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 300,
+    "rating": 4.1,
+    "openingTime": "10:00",
+    "closingTime": "20:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "6db355f3-afd5-421a-8e87-f0aca4d4f60b",
+    "name": "Hilltop Fine Dining",
+    "address": "Chail",
+    "location": {
+      "lat": 30.965,
+      "lng": 77.25
+    },
+    "cuisine": "Fine Dining",
+    "avgCostForTwo": 2500,
+    "rating": 4.8,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "123c5284-d9cd-499c-b80e-b0ef0a9c5cfb",
+    "name": "The Green Leaf Cafe",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9628,
+      "lng": 77.253
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 650,
+    "rating": 4.2,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "5307e70e-a429-42fa-b65e-63e1d84d7b01",
+    "name": "Chail Bakery & Snacks",
+    "address": "Chail",
+    "location": {
+      "lat": 30.961,
+      "lng": 77.2545
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 400,
+    "rating": 4,
+    "openingTime": "06:30",
+    "closingTime": "18:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "4bfceb0c-7474-465a-8f2a-2740b7bf4577",
+    "name": "Mountain View Restaurant",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9642,
+      "lng": 77.2515
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 900,
+    "rating": 4.6,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "5cb694e1-8fe8-479c-b021-2f25026c81ce",
+    "name": "Chail Tea Stall",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9625,
+      "lng": 77.2538
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 150,
+    "rating": 4.3,
+    "openingTime": "05:30",
+    "closingTime": "19:00",
+    "mealType": "breakfast"
+  }
+]

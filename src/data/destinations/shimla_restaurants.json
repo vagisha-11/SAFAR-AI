@@ -1,0 +1,152 @@
+[
+  {
+    "id": "7be67c79-a05a-41f0-b692-f3d97d26ec9e",
+    "name": "Cafe Simla Times",
+    "address": "Shimla",
+    "location": {
+      "lat": 31.1048,
+      "lng": 77.1734
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "7d9cc087-3929-4092-a528-44825d5a5468",
+    "name": "The Oberoi Cecil",
+    "address": "Shimla",
+    "location": {
+      "lat": 31.1025,
+      "lng": 77.172
+    },
+    "cuisine": "Fine Dining, North Indian, Continental",
+    "avgCostForTwo": 4000,
+    "rating": 4.8,
+    "openingTime": "07:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "b03f687e-4736-42c3-ba3c-47846b81bd87",
+    "name": "Indian Coffee House",
+    "address": "Shimla",
+    "location": {
+      "lat": 31.104,
+      "lng": 77.173
+    },
+    "cuisine": "Local Authentic, South Indian",
+    "avgCostForTwo": 300,
+    "rating": 4,
+    "openingTime": "07:30",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "351bac0d-97be-477a-ae46-2282b65e8b79",
+    "name": "Wake & Bake Cafe",
+    "address": "Shimla",
+    "location": {
+      "lat": 31.1035,
+      "lng": 77.174
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "436483d9-f843-4150-90e5-8cc2526fc837",
+    "name": "Ashiana & Goofa",
+    "address": "Shimla",
+    "location": {
+      "lat": 31.102,
+      "lng": 77.175
+    },
+    "cuisine": "North Indian, Himachali",
+    "avgCostForTwo": 1200,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "e7c9d6b3-d18e-4f97-a848-72d05910c4cf",
+    "name": "Himachali Rasoi",
+    "address": "Shimla",
+    "location": {
+      "lat": 31.105,
+      "lng": 77.176
+    },
+    "cuisine": "Local Authentic, Himachali",
+    "avgCostForTwo": 600,
+    "rating": 4.4,
+    "openingTime": "11:00",
+    "closingTime": "21:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "03fada86-b720-4d81-bac4-42843b88a236",
+    "name": "Eighteen71 Cookhouse & Bar",
+    "address": "Shimla",
+    "location": {
+      "lat": 31.103,
+      "lng": 77.1715
+    },
+    "cuisine": "Fine Dining, Continental, North Indian",
+    "avgCostForTwo": 2500,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "7c461f16-1c71-46a3-97da-ceb7c77dbb1c",
+    "name": "Chic Chocolate",
+    "address": "Shimla",
+    "location": {
+      "lat": 31.1042,
+      "lng": 77.1725
+    },
+    "cuisine": "Cafe, Desserts",
+    "avgCostForTwo": 500,
+    "rating": 4.5,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "e9e20ba9-70d2-4500-98cd-716cb72ac58c",
+    "name": "Lakkar Bazaar Street Food Stalls",
+    "address": "Shimla",
+    "location": {
+      "lat": 31.1047,
+      "lng": 77.1737
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 200,
+    "rating": 4.1,
+    "openingTime": "10:00",
+    "closingTime": "20:00",
+    "mealType": "any"
+  },
+  {
+    "id": "5cce9e91-4b1c-4f9e-9622-24b46cbe9cb4",
+    "name": "Cafe Sol",
+    "address": "Shimla",
+    "location": {
+      "lat": 31.1055,
+      "lng": 77.1745
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  }
+]

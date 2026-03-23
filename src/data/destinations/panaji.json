@@ -1,0 +1,342 @@
+[
+  {
+    "id": "b7bd4529-856d-47e1-80a9-b6258838d917",
+    "name": "Church of Our Lady of the Immaculate Conception",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4989,
+      "lng": 73.8278
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A stunning baroque-style church with a striking white facade and a prominent bell tower, offering panoramic views of Panaji.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "938e3e32-fc89-4586-963a-346d44f93562",
+    "name": "Fontainhas Latin Quarter",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.498,
+      "lng": 73.8285
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A charming heritage neighborhood with colorful Portuguese-style houses, narrow lanes, and quaint cafes reflecting Goa's colonial past.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "ffb45f5e-8b24-4f04-810b-281a425b0014",
+    "name": "Mahalaxmi Temple",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4975,
+      "lng": 73.8289
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A revered Hindu temple dedicated to Goddess Mahalaxmi, known for its serene atmosphere and intricate architecture.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "7e48cdf7-16a5-4374-8ef6-ce287bf05ee7",
+    "name": "Goa State Museum",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4948,
+      "lng": 73.828
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:30",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A museum showcasing Goa's rich history, art, and culture through an extensive collection of artifacts and exhibits.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "a2bc1ca2-76d5-41b0-b146-0e2c4512b476",
+    "name": "Dona Paula Viewpoint",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.475,
+      "lng": 73.822
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A scenic viewpoint offering breathtaking views of the Arabian Sea and the confluence of the Mandovi and Zuari rivers.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "a82d974a-e609-40da-87a3-c91241661aaf",
+    "name": "Mandovi River Cruise",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.498,
+      "lng": 73.828
+    },
+    "timeToSpend": 2,
+    "openingTime": "17:00",
+    "closingTime": "21:00",
+    "entryFee": 350,
+    "category": "Adventure",
+    "description": "An enchanting evening boat cruise on the Mandovi River featuring live music, dance performances, and stunning sunset views.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "dd224270-ca4d-4357-ab69-1233d9eaf83d",
+    "name": "Panaji Market",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4985,
+      "lng": 73.829
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling local market offering fresh produce, spices, handicrafts, and an authentic taste of Goan daily life.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "2c1319b0-c786-41d8-a513-6a3dee5296c5",
+    "name": "Shri Shantadurga Temple",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.495,
+      "lng": 73.83
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A beautifully maintained temple dedicated to Goddess Shantadurga, known for its peaceful ambiance and intricate carvings.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "162ff918-6bc9-49dd-81da-37fc394a515e",
+    "name": "Kala Academy",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4983,
+      "lng": 73.8283
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A premier cultural center hosting art exhibitions, music concerts, and theater performances showcasing Goan talent.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "ecad902c-e874-4c2a-bd1f-70ac04ae2147",
+    "name": "Miramar Beach",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.485,
+      "lng": 73.818
+    },
+    "timeToSpend": 2,
+    "openingTime": "05:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A popular sandy beach near Panaji, perfect for a relaxing stroll, swimming, and enjoying local street food stalls.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "45ebad25-9e2e-43f2-8294-a4ec2e19bb60",
+    "name": "Adil Shah's Palace",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.497,
+      "lng": 73.829
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 10,
+    "category": "Heritage",
+    "description": "Ruins of a 16th-century palace built by the Adil Shahi dynasty, offering a glimpse into Goa's pre-Portuguese history.",
+    "rating": 4.2,
+    "popularity": 6
+  },
+  {
+    "id": "ec7e9eb3-3780-464b-bfe9-3a6020ac8480",
+    "name": "Sahakari Spice Farm",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.49,
+      "lng": 73.84
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 150,
+    "category": "Nature",
+    "description": "An immersive tour through lush spice plantations with guided walks, traditional Goan lunch, and spice shopping.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "793ad77c-abf8-4c81-976a-cf2a0bf48827",
+    "name": "Goa State Central Library",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4982,
+      "lng": 73.8287
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A historic library with an extensive collection of books and manuscripts, ideal for literature enthusiasts and researchers.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "6d9bd4d7-663d-489f-9eb0-12cc26ac0588",
+    "name": "Panaji Promenade",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4987,
+      "lng": 73.8282
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A scenic walkway along the Mandovi River lined with gardens, sculptures, and cafes, perfect for an evening stroll.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "37b8415f-3717-4416-a974-c1772a79ea8f",
+    "name": "St. Sebastian Chapel",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4957,
+      "lng": 73.8295
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A quaint chapel known for its beautiful stained glass windows and peaceful surroundings in the heart of Panaji.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "c0d85063-c989-47f8-9d33-ecd58fdbb5f3",
+    "name": "Goa Science Centre",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.496,
+      "lng": 73.831
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Educational",
+    "description": "An interactive science museum featuring exhibits on space, technology, and natural sciences, great for families and kids.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "24a2c9bd-6607-41e8-9cf0-186e494ae9ab",
+    "name": "Panaji Boat Jetty",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4981,
+      "lng": 73.8281
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A lively jetty where visitors can catch ferries and boats to explore nearby islands and scenic river routes.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "671d8c1d-c72d-42a9-abf4-573262f9b62c",
+    "name": "Mandovi Bridge",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4985,
+      "lng": 73.8275
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "00:00",
+    "closingTime": "23:59",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "An iconic bridge over the Mandovi River offering spectacular views of Panaji and the surrounding water bodies.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "b1fe5af4-4e6a-4613-868d-718261559830",
+    "name": "Viceroy's Arch",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4983,
+      "lng": 73.8284
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "00:00",
+    "closingTime": "23:59",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A historic gateway built during the Portuguese era, symbolizing the colonial heritage of Panaji city.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "f67be3ad-85f3-4526-a122-555d3bd27345",
+    "name": "Goa State Art Gallery",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4978,
+      "lng": 73.8286
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Cultural",
+    "description": "An art gallery exhibiting contemporary and traditional Goan art, sculptures, and crafts by local artists.",
+    "rating": 4.3,
+    "popularity": 6
+  }
+]

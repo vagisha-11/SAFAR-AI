@@ -1,0 +1,152 @@
+[
+  {
+    "id": "14888fae-c945-4b47-8adb-eb59ee4e4c07",
+    "name": "Anju Coco",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9492,
+      "lng": 92.9817
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 1200,
+    "rating": 4.7,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "c4501da2-b35b-4371-a000-b2489b1658a0",
+    "name": "Full Moon Cafe",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9499,
+      "lng": 92.9825
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "08:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "765d5f71-8483-4ba7-94ae-233102e0f17a",
+    "name": "Fat Martin's Coffee Shop",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9505,
+      "lng": 92.983
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 600,
+    "rating": 4.3,
+    "openingTime": "07:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "18f0c8e7-4273-4fde-bab7-a350b0574f84",
+    "name": "Something Different - A Beachside Cafe",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9487,
+      "lng": 92.981
+    },
+    "cuisine": "Seafood, Continental",
+    "avgCostForTwo": 1500,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "222116fa-67a8-48dd-9034-dc74a61e9813",
+    "name": "The Barefoot Bar",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.949,
+      "lng": 92.982
+    },
+    "cuisine": "Bar, Continental",
+    "avgCostForTwo": 1000,
+    "rating": 4.4,
+    "openingTime": "17:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "13d37a4d-f9eb-4a06-a366-e32bcec00c5b",
+    "name": "New Lighthouse Restaurant",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9501,
+      "lng": 92.9835
+    },
+    "cuisine": "Seafood, Indian",
+    "avgCostForTwo": 1100,
+    "rating": 4.2,
+    "openingTime": "11:30",
+    "closingTime": "21:30",
+    "mealType": "any"
+  },
+  {
+    "id": "fa408f34-a5d4-4aca-a1c1-bacd80be05b6",
+    "name": "Tango Beach Restaurant",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9475,
+      "lng": 92.9805
+    },
+    "cuisine": "Seafood, Local Authentic",
+    "avgCostForTwo": 1300,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "83a241af-17bb-4c69-824e-ba96c0754d1e",
+    "name": "Full Moon Cafe - Street Food Hub",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9498,
+      "lng": 92.9823
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 500,
+    "rating": 4.4,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "88fe3cb4-014f-444d-b992-eaba4b70a38f",
+    "name": "Bonova Cafe",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.9503,
+      "lng": 92.9832
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.1,
+    "openingTime": "07:30",
+    "closingTime": "19:30",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "ef392138-e778-4cd5-83a1-db20f07789bf",
+    "name": "The Lighthouse Residency Restaurant",
+    "address": "Havelock Island",
+    "location": {
+      "lat": 11.95,
+      "lng": 92.983
+    },
+    "cuisine": "Indian, Seafood",
+    "avgCostForTwo": 1400,
+    "rating": 4.3,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  }
+]

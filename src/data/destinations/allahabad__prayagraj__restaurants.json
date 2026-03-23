@@ -1,0 +1,152 @@
+[
+  {
+    "id": "560565f3-572b-4c50-9684-f8853a6dcd12",
+    "name": "The Grand Trunk Road",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4358,
+      "lng": 81.8463
+    },
+    "cuisine": "North Indian, Mughlai",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "57dc46dc-c6d5-4944-9de9-186ce014f7f1",
+    "name": "Cafe Coffee Day - Allahabad",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.435,
+      "lng": 81.8467
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 300,
+    "rating": 4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "7c979a83-8a88-49f9-9477-a724e4b777db",
+    "name": "Brijwasi Sweets",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4441,
+      "lng": 81.8402
+    },
+    "cuisine": "Local Authentic, Sweets",
+    "avgCostForTwo": 250,
+    "rating": 4.3,
+    "openingTime": "07:00",
+    "closingTime": "21:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "52ddfb93-5fa2-40f8-8763-1edd043136ac",
+    "name": "Moti Mahal Delux",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4365,
+      "lng": 81.8475
+    },
+    "cuisine": "North Indian, Mughlai",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "5f35129d-c0c5-433e-a5ef-4b453b04b13d",
+    "name": "Prayag Restaurant",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4372,
+      "lng": 81.848
+    },
+    "cuisine": "Local Authentic, Street Food",
+    "avgCostForTwo": 200,
+    "rating": 4.1,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "9bc3e2af-a2c6-49b4-abd1-c8b71df74488",
+    "name": "The Yellow Chilli",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.438,
+      "lng": 81.845
+    },
+    "cuisine": "North Indian, Fine Dining",
+    "avgCostForTwo": 1200,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "05ba7fa8-7cb6-4713-b9e9-bd9d19280311",
+    "name": "Chaat House",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.44,
+      "lng": 81.8425
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 150,
+    "rating": 4.2,
+    "openingTime": "11:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "7210b7f9-9b8f-460c-ae7f-d7fff0b1a572",
+    "name": "Cafe Coffee Day - Sangam",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.421,
+      "lng": 81.85
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 350,
+    "rating": 4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "3b76fb37-6058-495a-9104-4aa87a4d0c24",
+    "name": "Rasoi Restaurant",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4395,
+      "lng": 81.843
+    },
+    "cuisine": "North Indian, Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.3,
+    "openingTime": "11:00",
+    "closingTime": "22:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "0d082fef-dca1-4b90-9d34-ea0945be775d",
+    "name": "Sankalp Restaurant",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4345,
+      "lng": 81.847
+    },
+    "cuisine": "South Indian, North Indian",
+    "avgCostForTwo": 500,
+    "rating": 4.4,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  }
+]

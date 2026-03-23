@@ -43,6 +43,8 @@ interface SafarState {
     setLoadingMessage: (msg: string) => void;
     activeStep: 'input' | 'planning' | 'results';
     setActiveStep: (step: 'input' | 'planning' | 'results') => void;
+    loadingFunFacts: string[];
+    setLoadingFunFacts: (facts: string[]) => void;
 
     // Prompt
     promptHistory: { role: 'user' | 'assistant'; content: string }[];
@@ -83,6 +85,7 @@ const initialState = {
     selectedDay: null,
     isLoading: false,
     loadingMessage: '',
+    loadingFunFacts: [],
     activeStep: 'input' as const,
     promptHistory: [],
     reviews: [],
@@ -162,6 +165,7 @@ export const useSafarStore = create<SafarState>((set, get) => ({
     setSelectedDay: (day) => set({ selectedDay: day }),
     setIsLoading: (loading) => set({ isLoading: loading }),
     setLoadingMessage: (msg) => set({ loadingMessage: msg }),
+    setLoadingFunFacts: (facts) => set({ loadingFunFacts: facts }),
     setActiveStep: (step) => set({ activeStep: step }),
     addPromptMessage: (role, content) =>
         set((state) => ({
@@ -244,42 +248,56 @@ export const useSafarStore = create<SafarState>((set, get) => ({
 
     setDayRoutes: (routes) => set({ dayRoutes: routes }),
 
-    addSpotToDay: (dayNumber, spot) => {
+    addSpotToDay: async (dayNumber, spot) => {
         const { itinerary } = get();
         if (!itinerary) return;
 
-        const nextItinerary = { ...itinerary };
-        const updatedDays = [...nextItinerary.days];
-        const dayIdx = updatedDays.findIndex(d => d.dayNumber === dayNumber);
+        try {
+            const res = await fetch('/api/deltaUpdate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'add_place',
+                    itinerary,
+                    payload: { spot, dayNumber }
+                })
+            });
+            const data = await res.json();
 
-        if (dayIdx >= 0) {
-            const day = updatedDays[dayIdx];
-            const lastActiveItem = [...day.items].reverse().find(i => i.type === 'spot' || i.type === 'restaurant');
-            let startTime = '16:00';
-            if (lastActiveItem && lastActiveItem.endTime) {
-                startTime = lastActiveItem.endTime;
+            if (data.arbitrationRequired) {
+                const conflictName = data.conflictingSpot?.name || 'a downstream spot';
+                const message = `Adding '${spot.name}' will mathematically push your schedule back and cause you to miss '${conflictName}' before it closes.\n\nDo you want to drop '${conflictName}' and add '${spot.name}' instead?`;
+                
+                if (window.confirm(message)) {
+                    // Trigger Swap Place
+                    const swapRes = await fetch('/api/deltaUpdate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: 'swap_place',
+                            itinerary,
+                            payload: { spot, dayNumber, spotId: data.conflictingSpot.id }
+                        })
+                    });
+                    const swapData = await swapRes.json();
+                    if (swapData.success) {
+                        get().setItinerary(swapData.itinerary);
+                    } else {
+                        alert(swapData.error || 'Failed to swap places.');
+                    }
+                }
+            } else if (data.success) {
+                // Success geometric insertion
+                get().setItinerary(data.itinerary);
+
+                // Assuming unselected spots were managed somehow, let's manually clean it up here
+                const nextUnselected = (itinerary.unselectedSpots || []).filter(s => (s as any).id !== spot.id);
+                set(state => ({
+                    itinerary: { ...state.itinerary!, unselectedSpots: nextUnselected }
+                }));
             }
-
-            const [h, m] = startTime.split(':').map(Number);
-            const endHour = Math.min(23, h + (spot.timeToSpend || 1));
-            const endTime = `${String(endHour).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
-
-            const newItem = {
-                type: 'spot' as const,
-                data: spot,
-                startTime,
-                endTime,
-                notes: '✨ Manually added'
-            };
-
-            updatedDays[dayIdx] = {
-                ...day,
-                items: [...day.items, newItem].sort((a, b) => (a.startTime || '').localeCompare(b.startTime || '')),
-            };
-
-            const nextUnselected = (itinerary.unselectedSpots || []).filter(s => (s as any).id !== spot.id);
-            set({ itinerary: { ...nextItinerary, days: updatedDays, unselectedSpots: nextUnselected } });
-            get().recalculateTotalCost();
+        } catch (err) {
+            console.error('Failed to add spot via DeltaUpdate:', err);
         }
     },
 

@@ -1,0 +1,152 @@
+[
+  {
+    "id": "242c5452-8f3f-48ce-8cf2-9e2afb73ce86",
+    "name": "Mum's Kitchen",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4989,
+      "lng": 73.8278
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.6,
+    "openingTime": "11:00",
+    "closingTime": "22:30",
+    "mealType": "any"
+  },
+  {
+    "id": "49181224-6597-490a-95cf-d3f06f061f81",
+    "name": "Venite Bar and Restaurant",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4983,
+      "lng": 73.8267
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "28a32987-c183-4081-9bda-82a80dfc4913",
+    "name": "Cafe Bhonsle",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4985,
+      "lng": 73.8269
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 300,
+    "rating": 4.2,
+    "openingTime": "07:00",
+    "closingTime": "15:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "a4157172-7811-4c03-99f1-72c6ef9f2f5f",
+    "name": "Viva Panjim",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4978,
+      "lng": 73.828
+    },
+    "cuisine": "Goan, Seafood",
+    "avgCostForTwo": 900,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "5803412e-016b-4213-8088-a2c65b7e3c67",
+    "name": "Gunpowder",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.498,
+      "lng": 73.8285
+    },
+    "cuisine": "South Indian, Local Authentic",
+    "avgCostForTwo": 850,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "any"
+  },
+  {
+    "id": "40bf180d-34ae-4d09-ab16-939e04a4fd46",
+    "name": "Black Vanilla",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4975,
+      "lng": 73.8275
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 600,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "79743044-471c-42ce-b991-d2a135e3ad3a",
+    "name": "Ritz Classic",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4987,
+      "lng": 73.8282
+    },
+    "cuisine": "Seafood, Goan",
+    "avgCostForTwo": 1000,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "ab790cbe-e7c7-46e9-9a0c-551205bbada3",
+    "name": "Anand Bar & Restaurant",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.499,
+      "lng": 73.827
+    },
+    "cuisine": "Local Authentic, Goan",
+    "avgCostForTwo": 750,
+    "rating": 4.4,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "800074ba-49d8-41e8-b943-012691f07ed8",
+    "name": "Cafe Tato",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4982,
+      "lng": 73.8265
+    },
+    "cuisine": "Local Authentic, Street Food",
+    "avgCostForTwo": 250,
+    "rating": 4.1,
+    "openingTime": "07:00",
+    "closingTime": "14:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "2734518b-3bab-4a8b-8809-a0503f73c01c",
+    "name": "The Fisherman's Wharf",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.5,
+      "lng": 73.829
+    },
+    "cuisine": "Seafood, Goan",
+    "avgCostForTwo": 1200,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:30",
+    "mealType": "dinner"
+  }
+]

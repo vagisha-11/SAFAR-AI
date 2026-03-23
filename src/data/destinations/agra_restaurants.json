@@ -1,0 +1,152 @@
+[
+  {
+    "id": "216429b8-58d6-42e3-9066-9b99f23851e0",
+    "name": "Pinch of Spice",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1767,
+      "lng": 78.0081
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 1200,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "8bfec875-8c1c-416b-9493-e1f3f7cecf3a",
+    "name": "Esphahan - The Oberoi Amarvilas",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1739,
+      "lng": 78.0421
+    },
+    "cuisine": "Mughlai, North Indian",
+    "avgCostForTwo": 4500,
+    "rating": 4.8,
+    "openingTime": "12:30",
+    "closingTime": "15:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "2f6b594d-60e8-40b7-a5f8-f377863e684e",
+    "name": "Joney's Place",
+    "address": "Agra",
+    "location": {
+      "lat": 27.176,
+      "lng": 78.0085
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 400,
+    "rating": 4.2,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "504baa73-6095-4d55-9b85-a35a0ff8a2a6",
+    "name": "Saniya Palace",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1763,
+      "lng": 78.0083
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 300,
+    "rating": 4,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "ac8a5d3e-c9d1-4b23-84c8-b856f5a9665a",
+    "name": "The Tea House",
+    "address": "Agra",
+    "location": {
+      "lat": 27.179,
+      "lng": 78.011
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.3,
+    "openingTime": "07:30",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "c8e58f2a-640c-4414-9c7a-236f21624e30",
+    "name": "Deviram Sweets",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1755,
+      "lng": 78.009
+    },
+    "cuisine": "Desserts, Local Authentic",
+    "avgCostForTwo": 250,
+    "rating": 4.4,
+    "openingTime": "09:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "9ccbed84-29dc-446b-9734-bd2bd6baaee9",
+    "name": "Shankara Vegis",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1775,
+      "lng": 78.0095
+    },
+    "cuisine": "South Indian, North Indian",
+    "avgCostForTwo": 600,
+    "rating": 4.1,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "6a4b1dd7-6793-4de6-a95a-344b81b45e5d",
+    "name": "Peshawri",
+    "address": "Agra",
+    "location": {
+      "lat": 27.173,
+      "lng": 78.041
+    },
+    "cuisine": "North Indian, Mughlai",
+    "avgCostForTwo": 3500,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "8aa68704-499e-440b-9332-b71f70798bf2",
+    "name": "Mama Chicken Mama Franky",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1768,
+      "lng": 78.0078
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 200,
+    "rating": 4,
+    "openingTime": "11:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "14181fd5-5e95-40f1-a58a-25893e38a01e",
+    "name": "Cafe Sheroes Hangout",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1772,
+      "lng": 78.0102
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 800,
+    "rating": 4.6,
+    "openingTime": "09:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  }
+]

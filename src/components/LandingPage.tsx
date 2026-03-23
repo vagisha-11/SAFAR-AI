@@ -273,7 +273,7 @@ export default function LandingPage({ messages, setMessages, onTripReady }: Land
                         animation: 'splashLogoIn 0.9s 0.1s cubic-bezier(0.16,1,0.3,1) both',
                         marginBottom: 14,
                     }}>
-                        Safar AI
+                        Safar
                     </div>
 
                     <div style={{
@@ -317,7 +317,7 @@ export default function LandingPage({ messages, setMessages, onTripReady }: Land
                             background: 'linear-gradient(135deg, #ffffff, #e879f9)',
                             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
                             lineHeight: 1.1,
-                        }}>Safar AI</div>
+                        }}>Safar</div>
                         <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'DM Sans, sans-serif' }}>
                             Your intelligent travel companion
                         </div>

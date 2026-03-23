@@ -1,0 +1,342 @@
+[
+  {
+    "id": "c65909a0-368f-42c5-a8c7-3c144fb89380",
+    "name": "Chail Palace",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9631,
+      "lng": 77.2529
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "A majestic former summer retreat of the Maharaja of Patiala, showcasing grand architecture and lush gardens.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "3a9525d4-5d36-49e8-8c72-f05b1e3c473c",
+    "name": "Chail Cricket Ground",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9635,
+      "lng": 77.251
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "The world’s highest cricket ground, surrounded by dense deodar forests and panoramic mountain views.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "0ff773d7-49d8-41cf-83e3-32f633a18845",
+    "name": "Sadhupul Bridge and Waterfall",
+    "address": "Chail",
+    "location": {
+      "lat": 30.954,
+      "lng": 77.2615
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A serene spot featuring a small waterfall and a charming wooden bridge over a mountain stream.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "8bad0fb7-35fb-4da9-94a1-8d97d750d4f9",
+    "name": "Chail Sanctuary",
+    "address": "Chail",
+    "location": {
+      "lat": 30.96,
+      "lng": 77.255
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "A protected forest area home to diverse flora and fauna, ideal for nature walks and bird watching.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "1e7f6c74-ce13-4258-9a49-bb65ae758549",
+    "name": "Kali Ka Tibba",
+    "address": "Chail",
+    "location": {
+      "lat": 30.967,
+      "lng": 77.26
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A revered hilltop temple dedicated to Goddess Kali, offering spiritual solace and panoramic views.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "ff5a659f-691d-4a29-b2b2-5b0d0a5e03de",
+    "name": "Chail Golf Course",
+    "address": "Chail",
+    "location": {
+      "lat": 30.962,
+      "lng": 77.2535
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 100,
+    "category": "Adventure",
+    "description": "One of Asia’s highest golf courses, surrounded by pine forests and breathtaking mountain scenery.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "4087627a-c69e-408f-a04a-8e2efe739d59",
+    "name": "Sadhupul Adventure Park",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9535,
+      "lng": 77.262
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 150,
+    "category": "Adventure",
+    "description": "Offers zip-lining, rock climbing, and rope courses amidst the scenic Himalayan foothills.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "7eed863c-28c4-4fd3-afff-3ebfda4edf08",
+    "name": "Chail Bazaar",
+    "address": "Chail",
+    "location": {
+      "lat": 30.961,
+      "lng": 77.254
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A vibrant local market where visitors can buy handicrafts, woolens, and taste local Himachali cuisine.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "a81934dc-24e0-4ab3-b5f1-9baa9c1850c8",
+    "name": "Brahma Kamal Trek",
+    "address": "Chail",
+    "location": {
+      "lat": 30.97,
+      "lng": 77.27
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "16:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A scenic trek through dense forests leading to the rare and beautiful Brahma Kamal flower habitat.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "d43839d1-69ad-4000-9108-bc0304995c06",
+    "name": "Chail Wildlife Observation Point",
+    "address": "Chail",
+    "location": {
+      "lat": 30.958,
+      "lng": 77.257
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "17:00",
+    "entryFee": 40,
+    "category": "Nature",
+    "description": "A quiet spot for spotting Himalayan wildlife including deer, pheasants, and occasionally leopards.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "7a59bd56-7fa1-426d-a5ad-c06dddb5fa21",
+    "name": "Chail Ridge Viewpoint",
+    "address": "Chail",
+    "location": {
+      "lat": 30.965,
+      "lng": 77.265
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:30",
+    "closingTime": "19:30",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Offers stunning sunrise and sunset views over the Shivalik mountain range and valleys below.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "128a16a9-3621-4fd8-bff1-e36c18a0b3f0",
+    "name": "Chail Waterfall",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9555,
+      "lng": 77.2605
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A hidden gem waterfall nestled in the forest, perfect for a refreshing break and photography.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "d7ec3ec8-f235-4303-b37c-78dbd3221e35",
+    "name": "Chail Nature Walk",
+    "address": "Chail",
+    "location": {
+      "lat": 30.959,
+      "lng": 77.256
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "06:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "Guided walks through deodar forests and meadows, rich in birdlife and Himalayan flora.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "e3d072fc-7fa4-4610-bd87-a2aec09636e3",
+    "name": "Chail Sunset Point",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9675,
+      "lng": 77.268
+    },
+    "timeToSpend": 1,
+    "openingTime": "16:30",
+    "closingTime": "19:30",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A peaceful spot to witness breathtaking sunsets over the Himalayan foothills.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "a3902a0c-2f3c-4e15-b59a-f52336b3376d",
+    "name": "Chail Heritage Walk",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9625,
+      "lng": 77.253
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "16:00",
+    "entryFee": 30,
+    "category": "Cultural",
+    "description": "Explore the colonial-era buildings, old temples, and royal heritage sites with a local guide.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "4274eaac-d7e4-47fa-9a89-2a829746430f",
+    "name": "Chail Local Handicraft Center",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9605,
+      "lng": 77.2545
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Discover traditional Himachali crafts and textiles, with opportunities to meet local artisans.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "44cef23c-b2b6-4054-97e3-72580d7fe790",
+    "name": "Chail Deodar Forest",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9615,
+      "lng": 77.2555
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Expansive forests of ancient deodar trees, ideal for hiking, meditation, and nature photography.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "1e45471b-1c09-4360-8733-2a1c495f9697",
+    "name": "Chail Bird Watching Spot",
+    "address": "Chail",
+    "location": {
+      "lat": 30.957,
+      "lng": 77.258
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "10:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "Early morning birdwatching location to spot Himalayan species like monal, woodpeckers, and thrushes.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "59f661e4-f1b3-43f6-b32c-dee1e350615a",
+    "name": "Chail Meditation Retreat",
+    "address": "Chail",
+    "location": {
+      "lat": 30.964,
+      "lng": 77.259
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 100,
+    "category": "Cultural",
+    "description": "A tranquil retreat offering guided meditation sessions amidst serene Himalayan surroundings.",
+    "rating": 4.8,
+    "popularity": 6
+  },
+  {
+    "id": "c93626e5-386f-4c02-93c1-0a195e2628df",
+    "name": "Chail Local Cuisine Experience",
+    "address": "Chail",
+    "location": {
+      "lat": 30.9612,
+      "lng": 77.2542
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Taste authentic Himachali dishes prepared by local families, offering a unique culinary insight.",
+    "rating": 4.5,
+    "popularity": 8
+  }
+]

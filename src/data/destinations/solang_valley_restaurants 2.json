@@ -1,0 +1,152 @@
+[
+  {
+    "id": "5530a29d-ef37-4dc4-ad46-b2208d7ff905",
+    "name": "Solang Valley Cafe",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2631,
+      "lng": 77.1887
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.5,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "mealType": "any"
+  },
+  {
+    "id": "97f191cc-abf4-4955-9499-ac9901e7519f",
+    "name": "The Lazy Dog",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2645,
+      "lng": 77.1895
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 1200,
+    "rating": 4.3,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "cf05469e-bff5-4e58-9234-089904025dfe",
+    "name": "Cafe Solang",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2627,
+      "lng": 77.1879
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 500,
+    "rating": 4,
+    "openingTime": "07:30",
+    "closingTime": "19:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "48adef08-06bd-4278-bc9a-21df2d64a99f",
+    "name": "Himalayan Trout House",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.265,
+      "lng": 77.1902
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 1500,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "21:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "b4570a0c-031c-412f-a994-46456cda914e",
+    "name": "Snowland Restaurant",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2638,
+      "lng": 77.1883
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 800,
+    "rating": 4.2,
+    "openingTime": "09:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "c9765909-34af-4053-8509-591b5c34b18a",
+    "name": "Mountain Top Dhaba",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2642,
+      "lng": 77.189
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 400,
+    "rating": 4.1,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "aa647706-9bcc-4e9d-9570-875844259feb",
+    "name": "Solang Street Food Hub",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2635,
+      "lng": 77.188
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 300,
+    "rating": 4.4,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "ab20d48d-9a62-4b4c-a421-3ae7ae1d2d5b",
+    "name": "Alpine Bistro",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2653,
+      "lng": 77.1905
+    },
+    "cuisine": "Fine Dining",
+    "avgCostForTwo": 2000,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "4923b4ae-c5d6-43b4-9b8b-23396773155e",
+    "name": "Chai & Chill Solang",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.263,
+      "lng": 77.1875
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 350,
+    "rating": 4.3,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "83ce639b-777d-46e3-8f94-c6f7718a841d",
+    "name": "Himalayan Spice",
+    "address": "Solang Valley",
+    "location": {
+      "lat": 32.2648,
+      "lng": 77.1898
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 900,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  }
+]

@@ -70,19 +70,13 @@ export default function MapView() {
             let hotelPoint: [number, number] | null = null;
             const color = dayColors[(day.dayNumber - 1) % dayColors.length];
 
-            if (day.hotel) {
-                hotelMarkers.push({ hotel: day.hotel, locality: day.locality });
-                const pt: [number, number] = [day.hotel.location.lng, day.hotel.location.lat];
+            const activeHotel = selectedHotels[day.locality] || day.hotel;
+            if (activeHotel) {
+                hotelMarkers.push({ hotel: activeHotel, locality: day.locality });
+                const pt: [number, number] = [activeHotel.location.lng, activeHotel.location.lat];
                 routePoints.push(pt); // Maplibre uses [lng, lat]
                 hotelPoint = pt;
-                allPoints.push({ lat: day.hotel.location.lat, lng: day.hotel.location.lng });
-            } else if (selectedHotels[day.locality]) {
-                const h = selectedHotels[day.locality];
-                hotelMarkers.push({ hotel: h, locality: day.locality });
-                const pt: [number, number] = [h.location.lng, h.location.lat];
-                routePoints.push(pt);
-                hotelPoint = pt;
-                allPoints.push({ lat: h.location.lat, lng: h.location.lng });
+                allPoints.push({ lat: activeHotel.location.lat, lng: activeHotel.location.lng });
             }
 
             for (const item of day.items) {
@@ -139,7 +133,7 @@ export default function MapView() {
                 const orderedPoints: { lat: number; lng: number }[] = [];
 
                 // Start with hotel
-                const hotel = day.hotel || selectedHotels[day.locality];
+                const hotel = selectedHotels[day.locality] || day.hotel;
                 if (hotel) orderedPoints.push(hotel.location);
 
                 // Add spots/restaurants in schedule order
@@ -332,21 +326,9 @@ export default function MapView() {
         setContextMenuPopup(null);
 
         try {
-            const res = await fetch('/api/deltaUpdate', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    action: 'add_place',
-                    itinerary,
-                    payload: { spot: newSpot, dayNumber: selectedDay || 1 },
-                }),
-            });
-            const data = await res.json();
-            if (data.success) {
-                useSafarStore.getState().setItinerary(data.itinerary);
-            }
+            await useSafarStore.getState().addSpotToDay(selectedDay || 1, newSpot);
         } catch (err) {
-            console.error('Failed to add place:', err);
+            console.error('Failed to add custom place:', err);
         }
     };
 
@@ -378,7 +360,7 @@ export default function MapView() {
                         closeOnClick={false}
                     >
                         <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 200, padding: 8 }}>
-                            <strong style={{ fontSize: 13, display: 'block', marginBottom: 6 }}>{contextMenuPopup.placeName}</strong>
+                            <strong style={{ fontSize: 13, display: 'block', marginBottom: 6, color: '#312e81' }}>{contextMenuPopup.placeName}</strong>
                             <p style={{ fontSize: 11, color: '#666', margin: '0 0 10px 0' }}>{contextMenuPopup.address}</p>
                             <button
                                 onClick={confirmAddContextPlace}
@@ -472,7 +454,7 @@ export default function MapView() {
                     >
                         <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 200, padding: 8 }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
-                                <strong style={{ fontSize: 14 }}>{popupInfo.data.name}</strong>
+                                <strong style={{ fontSize: 14, color: '#312e81' }}>{popupInfo.data.name}</strong>
                                 <span style={{ background: '#6366f1', color: 'white', fontSize: 10, padding: '2px 6px', borderRadius: 4 }}>Day {popupInfo.dayNum}</span>
                             </div>
                             <p style={{ fontSize: 12, color: '#666', margin: '4px 0' }}>{popupInfo.data.description}</p>

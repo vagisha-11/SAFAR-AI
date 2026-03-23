@@ -1,0 +1,152 @@
+[
+  {
+    "id": "375acd24-d821-4f73-bef5-4ae7f490cd85",
+    "name": "The Square - The Elgin",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3314,
+      "lng": 88.6131
+    },
+    "cuisine": "Continental, North Indian",
+    "avgCostForTwo": 1500,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "8cdcf2e2-13ed-423f-9c5f-fed3b3a9384e",
+    "name": "Taste of Tibet",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3319,
+      "lng": 88.6135
+    },
+    "cuisine": "Local Authentic, Tibetan",
+    "avgCostForTwo": 600,
+    "rating": 4.3,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "93a0b296-0eb3-42d5-8310-dc76cb3c0811",
+    "name": "Baker's Cafe",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3317,
+      "lng": 88.6138
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "79f0af6b-a3e3-4af4-88b8-0cea42a59ee3",
+    "name": "Roll House",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3321,
+      "lng": 88.614
+    },
+    "cuisine": "Street Food, Fast Food",
+    "avgCostForTwo": 300,
+    "rating": 4,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "dfa8f3f0-d16f-453b-9ba5-2c2df1bcf1a1",
+    "name": "Momo Magic",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3315,
+      "lng": 88.6133
+    },
+    "cuisine": "Local Authentic, Tibetan",
+    "avgCostForTwo": 400,
+    "rating": 4.2,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "0b88e222-29ea-4a46-ad2b-22577759e204",
+    "name": "Cafe Live & Loud",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.332,
+      "lng": 88.6139
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 800,
+    "rating": 4.3,
+    "openingTime": "09:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "7a58dc4c-70d8-4e11-96b5-0e8dca464480",
+    "name": "Taste of Sikkim",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3318,
+      "lng": 88.6136
+    },
+    "cuisine": "Local Authentic, Sikkimese",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "343b600b-700e-41b0-99d7-6b8fedbd3b8c",
+    "name": "The Coffee Shop",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3316,
+      "lng": 88.6137
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 600,
+    "rating": 4.1,
+    "openingTime": "07:30",
+    "closingTime": "21:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "0dd11441-8f3a-42b8-864f-05a32b007078",
+    "name": "Parivar Restaurant",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3322,
+      "lng": 88.6141
+    },
+    "cuisine": "North Indian, Chinese",
+    "avgCostForTwo": 900,
+    "rating": 4.2,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "92e627a5-e6a6-4516-a1f0-6ad4e217109b",
+    "name": "Naga Kitchen",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3313,
+      "lng": 88.6132
+    },
+    "cuisine": "Local Authentic, Naga",
+    "avgCostForTwo": 500,
+    "rating": 4.3,
+    "openingTime": "11:00",
+    "closingTime": "21:00",
+    "mealType": "lunch"
+  }
+]

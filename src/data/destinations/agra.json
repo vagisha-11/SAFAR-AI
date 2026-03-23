@@ -1,0 +1,359 @@
+[
+  {
+    "id": "92f76e49-e0e0-4ed1-be6c-d82d1d8cbc2a",
+    "name": "Taj Mahal",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1751,
+      "lng": 78.0421
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 1300,
+    "category": "Heritage",
+    "description": "The iconic white marble mausoleum and symbol of eternal love, renowned worldwide for its stunning architecture and intricate craftsmanship.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "f7cc73b6-c06f-4938-9491-fd881718ac3b",
+    "name": "Agra Fort",
+    "address": "Agra",
+    "location": {
+      "lat": 27.179,
+      "lng": 78.0211
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 650,
+    "category": "Heritage",
+    "description": "A massive red sandstone fort with beautiful palaces, halls, and mosques, offering panoramic views of the Taj Mahal across the Yamuna River.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "1204a3f8-d55b-40eb-8306-ee4707f7a1b5",
+    "name": "Mehtab Bagh",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1767,
+      "lng": 78.0486
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A serene garden complex perfectly aligned with the Taj Mahal, ideal for sunset views and peaceful walks along the Yamuna River.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "91e71a7d-1393-43a3-b8bc-6847a54ac2d8",
+    "name": "Itimad-ud-Daulah's Tomb",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1833,
+      "lng": 78.0369
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 650,
+    "category": "Heritage",
+    "description": "Often called the 'Baby Taj', this exquisite marble mausoleum is known for its delicate pietra dura inlay work and beautiful gardens.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "feb7d018-8b42-4da2-beb3-2ea21be89908",
+    "name": "Jama Masjid",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1765,
+      "lng": 78.0219
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A grand mosque built by Shah Jahan with impressive architecture and a peaceful courtyard, still active for prayers.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "9d5f32a5-84db-452c-b537-cc6db42257e8",
+    "name": "Kinari Bazaar",
+    "address": "Agra",
+    "location": {
+      "lat": 27.176,
+      "lng": 78.0215
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling traditional market famous for its vibrant fabrics, jewelry, handicrafts, and local street food experiences.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "889d3d0d-d486-4893-89dd-b1de227f693b",
+    "name": "Mankameshwar Temple",
+    "address": "Agra",
+    "location": {
+      "lat": 27.183,
+      "lng": 78.022
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "05:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "An ancient Shiva temple known for its spiritual ambiance and intricate carvings, attracting devotees and tourists alike.",
+    "rating": 4.2,
+    "popularity": 6
+  },
+  {
+    "id": "5f554ce1-2098-4f11-8583-3824b435b992",
+    "name": "Chini Ka Rauza",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1895,
+      "lng": 78.038
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A unique funerary monument decorated with glazed tiles, showcasing Persian architectural influence and vibrant colors.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "120c4418-ea86-4fa4-8eb7-eaa90cabb39c",
+    "name": "Taj Nature Walk",
+    "address": "Agra",
+    "location": {
+      "lat": 27.174,
+      "lng": 78.041
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A tranquil nature trail near the Taj Mahal offering birdwatching opportunities and a refreshing escape from the city bustle.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "2d4ea78f-a570-4ade-9341-c412eb116a2c",
+    "name": "Ram Bagh",
+    "address": "Agra",
+    "location": {
+      "lat": 27.189,
+      "lng": 78.032
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "The oldest Mughal garden in India, featuring lush greenery, fountains, and historical pavilions perfect for a leisurely stroll.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "3dcf7c63-74fd-4840-be71-efeff7a74e86",
+    "name": "Fatehpur Sikri",
+    "address": "Agra",
+    "location": {
+      "lat": 27.0934,
+      "lng": 77.6606
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 650,
+    "category": "Heritage",
+    "description": "A UNESCO World Heritage site and former Mughal capital, known for its stunning red sandstone palaces, mosques, and courtyards.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "2951c1cb-1b1a-49b1-b6c9-69829d3939ba",
+    "name": "Mariyam's Tomb",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1795,
+      "lng": 78.034
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A lesser-known tomb dedicated to Mariam-uz-Zamani, showcasing beautiful Mughal architecture and peaceful surroundings.",
+    "rating": 4,
+    "popularity": 5
+  },
+  {
+    "id": "e95d6c0c-34d0-44e3-90fb-601af798a25b",
+    "name": "Sadar Bazaar",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1767,
+      "lng": 78.021
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A lively market area offering a wide range of souvenirs, leather goods, handicrafts, and authentic Mughlai cuisine.",
+    "rating": 4.2,
+    "popularity": 8
+  },
+  {
+    "id": "15670f47-5b7e-4c1c-ba18-12e73d438617",
+    "name": "Jama Masjid (Shah Jahan's)",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1765,
+      "lng": 78.0218
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A majestic mosque built by Shah Jahan, featuring grand architecture and a serene prayer hall.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "5991b2cf-f487-4fae-9b5a-b229c232ec1c",
+    "name": "Scindia Museum",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1798,
+      "lng": 78.0215
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "A museum housed in a former palace, showcasing artifacts, paintings, and memorabilia from the Scindia dynasty.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "d9c41f17-d9d6-4a0b-85c5-5f6b4f6bd177",
+    "name": "Mughal Heritage Walk",
+    "address": "Agra",
+    "location": {
+      "lat": 27.175,
+      "lng": 78.042
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A guided walking tour exploring the rich Mughal history, architecture, and local life around the Taj Mahal and Agra Fort.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "88c24b8f-119c-4acc-a46c-602e49f87822",
+    "name": "Kalakriti Cultural & Convention Center",
+    "address": "Agra",
+    "location": {
+      "lat": 27.19,
+      "lng": 78.034
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "entryFee": 300,
+    "category": "Cultural",
+    "description": "Home to the famous Mohabbat The Taj show, this center offers cultural performances and exhibitions celebrating Agra's heritage.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "242181df-164e-4c8c-9682-5b81ad17cd52",
+    "name": "Dayal Bagh",
+    "address": "Agra",
+    "location": {
+      "lat": 27.193,
+      "lng": 78.028
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A spiritual community and garden complex known for its peaceful environment, beautiful architecture, and social harmony.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "97f52561-3c12-4935-9e78-8350ee1b001d",
+    "name": "Jama Masjid (Old Agra)",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1764,
+      "lng": 78.022
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "One of the oldest mosques in Agra, featuring traditional Mughal architecture and a vibrant local atmosphere.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "02317d60-88a4-4fe5-b7cd-7fccebe6c702",
+    "name": "Taj Museum",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1755,
+      "lng": 78.0425
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 300,
+    "category": "Cultural",
+    "description": "Located near the Taj Mahal, this museum displays artifacts, models, and historical information about the monument and Mughal era.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "f36a85a6-c48d-4126-9500-5522773e3bd4",
+    "name": "Ram Bagh Palace",
+    "address": "Agra",
+    "location": {
+      "lat": 27.1885,
+      "lng": 78.0315
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A historic palace within Ram Bagh garden, showcasing Mughal architecture and offering a glimpse into royal life.",
+    "rating": 4.2,
+    "popularity": 6
+  }
+]

@@ -1,0 +1,342 @@
+[
+  {
+    "id": "fe559746-415c-4cbe-aedc-d65965a779df",
+    "name": "Pemayangtse Monastery",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3121,
+      "lng": 88.2643
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Temple",
+    "description": "One of the oldest and most important monasteries in Sikkim, known for its exquisite architecture and serene atmosphere.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "63317447-fecc-4b69-9efc-89903840f169",
+    "name": "Rabdentse Ruins",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3135,
+      "lng": 88.263
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 10,
+    "category": "Heritage",
+    "description": "Ancient ruins of the former capital of Sikkim, offering panoramic views and a glimpse into the region's royal past.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "7a2bba10-b98d-444f-b525-88e2fc1279ba",
+    "name": "Khecheopalri Lake",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.309,
+      "lng": 88.2635
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 15,
+    "category": "Nature",
+    "description": "A sacred lake revered by Buddhists and Hindus, surrounded by lush forests and believed to fulfill wishes.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "aab72616-8a0f-4d05-b18b-9adbddd28489",
+    "name": "Singshore Bridge",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.326,
+      "lng": 88.2638
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "The second highest suspension bridge in Asia, offering breathtaking views of the valley and surrounding hills.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "5436b1f0-e956-4770-a377-8218752ae7e9",
+    "name": "Rimbi Waterfalls",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3205,
+      "lng": 88.27
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A stunning waterfall nestled in the forest, perfect for nature lovers and photography enthusiasts.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "7ce8e708-e6f3-4943-b83a-a9b63a362dd4",
+    "name": "Kanchenjunga Falls",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.315,
+      "lng": 88.2655
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A beautiful waterfall named after the majestic Kanchenjunga mountain, surrounded by dense greenery.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "a067bb42-c724-44dc-8aef-a54dcf87f880",
+    "name": "Pelling Skywalk",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.314,
+      "lng": 88.263
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 30,
+    "category": "Adventure",
+    "description": "A thrilling glass skywalk offering panoramic views of the Kanchenjunga range and the valley below.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "a2ee515b-e023-42d3-b164-b5800d9539a7",
+    "name": "Chenrezig Statue",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3125,
+      "lng": 88.265
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A massive statue of the Buddhist deity Chenrezig, symbolizing compassion and peace, set against a scenic backdrop.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "f8a74988-348b-49bf-bb75-825c265e411c",
+    "name": "Tashiding Monastery",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.303,
+      "lng": 88.27
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Temple",
+    "description": "A sacred monastery perched on a hilltop, known for its spiritual significance and stunning views of the surrounding landscape.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "726ed6bc-c95c-4035-9e28-9efca124f283",
+    "name": "Sangachoeling Monastery",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.31,
+      "lng": 88.268
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 15,
+    "category": "Temple",
+    "description": "An ancient monastery offering tranquility and a glimpse into the rich Buddhist heritage of the region.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "43833a41-1c31-4751-8a4d-62d5f28b3070",
+    "name": "Pelling Market",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.313,
+      "lng": 88.264
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling local market where visitors can experience authentic Sikkimese culture, crafts, and cuisine.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "fc04ceff-07f9-40ac-b97f-70da94500914",
+    "name": "Kanchenjunga National Park",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.32,
+      "lng": 88.28
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A UNESCO World Heritage site featuring diverse flora and fauna, alpine meadows, and breathtaking mountain views.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "16ef2647-1c1f-44ae-bf13-2cdcfca5fb1c",
+    "name": "Hidden Valley",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.318,
+      "lng": 88.267
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A lesser-known serene valley surrounded by forests and mountains, ideal for peaceful walks and bird watching.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "16d452d5-321e-47f9-a912-797042f6ef5c",
+    "name": "Pelling Sky Resort",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3155,
+      "lng": 88.2655
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A resort offering adventure activities like zip-lining and rappelling with stunning views of the Kanchenjunga range.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "28a2f11f-80cc-41f6-95d8-7a34967b955d",
+    "name": "Sikkim Himalayan Zoological Park",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3105,
+      "lng": 88.269
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 25,
+    "category": "Nature",
+    "description": "A zoo specializing in Himalayan fauna, including red pandas, snow leopards, and Himalayan black bears.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "b138ac8a-3bda-4993-8c07-2363777e3e7d",
+    "name": "Pelling Sky Garden",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3145,
+      "lng": 88.2645
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 10,
+    "category": "Nature",
+    "description": "A beautifully maintained garden with exotic flowers and a peaceful ambiance, perfect for relaxation and photography.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "e9d19583-d87d-41e2-9cdb-b9971d39024c",
+    "name": "Lachung Monastery",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.32,
+      "lng": 88.275
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 15,
+    "category": "Temple",
+    "description": "A quaint monastery known for its vibrant murals and spiritual significance in the region.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "5c2e39a5-3925-4a7c-b80b-139072462c36",
+    "name": "Pelling Viewpoint",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3135,
+      "lng": 88.2635
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "05:30",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "A popular spot to catch spectacular sunrise and sunset views over the Kanchenjunga mountain range.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "04d68ceb-6aa6-4694-aec3-155239b2974a",
+    "name": "Singshore Rock Garden",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.327,
+      "lng": 88.2645
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A hidden gem featuring natural rock formations and a tranquil environment away from the crowds.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "63fe5953-aca1-4a51-a0f0-26ae7a8af227",
+    "name": "Local Handicraft Workshop",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.312,
+      "lng": 88.264
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "16:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Experience traditional Sikkimese crafts and learn from local artisans in an interactive workshop setting.",
+    "rating": 4.7,
+    "popularity": 8
+  }
+]

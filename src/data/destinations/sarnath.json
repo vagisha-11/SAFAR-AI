@@ -1,0 +1,342 @@
+[
+  {
+    "id": "4bbad9e3-cf32-4e82-a170-7dbd57790633",
+    "name": "Dhamek Stupa",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3812,
+      "lng": 83.0223
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 30,
+    "category": "Heritage",
+    "description": "A massive cylindrical stupa marking the spot where Buddha gave his first sermon, showcasing intricate stone carvings.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "57b4736b-e6ee-4393-9684-28aa455d4142",
+    "name": "Sarnath Archaeological Museum",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3825,
+      "lng": 83.0228
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 40,
+    "category": "Cultural",
+    "description": "Museum housing exquisite sculptures and relics from the ancient Buddhist site, including the famous Lion Capital of Ashoka.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "9e461d5d-cee2-4acc-9c28-062923249dca",
+    "name": "Chaukhandi Stupa",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.379,
+      "lng": 83.022
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A unique octagonal stupa built to commemorate Buddha's visit to Sarnath, surrounded by lush gardens.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "69324fb8-db9e-4957-b4ee-40db952d3b2b",
+    "name": "Mulagandha Kuti Vihar",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3805,
+      "lng": 83.0235
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:30",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A modern Buddhist temple known for its beautiful murals depicting the life of Buddha and serene meditation spaces.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "27a96219-179e-4e1b-a3dc-349ca24e6cc3",
+    "name": "Ashoka Pillar",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.381,
+      "lng": 83.0215
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 10,
+    "category": "Heritage",
+    "description": "The famous pillar erected by Emperor Ashoka, featuring the iconic Lion Capital symbolizing India’s national emblem.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "33339fac-5cb7-4f29-9dd2-676be486a1a6",
+    "name": "Sarnath Deer Park",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.382,
+      "lng": 83.024
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A peaceful park where deer roam freely, reminiscent of the place where Buddha first taught after enlightenment.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "7c4d93a5-64ac-4cec-a96b-e0a814e45f9f",
+    "name": "Buddha Statue at Sarnath",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3808,
+      "lng": 83.023
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "A serene statue of Buddha in meditation, a popular spot for reflection and photography.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "a7715aa6-41fc-406e-9504-be71c4d57e88",
+    "name": "Sarnath International Buddhist Centre",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3795,
+      "lng": 83.0238
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A vibrant center promoting Buddhist teachings and cultural exchange with peaceful gardens and meditation halls.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "103d9507-feee-40cf-954c-a361705a2411",
+    "name": "Sarnath Market",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.378,
+      "lng": 83.025
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Local Experience",
+    "description": "Bustling local market offering handicrafts, Buddhist artifacts, and traditional snacks, perfect for souvenirs.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "69846e51-c330-4cb3-9848-5206950d7ccd",
+    "name": "Sarnath Meditation Center",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3815,
+      "lng": 83.0245
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A tranquil spot offering guided meditation sessions amidst the spiritual ambiance of Sarnath.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "5d5a8b64-ab95-45d7-839e-bbf7e7db9cf6",
+    "name": "Sarnath Handicraft Emporium",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3775,
+      "lng": 83.0248
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Local Experience",
+    "description": "Shop featuring exquisite local handicrafts, Buddhist statues, and traditional textiles made by local artisans.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "9919c056-dcd3-48e5-beaf-775204d49e09",
+    "name": "Sarnath Buddhist Monastery",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.38,
+      "lng": 83.0225
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A peaceful monastery where monks reside and visitors can witness daily rituals and chants.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "12acbf09-745b-4188-8a9c-e00b62cc8ee9",
+    "name": "Sarnath Ashram",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3798,
+      "lng": 83.021
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A serene ashram offering spiritual retreats and yoga sessions in the heart of Sarnath.",
+    "rating": 4.5,
+    "popularity": 6
+  },
+  {
+    "id": "e0bc06d0-1425-46b2-81c9-01349126bc1e",
+    "name": "Sarnath Light and Sound Show",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.381,
+      "lng": 83.022
+    },
+    "timeToSpend": 1,
+    "openingTime": "19:00",
+    "closingTime": "20:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "An evening show narrating the life of Buddha and the history of Sarnath through captivating lights and sounds.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "b3f56a39-888a-496d-9202-b7f8f3be2ffc",
+    "name": "Sarnath Sunset Point",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3822,
+      "lng": 83.0255
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "17:30",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A quiet spot offering breathtaking views of the sunset over the ancient ruins and surrounding greenery.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "fb8f2bee-d312-4212-921d-f11402706b45",
+    "name": "Sarnath Buddhist Festival Grounds",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3803,
+      "lng": 83.0233
+    },
+    "timeToSpend": 1,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Venue for annual Buddhist festivals featuring traditional music, dance, and cultural performances.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "e0212809-bccc-41f7-81a3-c87ddd739d80",
+    "name": "Sarnath Sculpture Park",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3792,
+      "lng": 83.0242
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "An open-air park displaying ancient and modern Buddhist sculptures amidst landscaped gardens.",
+    "rating": 4.5,
+    "popularity": 6
+  },
+  {
+    "id": "a28487cf-aa62-4424-9e2e-e5ebbd07f999",
+    "name": "Sarnath Local Cuisine Experience",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3785,
+      "lng": 83.0252
+    },
+    "timeToSpend": 1,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Local Experience",
+    "description": "Taste authentic vegetarian dishes inspired by Buddhist traditions at local eateries around Sarnath.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "12fb48f9-0805-424e-af64-5c65f3c2b771",
+    "name": "Sarnath Meditation Trail",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3818,
+      "lng": 83.0247
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A serene walking trail through peaceful groves designed for meditation and mindfulness practice.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "d8c7070b-97c5-4b90-8f7b-164db9bb9b66",
+    "name": "Sarnath Buddhist Library",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3807,
+      "lng": 83.0237
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A specialized library housing ancient Buddhist texts and modern literature for scholars and visitors.",
+    "rating": 4.5,
+    "popularity": 6
+  }
+]

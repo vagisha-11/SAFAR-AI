@@ -1,0 +1,342 @@
+[
+  {
+    "id": "966f6bee-d192-4eca-ab19-42ea38678d7f",
+    "name": "Kufri Fun World",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.0989,
+      "lng": 77.2674
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 150,
+    "category": "Adventure",
+    "description": "A popular amusement park offering thrilling rides and a scenic view of the snow-capped mountains, perfect for families and adventure seekers.",
+    "rating": 4.5,
+    "popularity": 10
+  },
+  {
+    "id": "24a135dc-d6e2-4de1-993c-f8f13862244c",
+    "name": "Mahasu Peak",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1032,
+      "lng": 77.2701
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "The highest peak in Kufri offering panoramic views of the Himalayas and a serene environment for trekking enthusiasts.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "4c0248f1-d826-4a42-84d0-0a1f88808784",
+    "name": "Himalayan Nature Park",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1005,
+      "lng": 77.2687
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A wildlife sanctuary showcasing Himalayan flora and fauna, including rare species like the Himalayan monal and musk deer.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "289bcdff-1a99-433f-8400-494fe1d5b7da",
+    "name": "Fagu Valley",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.095,
+      "lng": 77.26
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A tranquil valley known for its apple orchards and scenic beauty, ideal for a peaceful walk and photography.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "1a068979-1f71-480b-8ab4-d84af8df3840",
+    "name": "Kufri Mini Zoo",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.099,
+      "lng": 77.268
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "16:00",
+    "entryFee": 30,
+    "category": "Cultural",
+    "description": "A small zoo featuring local Himalayan animals, offering an educational experience for children and nature lovers.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "83f12de7-4647-47b5-81a4-f659a0a59c36",
+    "name": "Skiing Slopes Kufri",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1015,
+      "lng": 77.2695
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "16:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "Famous for winter sports, these slopes offer skiing and snowboarding experiences for beginners and experts alike.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "90e919e8-e4bf-4237-b48f-1d102f8b7609",
+    "name": "Indira Tourist Park",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.097,
+      "lng": 77.265
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A beautifully maintained park with lush greenery and walking trails, perfect for a quick nature break.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "67c6fea1-7f89-43be-a166-dbc357c2c2c3",
+    "name": "Gurudwara Shri Guru Singh Sabha Kufri",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.0955,
+      "lng": 77.2665
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A peaceful Sikh temple known for its spiritual ambiance and beautiful architecture.",
+    "rating": 4.5,
+    "popularity": 6
+  },
+  {
+    "id": "715eea3e-b9a8-4033-bce9-b6a96f6952f0",
+    "name": "Chini Bungalow",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.102,
+      "lng": 77.271
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A historic colonial-era bungalow showcasing traditional architecture and offering a glimpse into Kufri's past.",
+    "rating": 4.2,
+    "popularity": 6
+  },
+  {
+    "id": "a109bb15-a609-4c0c-a474-e5ece3332fc8",
+    "name": "Kufri Yak Ride",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1,
+      "lng": 77.2685
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "16:00",
+    "entryFee": 200,
+    "category": "Adventure",
+    "description": "Experience a unique yak ride through the scenic trails of Kufri, a fun activity for all ages.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "2ac67bd1-b825-41bf-ab3a-7c1de6efcdba",
+    "name": "Mahasu Temple",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.104,
+      "lng": 77.2715
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "An ancient temple dedicated to Lord Mahasu, set amidst serene surroundings offering spiritual solace.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "fc7eddee-d8da-4345-801e-683bee56912c",
+    "name": "Kufri Sunset Point",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.101,
+      "lng": 77.269
+    },
+    "timeToSpend": 1,
+    "openingTime": "16:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A hidden gem spot perfect for watching breathtaking sunsets over the Himalayan ranges.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "ffe75448-08f3-464e-8e2d-7f9c02775eda",
+    "name": "Apple Orchard Walk",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.096,
+      "lng": 77.262
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Stroll through lush apple orchards and learn about local apple farming traditions from friendly farmers.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "f6a87546-49de-4917-a05f-be7b293c4c99",
+    "name": "Kufri Horse Riding",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.0995,
+      "lng": 77.2678
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 150,
+    "category": "Adventure",
+    "description": "Enjoy a scenic horse ride through the hills and valleys of Kufri, suitable for beginners and children.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "94ec3816-356b-4a8d-bd09-7bbcdd17ecb3",
+    "name": "Kufri Ice Skating Rink",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.098,
+      "lng": 77.2682
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "16:00",
+    "entryFee": 250,
+    "category": "Adventure",
+    "description": "A seasonal ice skating rink offering fun and excitement for visitors during the winter months.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "b19a640d-8a27-481e-9455-c7c5581043b6",
+    "name": "Kufri Market",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.0975,
+      "lng": 77.266
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling local market where you can shop for handicrafts, woolens, and taste local Himachali cuisine.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "81cf5eb3-2514-4e06-abfc-1577c70c0afa",
+    "name": "Tobogganing Track Kufri",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1008,
+      "lng": 77.2698
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 200,
+    "category": "Adventure",
+    "description": "A thrilling tobogganing track offering an exhilarating ride down the snowy slopes for all age groups.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "62108d5d-e1fc-42d8-af1a-9b0f73de55a1",
+    "name": "Kufri Bird Watching Spot",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.0958,
+      "lng": 77.2635
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A lesser-known spot ideal for bird watchers to spot Himalayan birds in their natural habitat.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "76d17291-393b-42be-9ee9-843a83dbffb1",
+    "name": "Kufri Ropeway",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.0992,
+      "lng": 77.2689
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 100,
+    "category": "Adventure",
+    "description": "A scenic ropeway ride offering stunning aerial views of Kufri and the surrounding Himalayan landscape.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "cae36d3e-2913-44ff-8402-15aea4494d8d",
+    "name": "Local Himachali Cuisine Experience",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.0978,
+      "lng": 77.2668
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Savor authentic Himachali dishes at local eateries, offering a rich taste of the region's culinary heritage.",
+    "rating": 4.6,
+    "popularity": 9
+  }
+]

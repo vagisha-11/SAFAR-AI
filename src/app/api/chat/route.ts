@@ -41,7 +41,7 @@ IMPORTANT — WHEN YOU HAVE ALL THE INFORMATION:
 Once you know all 5 fields, do not ask any more questions. Give a quick 1-sentence enthusiastic wrap-up (e.g. "Got it! I'm building your perfect itinerary now."), then on a NEW LINE append EXACTLY this JSON block (no markdown, just raw text):
 
 [TRIP_READY]
-{"source":"<city>","destination":"<city or region>","departureDate":"<YYYY-MM-DD>","returnDate":"<YYYY-MM-DD or same as departure if flexible>","isDateFlexible":<true|false>,"minDays":<number>,"maxDays":<number>,"budget":<number in INR>,"preferences":["<interest1>","<interest2>"],"mustExclude":["<concept1>"],"additionalNotes":"<nuance>"}
+{"source":"<city>","destination":"<city or region>","departureDate":"<YYYY-MM-DD>","returnDate":"<YYYY-MM-DD or same as departure if flexible>","isDateFlexible":<true|false>,"minDays":<number>,"maxDays":<number>,"budget":<number in INR>,"preferences":["<interest1>","<interest2>"],"mustExclude":["<concept1>"],"additionalNotes":"<nuance>","funFacts":["<fact1>","<fact2>","<fact3>"]}
 [/TRIP_READY]
 
 Rules for the JSON:
@@ -51,6 +51,7 @@ Rules for the JSON:
 - preferences is an array of strings from: Adventure, Heritage, Nature, Beach, Temple, Shopping, Food, Photography, Nightlife, Trekking, Wildlife, Cultural, Museum, Religious, Sunrise/Sunset.
 - mustExclude is an array of strings representing things the user explicitly DOES NOT WANT (e.g. "Temples", "Seafood", "Trekking").
 - additionalNotes is a string capturing any other abstract, nuanced context (e.g. "needs wheelchair access", "wants to wake up late", "allergic to nuts"). If none, leave empty.
+- funFacts is an array of exactly 3 distinct, highly interesting and engaging facts about the "destination" they chose.
 - Only emit [TRIP_READY] when you genuinely have all the info. Do not fabricate information the user has not provided.
 
 Today's date is ${new Date().toISOString().split('T')[0]}.`;

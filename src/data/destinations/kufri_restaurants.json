@@ -1,0 +1,152 @@
+[
+  {
+    "id": "583573be-fcdf-4505-a905-7f1a990fa794",
+    "name": "The Oberoi Cecil Restaurant",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1025,
+      "lng": 77.2678
+    },
+    "cuisine": "North Indian, Continental",
+    "avgCostForTwo": 2500,
+    "rating": 4.7,
+    "openingTime": "07:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "06912452-6c21-4763-ac3f-ffc2f425b373",
+    "name": "Cafe Sol",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1032,
+      "lng": 77.2685
+    },
+    "cuisine": "Continental, Cafe",
+    "avgCostForTwo": 800,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "d390cc57-998a-498d-a798-3c70ddc37d04",
+    "name": "Himachali Rasoi",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1018,
+      "lng": 77.269
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.5,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "720fbe70-9bdb-4616-bfac-6fb045c92746",
+    "name": "Kufri Fun World Food Court",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.104,
+      "lng": 77.2702
+    },
+    "cuisine": "Street Food, Snacks",
+    "avgCostForTwo": 300,
+    "rating": 4,
+    "openingTime": "09:00",
+    "closingTime": "19:00",
+    "mealType": "any"
+  },
+  {
+    "id": "ff432f4e-f2f2-4feb-9c52-d0d6c85576c3",
+    "name": "The Himalayan Cafe",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.102,
+      "lng": 77.2665
+    },
+    "cuisine": "North Indian, Tibetan",
+    "avgCostForTwo": 900,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "1f173b09-8d6e-403b-9823-8e132c0c25d4",
+    "name": "Snow View Restaurant",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1035,
+      "lng": 77.268
+    },
+    "cuisine": "North Indian, Chinese",
+    "avgCostForTwo": 700,
+    "rating": 4.1,
+    "openingTime": "07:30",
+    "closingTime": "21:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "d55d3edf-d0e4-48b1-8b16-52c521ec1fbd",
+    "name": "Cafe Solang",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.105,
+      "lng": 77.271
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 750,
+    "rating": 4.2,
+    "openingTime": "08:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "cdbac392-2906-4579-ac80-f140c601d9af",
+    "name": "Local Chai Stall Kufri",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1015,
+      "lng": 77.267
+    },
+    "cuisine": "Street Food, Beverages",
+    "avgCostForTwo": 100,
+    "rating": 4.6,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "mealType": "any"
+  },
+  {
+    "id": "88dabe47-02cd-41f0-b71f-72566dfb76c7",
+    "name": "The Green Hotel Restaurant",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1008,
+      "lng": 77.2655
+    },
+    "cuisine": "North Indian, Continental",
+    "avgCostForTwo": 1200,
+    "rating": 4.3,
+    "openingTime": "07:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "3e3d5936-c757-421e-b799-91c1221e8622",
+    "name": "Kufri Local Sweets & Snacks",
+    "address": "Kufri",
+    "location": {
+      "lat": 31.1022,
+      "lng": 77.2695
+    },
+    "cuisine": "Local Authentic, Street Food",
+    "avgCostForTwo": 250,
+    "rating": 4.5,
+    "openingTime": "09:00",
+    "closingTime": "20:00",
+    "mealType": "any"
+  }
+]

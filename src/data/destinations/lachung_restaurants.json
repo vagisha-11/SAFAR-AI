@@ -1,0 +1,152 @@
+[
+  {
+    "id": "89286077-fe40-402c-9792-09b05241783b",
+    "name": "The Lachung Kitchen",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.6831,
+      "lng": 88.6227
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.7,
+    "openingTime": "08:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "f82c09a7-dfd0-46e0-b2c0-cb7a2ca10889",
+    "name": "Snow View Restaurant",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.6825,
+      "lng": 88.623
+    },
+    "cuisine": "North Indian, Local Authentic",
+    "avgCostForTwo": 700,
+    "rating": 4.5,
+    "openingTime": "07:30",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "18d9bc0a-24cb-4406-9ca4-a2aee6d12ae7",
+    "name": "Lachung Yeti Restaurant",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.6837,
+      "lng": 88.6235
+    },
+    "cuisine": "Local Authentic, Tibetan",
+    "avgCostForTwo": 500,
+    "rating": 4.3,
+    "openingTime": "09:00",
+    "closingTime": "20:00",
+    "mealType": "any"
+  },
+  {
+    "id": "f751e8ce-74ac-4f70-b530-e45aeaec9098",
+    "name": "Mountain Top Cafe",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.684,
+      "lng": 88.6219
+    },
+    "cuisine": "Continental, Cafe",
+    "avgCostForTwo": 800,
+    "rating": 4.6,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "64a70711-ef18-4077-b146-72c464e0ab23",
+    "name": "Lachung Local Street Food Hub",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.682,
+      "lng": 88.622
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 300,
+    "rating": 4.4,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "71028c70-046d-4de4-b0dd-2393c9861494",
+    "name": "Blue Pine Restaurant",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.6833,
+      "lng": 88.624
+    },
+    "cuisine": "North Indian, Tibetan",
+    "avgCostForTwo": 650,
+    "rating": 4.2,
+    "openingTime": "08:30",
+    "closingTime": "21:30",
+    "mealType": "any"
+  },
+  {
+    "id": "b017fb42-2641-4128-aeab-91bb276dfdbd",
+    "name": "Everest View Cafe",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.6839,
+      "lng": 88.6225
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 750,
+    "rating": 4.5,
+    "openingTime": "06:30",
+    "closingTime": "18:30",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "4084f939-f10d-4368-918c-842c835c6d3b",
+    "name": "Lachung Riverside Dining",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.6815,
+      "lng": 88.6215
+    },
+    "cuisine": "Fine Dining, Local Authentic",
+    "avgCostForTwo": 1200,
+    "rating": 4.8,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "f5ce139c-743d-404a-a4e1-5eabdee96ad3",
+    "name": "Tibetan Momos Corner",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.6828,
+      "lng": 88.6233
+    },
+    "cuisine": "Street Food, Tibetan",
+    "avgCostForTwo": 350,
+    "rating": 4.6,
+    "openingTime": "11:00",
+    "closingTime": "20:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "c98b01f0-7fd8-46b5-8bf5-99ad8003bebc",
+    "name": "Lachung Heritage Restaurant",
+    "address": "Lachung",
+    "location": {
+      "lat": 27.6835,
+      "lng": 88.6222
+    },
+    "cuisine": "Local Authentic, North Indian",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "07:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  }
+]

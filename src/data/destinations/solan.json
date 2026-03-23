@@ -1,0 +1,342 @@
+[
+  {
+    "id": "54959fdf-20ac-4376-802c-97183d008183",
+    "name": "Mohan Shakti National Heritage Park",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9132,
+      "lng": 77.1031
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "A sprawling heritage park showcasing ancient Indian sculptures, temples, and mythological art in a serene setting.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "07b58935-9b68-4637-9ab8-f78d51e92e73",
+    "name": "Solan Brewery",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9125,
+      "lng": 77.0964
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "16:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Visit the famous brewery known for producing India’s iconic beer, with guided tours and tasting sessions.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "740e2e84-3360-4556-ac3c-fd7684d3390f",
+    "name": "Shoolini Mata Temple",
+    "address": "Solan",
+    "location": {
+      "lat": 30.912,
+      "lng": 77.101
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A revered temple dedicated to Goddess Shoolini, offering spiritual solace and panoramic views of Solan town.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "11ecb7d4-ccbb-4f99-8183-9a454d5a2c05",
+    "name": "Kuthar Fort",
+    "address": "Solan",
+    "location": {
+      "lat": 31.0045,
+      "lng": 77.0587
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "An ancient fort perched on a hilltop with stunning views and rich history dating back to the 17th century.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "cf2cd949-2ee3-4994-b809-dd673737f257",
+    "name": "Bon Monastery",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9128,
+      "lng": 77.1105
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A peaceful monastery representing the Bon religion, featuring unique architecture and spiritual ambiance.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "2433cbf0-6868-423e-8305-5e3600c62cd0",
+    "name": "Jatoli Shiv Temple",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9301,
+      "lng": 77.0903
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A hidden gem temple dedicated to Lord Shiva, surrounded by lush greenery and tranquil environment.",
+    "rating": 4.5,
+    "popularity": 6
+  },
+  {
+    "id": "54d6ab90-f5ae-4138-b857-bade921d4d88",
+    "name": "Solan Market",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9123,
+      "lng": 77.102
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Bustling local market offering Himachali handicrafts, fresh produce, and street food for an authentic experience.",
+    "rating": 4.1,
+    "popularity": 8
+  },
+  {
+    "id": "d303d62d-a8e0-48b8-9eb7-efd1fb987aea",
+    "name": "Karol Tibba Trek",
+    "address": "Solan",
+    "location": {
+      "lat": 30.925,
+      "lng": 77.095
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A scenic trek through dense forests leading to a hilltop with breathtaking views of the Solan valley.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "96d2518a-a7c2-47ab-af6a-9cd71d19a164",
+    "name": "Chail Palace",
+    "address": "Solan",
+    "location": {
+      "lat": 30.965,
+      "lng": 77.146
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 100,
+    "category": "Heritage",
+    "description": "A majestic palace built by the Maharaja of Patiala, showcasing royal architecture and lush gardens.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "d1c9ae80-f27b-483e-9a22-49020200cfad",
+    "name": "Badi Dhar",
+    "address": "Solan",
+    "location": {
+      "lat": 30.94,
+      "lng": 77.12
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A serene hilltop offering panoramic views of the Himalayas and a peaceful environment for nature lovers.",
+    "rating": 4.8,
+    "popularity": 8
+  },
+  {
+    "id": "cb3f5055-88f9-4f31-9a95-68226cfb3e3f",
+    "name": "Kasauli Brewery",
+    "address": "Solan",
+    "location": {
+      "lat": 30.887,
+      "lng": 76.963
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "16:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Historic brewery near Solan known for its unique brewing techniques and heritage tours.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "c89c3363-3d00-48f7-830d-5a9320c82d94",
+    "name": "Tattapani Hot Springs",
+    "address": "Solan",
+    "location": {
+      "lat": 31,
+      "lng": 77.1
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "Natural hot water springs believed to have medicinal properties, perfect for relaxation and rejuvenation.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "7023cee2-6f13-4ac4-ac93-b079942de07d",
+    "name": "Kuthar Village",
+    "address": "Solan",
+    "location": {
+      "lat": 31.002,
+      "lng": 77.06
+    },
+    "timeToSpend": 2,
+    "openingTime": "All Day",
+    "closingTime": "All Day",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A quaint village offering authentic Himachali culture, traditional homes, and local cuisine experiences.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "aff0d0e8-92bc-469b-befb-713100e9a31b",
+    "name": "Sair Sapata",
+    "address": "Solan",
+    "location": {
+      "lat": 30.91,
+      "lng": 77.1
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "19:00",
+    "entryFee": 40,
+    "category": "Adventure",
+    "description": "A family-friendly amusement park with rides, boating, and picnic spots amidst natural surroundings.",
+    "rating": 4,
+    "popularity": 7
+  },
+  {
+    "id": "dbc6a8a9-a6b7-4e0a-a133-751266d13b3f",
+    "name": "Bhimakali Temple",
+    "address": "Solan",
+    "location": {
+      "lat": 30.915,
+      "lng": 77.105
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "An ancient temple dedicated to Goddess Bhimakali, known for its intricate woodwork and spiritual significance.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "a53e5731-350f-4ac8-85f1-fa775cf45fa6",
+    "name": "Shoolini Wildlife Sanctuary",
+    "address": "Solan",
+    "location": {
+      "lat": 30.92,
+      "lng": 77.11
+    },
+    "timeToSpend": 3,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A protected forest area home to diverse flora and fauna, ideal for wildlife enthusiasts and trekkers.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "ba54dc74-e170-4bbc-9737-402f9c6b5258",
+    "name": "Barog Railway Station",
+    "address": "Solan",
+    "location": {
+      "lat": 30.865,
+      "lng": 77.04
+    },
+    "timeToSpend": 1,
+    "openingTime": "All Day",
+    "closingTime": "All Day",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "A picturesque railway station on the Kalka-Shimla route, famous for its colonial architecture and scenic views.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "5e00194e-dda6-4eb9-80f3-e1077a90493f",
+    "name": "Gurudwara Shri Guru Nanak Ji",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9135,
+      "lng": 77.1025
+    },
+    "timeToSpend": 1,
+    "openingTime": "04:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A peaceful Gurudwara dedicated to Guru Nanak Dev Ji, welcoming visitors for prayer and community meals.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "610d986d-188c-4576-9000-4a72a093d15f",
+    "name": "Baba Balak Nath Temple",
+    "address": "Solan",
+    "location": {
+      "lat": 30.95,
+      "lng": 77.13
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A revered temple dedicated to Baba Balak Nath, attracting devotees with its spiritual atmosphere and hilltop views.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "b0c9976f-d457-42ad-9686-bd0e6c26c403",
+    "name": "Kasauli Sunset Point",
+    "address": "Solan",
+    "location": {
+      "lat": 30.885,
+      "lng": 76.96
+    },
+    "timeToSpend": 1,
+    "openingTime": "All Day",
+    "closingTime": "All Day",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A tranquil spot offering breathtaking sunset views over the hills, perfect for photography and relaxation.",
+    "rating": 4.7,
+    "popularity": 8
+  }
+]

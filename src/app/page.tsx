@@ -18,7 +18,7 @@ type Message = {
 export default function Home() {
     const {
         activeStep, isLoading,
-        setIsLoading, setLoadingMessage, setActiveStep,
+        setIsLoading, setLoadingMessage, setActiveStep, setLoadingFunFacts,
         setLocalitySplit, setAgentData, setItinerary, setBudget,
         setSelectedHotel, setTripInput,
         tripInput: storeTripInput, itinerary,
@@ -47,6 +47,11 @@ export default function Home() {
         };
 
         setTripInput(tripInput);
+        if (tripData.funFacts && Array.isArray(tripData.funFacts)) {
+            setLoadingFunFacts(tripData.funFacts);
+        } else {
+            setLoadingFunFacts([]);
+        }
         setIsLoading(true);
         setActiveStep('planning');
 
@@ -101,7 +106,7 @@ export default function Home() {
         } finally {
             setIsLoading(false);
         }
-    }, [setIsLoading, setLoadingMessage, setActiveStep, setLocalitySplit, setAgentData, setItinerary, setBudget, setSelectedHotel, setTripInput]);
+    }, [setIsLoading, setLoadingMessage, setActiveStep, setLoadingFunFacts, setLocalitySplit, setAgentData, setItinerary, setBudget, setSelectedHotel, setTripInput]);
 
     const isResults = activeStep === 'results';
 

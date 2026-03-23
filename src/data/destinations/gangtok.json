@@ -1,0 +1,325 @@
+[
+  {
+    "id": "33adc06f-ecb4-4766-9530-2bbd78b54f8e",
+    "name": "Rumtek Monastery",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3306,
+      "lng": 88.6067
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Temple",
+    "description": "A majestic Buddhist monastery known for its stunning architecture and spiritual ambiance, serving as the seat of the Karmapa Lama.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "065b7eeb-131b-421e-9465-2f02f81aebc1",
+    "name": "Tsomgo Lake",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.33,
+      "lng": 88.74
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A glacial lake at 12,400 ft surrounded by snow-capped mountains, offering breathtaking views and yak rides in winter.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "ad3d85d8-ddfd-4cd4-920b-dce20d10c1af",
+    "name": "MG Marg",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3314,
+      "lng": 88.6134
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "The vibrant pedestrian-only street in the heart of Gangtok, lined with shops, cafes, and cultural performances.",
+    "rating": 4.5,
+    "popularity": 10
+  },
+  {
+    "id": "238c950b-c650-41ff-8473-58a96853d61e",
+    "name": "Enchey Monastery",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.329,
+      "lng": 88.613
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Temple",
+    "description": "A serene 200-year-old monastery perched on a hill, known for its peaceful environment and annual religious dances.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "9d6eb23f-538c-46a1-a8ee-ba85d1f6a271",
+    "name": "Namgyal Institute of Tibetology",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.331,
+      "lng": 88.615
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 40,
+    "category": "Cultural",
+    "description": "A premier research center with a vast collection of Tibetan artifacts, manuscripts, and statues, offering deep insights into Tibetan culture.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "911ea221-192f-408f-95a1-54f111f53446",
+    "name": "Banjhakri Falls and Energy Park",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.324,
+      "lng": 88.621
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A beautiful waterfall surrounded by lush greenery and a park dedicated to traditional healing and shamanic energy.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "60696800-dd6f-40b5-9b3e-c2ba0ddf571b",
+    "name": "Do Drul Chorten",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3315,
+      "lng": 88.6155
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 10,
+    "category": "Temple",
+    "description": "One of the largest stupas in Sikkim, surrounded by 108 prayer wheels, symbolizing peace and enlightenment.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "ffd14705-0196-4696-8e4c-9ade152fc1e5",
+    "name": "Ganesh Tok",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.34,
+      "lng": 88.61
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "A small temple dedicated to Lord Ganesh offering panoramic views of Gangtok and the surrounding Himalayan ranges.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "fbd5cd46-60bf-4b8c-b04a-ea9f60e48113",
+    "name": "Tashi View Point",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.335,
+      "lng": 88.615
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "05:30",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A famous viewpoint to witness spectacular sunrise and views of Mount Kanchenjunga and the eastern Himalayas.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "e8cade02-aca9-4d11-bda3-d20cb76a331b",
+    "name": "Flower Exhibition Centre",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3318,
+      "lng": 88.6135
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Cultural",
+    "description": "A vibrant center showcasing exotic flowers and plants native to Sikkim, ideal for botany enthusiasts and photographers.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "49c817ca-8f13-41ee-9d66-63655f114d9d",
+    "name": "Ranka Monastery",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3405,
+      "lng": 88.62
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 15,
+    "category": "Temple",
+    "description": "A peaceful monastery known for its intricate murals and tranquil surroundings away from the city bustle.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "68f9ef26-4cba-4bb6-ac42-9cd48155636a",
+    "name": "Ganesh Tok Viewpoint",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.339,
+      "lng": 88.609
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A hidden gem viewpoint offering serene views of the city and the snow-capped mountains beyond.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "c82e0ad7-b858-41ce-b80c-91d805dcaa66",
+    "name": "Nam Nang View Point",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.345,
+      "lng": 88.605
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A lesser-known viewpoint offering stunning vistas of the Kanchenjunga range and the lush valleys below.",
+    "rating": 4.5,
+    "popularity": 6
+  },
+  {
+    "id": "56e55592-0294-4651-93c2-6e785cb42bad",
+    "name": "Do-Drul Chorten Stupa",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3316,
+      "lng": 88.6156
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 10,
+    "category": "Heritage",
+    "description": "A sacred stupa surrounded by prayer wheels, representing one of the most important religious sites in Gangtok.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "bdfa9366-ff2e-4da8-bda8-34fa54ce08b0",
+    "name": "Sikkim Himalayan Zoological Park",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.33,
+      "lng": 88.61
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "16:30",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A high-altitude zoo housing rare Himalayan species like red pandas and snow leopards in naturalistic habitats.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "ca948503-e7fa-4807-b4e3-0fc3ef238dd2",
+    "name": "Do-Drul Chorten Prayer Wheels",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3317,
+      "lng": 88.6157
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A circle of 108 prayer wheels surrounding the Do-Drul Chorten stupa, offering a unique spiritual experience.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "c5c915c8-4987-40e3-b65e-94b77529b992",
+    "name": "Lingdum Monastery",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.32,
+      "lng": 88.62
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Temple",
+    "description": "A peaceful monastery known for its beautiful murals and tranquil environment, perfect for meditation and reflection.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "319853b5-07e1-4478-9373-21061f0cc069",
+    "name": "Ganesh Tok Park",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3395,
+      "lng": 88.6105
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A quiet park near Ganesh Tok temple offering shaded seating and panoramic views of the city and mountains.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "cb9f70dd-0728-455a-958e-87f086b84fa0",
+    "name": "Namgyal Institute of Tibetology Library",
+    "address": "Gangtok",
+    "location": {
+      "lat": 27.3311,
+      "lng": 88.6151
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 40,
+    "category": "Cultural",
+    "description": "A specialized library within the institute housing rare Tibetan manuscripts and texts for scholarly research.",
+    "rating": 4.7,
+    "popularity": 7
+  }
+]

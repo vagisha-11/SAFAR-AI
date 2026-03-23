@@ -1,406 +1,367 @@
 // ============================================================
-// Safar AI — Agent B: Itinerary Maker
-// Core clustering + scheduling logic
+// Safar AI — Agent B: Itinerary Maker (TPOS Genetic Algorithm)
 // ============================================================
 import { NextRequest, NextResponse } from 'next/server';
-import { Spot, Restaurant, DayPlan, ItineraryItem, LatLng, P2PTravel } from '@/lib/types';
-import { getP2PCost, haversineDistance, getOlaRoute } from '@/lib/fakeApi';
-import { v4 as uuidv4 } from 'uuid';
+import { Spot, Restaurant, DayPlan, ItineraryItem, LatLng } from '@/lib/types';
+import { getP2PCost } from '@/lib/fakeApi';
+import { AzureOpenAI } from 'openai';
 
-const ROAD_SPEED_KMH = 25; // Average road speed in a city
-const DEFAULT_START_HOUR = 8; // 2 hours past ~6 AM sunrise
-const DEFAULT_MAX_HOURS = 14;
+const aiClient = new AzureOpenAI({
+    endpoint: process.env.AZURE_OPENAI_ENDPOINT || '',
+    apiKey: process.env.AZURE_OPENAI_API_KEY || '',
+    apiVersion: process.env.AZURE_OPENAI_API_VERSION || '2023-05-15',
+    deployment: process.env.AZURE_OPENAI_DEPLOYMENT || '',
+});
 
-interface AgentBInput {
-    spots: Spot[];
-    restaurants: Restaurant[];
-    daysInLocality: number;
-    locality: string;
-    cityCenter: LatLng;
-    hotelLocation?: LatLng; // The "Depot" for TOPTW
-    maxHoursPerDay: number;
-    userPreferences?: string[];
-    mustExclude?: string[];
-    additionalNotes?: string;
-    startDate: string;
-    arrivalHour?: number;
-    budget?: number;
+async function determineDayBounds(preferences: string[] = []): Promise<{ startHour: number, endHour: number }> {
+    if (preferences.length === 0 || !process.env.AZURE_OPENAI_ENDPOINT) {
+        return { startHour: 9, endHour: 16 };
+    }
+    const prompt = `Based on the user's travel preferences, decide the ideal sightseeing start hour (0-23) and end hour (0-23). 
+E.g., nightclubs/party -> start 11, end 23. Sunrise early birds -> start 5, end 15. Default -> start 9, end 16.
+Return ONLY raw JSON: {"startHour": number, "endHour": number}. No markdown.
+
+Preferences: ${preferences.join(', ')}`;
+    
+    try {
+        const response = await aiClient.chat.completions.create({
+            model: process.env.AZURE_OPENAI_DEPLOYMENT!,
+            messages: [{ role: 'system', content: prompt }],
+            temperature: 0.1,
+        });
+        const raw = response.choices[0]?.message?.content?.trim() || '{}';
+        const cleaned = raw.replace(/```json|```/g, '').trim();
+        const result = JSON.parse(cleaned);
+        return { 
+            startHour: typeof result.startHour === 'number' ? result.startHour : 9, 
+            endHour: typeof result.endHour === 'number' ? result.endHour : 16 
+        };
+    } catch {
+        return { startHour: 9, endHour: 16 };
+    }
+}
+const GA_POPULATION_SIZE = 50;
+const GA_GENERATIONS = 50;
+const MUTATION_RATE = 0.1;
+
+// Haversine distance used for rapid fitness evaluation
+function haversineDistance(loc1: LatLng, loc2: LatLng): number {
+    const R = 6371; // km
+    const dLat = (loc2.lat - loc1.lat) * (Math.PI / 180);
+    const dLon = (loc2.lng - loc1.lng) * (Math.PI / 180);
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(loc1.lat * (Math.PI / 180)) * Math.cos(loc2.lat * (Math.PI / 180)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
 }
 
-const RELEVANCE_THRESHOLD = 15; // Lowered threshold: let more diverse spots qualify (popular ones score high regardless)
+// Convert "HH:MM" to decimal hours (e.g., "14:30" -> 14.5)
+function timeToDec(t: string): number {
+    const [h, m] = t.split(':').map(Number);
+    return h + (m || 0) / 60;
+}
 
+// Convert decimal hours to "HH:MM"
+function formatTime(decimal: number): string {
+    const h = Math.floor(decimal) % 24;
+    const m = Math.round((decimal - Math.floor(decimal)) * 60);
+    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+}
+
+// ---------------------------------------------------------
+// 1. TPOS CATEGORY-RELATIVE SCORING
+// ---------------------------------------------------------
 /**
- * Score a spot (Profit Pi) based on priority:
- * 1. Semantic User preference match (HEAVILY WEIGHTED)
- * 2. Popularity (tourist visits)
- * 3. Rating (recommendations)
+ * Calculates SC(i, c) = (BaseScore_i / MaxBaseScore_c) * 100
+ * BaseScore = Popularity + (Rating * 5)
  */
-function scoreSpot(spot: Spot, preferences: string[], budget?: number, mustExclude: string[] = [], additionalNotes: string = ''): number {
-    // Base profit: Rating and Popularity
-    let profit = spot.popularity + spot.rating * 5;
+function calculateCategoryScores(spots: Spot[], preferences: string[], mustExclude: string[]): { [id: string]: number } {
+    const catMax: { [cat: string]: number } = {};
+    const baseScores: { [id: string]: number } = {};
 
-    // === POPULARITY FLOOR: Iconic spots are ALWAYS surfaced regardless of preference ===
-    // This ensures famous landmarks (Cellular Jail, Taj, etc.) are never filtered out.
-    if (spot.popularity >= 8) {
-        profit += 70; // Unconditional boost for must-visit landmarks
-    }
+    // First pass: find max score per category
+    for (const spot of spots) {
+        let base = spot.popularity + (spot.rating * 5);
+        if (spot.popularity >= 8) base += 70; // Iconic guarantee
 
-    // Budget Sensitivity
-    if (budget !== undefined) {
-        if (budget < 20000 && spot.entryFee > 500) {
-            profit -= 40; // Penalize expensive spots on tight budget
-        } else if (budget > 60000 && spot.entryFee > 1000) {
-            profit += 30; // Boost "Premium" experiences on high budget
-        }
-    }
-
-    // Hard Penalty for Exclusions (user said "no temples" etc.)
-    if (mustExclude && mustExclude.length > 0) {
-        for (const ex of mustExclude) {
-            const eText = ex.toLowerCase();
-            if (spot.category.toLowerCase().includes(eText) || spot.name.toLowerCase().includes(eText) || spot.description.toLowerCase().includes(eText)) {
-                profit -= 200; // massive penalty ensuring TOPTW drops it
+        // Exclusions (Hard penalty)
+        let excluded = false;
+        if (mustExclude && mustExclude.length > 0) {
+            for (const ex of mustExclude) {
+                const eText = ex.toLowerCase();
+                const searchCorpus = (spot.category + " | " + spot.name + " | " + spot.description).toLowerCase();
+                if (searchCorpus.includes(eText)) excluded = true;
+                if ((eText.includes('religion') || eText.includes('religious') || eText.includes('spiritual')) &&
+                   (searchCorpus.includes('temple') || searchCorpus.includes('mosque') || searchCorpus.includes('church') || searchCorpus.includes('shrine') || searchCorpus.includes('religious'))) {
+                    excluded = true;
+                }
             }
         }
-    }
+        if (excluded) {
+            base = -10000;
+        }
 
-    // Boost for Unstructured Additional Notes
-    if (additionalNotes) {
-        const notes = additionalNotes.toLowerCase();
-        if (notes.includes(spot.category.toLowerCase()) || notes.includes(spot.name.toLowerCase())) {
-            profit += 80;
+        baseScores[spot.id] = base;
+        const cat = spot.category;
+        if (base > 0) {
+            if (!catMax[cat] || base > catMax[cat]) catMax[cat] = base;
         }
     }
 
-    if (preferences.length === 0) return profit;
+    const finalScores: { [id: string]: number } = {};
+    for (const spot of spots) {
+        if (baseScores[spot.id] < 0) {
+            finalScores[spot.id] = -10000;
+            continue;
+        }
 
-    // Semantic Boost: User's stated interests get a strong priority boost
-    let matched = false;
-    for (const pref of preferences) {
-        const p = pref.toLowerCase();
-        if (spot.category.toLowerCase().includes(p) ||
-            spot.name.toLowerCase().includes(p) ||
-            spot.description.toLowerCase().includes(p)) {
-            profit += 100; // Large profit boost for preference matches
-            matched = true;
+        const cat = spot.category;
+        const maxScore = catMax[cat] || 1;
+        let normalized = (baseScores[spot.id] / maxScore) * 100;
+
+        // Semantic Boost (Matching user preferences)
+        if (preferences && preferences.length > 0) {
+            for (const pref of preferences) {
+                const p = pref.toLowerCase();
+                if (spot.category.toLowerCase().includes(p) ||
+                    spot.description.toLowerCase().includes(p) ||
+                    spot.name.toLowerCase().includes(p)) {
+                    normalized += 150; // Heavy reward for explicit preference
+                    break;
+                }
+            }
+        }
+        finalScores[spot.id] = normalized;
+    }
+
+    return finalScores;
+}
+
+// ---------------------------------------------------------
+// 2. TPOS GENETIC ALGORITHM
+// ---------------------------------------------------------
+
+/**
+ * Decodes a chromosome (array of Spots) into a valid daily schedule terminating at 16:00.
+ */
+function decodeChromosome(
+    chromosome: Spot[], 
+    depot: LatLng, 
+    startHour: number, 
+    scores: { [id: string]: number },
+    targetEndHour: number
+): { schedule: Spot[]; totalProfit: number; distancePenalty: number; waitPenalty: number; endHour: number, lastLoc: LatLng } {
+    
+    let currentHour = startHour;
+    let currentLocation = depot;
+    const schedule: Spot[] = [];
+    
+    let totalProfit = 0;
+    let distancePenalty = 0;
+    let waitPenalty = 0;
+
+    for (const spot of chromosome) {
+        const dist = haversineDistance(currentLocation, spot.location);
+        const travelHours = dist / 25; // Assume 25 km/h urban speed
+        let arrivalHour = currentHour + travelHours;
+
+        const openHour = timeToDec(spot.openingTime);
+        const closeHour = timeToDec(spot.closingTime);
+
+        // Does this spot push us past the determined end hour?
+        if (arrivalHour + spot.timeToSpend > targetEndHour) {
+            break; // Stop decoding, day is full
+        }
+
+        // Wait Penalty
+        if (arrivalHour < openHour) {
+            waitPenalty += (openHour - arrivalHour) * 50; 
+            arrivalHour = openHour;
+        }
+
+        // Close Penalty
+        if (arrivalHour > closeHour || arrivalHour + spot.timeToSpend > closeHour) {
+            continue; // Skip silently to see if the next spot fits
+        }
+
+        // Valid fit
+        schedule.push(spot);
+        totalProfit += scores[spot.id];
+        distancePenalty += dist * 5; // Distance penalty weight
+
+        currentHour = arrivalHour + spot.timeToSpend;
+        currentLocation = spot.location;
+    }
+
+    return { schedule, totalProfit, distancePenalty, waitPenalty, endHour: currentHour, lastLoc: currentLocation };
+}
+
+function evaluateFitness(
+    chromosome: Spot[], 
+    depot: LatLng, 
+    startHour: number, 
+    scores: { [id: string]: number },
+    targetEndHour: number
+): number {
+    const { totalProfit, distancePenalty, waitPenalty, lastLoc } = decodeChromosome(chromosome, depot, startHour, scores, targetEndHour);
+    const returnDist = haversineDistance(lastLoc, depot);
+    const returnPenalty = returnDist * 5;
+    
+    // TPOS Fitness Formula: F(ch) = Profit - Penalties
+    return totalProfit - distancePenalty - waitPenalty - returnPenalty;
+}
+
+function initializePopulation(spots: Spot[], size: number): Spot[][] {
+    const pop: Spot[][] = [];
+    for (let i = 0; i < size; i++) {
+        const shuffled = [...spots].sort(() => Math.random() - 0.5);
+        pop.push(shuffled);
+    }
+    return pop;
+}
+
+function tournamentSelection(population: Spot[][], fitnesses: number[], k = 3): Spot[] {
+    let bestIdx = Math.floor(Math.random() * population.length);
+    for (let i = 1; i < k; i++) {
+        const idx = Math.floor(Math.random() * population.length);
+        if (fitnesses[idx] > fitnesses[bestIdx]) {
+            bestIdx = idx;
         }
     }
+    return population[bestIdx];
+}
 
-    // Soft Penalty for low-relevance categories when preferences are set.
-    // Reduced from -60 to -25: allows these spots to fill itinerary slots naturally
-    // when there aren't enough preference-matched spots for the day.
-    if (!matched && (
-        spot.category === 'Religious' ||
-        spot.category === 'Temple' ||
-        spot.category === 'Museum' ||
-        spot.category === 'Heritage' ||
-        spot.category === 'Cultural'
-    )) {
-        profit -= 25; // Soft penalty, not a hard exclusion
+// Order Crossover (OX1)
+function crossover(parent1: Spot[], parent2: Spot[]): Spot[] {
+    const size = parent1.length;
+    let start = Math.floor(Math.random() * size);
+    let end = Math.floor(Math.random() * size);
+    if (start > end) [start, end] = [end, start];
+
+    const child = new Array(size).fill(null);
+    for (let i = start; i <= end; i++) {
+        child[i] = parent1[i];
     }
 
-    return profit;
-}
-
-/**
- * Check if a spot is open at the given time
- */
-function isSpotOpen(spot: Spot, timeHour: number): boolean {
-    const open = parseInt(spot.openingTime.split(':')[0]);
-    const close = parseInt(spot.closingTime.split(':')[0]);
-
-    if (close < open) {
-        // Overnight hours (e.g., 22:00 - 04:00)
-        return timeHour >= open || timeHour < close;
+    let p2Idx = 0;
+    for (let i = 0; i < size; i++) {
+        if (child[i] === null) {
+            while (child.some(s => s && s.id === parent2[p2Idx].id)) {
+                p2Idx++;
+            }
+            child[i] = parent2[p2Idx];
+        }
     }
-    return timeHour >= open && timeHour < (close === 0 ? 24 : close);
+    return child;
+}
+
+// Swap Mutation
+function mutate(chromosome: Spot[]): Spot[] {
+    if (Math.random() > MUTATION_RATE) return chromosome;
+    const size = chromosome.length;
+    if (size < 2) return chromosome;
+    const idx1 = Math.floor(Math.random() * size);
+    const idx2 = Math.floor(Math.random() * size);
+    
+    const mutant = [...chromosome];
+    const temp = mutant[idx1];
+    mutant[idx1] = mutant[idx2];
+    mutant[idx2] = temp;
+    return mutant;
 }
 
 /**
- * Calculate travel time between two points in minutes
+ * Runs the Genetic Algorithm for a SINGLE Day.
  */
-async function travelTimeMinutes(from: LatLng, to: LatLng): Promise<number> {
-    const { duration } = await getOlaRoute(from, to);
-    return duration;
+function runSequentialDailyGA(
+    availableSpots: Spot[], 
+    depot: LatLng, 
+    startHour: number, 
+    scores: { [id: string]: number },
+    targetEndHour: number
+): { bestSchedule: Spot[], endHour: number, lastLoc: LatLng } {
+    
+    if (availableSpots.length === 0) return { bestSchedule: [], endHour: startHour, lastLoc: depot };
+
+    let population = initializePopulation(availableSpots, GA_POPULATION_SIZE);
+    let globalBestChrom: Spot[] = population[0];
+    let globalBestFitness = -Infinity;
+
+    for (let gen = 0; gen < GA_GENERATIONS; gen++) {
+        const fitnesses = population.map(ch => evaluateFitness(ch, depot, startHour, scores, targetEndHour));
+        
+        for (let i = 0; i < population.length; i++) {
+            if (fitnesses[i] > globalBestFitness) {
+                globalBestFitness = fitnesses[i];
+                globalBestChrom = population[i];
+            }
+        }
+
+        const nextPop: Spot[][] = [];
+        // Elitism: carry over best
+        nextPop.push(globalBestChrom);
+
+        while (nextPop.length < GA_POPULATION_SIZE) {
+            const p1 = tournamentSelection(population, fitnesses);
+            const p2 = tournamentSelection(population, fitnesses);
+            let child = crossover(p1, p2);
+            child = mutate(child);
+            nextPop.push(child);
+        }
+        population = nextPop;
+    }
+
+    const { schedule, endHour, lastLoc } = decodeChromosome(globalBestChrom, depot, startHour, scores, targetEndHour);
+    return { bestSchedule: schedule, endHour, lastLoc };
 }
 
-/**
- * Format hour number to "HH:MM" string
- */
-function formatTime(hourDecimal: number): string {
-    const hourNormalized = hourDecimal % 24;
-    const hours = Math.floor(hourNormalized);
-    const minutes = Math.round((hourNormalized - hours) * 60);
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-}
-
-/**
- * Find optimal restaurant for a meal that minimizes the detour distance
- * detour = distance(prev, restaurant) + distance(restaurant, next)
- */
-async function findOptimalRestaurant(
-    prevLocation: LatLng,
-    nextLocation: LatLng,
-    restaurants: Restaurant[],
-    mealType: 'lunch' | 'dinner',
+// ---------------------------------------------------------
+// 3. LOGISTICAL INTELLIGENCE (Trim-and-Insert)
+// ---------------------------------------------------------
+async function optimalRestaurantInsert(
+    locA: LatLng, 
+    locB: LatLng, 
+    mealType: 'lunch' | 'dinner', 
+    restaurants: Restaurant[], 
     usedRestaurants: Set<string>
-): Promise<Restaurant | null> {
+): Promise<{ rest: Restaurant, p2p1: typeof p2pFallback, p2p2: typeof p2pFallback } | null> {
+    
     const candidates = restaurants.filter(
         r => !usedRestaurants.has(r.id) && (r.mealType === mealType || r.mealType === 'any')
     );
-
     if (candidates.length === 0) return null;
 
-    const scored = await Promise.all(candidates.map(async (a) => {
-        const detour1 = await getOlaRoute(prevLocation, a.location);
-        const detour2 = await getOlaRoute(a.location, nextLocation);
-        return { restaurant: a, detour: detour1.distance + detour2.distance };
-    }));
+    let bestRest: Restaurant | null = null;
+    let minDetour = Infinity;
+    
+    for (const r of candidates) {
+        const detour = haversineDistance(locA, r.location) + haversineDistance(r.location, locB);
+        if (detour < minDetour) {
+            minDetour = detour;
+            bestRest = r;
+        }
+    }
 
-    scored.sort((a, b) => a.detour - b.detour);
+    if (!bestRest) return null;
+    
+    // Calculate P2P costs for the winner
+    const p2p1 = await getP2PCost(locA, bestRest.location, 'Location A', bestRest.name, 'cab');
+    const p2p2 = await getP2PCost(bestRest.location, locB, bestRest.name, 'Location B', 'cab');
 
-    return scored[0].restaurant;
+    return { rest: bestRest, p2p1, p2p2 };
 }
 
-/**
- * Core clustering algorithm:
- * Greedy approach — iterate through scored & sorted spots,
- * assign to days based on spatial proximity and time constraints
- */
-/**
- * TOPTW-inspired Simultaneous Multi-Day Solver
- * Maximizes aggregate Profit (User Interest) across all days M.
- */
-async function buildDayPlans(input: AgentBInput): Promise<{ dayPlans: DayPlan[], unselectedSpots: Spot[] }> {
-    const { spots, restaurants, daysInLocality, locality, cityCenter, hotelLocation, maxHoursPerDay, userPreferences = [], mustExclude = [], additionalNotes = '', startDate, arrivalHour, budget } = input;
+const p2pFallback = { mode: 'cab', distance: 0, duration: 15, cost: 150 };
 
-    // Use HotelLocation as Depot. If missing, flexibly use the first spot's precision coordinates (LLM fallback). Finally, cityCenter.
-    const depot = hotelLocation || (spots.length > 0 ? spots[0].location : cityCenter);
-
-    // 1. Score and filter candidates
-    const scored = spots.map(s => ({ spot: s, score: scoreSpot(s, userPreferences, budget, mustExclude, additionalNotes) }));
-    let qualified = scored.sort((a, b) => b.score - a.score);
-
-    if (userPreferences.length > 0) {
-        qualified = qualified.filter(s => s.score >= RELEVANCE_THRESHOLD);
-        if (qualified.length === 0) {
-            qualified = scored.sort((a, b) => b.score - a.score).slice(0, 7);
-        }
-    }
-
-    // Target a healthy density: ~4-5 high quality spots per day
-    const targetSelection = Math.min(qualified.length, daysInLocality * 5);
-    const candidateSpots = qualified.slice(0, targetSelection).map(s => s.spot);
-
-    // 2. Initialize Day Structures
-    const days: { items: ItineraryItem[], currentTime: number, currentLocation: LatLng, totalHours: number, spotsCount: number }[] = [];
-    for (let i = 0; i < daysInLocality; i++) {
-        let startHour = DEFAULT_START_HOUR;
-
-        // For the first day of the ENTIRE itinerary (if this is the first locality or only locality)
-        // we respect the arrival hour if provided
-        if (i === 0 && arrivalHour !== undefined) {
-            startHour = arrivalHour + 1.5; // 1.5 hour buffer for airport/station exit + travel to hotel + check-in
-        } else if ((userPreferences.some(p => p.toLowerCase().includes('nightlife'))) || additionalNotes.toLowerCase().includes('late')) {
-            startHour = 11;
-        }
-
-        days.push({
-            items: [],
-            currentTime: startHour,
-            currentLocation: depot,
-            totalHours: 0,
-            spotsCount: 0
-        });
-    }
-
-    const assigned = new Set<string>();
-    const usedRestaurants = new Set<string>();
-
-    /**
-     * Greedy Insertion logic for TOPTW:
-     * We look at all unassigned candidates and find the BEST day/position to insert.
-     */
-    while (assigned.size < candidateSpots.length) {
-        let bestInsertion: { spot: Spot, dayIdx: number, costTime: number, efficiency: number } | null = null;
-
-        for (const spot of candidateSpots) {
-            if (assigned.has(spot.id)) continue;
-
-            for (let d = 0; d < daysInLocality; d++) {
-                const day = days[d];
-
-                // Calculate incremental travel time from LAST location
-                const travelMin = await travelTimeMinutes(day.currentLocation, spot.location);
-                const travelHours = travelMin / 60;
-                const arrivalTime = day.currentTime + travelHours;
-
-                // Constraints: Is it open? Does return trip fit in Tmax?
-                if (!isSpotOpen(spot, arrivalTime)) continue;
-
-                const stayTime = spot.timeToSpend;
-                const returnTime = (await travelTimeMinutes(spot.location, depot)) / 60;
-                const deltaTotal = travelHours + stayTime;
-
-                if (day.totalHours + deltaTotal + returnTime > maxHoursPerDay) continue;
-
-                const profit = scoreSpot(spot, userPreferences, budget, mustExclude, additionalNotes);
-                const efficiency = profit / (deltaTotal || 0.1);
-
-                if (!bestInsertion || efficiency > bestInsertion.efficiency) {
-                    bestInsertion = { spot, dayIdx: d, costTime: deltaTotal, efficiency };
-                }
-            }
-        }
-
-        if (!bestInsertion) break; // No more feasible insertions
-
-        // Apply Best Insertion
-        const { spot, dayIdx, costTime } = bestInsertion;
-        const day = days[dayIdx];
-
-        const p2p = await getP2PCost(day.currentLocation, spot.location,
-            day.items.length === 0 ? 'Hotel' : (day.items[day.items.length - 1].data as Spot).name,
-            spot.name, 'cab');
-
-        day.items.push({
-            type: 'p2p',
-            data: p2p,
-            startTime: formatTime(day.currentTime),
-            endTime: formatTime(day.currentTime + (costTime - spot.timeToSpend)),
-        });
-
-        day.items.push({
-            type: 'spot',
-            data: spot,
-            startTime: formatTime(day.currentTime + (costTime - spot.timeToSpend)),
-            endTime: formatTime(day.currentTime + costTime),
-        });
-
-        day.currentTime += costTime;
-        day.totalHours += costTime;
-        day.currentLocation = spot.location;
-        day.spotsCount++;
-        assigned.add(spot.id);
-    }
-
-    // 3. Finalize Days (Return to Hotel, Food injection)
-    const dayPlans = await Promise.all(days.map(async (day, idx) => {
-        const date = new Date(startDate);
-        date.setDate(date.getDate() + idx);
-        
-        let finalizedItems: ItineraryItem[] = [];
-        let dayCost = 0;
-
-        const timeToDec = (t: string) => {
-            const [h, m] = (t || '00:00').split(':').map(Number);
-            return h + m / 60;
-        };
-
-        let currentDecTime = day.items[0] ? timeToDec(day.items[0].startTime!) : (idx === 0 && arrivalHour ? arrivalHour + 1.5 : DEFAULT_START_HOUR);
-        let currentLocation = depot;
-        let currentName = 'Hotel';
-
-        const spotsList = day.items.filter(i => i.type === 'spot').map(i => i.data as Spot);
-        const lunchIdx = Math.max(0, Math.floor((spotsList.length - 1) / 2));
-        const dinnerIdx = Math.max(0, spotsList.length - 1);
-
-        // Rebuild sequentially
-        for (let j = 0; j < spotsList.length; j++) {
-            const spot = spotsList[j];
-            
-            // 1. P2P to spot
-            const p2pToSpot = await getP2PCost(currentLocation, spot.location, currentName, spot.name, 'cab');
-            finalizedItems.push({
-                type: 'p2p',
-                data: p2pToSpot,
-                startTime: formatTime(currentDecTime),
-                endTime: formatTime(currentDecTime + p2pToSpot.duration / 60)
-            });
-            dayCost += p2pToSpot.cost;
-            currentDecTime += p2pToSpot.duration / 60;
-
-            // 2. Spot
-            finalizedItems.push({
-                type: 'spot',
-                data: spot,
-                startTime: formatTime(currentDecTime),
-                endTime: formatTime(currentDecTime + spot.timeToSpend)
-            });
-            dayCost += spot.entryFee;
-            currentDecTime += spot.timeToSpend;
-            currentLocation = spot.location;
-            currentName = spot.name;
-
-            // 3. Check for Lunch
-            if (j === lunchIdx) {
-                const nextLoc = j + 1 < spotsList.length ? spotsList[j+1].location : depot;
-                const lunch = await findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'lunch', usedRestaurants);
-                if (lunch) {
-                    usedRestaurants.add(lunch.id);
-                    const p2pToLunch = await getP2PCost(currentLocation, lunch.location, currentName, lunch.name, 'cab');
-                    finalizedItems.push({ type: 'p2p', data: p2pToLunch, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + p2pToLunch.duration / 60) });
-                    dayCost += p2pToLunch.cost;
-                    currentDecTime += p2pToLunch.duration / 60;
-
-                    finalizedItems.push({ type: 'restaurant', data: lunch, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + 1.0), notes: '🍽️ Lunch' });
-                    dayCost += lunch.avgCostForTwo / 2;
-                    currentDecTime += 1.0;
-                    currentLocation = lunch.location;
-                    currentName = lunch.name;
-                }
-            }
-
-            // 4. Check for Dinner
-            if (j === dinnerIdx) {
-                const nextLoc = depot; // Dinner is last
-                const dinner = await findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'dinner', usedRestaurants);
-                if (dinner) {
-                    usedRestaurants.add(dinner.id);
-                    const p2pToDinner = await getP2PCost(currentLocation, dinner.location, currentName, dinner.name, 'cab');
-                    finalizedItems.push({ type: 'p2p', data: p2pToDinner, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + p2pToDinner.duration / 60) });
-                    dayCost += p2pToDinner.cost;
-                    currentDecTime += p2pToDinner.duration / 60;
-
-                    finalizedItems.push({ type: 'restaurant', data: dinner, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + 1.5), notes: '🍽️ Dinner' });
-                    dayCost += dinner.avgCostForTwo / 2;
-                    currentDecTime += 1.5;
-                    currentLocation = dinner.location;
-                    currentName = dinner.name;
-                }
-            }
-        }
-
-        // 5. Return to Depot
-        if (currentName !== 'Hotel') {
-            const returnP2P = await getP2PCost(currentLocation, depot, currentName, 'Hotel', 'cab');
-            finalizedItems.push({
-                type: 'p2p', data: returnP2P,
-                startTime: formatTime(currentDecTime),
-                endTime: formatTime(currentDecTime + returnP2P.duration / 60),
-                notes: '🏨 Return to hotel',
-            });
-            dayCost += returnP2P.cost;
-        }
-
-        return {
-            dayNumber: idx + 1,
-            date: date.toISOString().split('T')[0],
-            locality,
-            isTransitDay: false,
-            items: finalizedItems,
-            totalCost: Math.round(dayCost),
-        };
-    }));
-
-    const unselectedSpots = spots
-        .filter(s => !assigned.has(s.id));
-
-    return { dayPlans, unselectedSpots };
-}
-
+// ---------------------------------------------------------
+// ENTRY POINT EXECUTOR
+// ---------------------------------------------------------
 export async function executeAgentB(body: any) {
-    const { localities, agentData, startDate, maxHoursPerDay = DEFAULT_MAX_HOURS, userPreferences = [], mustExclude = [], additionalNotes = '', hotelLocation, arrivalHour, budget } = body;
+    const { localities, agentData, startDate, userPreferences = [], mustExclude = [], hotelLocation, arrivalHour } = body;
+
+    const { startHour: dynamicStartHour, endHour: dynamicEndHour } = await determineDayBounds(userPreferences);
 
     const allDayPlans: DayPlan[] = [];
     const allUnselectedSpots: Spot[] = [];
@@ -428,77 +389,139 @@ export async function executeAgentB(body: any) {
         const spots = agentData.spots[loc.locality] || [];
         const restaurants = agentData.restaurants[loc.locality] || [];
 
-        const { dayPlans, unselectedSpots } = await buildDayPlans({
-            spots,
-            restaurants,
-            daysInLocality: loc.days,
-            locality: loc.locality,
-            cityCenter: loc.center,
-            hotelLocation,
-            maxHoursPerDay,
-            userPreferences,
-            mustExclude,
-            additionalNotes,
-            startDate: new Date(new Date(startDate).getTime() + dayOffset * 86400000).toISOString(),
-            arrivalHour: plannedLocalitiesCount === 0 ? arrivalHour : undefined,
-            budget,
-        });
+        // 1. Calculate Category-Relative Scores
+        const scores = calculateCategoryScores(spots, userPreferences, mustExclude);
+        
+        // Hard drop severely penalized exclusions
+        let availableSpots = spots.filter(s => scores[s.id] > -5000);
+        
+        // Trim fat: take top N globally to keep GA search space efficient while maintaining categories
+        availableSpots.sort((a, b) => scores[b.id] - scores[a.id]);
 
-        // Ensure a locality is only created if at least one attraction is associated with it
-        const hasSpots = dayPlans.some(dp => dp.items.some(i => i.type === 'spot'));
-        if (!hasSpots && dayPlans.length > 0) {
-            // Drop this locality entirely to save days/time
-            continue;
+        const depot = hotelLocation || (spots.length > 0 ? spots[0].location : loc.center);
+        const usedRestaurants = new Set<string>();
+
+        // Sequential Daily Optimization
+        for (let d = 0; d < loc.days; d++) {
+            const date = new Date(startDate);
+            date.setDate(date.getDate() + dayOffset + d);
+
+            const startHour = (plannedLocalitiesCount === 0 && d === 0 && arrivalHour !== undefined && arrivalHour > dynamicStartHour) 
+                ? arrivalHour + 1.5 
+                : dynamicStartHour;
+
+            // Run GA
+            const { bestSchedule } = runSequentialDailyGA(availableSpots, depot, startHour, scores, dynamicEndHour);
+
+            // Update globally available pool (TPOS Logic)
+            const scheduledIds = new Set(bestSchedule.map(s => s.id));
+            availableSpots = availableSpots.filter(s => !scheduledIds.has(s.id));
+
+            // TRIM-AND-INSERT RESTAURANTS
+            let finalizedItems: ItineraryItem[] = [];
+            let currentDecTime = startHour;
+            let currentLocation = depot;
+            let currentName = 'Hotel';
+            let dayCost = 0;
+
+            const lunchIdx = Math.max(0, Math.floor((bestSchedule.length - 1) / 2));
+            const dinnerIdx = bestSchedule.length - 1; // End of the day
+
+            for (let j = 0; j < bestSchedule.length; j++) {
+                const spot = bestSchedule[j];
+
+                // P2P to spot
+                const p2pToSpot = await getP2PCost(currentLocation, spot.location, currentName, spot.name, 'cab');
+                finalizedItems.push({
+                    type: 'p2p', data: p2pToSpot,
+                    startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + p2pToSpot.duration / 60)
+                });
+                dayCost += p2pToSpot.cost;
+                currentDecTime += p2pToSpot.duration / 60;
+
+                // Spot
+                finalizedItems.push({
+                    type: 'spot', data: spot,
+                    startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + spot.timeToSpend)
+                });
+                dayCost += spot.entryFee;
+                currentDecTime += spot.timeToSpend;
+                currentLocation = spot.location;
+                currentName = spot.name;
+
+                // Insert Lunch
+                if (j === lunchIdx) {
+                    const nextLoc = j + 1 < bestSchedule.length ? bestSchedule[j+1].location : depot;
+                    const lunchRes = await optimalRestaurantInsert(currentLocation, nextLoc, 'lunch', restaurants, usedRestaurants);
+                    if (lunchRes) {
+                        usedRestaurants.add(lunchRes.rest.id);
+                        finalizedItems.push({ type: 'p2p', data: lunchRes.p2p1, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + lunchRes.p2p1.duration / 60) });
+                        currentDecTime += lunchRes.p2p1.duration / 60;
+                        dayCost += lunchRes.p2p1.cost;
+
+                        finalizedItems.push({ type: 'restaurant', data: lunchRes.rest, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + 1.0), notes: '🍽️ Local Cuisine Lunch' });
+                        currentDecTime += 1.0;
+                        dayCost += lunchRes.rest.avgCostForTwo / 2;
+                        
+                        currentLocation = lunchRes.rest.location;
+                        currentName = lunchRes.rest.name;
+                    }
+                }
+
+                // Insert Dinner
+                if (j === dinnerIdx) {
+                    const dinnerRes = await optimalRestaurantInsert(currentLocation, depot, 'dinner', restaurants, usedRestaurants);
+                    if (dinnerRes) {
+                        usedRestaurants.add(dinnerRes.rest.id);
+                        finalizedItems.push({ type: 'p2p', data: dinnerRes.p2p1, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + dinnerRes.p2p1.duration / 60) });
+                        currentDecTime += dinnerRes.p2p1.duration / 60;
+                        dayCost += dinnerRes.p2p1.cost;
+
+                        finalizedItems.push({ type: 'restaurant', data: dinnerRes.rest, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + 1.5), notes: '🍽️ Relaxing Dinner' });
+                        currentDecTime += 1.5;
+                        dayCost += dinnerRes.rest.avgCostForTwo / 2;
+                        
+                        currentLocation = dinnerRes.rest.location;
+                        currentName = dinnerRes.rest.name;
+                    }
+                }
+            }
+
+            // Return to Hotel
+            if (currentName !== 'Hotel') {
+                const returnP2P = await getP2PCost(currentLocation, depot, currentName, 'Hotel', 'cab');
+                finalizedItems.push({
+                    type: 'p2p', data: returnP2P,
+                    startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + returnP2P.duration / 60),
+                    notes: '🏨 Return to hotel'
+                });
+                dayCost += returnP2P.cost;
+            }
+
+            allDayPlans.push({
+                dayNumber: dayOffset + d + 1,
+                date: date.toISOString().split('T')[0],
+                locality: loc.locality,
+                isTransitDay: false,
+                items: finalizedItems,
+                totalCost: Math.round(dayCost),
+            });
         }
 
-        // Re-number days
-        for (const dp of dayPlans) {
-            dp.dayNumber = dayOffset + dp.dayNumber;
-        }
-
-        allDayPlans.push(...dayPlans);
-        allUnselectedSpots.push(...unselectedSpots);
+        allUnselectedSpots.push(...availableSpots);
         dayOffset += loc.days;
         plannedLocalitiesCount++;
         validLocalities.push(loc);
     }
 
-    // Resilience: Detect "Empty Day Syndrome"
-    const emptyDays = allDayPlans.filter(dp => !dp.isTransitDay && dp.items.filter(i => i.type === 'spot').length === 0);
-    const suggestions: { type: 'shorten_trip'; message: string; recommendedDays: number }[] = [];
-
-    if (emptyDays.length > 0) {
-        // Find the last day that has actually has spots
-        let lastActiveDay = 0;
-        for (let i = allDayPlans.length - 1; i >= 0; i--) {
-            const hasSpots = allDayPlans[i].items.some(it => it.type === 'spot');
-            if (hasSpots) {
-                lastActiveDay = allDayPlans[i].dayNumber;
-                break;
-            }
-        }
-
-        if (lastActiveDay < allDayPlans.length) {
-            suggestions.push({
-                type: 'shorten_trip',
-                message: `It looks like we've covered the best of ${localities.map((l: any) => l.locality).join(', ')} in ${lastActiveDay} days. Would you like to shorten your trip to save costs?`,
-                recommendedDays: lastActiveDay
-            });
-        }
-    }
-
-    return { dayPlans: allDayPlans, unselectedSpots: allUnselectedSpots, suggestions, validLocalities };
+    return { dayPlans: allDayPlans, unselectedSpots: allUnselectedSpots, suggestions: [], validLocalities };
 }
 
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
         const data = await executeAgentB(body);
-
-        return NextResponse.json({
-            success: true,
-            ...data
-        });
+        return NextResponse.json({ success: true, ...data });
     } catch (error) {
         console.error('Agent B error:', error);
         return NextResponse.json({ success: false, error: 'Agent B failed' }, { status: 500 });

@@ -1,0 +1,152 @@
+[
+  {
+    "id": "54ec5bdf-5c9d-4c7f-965d-8ce226bec4ee",
+    "name": "Kashi Chat Bhandar",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3176,
+      "lng": 82.9739
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 150,
+    "rating": 4.5,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "3cb19c1b-bc7f-4c9c-88d1-f6d57751ef55",
+    "name": "Baati Chokha",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3101,
+      "lng": 82.9733
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 400,
+    "rating": 4.2,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "d7d85f20-edcf-45d0-9103-9074633f821a",
+    "name": "Brown Bread Bakery",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3165,
+      "lng": 82.9877
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 600,
+    "rating": 4.4,
+    "openingTime": "07:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "dfe26220-6689-4dad-98e6-2833538c60b6",
+    "name": "Blue Lassi",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.314,
+      "lng": 82.987
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 100,
+    "rating": 4.6,
+    "openingTime": "09:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "df234384-333c-4f7a-a19a-247b040aafda",
+    "name": "Tadka Restaurant",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3202,
+      "lng": 82.9875
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 500,
+    "rating": 4.3,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "800f6353-e657-4a76-9326-3123836b7ec5",
+    "name": "Open Hand Cafe",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.317,
+      "lng": 82.9855
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.7,
+    "openingTime": "08:00",
+    "closingTime": "21:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "f49a5cf1-2318-47f2-96d2-75e83f2a6cdd",
+    "name": "Deena Chat Bhandar",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3185,
+      "lng": 82.9745
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 120,
+    "rating": 4.5,
+    "openingTime": "07:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "c27967ff-a0bb-4a3e-8782-8a67fb6523e9",
+    "name": "Baati Chokha Restaurant",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.311,
+      "lng": 82.974
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 450,
+    "rating": 4.1,
+    "openingTime": "11:00",
+    "closingTime": "22:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "d24e819f-18ac-4747-8ddc-36863a8cf7d6",
+    "name": "Madhur Milan",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3168,
+      "lng": 82.976
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 200,
+    "rating": 4.4,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "d2047c1a-e41b-445d-ae5e-8fefa40e8328",
+    "name": "Cantt Restaurant",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.32,
+      "lng": 82.98
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 550,
+    "rating": 4.3,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  }
+]

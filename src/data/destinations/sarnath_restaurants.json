@@ -1,0 +1,152 @@
+[
+  {
+    "id": "f92f9bba-7f5b-42c2-8601-394ebb79679f",
+    "name": "Sarnath Restaurant",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.381,
+      "lng": 83.03
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 400,
+    "rating": 4.2,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "241d6a9d-c4de-4ab5-80e2-1fb5d9429e08",
+    "name": "The Buddha Cafe",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3825,
+      "lng": 83.0315
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.5,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "354a0442-4ab4-471a-9832-b1d5201755f6",
+    "name": "Mughal Darbar Sarnath",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3802,
+      "lng": 83.029
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 600,
+    "rating": 4,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "ff961bc9-b1ea-4f6b-951a-a5559929bf9d",
+    "name": "Sarnath Street Food Hub",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3818,
+      "lng": 83.032
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 150,
+    "rating": 4.3,
+    "openingTime": "10:00",
+    "closingTime": "20:00",
+    "mealType": "any"
+  },
+  {
+    "id": "bdf62853-f39b-4686-8570-5810860ab7d6",
+    "name": "Lotus Fine Dining",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3795,
+      "lng": 83.0285
+    },
+    "cuisine": "Fine Dining",
+    "avgCostForTwo": 1500,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "8a2468bf-42dc-49f1-a1a4-7050b0fb39e5",
+    "name": "Sarnath Tea House",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.382,
+      "lng": 83.0305
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 300,
+    "rating": 4.1,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "87564abc-635f-451f-9fa5-b64ee7316b9a",
+    "name": "Bodhi Tree Restaurant",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3808,
+      "lng": 83.0312
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 500,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "b40788c7-71aa-4d67-aa24-d60e13a6031b",
+    "name": "Sarnath Veg Delight",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3815,
+      "lng": 83.0298
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 350,
+    "rating": 4,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "d528c319-7b32-4a2a-b7fd-5132953c6a54",
+    "name": "Heritage Coffee Lounge",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.3822,
+      "lng": 83.031
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 400,
+    "rating": 4.3,
+    "openingTime": "07:30",
+    "closingTime": "20:30",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "23580acb-3859-4374-9e04-dc7db1f3c14f",
+    "name": "Sarnath Sweets & Snacks",
+    "address": "Sarnath",
+    "location": {
+      "lat": 25.38,
+      "lng": 83.03
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 200,
+    "rating": 4.5,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  }
+]

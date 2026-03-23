@@ -31,6 +31,7 @@ const SPEED: Record<P2PMode, number> = {
  * Calculate distance between two lat/lng points using Haversine formula
  */
 export function haversineDistance(from: LatLng, to: LatLng): number {
+    if (!from || !to || typeof from.lat !== 'number' || typeof to.lat !== 'number') return 0;
     const R = 6371; // Earth radius in km
     const dLat = ((to.lat - from.lat) * Math.PI) / 180;
     const dLng = ((to.lng - from.lng) * Math.PI) / 180;
@@ -65,6 +66,8 @@ function saveCache() {
 }
 
 export async function getOlaRoute(from: LatLng, to: LatLng): Promise<{distance: number, duration: number}> {
+    if (!from || !to || typeof from.lat !== 'number' || typeof to.lat !== 'number') return { distance: 0, duration: 0 };
+    
     const fromStr = `${from.lat.toFixed(5)},${from.lng.toFixed(5)}`;
     const toStr = `${to.lat.toFixed(5)},${to.lng.toFixed(5)}`;
     const cacheKey = `${fromStr}_${toStr}`;

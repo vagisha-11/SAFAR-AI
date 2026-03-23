@@ -188,9 +188,7 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
 
     useEffect(() => {
         scrollToBottom(!isBotTyping);
-    }, [messages, isBotTyping, scrollToBottom]);
-
-    const sendToLLM = useCallback(async (history: { role: string; content: string }[]) => {
+    }, [messages, isBotTyping, scrollToBottom]);    const sendToLLM = useCallback(async (history: { role: string; content: string }[]) => {
         setIsBotTyping(true);
         const botMsgId = Date.now().toString() + '_bot';
         setMessages(prev => [...prev, { id: botMsgId, role: 'assistant', text: '', isStreaming: true }]);
@@ -224,8 +222,6 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
             ));
 
             if (parsed) {
-                // Give the user ~4 seconds to comfortably read the final wrap-up message 
-                // and watch the "Handing over to agents..." animation before transitioning away
                 setIsReady(true);
                 setTimeout(() => onTripReady(parsed.tripData), 4500);
             }
@@ -240,25 +236,21 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
         }
     }, [onTripReady, setMessages]);
 
+    const SUGGESTIONS = [
+        { label: "Goa Getaway", detail: "plan a 5 day getaway to goa", text: "Plan a 5 day getaway to Goa" },
+        { label: "Jaipur Budget", detail: "plan a budget trip under 20k", text: "Plan a budget trip to Jaipur under 20k" },
+        { label: "Manali Trek", detail: "plan a group trekking expidition to Manali", text: "Plan a group trekking expedition to Manali" }
+    ];
+
     useEffect(() => {
         if (hasGreeted.current || messages.length > 0) return;
         hasGreeted.current = true;
         
-        const GREETINGS = [
-            "Hey there! Where are you thinking of heading? Or do you have a vibe in mind, like beaches, mountains, or maybe something cultural?",
-            "Welcome! Are we planning a relaxing getaway, an adventurous trek, or exploring a newly discovered city today?",
-            "Hi! Ready for a new adventure? Tell me a bit about what kind of trip you're looking for.",
-            "Hello! Do you have a specific destination in mind, or should we figure out the perfect spot together based on your interests?",
-            "Hey! Whether it's a quick weekend escape or a massive holiday, I'm here to build the perfect itinerary. Where to?"
-        ];
-        
-        const randomGreeting = GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
-
-        // Provide a neutral, immediate greeting directly rather than hitting the LLM API on load.
+        // Initial silent greeting for state tracking, but UI will show the Hero version
         setMessages([{
             id: 'welcome_msg',
             role: 'assistant',
-            text: randomGreeting,
+            text: "Hi! I am Safar, how may I help you?",
             isStreaming: false
         }]);
     }, [setMessages, messages.length]);
@@ -279,14 +271,80 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
     if (isCollapsed) return null;
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0, overflow: 'hidden' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0, overflow: 'hidden', position: 'relative' }}>
+            <style>{`
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                }
+                @keyframes slideInUp {
+                    from { transform: translateY(20px); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+            `}</style>
+
             {/* Messages */}
             <div style={{
                 flex: 1, overflowY: 'auto', padding: '20px 16px',
                 display: 'flex', flexDirection: 'column', gap: '16px',
                 scrollbarWidth: 'thin', scrollbarColor: 'rgba(99,102,241,0.2) transparent'
             }}>
-                {messages.map((msg) => (
+                {/* Hero Greeting (Only shown before conversation starts) */}
+                {messages.length <= 1 && !inputValue && (
+                    <div style={{
+                        flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center',
+                        justifyContent: 'center', animation: 'fadeIn 0.8s ease-out', textAlign: 'center'
+                    }}>
+                        <div style={{
+                            position: 'absolute', top: -140, right: 30,
+                            width: 200, height: 200,
+                            filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))',
+                            animation: 'float 4s ease-in-out infinite',
+                            zIndex: 100, pointerEvents: 'none'
+                        }}>
+                             <img src="/safar-mascot.png" 
+                                  alt="Safar Bot" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        </div>
+                        <h2 style={{
+                            fontFamily: 'Outfit, sans-serif', fontSize: 24, fontWeight: 700,
+                            color: '#1e293b', marginBottom: 8
+                        }}>Hi I am</h2>
+                        <h1 style={{
+                            fontFamily: 'Outfit, sans-serif', fontSize: 64, fontWeight: 900,
+                            background: 'linear-gradient(135deg, #1e40af, #3b82f6)',
+                            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                            marginBottom: 40, lineHeight: 1
+                        }}>Safar</h1>
+
+                        {/* Floating Suggestions */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%', alignItems: 'center' }}>
+                            {SUGGESTIONS.map((s, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => { setInputValue(s.text); inputRef.current?.focus(); }}
+                                    style={{
+                                        background: 'rgba(255, 255, 255, 0.95)',
+                                        border: 'none', borderRadius: '16px', padding: '12px 20px',
+                                        boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
+                                        cursor: 'pointer', maxWidth: 320, width: 'fit-content',
+                                        animation: `slideInUp 0.5s ${i * 0.1}s both`,
+                                        textAlign: 'left'
+                                    }}
+                                >
+                                    <div style={{ color: '#3b82f6', fontWeight: 700, fontSize: 13 }}>{s.label}</div>
+                                    <div style={{ color: '#1e293b', fontSize: 14 }}>{s.detail}</div>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Actual Chat History (shorter padding if hero is shown) */}
+                {(messages.length > 1 || !!inputValue) && messages.map((msg) => (
                     <div key={msg.id} style={{
                         display: 'flex',
                         flexDirection: msg.role === 'user' ? 'row-reverse' : 'row',
@@ -368,16 +426,24 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
             {/* Input - only when chat not done */}
             {!isReady && (
                 <div style={{
-                    padding: '12px 16px',
-                    borderTop: '1px solid rgba(255,255,255,0.05)',
-                    background: 'rgba(10,10,20,0.4)',
+                    padding: '24px 20px',
+                    background: 'transparent',
+                    maxWidth: 600, width: '100%', margin: '0 auto'
                 }}>
                     <form onSubmit={(e) => { e.preventDefault(); handleSend(); }}
-                        style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        style={{
+                            display: 'flex', gap: '8px', alignItems: 'center',
+                            background: 'rgba(255, 255, 255, 0.95)',
+                            borderRadius: '24px', padding: '6px 6px 6px 16px',
+                            boxShadow: '0 10px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.02)',
+                            border: '1px solid rgba(255,255,255,0.8)',
+                            position: 'relative',
+                            backdropFilter: 'blur(20px)'
+                        }}>
                         <input
                             ref={inputRef}
                             type="text"
-                            placeholder={isBotTyping ? 'Thinking...' : 'Message Safar AI...'}
+                            placeholder={isBotTyping ? 'Thinking...' : 'Where do you want to go?'}
                             value={inputValue + (interimText ? ' ' + interimText : '')}
                             onChange={(e) => {
                                 setInputValue(e.target.value);
@@ -386,37 +452,46 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
                             disabled={isBotTyping}
                             autoFocus
                             style={{
-                                flex: 1, background: 'rgba(15,15,28,0.7)', backdropFilter: 'blur(16px)',
-                                border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px',
-                                padding: fontSize >= 16 ? '14px 18px' : '10px 14px',
-                                fontSize: fontSize >= 16 ? 15 : 13,
-                                color: '#f1f5f9',
+                                flex: 1, background: 'transparent',
+                                border: 'none',
+                                padding: '12px 0',
+                                fontSize: 16,
+                                color: '#1e293b',
                                 outline: 'none', fontFamily: 'Inter, sans-serif',
-                                transition: 'border 0.2s',
                             }}
                         />
+
+                        {/* Sparkle Icon Decorator */}
+                        <div style={{
+                            color: '#6366f1', display: 'flex', alignItems: 'center', paddingRight: 8,
+                            opacity: 0.8
+                        }}>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L14.5 9L22 11.5L14.5 14L12 21L9.5 14L2 11.5L9.5 9L12 2Z" />
+                            </svg>
+                        </div>
+
                         <button type="button"
                             onClick={toggleListening}
                             disabled={isBotTyping}
                             style={{
-                                width: 38, height: 38, borderRadius: '10px', flexShrink: 0,
+                                width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                background: isListening ? 'rgba(239, 68, 68, 0.2)' : 'rgba(255,255,255,0.05)',
-                                border: isListening ? '1px solid rgba(239, 68, 68, 0.5)' : '1px solid rgba(255,255,255,0.1)',
+                                background: isListening ? 'rgba(239, 68, 68, 0.1)' : 'transparent',
+                                border: 'none',
                                 cursor: 'pointer', opacity: isBotTyping ? 0.4 : 1,
                                 transition: 'all 0.2s',
-                                animation: isListening ? 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' : 'none',
-                                color: isListening ? '#f87171' : '#cbd5e1'
+                                color: isListening ? '#f87171' : '#64748b'
                             }}
                             title="Dictate with Voice">
                             {isListening ? (
-                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3Z" />
                                     <path d="M19 10v2a7 7 0 0 1-14 0v-2h2v2a5 5 0 0 0 10 0v-2h2Z" />
                                     <path d="M11 20v2h2v-2h-2Z" />
                                 </svg>
                             ) : (
-                                <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
                                 </svg>
                             )}
@@ -424,13 +499,14 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
                         <button type="submit"
                             disabled={!inputValue.trim() || isBotTyping}
                             style={{
-                                width: 38, height: 38, borderRadius: '10px', flexShrink: 0,
+                                width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                background: 'linear-gradient(135deg, #6366f1, #d946ef)',
+                                background: 'linear-gradient(135deg, #6366f1, #3b82f6)',
                                 border: 'none', cursor: 'pointer', opacity: (!inputValue.trim() || isBotTyping) ? 0.4 : 1,
                                 transition: 'all 0.2s',
+                                boxShadow: '0 4px 12px rgba(99,102,241,0.3)'
                             }}>
-                            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2.5}>
+                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7 7 7-7 7" />
                             </svg>
                         </button>

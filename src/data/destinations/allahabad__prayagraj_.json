@@ -1,0 +1,342 @@
+[
+  {
+    "id": "f935a678-06c3-4fbd-8123-43a90b9e3c13",
+    "name": "Triveni Sangam",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4358,
+      "lng": 81.8463
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "The sacred confluence of the Ganges, Yamuna, and mythical Saraswati rivers, a spiritual hotspot and pilgrimage site.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "520d9743-a53d-4dfd-8fd9-728166345977",
+    "name": "Allahabad Fort",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.444,
+      "lng": 81.84
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A massive 16th-century fort built by Emperor Akbar, showcasing Mughal architecture and historical significance.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "a0db5adb-a238-45a8-b174-5481a1382922",
+    "name": "Anand Bhavan",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4447,
+      "lng": 81.8467
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Heritage",
+    "description": "The historic residence of the Nehru family, now a museum depicting India's freedom struggle.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "88b70f94-0ff2-4f4b-9eec-48bce3bf76ed",
+    "name": "Khusro Bagh",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4443,
+      "lng": 81.851
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A serene Mughal garden and burial site of Prince Khusro, offering peaceful walks amid historic tombs.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "ea5f5c66-80cc-4542-8c49-bed38518798b",
+    "name": "All Saints Cathedral",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4372,
+      "lng": 81.8499
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A majestic Gothic-style cathedral known for its stained glass windows and colonial architecture.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "d41585f9-d355-4436-8cbe-d23ba15dcf8e",
+    "name": "Minto Park",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4385,
+      "lng": 81.8491
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A lush green park perfect for morning walks and relaxation in the heart of the city.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "7f6183d3-4661-442e-b925-41715b4bdcfe",
+    "name": "Patalpuri Temple",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.435,
+      "lng": 81.8465
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "An ancient underground temple located inside the Allahabad Fort, dedicated to Lord Shiva.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "84856afe-f9e7-4cc9-80ae-58f44d240b73",
+    "name": "Chandra Shekhar Azad Park (Company Bagh)",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.441,
+      "lng": 81.849
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A sprawling park with historic statues and lush greenery, ideal for leisurely strolls and picnics.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "70299949-62d4-4080-9b30-9abf0a46df76",
+    "name": "Hanuman Mandir",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.438,
+      "lng": 81.847
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "05:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A popular local temple dedicated to Lord Hanuman, known for its vibrant religious activities.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "cc2f32bd-4558-49b0-a5dc-b2b54e93a166",
+    "name": "Alopi Devi Mandir",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4335,
+      "lng": 81.8495
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A unique temple famous for its mysterious legend and the absence of an idol in the sanctum.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "d2ba78ae-5318-45f2-8381-3e778788eb02",
+    "name": "Jawahar Planetarium",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.442,
+      "lng": 81.8475
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "A modern planetarium offering immersive shows about astronomy and space science.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "21098f6f-a8af-4228-9d12-7a14fd01c39d",
+    "name": "Swaraj Bhawan",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.445,
+      "lng": 81.845
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Heritage",
+    "description": "A historic mansion that was a hub for Indian freedom fighters, now a museum showcasing the independence movement.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "9bd2334c-701d-41a3-bcac-4582bf604356",
+    "name": "Alfred Park",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4405,
+      "lng": 81.8492
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A large urban park with walking trails, statues, and a peaceful environment for relaxation.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "458c21c4-4d12-4020-a220-64055b99cdd8",
+    "name": "Naini Lake",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.43,
+      "lng": 81.86
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A scenic lake offering boating and tranquil views, popular among locals and visitors alike.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "c8d57628-7ef7-40cc-a522-66730286bf39",
+    "name": "Hanuman Mandir, Naini",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4265,
+      "lng": 81.859
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "05:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A revered temple in the Naini area, known for its spiritual ambiance and vibrant festivals.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "14362127-1ba7-48b3-bc99-2511d6dd824a",
+    "name": "Kumbh Mela Site",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.435,
+      "lng": 81.846
+    },
+    "timeToSpend": 3,
+    "openingTime": "Varies",
+    "closingTime": "Varies",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "The legendary site of the world's largest religious gathering, offering a unique cultural and spiritual experience during the festival.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "b73a70ea-1b5b-4fe2-b1b7-a42ae78cdd6b",
+    "name": "Sangam Viewpoint",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.436,
+      "lng": 81.8455
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A vantage point providing panoramic views of the Triveni Sangam and surrounding rivers.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "a39f9814-d581-444e-b1b5-27e37c2a9057",
+    "name": "Mughal Sarai",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.44,
+      "lng": 81.85
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "An ancient caravanserai built during the Mughal era, reflecting the rich history of trade routes.",
+    "rating": 4.2,
+    "popularity": 6
+  },
+  {
+    "id": "f3824b4e-5711-4146-8f52-a8915910c9bb",
+    "name": "Swaraj Park",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.443,
+      "lng": 81.848
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A peaceful park with well-maintained gardens and walking paths, ideal for a quick nature break.",
+    "rating": 4,
+    "popularity": 5
+  },
+  {
+    "id": "0eb00e28-ed6b-4ae2-9b33-a78dcd87744a",
+    "name": "Prayagraj Museum",
+    "address": "Allahabad (Prayagraj)",
+    "location": {
+      "lat": 25.4455,
+      "lng": 81.8475
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 25,
+    "category": "Cultural",
+    "description": "A museum showcasing artifacts, sculptures, and paintings that narrate the cultural history of the region.",
+    "rating": 4.5,
+    "popularity": 8
+  }
+]

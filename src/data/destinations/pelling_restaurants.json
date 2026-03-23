@@ -1,0 +1,152 @@
+[
+  {
+    "id": "12205a1b-95aa-450b-9f8f-bdd92e70a68a",
+    "name": "The Dragon Wok",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3115,
+      "lng": 88.2641
+    },
+    "cuisine": "Asian, Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "2da09649-3441-4664-800f-c4f3d3b47693",
+    "name": "Baker's Cafe",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.312,
+      "lng": 88.2635
+    },
+    "cuisine": "Continental, Bakery",
+    "avgCostForTwo": 600,
+    "rating": 4.3,
+    "openingTime": "07:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "67440de6-5e2a-4e71-be83-8cd9bd61f35d",
+    "name": "Pelling Local Kitchen",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3108,
+      "lng": 88.265
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 400,
+    "rating": 4.6,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "89e94faa-e46c-4007-b211-28fa55a366ae",
+    "name": "Skyline Restaurant",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3132,
+      "lng": 88.2663
+    },
+    "cuisine": "North Indian, Chinese",
+    "avgCostForTwo": 900,
+    "rating": 4.4,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "15eb8b75-18b1-49c0-921f-1437340dac11",
+    "name": "Cafe Norling",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3097,
+      "lng": 88.2628
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 500,
+    "rating": 4.2,
+    "openingTime": "08:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "9b50fdea-2354-4e11-b157-ee278b571402",
+    "name": "Tashi's Kitchen",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.311,
+      "lng": 88.2645
+    },
+    "cuisine": "Tibetan, Local Authentic",
+    "avgCostForTwo": 450,
+    "rating": 4.7,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "7f935a58-ac59-420b-974b-b7ab937f22e1",
+    "name": "Pelling Street Food Hub",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3125,
+      "lng": 88.263
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 300,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "020c52e9-95b8-4c97-bca7-9dea01eabecd",
+    "name": "The Elgin Mount Pandim",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3138,
+      "lng": 88.267
+    },
+    "cuisine": "Fine Dining, Continental",
+    "avgCostForTwo": 2500,
+    "rating": 4.8,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "cb7a0e3f-cf8c-4518-9b5c-dc0da76b7c77",
+    "name": "Mountain Top Cafe",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3105,
+      "lng": 88.2655
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 550,
+    "rating": 4.3,
+    "openingTime": "07:30",
+    "closingTime": "18:30",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "9095529f-b288-4e15-bb62-f7fb7f1c5048",
+    "name": "Yum Yum Restaurant",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3117,
+      "lng": 88.264
+    },
+    "cuisine": "North Indian, Chinese",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "11:30",
+    "closingTime": "22:00",
+    "mealType": "any"
+  }
+]

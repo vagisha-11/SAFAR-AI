@@ -1,0 +1,152 @@
+[
+  {
+    "id": "2999ed64-7173-488f-9a85-ab41186654c1",
+    "name": "The Oakwood",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9123,
+      "lng": 77.0965
+    },
+    "cuisine": "North Indian, Continental",
+    "avgCostForTwo": 1200,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "39b3e429-651c-40ac-8498-a392629f8bba",
+    "name": "Cafe Solan",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9135,
+      "lng": 77.096
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 600,
+    "rating": 4.2,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "64a48145-f846-4e47-9656-1ed02348fe86",
+    "name": "Himachali Rasoi",
+    "address": "Solan",
+    "location": {
+      "lat": 30.914,
+      "lng": 77.0972
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 500,
+    "rating": 4.6,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "5448e239-f636-4981-b275-7710c0fd99c3",
+    "name": "Solan Street Food Hub",
+    "address": "Solan",
+    "location": {
+      "lat": 30.911,
+      "lng": 77.095
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 300,
+    "rating": 4.3,
+    "openingTime": "12:00",
+    "closingTime": "23:30",
+    "mealType": "any"
+  },
+  {
+    "id": "ef1ac718-1cf4-4803-9371-86951aa673a5",
+    "name": "The Pine Lounge",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9105,
+      "lng": 77.0945
+    },
+    "cuisine": "Continental, North Indian",
+    "avgCostForTwo": 1000,
+    "rating": 4.4,
+    "openingTime": "11:00",
+    "closingTime": "22:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "b9c83da3-c8bb-46ee-92a5-712000e3876f",
+    "name": "Chai & Chat",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9128,
+      "lng": 77.0978
+    },
+    "cuisine": "Cafe, Street Food",
+    "avgCostForTwo": 350,
+    "rating": 4.1,
+    "openingTime": "07:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "f3311177-a5b5-417b-9e7f-77754d7f4e2d",
+    "name": "The Himalayan Feast",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9132,
+      "lng": 77.0955
+    },
+    "cuisine": "Local Authentic, North Indian",
+    "avgCostForTwo": 800,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "0109eee0-a351-4c46-8c60-662c988b3089",
+    "name": "Solan Bakery & Cafe",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9118,
+      "lng": 77.0968
+    },
+    "cuisine": "Cafe, Bakery",
+    "avgCostForTwo": 450,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "eb8bb1c8-8380-4854-a3b5-c43dbe0a72dd",
+    "name": "Mountain View Dhaba",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9099,
+      "lng": 77.094
+    },
+    "cuisine": "Local Authentic, North Indian",
+    "avgCostForTwo": 400,
+    "rating": 4,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "dfa2d7b8-418a-46ad-9d8a-133386e22a5f",
+    "name": "The Green Terrace",
+    "address": "Solan",
+    "location": {
+      "lat": 30.9145,
+      "lng": 77.098
+    },
+    "cuisine": "Fine Dining, Continental",
+    "avgCostForTwo": 1500,
+    "rating": 4.8,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  }
+]
