@@ -109,9 +109,10 @@ interface ChatProps {
     onTripReady: (tripData: any) => void;
     isCollapsed?: boolean;
     fontSize?: number;  // 13 for sidebar, 16 for landing page
+    onActiveChange?: (isActive: boolean) => void; // Emits true when user interacts (types, speaks, or chats)
 }
 
-export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fontSize = 13 }: ChatProps) {
+export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fontSize = 13, onActiveChange }: ChatProps) {
     const [inputValue, setInputValue] = useState('');
     const [interimText, setInterimText] = useState('');
     const [isBotTyping, setIsBotTyping] = useState(false);
@@ -121,6 +122,12 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
     const inputRef = useRef<HTMLInputElement>(null);
     const hasGreeted = useRef(false);
     const recognitionRef = useRef<any>(null);
+
+    // Notify parent when chat becomes active (typing, listening, or has messages)
+    useEffect(() => {
+        const isActive = messages.length > 1 || inputValue.length > 0 || isListening;
+        onActiveChange?.(isActive);
+    }, [messages.length, inputValue, isListening, onActiveChange]);
 
     useEffect(() => {
         // Initialize SpeechRecognition on mount
@@ -236,11 +243,24 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
         }
     }, [onTripReady, setMessages]);
 
-    const SUGGESTIONS = [
-        { label: "Goa Getaway", detail: "plan a 5 day getaway to goa", text: "Plan a 5 day getaway to Goa" },
-        { label: "Jaipur Budget", detail: "plan a budget trip under 20k", text: "Plan a budget trip to Jaipur under 20k" },
-        { label: "Manali Trek", detail: "plan a group trekking expidition to Manali", text: "Plan a group trekking expedition to Manali" }
+    const ALL_SUGGESTIONS = [
+        { label: "Goa Getaway", detail: "5 day beach escape", text: "Plan a 5 day getaway to Goa", icon: "🏖️" },
+        { label: "Jaipur Budget", detail: "heritage trip under ₹20k", text: "Plan a budget trip to Jaipur under 20k", icon: "🏰" },
+        { label: "Manali Trek", detail: "group trekking expedition", text: "Plan a group trekking expedition to Manali", icon: "⛰️" },
+        { label: "Kerala Backwaters", detail: "houseboat & spice trails", text: "Plan a 6 day Kerala houseboat trip", icon: "🌴" },
+        { label: "Rajasthan Royal", detail: "palaces & desert safari", text: "Plan a 7 day royal Rajasthan tour covering Jaipur, Jodhpur and Jaisalmer", icon: "🐪" },
+        { label: "Ladakh Adventure", detail: "high altitude road trip", text: "Plan a 8 day Ladakh road trip adventure", icon: "🏔️" },
+        { label: "Mumbai Blast", detail: "city food & culture tour", text: "Plan a 3 day Mumbai city trip with food and culture", icon: "🌆" },
+        { label: "Andaman Escape", detail: "island hopping & diving", text: "Plan a 5 day Andaman island trip with scuba diving", icon: "🤿" },
+        { label: "Varanasi Spiritual", detail: "ghats & spiritual journey", text: "Plan a 4 day spiritual trip to Varanasi", icon: "🪔" },
+        { label: "Coorg Coffee", detail: "misty hills & plantations", text: "Plan a 3 day Coorg retreat in the coffee hills", icon: "☕" },
+        { label: "Rishikesh Thrill", detail: "rafting & yoga retreat", text: "Plan a 4 day adventure and yoga trip to Rishikesh", icon: "🧘" },
+        { label: "Hampi History", detail: "UNESCO ruins exploration", text: "Plan a 3 day historical trip to Hampi", icon: "🏛️" },
     ];
+    const [suggestions] = useState(() => {
+        const shuffled = [...ALL_SUGGESTIONS].sort(() => Math.random() - 0.5);
+        return shuffled.slice(0, 3);
+    });
 
     useEffect(() => {
         if (hasGreeted.current || messages.length > 0) return;
@@ -302,32 +322,53 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
 
                         <h2 style={{
                             fontFamily: 'Outfit, sans-serif', fontSize: 24, fontWeight: 700,
-                            color: '#1e293b', marginBottom: 8
+                            color: 'rgba(255,255,255,0.9)', marginBottom: 8, zIndex: 10
                         }}>Hi I am</h2>
-                        <h1 style={{
-                            fontFamily: 'Outfit, sans-serif', fontSize: 64, fontWeight: 900,
-                            background: 'linear-gradient(135deg, #1e40af, #3b82f6)',
-                            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                            marginBottom: 40, lineHeight: 1
-                        }}>Safar</h1>
+                        <img 
+                            src="/erasebg-transformed.png" 
+                            alt="Safar Text Logo" 
+                            style={{ 
+                                height: 80, width: 'auto', objectFit: 'contain',
+                                marginBottom: 40, filter: 'drop-shadow(0 4px 12px rgba(255,255,255,0.1))'
+                            }} 
+                        />
 
                         {/* Floating Suggestions */}
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%', alignItems: 'center' }}>
-                            {SUGGESTIONS.map((s, i) => (
+                        <div style={{ display: 'flex', gap: 12, width: '100%', justifyContent: 'center', flexWrap: 'wrap' }}>
+                            {suggestions.map((s, i) => (
                                 <button
                                     key={i}
                                     onClick={() => { setInputValue(s.text); inputRef.current?.focus(); }}
                                     style={{
-                                        background: 'rgba(255, 255, 255, 0.95)',
-                                        border: 'none', borderRadius: '16px', padding: '12px 20px',
-                                        boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-                                        cursor: 'pointer', maxWidth: 320, width: 'fit-content',
+                                        background: 'linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 100%)',
+                                        border: '1px solid rgba(255,255,255,0.18)',
+                                        borderRadius: '20px',
+                                        padding: '16px 20px',
+                                        cursor: 'pointer',
+                                        width: 200,
                                         animation: `slideInUp 0.5s ${i * 0.1}s both`,
-                                        textAlign: 'left'
+                                        textAlign: 'left',
+                                        backdropFilter: 'blur(16px)',
+                                        WebkitBackdropFilter: 'blur(16px)',
+                                        boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.1)',
+                                        transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)',
+                                    }}
+                                    onMouseEnter={e => {
+                                        (e.currentTarget as HTMLElement).style.background = 'linear-gradient(145deg, rgba(99,102,241,0.25) 0%, rgba(168,85,247,0.1) 100%)';
+                                        (e.currentTarget as HTMLElement).style.borderColor = 'rgba(168,85,247,0.4)';
+                                        (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px) scale(1.02)';
+                                        (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 40px rgba(99,102,241,0.2), inset 0 1px 0 rgba(255,255,255,0.2)';
+                                    }}
+                                    onMouseLeave={e => {
+                                        (e.currentTarget as HTMLElement).style.background = 'linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 100%)';
+                                        (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.18)';
+                                        (e.currentTarget as HTMLElement).style.transform = 'translateY(0) scale(1)';
+                                        (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.1)';
                                     }}
                                 >
-                                    <div style={{ color: '#3b82f6', fontWeight: 700, fontSize: 13 }}>{s.label}</div>
-                                    <div style={{ color: '#1e293b', fontSize: 14 }}>{s.detail}</div>
+                                    <div style={{ fontSize: 32, marginBottom: 12, filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))' }}>{s.icon}</div>
+                                    <div style={{ color: '#ffffff', fontWeight: 600, fontSize: 16, marginBottom: 6, fontFamily: 'DM Sans, Inter, sans-serif', letterSpacing: '-0.3px' }}>{s.label}</div>
+                                    <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, fontFamily: 'Inter, sans-serif', lineHeight: 1.4 }}>{s.detail}</div>
                                 </button>
                             ))}
                         </div>
@@ -344,11 +385,12 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
                     }}>
                         {msg.role === 'assistant' && (
                             <div style={{
-                                width: 26, height: 26, borderRadius: '50%', flexShrink: 0,
-                                background: 'linear-gradient(135deg, #6366f1, #d946ef)',
+                                width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                fontSize: 11,
-                            }}>✈</div>
+                                background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)'
+                            }}>
+                                <img src="/erasebg-transformed(2).png" alt="Safar" style={{ width: 16, height: 16, objectFit: 'contain' }} />
+                            </div>
                         )}
                         <div style={
                             msg.role === 'user' ? {
@@ -382,10 +424,12 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
                 {isBotTyping && messages[messages.length - 1]?.role !== 'assistant' && (
                     <div style={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
                         <div style={{
-                            width: 26, height: 26, borderRadius: '50%',
-                            background: 'linear-gradient(135deg, #6366f1, #d946ef)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11,
-                        }}>✈</div>
+                            width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)'
+                        }}>
+                            <img src="/erasebg-transformed(2).png" alt="Safar" style={{ width: 16, height: 16, objectFit: 'contain' }} />
+                        </div>
                         <div style={{
                             padding: '12px 16px', borderRadius: '16px 16px 16px 4px',
                             background: 'rgba(22, 22, 38, 0.85)', border: '1px solid rgba(255,255,255,0.06)',
@@ -452,15 +496,6 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
                             }}
                         />
 
-                        {/* Sparkle Icon Decorator */}
-                        <div style={{
-                            color: '#6366f1', display: 'flex', alignItems: 'center', paddingRight: 8,
-                            opacity: 0.8
-                        }}>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2L14.5 9L22 11.5L14.5 14L12 21L9.5 14L2 11.5L9.5 9L12 2Z" />
-                            </svg>
-                        </div>
 
                         <button type="button"
                             onClick={toggleListening}

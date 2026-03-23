@@ -177,10 +177,12 @@ export default function Home() {
                                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                                         <div style={{
                                             width: 28, height: 28, borderRadius: 8,
-                                            background: 'linear-gradient(135deg, #6366f1, #d946ef)',
+                                            background: 'rgba(255,255,255,0.05)',
+                                            border: '1px solid rgba(255,255,255,0.1)',
                                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                            fontSize: 12,
-                                        }}>✈️</div>
+                                        }}>
+                                            <img src="/erasebg-transformed(2).png" alt="Safar" style={{ width: 16, height: 16, objectFit: 'contain' }} />
+                                        </div>
                                         <span style={{
                                             fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 700,
                                             background: 'linear-gradient(135deg, #f0f0ff, #e879f9)',

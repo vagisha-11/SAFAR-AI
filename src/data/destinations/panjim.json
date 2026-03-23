@@ -1,0 +1,342 @@
+[
+  {
+    "id": "a0b3945b-6e38-4b38-a602-34560484fc58",
+    "name": "Church of Our Lady of Immaculate Conception",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4989,
+      "lng": 73.8278
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A stunning baroque-style church with a striking white facade and panoramic views of Panjim.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "b0b1a625-bc77-4fb1-93f1-8506534b9582",
+    "name": "Fontainhas Latin Quarter",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.498,
+      "lng": 73.827
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A charming heritage neighborhood with colorful Portuguese houses, quaint streets, and vibrant local art.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "c5b63bc7-741c-4834-903f-d494510be9f3",
+    "name": "Mahalaxmi Temple",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4973,
+      "lng": 73.8285
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A revered Hindu temple dedicated to Goddess Mahalaxmi, known for its intricate carvings and spiritual ambiance.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "c6291d91-374c-4743-9716-18c1cdce41a1",
+    "name": "Goa State Museum",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4975,
+      "lng": 73.828
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "10:00",
+    "closingTime": "17:30",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "Explore Goa’s rich history and culture through artifacts, sculptures, and exhibits in this well-curated museum.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "d3b88446-06ca-4506-9aae-eb0909ff89bd",
+    "name": "Dona Paula Viewpoint",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4642,
+      "lng": 73.8145
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A scenic cliffside spot offering breathtaking views of the Arabian Sea and the confluence of rivers.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "cf6723fe-6b09-4691-9471-32ed726b2b49",
+    "name": "Miramar Beach",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.485,
+      "lng": 73.818
+    },
+    "timeToSpend": 2,
+    "openingTime": "05:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A popular sandy beach near Panjim, perfect for a relaxing stroll or watching the sunset over the Arabian Sea.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "1807f859-6281-4176-9b03-2504acaab4a9",
+    "name": "Kala Academy",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.491,
+      "lng": 73.8282
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A vibrant cultural center hosting art exhibitions, music concerts, and theater performances showcasing Goan talent.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "1a1853aa-0d6f-4912-a3e7-829d44d58ab7",
+    "name": "Panjim Market",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.497,
+      "lng": 73.829
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling local market offering fresh produce, spices, handicrafts, and a glimpse into daily Goan life.",
+    "rating": 4.1,
+    "popularity": 8
+  },
+  {
+    "id": "f9445a3b-1084-4f68-a5d9-712a6947ba64",
+    "name": "Mandovi River Cruise",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.495,
+      "lng": 73.83
+    },
+    "timeToSpend": 2,
+    "openingTime": "16:00",
+    "closingTime": "21:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "Enjoy a scenic evening cruise on the Mandovi River with live music, dance performances, and stunning city views.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "74b93c9b-a7cd-4ff4-baa6-c72137896da2",
+    "name": "Sahakari Spice Farm",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.512,
+      "lng": 73.822
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 150,
+    "category": "Nature",
+    "description": "A lush spice plantation offering guided tours to learn about exotic spices and traditional Goan farming methods.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "7b38c1bd-d1d7-4bdf-95f5-f22f2e1eb19e",
+    "name": "Shanta Durga Temple",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.52,
+      "lng": 73.81
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A beautiful temple dedicated to Goddess Shanta Durga, featuring unique architecture blending Hindu and Portuguese styles.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "eb504be7-20bd-4ba3-b481-15768312947c",
+    "name": "Goa Science Centre",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4985,
+      "lng": 73.8295
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Educational",
+    "description": "An interactive science museum with exhibits, a planetarium, and hands-on activities for all ages.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "390098bb-aaf8-4e5d-9e24-0280afc36beb",
+    "name": "Ribandar Church",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4955,
+      "lng": 73.832
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A historic church with beautiful stained glass windows and a peaceful atmosphere, less crowded than other landmarks.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "64a20851-8401-4f16-9577-a3c6d558b7f3",
+    "name": "Mandovi Bridge",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.493,
+      "lng": 73.831
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "00:00",
+    "closingTime": "23:59",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "An iconic bridge offering stunning views of the Mandovi River and the city skyline, especially beautiful at night.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "bbb9e899-282c-469a-bd54-31f29c59eedf",
+    "name": "Panjim Promenade",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.496,
+      "lng": 73.828
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A scenic walkway along the Mandovi River, perfect for a leisurely stroll and people-watching.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "b1b9d02e-1124-434c-b65f-da6eb17b8b7d",
+    "name": "Goa State Central Library",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4978,
+      "lng": 73.8292
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Educational",
+    "description": "A historic library with a vast collection of books and manuscripts, ideal for literature enthusiasts.",
+    "rating": 4,
+    "popularity": 6
+  },
+  {
+    "id": "9bd47904-18c9-4480-8aea-0e29cd0e903c",
+    "name": "Caranzalem Beach",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.484,
+      "lng": 73.82
+    },
+    "timeToSpend": 2,
+    "openingTime": "05:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A quieter beach near Panjim, offering peaceful surroundings and beautiful views of the sunset.",
+    "rating": 4.2,
+    "popularity": 6
+  },
+  {
+    "id": "c8a4d40d-5c75-4ba4-bd6c-c6b16370fd52",
+    "name": "Mandovi Riverfront Food Stalls",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4955,
+      "lng": 73.829
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "17:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Sample authentic Goan street food and seafood delicacies while enjoying the river views at dusk.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "cdfaa9b1-3288-45ea-a348-c87ae2319f5b",
+    "name": "Panjim Night Market",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4972,
+      "lng": 73.8287
+    },
+    "timeToSpend": 2,
+    "openingTime": "18:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A lively night market featuring local crafts, clothing, and street performances, perfect for evening exploration.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "4a53108d-49d9-4070-8917-b4e1c8e833e7",
+    "name": "Old Goa Heritage Walk",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4985,
+      "lng": 73.8295
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 100,
+    "category": "Heritage",
+    "description": "A guided walking tour exploring the rich colonial history and hidden gems of Old Goa’s churches and monuments.",
+    "rating": 4.7,
+    "popularity": 9
+  }
+]

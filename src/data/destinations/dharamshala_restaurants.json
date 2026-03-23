@@ -1,0 +1,152 @@
+[
+  {
+    "id": "86acd97a-d763-43a3-bc76-49c98fa7c5ed",
+    "name": "Illiterati - The Book Cafe",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2164,
+      "lng": 76.3234
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 800,
+    "rating": 4.6,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "adc6859f-510c-4f2a-84dd-d45545eba13f",
+    "name": "Nick's Italian Kitchen",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2151,
+      "lng": 76.3207
+    },
+    "cuisine": "Italian, Continental",
+    "avgCostForTwo": 1200,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "34b3e72f-ae07-4305-a554-767609e04e13",
+    "name": "Tibet Kitchen",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2178,
+      "lng": 76.3219
+    },
+    "cuisine": "Tibetan, Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.4,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "73722997-121a-41c2-935c-3e5216ba3d88",
+    "name": "Jimmy's Italian Kitchen",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2169,
+      "lng": 76.3225
+    },
+    "cuisine": "Italian, Continental",
+    "avgCostForTwo": 1100,
+    "rating": 4.3,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "0d2f0034-2bf8-4882-8a37-6d64660adba1",
+    "name": "Common Ground Cafe",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2145,
+      "lng": 76.324
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.2,
+    "openingTime": "07:30",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "d57664c8-2790-4e27-be47-c8c4e049512f",
+    "name": "Tandoori Flames",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.218,
+      "lng": 76.3195
+    },
+    "cuisine": "North Indian, Mughlai",
+    "avgCostForTwo": 900,
+    "rating": 4.1,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "b8f19190-b15c-4f7b-888f-9f3abb29c4a4",
+    "name": "Lung Ta",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2157,
+      "lng": 76.322
+    },
+    "cuisine": "Tibetan, Local Authentic",
+    "avgCostForTwo": 650,
+    "rating": 4.5,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "eb91662b-965e-4e12-a703-64a8189db628",
+    "name": "The Clay Oven",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2172,
+      "lng": 76.321
+    },
+    "cuisine": "North Indian, Mughlai",
+    "avgCostForTwo": 850,
+    "rating": 4,
+    "openingTime": "11:30",
+    "closingTime": "22:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "f4a63d56-9564-45e3-ac12-410394cac398",
+    "name": "Tibet Kitchen Street Food Hub",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.216,
+      "lng": 76.32
+    },
+    "cuisine": "Street Food, Tibetan",
+    "avgCostForTwo": 300,
+    "rating": 4.3,
+    "openingTime": "10:00",
+    "closingTime": "20:00",
+    "mealType": "any"
+  },
+  {
+    "id": "d3cb79f7-34f6-4e65-88e7-a4e9a51759fb",
+    "name": "Nick's Cafe",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2155,
+      "lng": 76.3215
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 750,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  }
+]

@@ -172,6 +172,7 @@ type IntroPhase = 'splash' | 'rise' | 'chat';
 export default function LandingPage({ messages, setMessages, onTripReady }: LandingPageProps) {
     const [phase, setPhase] = useState<IntroPhase>('splash');
     const [interactionCount, setInteractionCount] = useState(0);
+    const [isChatActive, setIsChatActive] = useState(false);
     const prevMsgLen = useRef(messages.length);
 
     // Drive the intro sequence
@@ -252,39 +253,14 @@ export default function LandingPage({ messages, setMessages, onTripReady }: Land
                     transformOrigin: 'center top',
                     pointerEvents: 'none',
                 }}>
-                    {/* Glow ring behind the icon */}
-                    <div style={{
-                        width: 100, height: 100, borderRadius: '50%',
-                        background: 'linear-gradient(135deg, #6366f1, #d946ef)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: 44,
-                        boxShadow: '0 0 60px rgba(99,102,241,0.6), 0 0 120px rgba(217,70,239,0.3)',
-                        animation: 'splashLogoIn 0.9s cubic-bezier(0.16,1,0.3,1) forwards, pulseRing 2s 1s ease-out infinite',
-                        marginBottom: 24,
-                    }}>
-                        ✈️
-                    </div>
-
-                    <div style={{
-                        fontFamily: 'Outfit, sans-serif', fontSize: 56, fontWeight: 800,
-                        background: 'linear-gradient(135deg, #ffffff 0%, #c4b5fd 40%, #f0abfc 80%)',
-                        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                        letterSpacing: '-1px', lineHeight: 1,
-                        animation: 'splashLogoIn 0.9s 0.1s cubic-bezier(0.16,1,0.3,1) both',
-                        marginBottom: 14,
-                    }}>
-                        Safar
-                    </div>
-
-                    <div style={{
-                        fontFamily: 'DM Sans, Inter, sans-serif',
-                        fontSize: 17, fontWeight: 400, fontStyle: 'italic',
-                        color: 'rgba(255,255,255,0.55)',
-                        letterSpacing: '0.3px',
-                        animation: 'splashSubIn 0.7s 0.6s cubic-bezier(0.16,1,0.3,1) both',
-                    }}>
-                        Your intelligent travel companion
-                    </div>
+                    <img
+                        src="/erasebg-transformed.png"
+                        alt="Safar Logo"
+                        style={{
+                            width: 360, height: 'auto', objectFit: 'contain',
+                            filter: 'drop-shadow(0 0 50px rgba(99,102,241,0.6))',
+                        }}
+                    />
                 </div>
             )}
 
@@ -304,32 +280,52 @@ export default function LandingPage({ messages, setMessages, onTripReady }: Land
                 transition: 'opacity 0.5s ease',
                 animation: phase === 'chat' ? 'headerReveal 0.5s ease forwards' : 'none',
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{ display: 'flex', alignItems: 'center', position: 'relative', width: 340, height: 48 }}>
+                    {/* Tagline */}
                     <div style={{
-                        width: 40, height: 40, borderRadius: 12,
-                        background: 'linear-gradient(135deg, #6366f1, #d946ef)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: 18, boxShadow: '0 4px 20px rgba(99,102,241,0.45)',
-                    }}>✈️</div>
-                    <div>
-                        <div style={{
-                            fontFamily: 'Outfit, sans-serif', fontSize: 22, fontWeight: 800,
-                            background: 'linear-gradient(135deg, #ffffff, #e879f9)',
-                            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                            lineHeight: 1.1,
-                        }}>Safar</div>
-                        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'DM Sans, sans-serif' }}>
-                            Your intelligent travel companion
-                        </div>
+                        position: 'absolute', left: 0, top: '50%',
+                        transform: `translateY(-50%) ${isChatActive ? 'translateY(-10px)' : 'translateY(0)'}`,
+                        opacity: isChatActive ? 0 : 1,
+                        transition: 'opacity 0.4s ease, transform 0.4s ease',
+                        fontFamily: 'Outfit, sans-serif', fontSize: 17, fontWeight: 500,
+                        color: 'rgba(255,255,255,0.9)', fontStyle: 'italic',
+                        whiteSpace: 'nowrap',
+                        pointerEvents: isChatActive ? 'none' : 'auto',
+                    }}>
+                        "Safar khoobsurat hai manzil se bhi!"
                     </div>
+
+                    {/* Logo (Fades in when typing starts) */}
+                    <img
+                        src="/erasebg-transformed.png"
+                        alt="Safar Logo"
+                        style={{ 
+                            position: 'absolute', left: 0, top: '50%',
+                            height: 48, width: 'auto', objectFit: 'contain',
+                            transform: `translateY(-50%) ${isChatActive ? 'translateY(0)' : 'translateY(10px)'}`,
+                            opacity: isChatActive ? 1 : 0,
+                            transition: 'opacity 0.4s ease, transform 0.4s ease',
+                            pointerEvents: isChatActive ? 'auto' : 'none',
+                        }}
+                    />
                 </div>
-                <span style={{
-                    fontSize: 12, color: 'rgba(255,255,255,0.45)',
-                    padding: '6px 14px', borderRadius: 99,
-                    background: 'rgba(99,102,241,0.12)',
-                    border: '1px solid rgba(99,102,241,0.2)',
-                    fontFamily: 'DM Sans, sans-serif',
-                }}>Azure OpenAI</span>
+                
+                {/* User Profile Outline Appended to Header Right */}
+                <div style={{
+                    minWidth: 40, height: 40, borderRadius: '50%',
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    cursor: 'pointer', transition: 'background 0.2s',
+                    color: 'rgba(255,255,255,0.8)'
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.1)')}
+                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.05)')}
+                >
+                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                    </svg>
+                </div>
             </header>
 
             {/* Chat panel — slides up after splash */}
@@ -363,6 +359,7 @@ export default function LandingPage({ messages, setMessages, onTripReady }: Land
                         setMessages={setMessages}
                         onTripReady={onTripReady}
                         fontSize={16}
+                        onActiveChange={setIsChatActive}
                     />
                 </div>
             </div>
@@ -381,7 +378,7 @@ export default function LandingPage({ messages, setMessages, onTripReady }: Land
                 opacity: phase === 'chat' ? 1 : 0,
                 transition: 'opacity 0.5s 0.3s ease',
             }}>
-                Chat freely — backgrounds change as you explore ✨
+                ✨ Safar is AI and can make mistakes.
             </div>
         </div>
     );

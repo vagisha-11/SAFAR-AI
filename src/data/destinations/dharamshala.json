@@ -1,0 +1,342 @@
+[
+  {
+    "id": "bcd6c58e-e6c2-49f4-a30d-1e3efb12ea8e",
+    "name": "Dalai Lama Temple Complex",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.219,
+      "lng": 76.3234
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A serene Tibetan Buddhist temple complex offering spiritual insight and stunning architecture, home to the Dalai Lama.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "88d358f8-c702-4f25-87c1-0f5dce3d59cf",
+    "name": "Bhagsu Waterfall",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2205,
+      "lng": 76.3137
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A beautiful waterfall nestled near Bhagsunath Temple, perfect for a refreshing trek and nature immersion.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "32432857-770a-436a-986f-b501fd78068d",
+    "name": "Bhagsunath Temple",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.22,
+      "lng": 76.314
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "An ancient Hindu temple dedicated to Lord Shiva, surrounded by lush greenery and spiritual ambiance.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "dfec9f0b-2d2f-4185-96c8-356bb9777548",
+    "name": "McLeod Ganj Market",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2432,
+      "lng": 76.321
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A vibrant market offering Tibetan handicrafts, local foods, and souvenirs, bustling with local and tourist energy.",
+    "rating": 4.3,
+    "popularity": 9
+  },
+  {
+    "id": "0dce2214-bebc-4bf3-8ae4-65a2113c492a",
+    "name": "Triund Hill",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2675,
+      "lng": 76.312
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A popular trekking destination offering panoramic views of the Dhauladhar range and Kangra valley.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "9f9eddb4-ee04-4027-ba11-7c2f5b5dd7a1",
+    "name": "St. John in the Wilderness Church",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.237,
+      "lng": 76.32
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A quaint 19th-century Anglican church surrounded by cedar forests, known for its stained glass windows.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "dac0620d-b7c1-4064-b699-bcd6cbe4ee00",
+    "name": "Norbulingka Institute",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.209,
+      "lng": 76.302
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "A center dedicated to preserving Tibetan arts and culture, featuring workshops, gardens, and traditional architecture.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "118f7ce6-fbb5-4108-90fa-f89bdf4865e2",
+    "name": "Kangra Fort",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.104,
+      "lng": 76.269
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Heritage",
+    "description": "An ancient fort with rich history and panoramic views of the Kangra valley, showcasing Mughal and Hindu architecture.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "421ed546-9cf5-4564-a9e7-5391188d66dd",
+    "name": "Tea Gardens of Dharamshala",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.24,
+      "lng": 76.31
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Lush green tea plantations offering scenic walks and insight into local tea production.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "2fb7b173-2625-4e19-b231-8de71346e43f",
+    "name": "Tushita Meditation Centre",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2435,
+      "lng": 76.3215
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A renowned center for studying and practicing Tibetan Mahayana Buddhism with courses and retreats.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "61cc0077-ef42-4ad3-a0bb-80ab861b6e4d",
+    "name": "Naddi Village",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.261,
+      "lng": 76.3105
+    },
+    "timeToSpend": 2,
+    "openingTime": "All Day",
+    "closingTime": "All Day",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A peaceful village offering stunning views of the Dhauladhar mountains and traditional Himachali culture.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "3cc49675-34b9-47d7-bfe8-d0fa7fc5d8b1",
+    "name": "Kunal Pathri Temple",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2375,
+      "lng": 76.322
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A small but revered temple dedicated to Lord Shiva, frequented by locals and visitors alike.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "2fa28a1f-5423-467b-83c9-fe7069a10991",
+    "name": "Tea House Museum",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.244,
+      "lng": 76.3205
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A museum showcasing the history and culture of tea in the region with vintage artifacts and exhibits.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "459177e7-d8e8-4765-ba3e-d001bb2c114f",
+    "name": "Galu Devi Temple",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.237,
+      "lng": 76.319
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "An ancient temple dedicated to Goddess Galu Devi, known for its peaceful surroundings and local festivals.",
+    "rating": 4.2,
+    "popularity": 6
+  },
+  {
+    "id": "c0ecdb56-c6f9-408a-980e-37042d3cfe06",
+    "name": "Kangra Art Museum",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.1045,
+      "lng": 76.2695
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 25,
+    "category": "Cultural",
+    "description": "A museum exhibiting traditional Kangra paintings and artifacts reflecting the region's rich artistic heritage.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "188564d1-a9e5-4892-90ff-aa58bb666240",
+    "name": "Indru Nag Temple",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2405,
+      "lng": 76.3175
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A temple dedicated to Lord Indra, surrounded by cedar forests and offering a tranquil spiritual experience.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "e717ff50-4392-44e2-9f1c-4139f2a1c5f7",
+    "name": "Chamunda Devi Temple",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.238,
+      "lng": 76.318
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A revered temple dedicated to Goddess Chamunda, known for its vibrant festivals and scenic hilltop location.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "a7c0f89f-d09a-4350-9f05-c0317303226c",
+    "name": "Dharamshala Cricket Stadium",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.243,
+      "lng": 76.32
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "A picturesque cricket stadium set against the backdrop of the Himalayas, famous for international matches.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "227ce403-3b70-444d-bf24-09abaf1e1373",
+    "name": "Tea Estate Walk with Local Guide",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.238,
+      "lng": 76.312
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "16:00",
+    "entryFee": 100,
+    "category": "Nature",
+    "description": "A guided walk through local tea estates offering insight into tea cultivation and traditional harvesting methods.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "3e9985e2-df13-48f7-b124-45ae575d70b7",
+    "name": "Galu Devi Temple Hidden Cave",
+    "address": "Dharamshala",
+    "location": {
+      "lat": 32.2372,
+      "lng": 76.3185
+    },
+    "timeToSpend": 1,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A little-known cave near Galu Devi Temple with ancient carvings and a mystical atmosphere, a hidden gem for explorers.",
+    "rating": 4.4,
+    "popularity": 5
+  }
+]
