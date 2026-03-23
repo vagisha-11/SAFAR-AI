@@ -1,0 +1,152 @@
+[
+  {
+    "id": "938ca58e-5085-4a8e-9ff6-190328cc4274",
+    "name": "The Dragon Wok",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3115,
+      "lng": 88.2601
+    },
+    "cuisine": "Asian, Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "cd15fdec-1f5f-4539-8af4-afc9ab2a67cc",
+    "name": "Baker's Cafe",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3128,
+      "lng": 88.2597
+    },
+    "cuisine": "Continental, Bakery",
+    "avgCostForTwo": 600,
+    "rating": 4.3,
+    "openingTime": "07:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "06b63e4e-c43a-43cd-9186-e3f5bb1619ec",
+    "name": "Pelling Local Kitchen",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3102,
+      "lng": 88.261
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 400,
+    "rating": 4.6,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "02dae96d-b5a0-4ca6-90ed-622ca4c9a84f",
+    "name": "Café Norling",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3099,
+      "lng": 88.2605
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "c7903df8-aa00-48d7-a3cb-f59f85d04293",
+    "name": "Mountain Top Restaurant",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.313,
+      "lng": 88.262
+    },
+    "cuisine": "North Indian, Local Authentic",
+    "avgCostForTwo": 900,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "e0867f66-777c-4d86-8407-b94e1b51e87f",
+    "name": "Pelling Street Food Hub",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.311,
+      "lng": 88.2585
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 300,
+    "rating": 4.2,
+    "openingTime": "11:00",
+    "closingTime": "20:00",
+    "mealType": "any"
+  },
+  {
+    "id": "8f58f251-6869-4931-8269-40af6c482702",
+    "name": "The Heritage Restaurant",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3122,
+      "lng": 88.259
+    },
+    "cuisine": "Fine Dining, North Indian",
+    "avgCostForTwo": 1500,
+    "rating": 4.8,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "c3d1720b-3fc7-4f6b-9d53-481bf30c295d",
+    "name": "Sikkimese Delight",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3105,
+      "lng": 88.2608
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 500,
+    "rating": 4.5,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "any"
+  },
+  {
+    "id": "ef654b47-8577-4f6a-82ec-fa0f64fb9707",
+    "name": "Café Himalayan Breeze",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3118,
+      "lng": 88.2615
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 650,
+    "rating": 4.3,
+    "openingTime": "07:30",
+    "closingTime": "19:30",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "420a813a-626c-4e43-a4b3-aa84ef63fdea",
+    "name": "The Royal Tandoor",
+    "address": "Pelling",
+    "location": {
+      "lat": 27.3095,
+      "lng": 88.2593
+    },
+    "cuisine": "North Indian, Mughlai",
+    "avgCostForTwo": 1200,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "dinner"
+  }
+]
