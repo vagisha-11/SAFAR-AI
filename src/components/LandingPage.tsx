@@ -329,7 +329,7 @@ export default function LandingPage({ messages, setMessages, onTripReady }: Land
                     background: 'rgba(99,102,241,0.12)',
                     border: '1px solid rgba(99,102,241,0.2)',
                     fontFamily: 'DM Sans, sans-serif',
-                }}>🤖 Azure OpenAI</span>
+                }}>Azure OpenAI</span>
             </header>
 
             {/* Chat panel — slides up after splash */}

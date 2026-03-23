@@ -299,16 +299,7 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
                         flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center',
                         justifyContent: 'center', animation: 'fadeIn 0.8s ease-out', textAlign: 'center'
                     }}>
-                        <div style={{
-                            position: 'absolute', top: -140, right: 30,
-                            width: 200, height: 200,
-                            filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))',
-                            animation: 'float 4s ease-in-out infinite',
-                            zIndex: 100, pointerEvents: 'none'
-                        }}>
-                             <img src="/safar-mascot.png" 
-                                  alt="Safar Bot" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                        </div>
+
                         <h2 style={{
                             fontFamily: 'Outfit, sans-serif', fontSize: 24, fontWeight: 700,
                             color: '#1e293b', marginBottom: 8
