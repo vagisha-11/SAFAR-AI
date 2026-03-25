@@ -1,0 +1,152 @@
+[
+  {
+    "id": "bcf9411e-a2f8-4fac-9672-f7696c927a21",
+    "name": "Mum's Kitchen",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4989,
+      "lng": 73.8278
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.6,
+    "openingTime": "11:00",
+    "closingTime": "22:30",
+    "mealType": "any"
+  },
+  {
+    "id": "251e71f7-35ed-4f5a-bece-801583314e2d",
+    "name": "Venite Bar and Restaurant",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4984,
+      "lng": 73.8269
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.4,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "8dc18704-3b3b-49f5-b668-8b0d3e468dc8",
+    "name": "Cafe Bhonsle",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4981,
+      "lng": 73.8283
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 300,
+    "rating": 4.2,
+    "openingTime": "07:00",
+    "closingTime": "15:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "43016554-b267-44e2-9e4f-443df6e992b9",
+    "name": "Black Sheep Bistro",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4995,
+      "lng": 73.829
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 1200,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "a4e3274c-97a2-4c2c-8f2f-2cb5a47576b8",
+    "name": "Venus Cafe",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4987,
+      "lng": 73.8281
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 900,
+    "rating": 4.3,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "0f3b91d0-3f7d-4a30-b258-149fec0af3df",
+    "name": "The Fisherman's Wharf",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.498,
+      "lng": 73.83
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 1500,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "6a14ae57-da7b-4f6e-9c55-d9b979067b1d",
+    "name": "Viva Panjim",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4975,
+      "lng": 73.8275
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "14c92d53-cfe9-495a-b5cf-ff3668400d4e",
+    "name": "Cafe Tato",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.499,
+      "lng": 73.827
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 350,
+    "rating": 4.1,
+    "openingTime": "07:00",
+    "closingTime": "14:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "c41ebd55-0b01-4c26-888b-cac12f61ee93",
+    "name": "Gunpowder",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4983,
+      "lng": 73.8287
+    },
+    "cuisine": "South Indian",
+    "avgCostForTwo": 1000,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "any"
+  },
+  {
+    "id": "e1b0fa19-9f2c-4d2c-ac61-5cc284fbcdd9",
+    "name": "Josie's",
+    "address": "Panaji",
+    "location": {
+      "lat": 15.4986,
+      "lng": 73.8295
+    },
+    "cuisine": "Fine Dining",
+    "avgCostForTwo": 2000,
+    "rating": 4.8,
+    "openingTime": "19:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  }
+]

@@ -1,0 +1,342 @@
+[
+  {
+    "id": "894e6989-1959-4c70-8ce0-c200c5956c7f",
+    "name": "Margao Market",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2993,
+      "lng": 73.9675
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling local market offering fresh produce, spices, and traditional Goan handicrafts, perfect for immersing in local life.",
+    "rating": 4.5,
+    "popularity": 10
+  },
+  {
+    "id": "331ae603-2f1e-4c29-b82b-4f7317a6265f",
+    "name": "Holy Spirit Church",
+    "address": "Margao",
+    "location": {
+      "lat": 15.299,
+      "lng": 73.967
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A beautiful 17th-century church known for its stunning Baroque architecture and serene atmosphere.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "8faec914-dc6e-4b16-a333-1aef43e0d55e",
+    "name": "Margao Municipal Garden",
+    "address": "Margao",
+    "location": {
+      "lat": 15.298,
+      "lng": 73.968
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A peaceful garden with lush greenery and walking paths, ideal for a relaxing stroll or picnic.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "764dad66-952e-4120-86de-5e1789e96dc8",
+    "name": "Sahakari Spice Farm",
+    "address": "Margao",
+    "location": {
+      "lat": 15.3125,
+      "lng": 73.978
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 100,
+    "category": "Nature",
+    "description": "Explore a working spice plantation with guided tours showcasing exotic spices and traditional farming methods.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "4c753279-63ab-4cf1-8edc-38da79d623c7",
+    "name": "Shree Damodar Temple",
+    "address": "Margao",
+    "location": {
+      "lat": 15.3015,
+      "lng": 73.9695
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A revered Hindu temple dedicated to Lord Damodar, featuring intricate carvings and vibrant festivals.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "9363499f-3de6-4356-ba27-ec81f717fe79",
+    "name": "Margao Heritage Walk",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2985,
+      "lng": 73.9678
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 150,
+    "category": "Heritage",
+    "description": "Guided walking tours through Margao’s colonial-era buildings, revealing rich history and architecture.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "24c935de-209c-445f-9b9c-4855b6f8aaea",
+    "name": "Caranzalem Beach",
+    "address": "Margao",
+    "location": {
+      "lat": 15.309,
+      "lng": 73.9785
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A tranquil beach near Margao with golden sands and calm waters, perfect for swimming and sunset views.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "59d3f06e-4b56-48a9-8ab8-3d6c369d92d6",
+    "name": "Municipal Museum of Margao",
+    "address": "Margao",
+    "location": {
+      "lat": 15.3,
+      "lng": 73.9685
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "A small museum showcasing Goan art, history, and culture with unique exhibits and artifacts.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "ed2e9bc9-64cf-4558-9468-b44bb614dfaa",
+    "name": "Margao Fish Market",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2987,
+      "lng": 73.9673
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "12:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Experience the lively atmosphere of the local fish market, where fresh catches are auctioned daily.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "ea85cdcb-5ef3-497a-8403-f6fa9b9d4c97",
+    "name": "Kesarval Waterfall",
+    "address": "Margao",
+    "location": {
+      "lat": 15.32,
+      "lng": 73.98
+    },
+    "timeToSpend": 3,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "A hidden gem waterfall surrounded by dense forest, ideal for trekking and nature photography.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "30741b8c-d1b4-43e9-be61-23635d8d6af0",
+    "name": "Margao Night Food Street",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2995,
+      "lng": 73.9672
+    },
+    "timeToSpend": 2,
+    "openingTime": "18:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A vibrant street food hub offering authentic Goan delicacies and local snacks under the stars.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "7be3d90f-526c-4cca-9f67-5d9c390c88d3",
+    "name": "Shree Manguesh Temple",
+    "address": "Margao",
+    "location": {
+      "lat": 15.304,
+      "lng": 73.97
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A majestic temple dedicated to Lord Shiva, known for its beautiful architecture and spiritual ambiance.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "490c2df1-88a7-40cb-8a62-a1d69ace7aa3",
+    "name": "Margao Art Gallery",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2978,
+      "lng": 73.9682
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 40,
+    "category": "Cultural",
+    "description": "A gallery featuring contemporary and traditional Goan art by local artists, perfect for art enthusiasts.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "ffa4a452-1d3b-4008-933e-1b619ea41b30",
+    "name": "Betalbatim Beach",
+    "address": "Margao",
+    "location": {
+      "lat": 15.3105,
+      "lng": 73.976
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A serene beach with soft sands and gentle waves, less crowded and ideal for quiet relaxation.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "1ace4707-829c-4a8c-b99d-7a7cf0706830",
+    "name": "Margao Municipal Library",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2982,
+      "lng": 73.9679
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A quaint library housing a collection of Goan literature and historical documents for curious visitors.",
+    "rating": 4,
+    "popularity": 5
+  },
+  {
+    "id": "2e77d227-996a-4084-8485-3a43f6979025",
+    "name": "Cortalim Village",
+    "address": "Margao",
+    "location": {
+      "lat": 15.305,
+      "lng": 73.972
+    },
+    "timeToSpend": 2,
+    "openingTime": "All Day",
+    "closingTime": "All Day",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A charming traditional Goan village near Margao, offering an authentic glimpse into rural life and customs.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "e1590df3-820c-49a3-8485-15a1e11a2bc7",
+    "name": "Margao Municipal Swimming Pool",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2998,
+      "lng": 73.969
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 60,
+    "category": "Adventure",
+    "description": "A well-maintained public swimming pool for a refreshing dip and leisure activities.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "e6d99057-942b-45ab-b3cc-c387db56fcdc",
+    "name": "Goa State Museum",
+    "address": "Margao",
+    "location": {
+      "lat": 15.3005,
+      "lng": 73.9695
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "A museum showcasing Goa’s rich history, art, and culture with extensive exhibits and artifacts.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "0b37381f-fbb5-4c04-968d-51b851afaa14",
+    "name": "Margao Clock Tower",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2989,
+      "lng": 73.9677
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "All Day",
+    "closingTime": "All Day",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "An iconic colonial-era clock tower standing tall in the heart of Margao, a popular photo spot.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "9300e276-1d27-4020-8960-b81bd1212726",
+    "name": "Margao Cultural Centre",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2992,
+      "lng": 73.9681
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A venue hosting traditional Goan music, dance performances, and art exhibitions.",
+    "rating": 4.6,
+    "popularity": 8
+  }
+]

@@ -378,7 +378,7 @@ export default function MapView() {
                         closeOnClick={false}
                     >
                         <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 200, padding: 8 }}>
-                            <strong style={{ fontSize: 13, display: 'block', marginBottom: 6 }}>{contextMenuPopup.placeName}</strong>
+                            <strong style={{ fontSize: 13, display: 'block', marginBottom: 6, color: '#111827' }}>{contextMenuPopup.placeName}</strong>
                             <p style={{ fontSize: 11, color: '#666', margin: '0 0 10px 0' }}>{contextMenuPopup.address}</p>
                             <button
                                 onClick={confirmAddContextPlace}
@@ -472,7 +472,7 @@ export default function MapView() {
                     >
                         <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 200, padding: 8 }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
-                                <strong style={{ fontSize: 14 }}>{popupInfo.data.name}</strong>
+                                <strong style={{ fontSize: 14, color: '#111827' }}>{popupInfo.data.name}</strong>
                                 <span style={{ background: '#6366f1', color: 'white', fontSize: 10, padding: '2px 6px', borderRadius: 4 }}>Day {popupInfo.dayNum}</span>
                             </div>
                             <p style={{ fontSize: 12, color: '#666', margin: '4px 0' }}>{popupInfo.data.description}</p>
@@ -503,7 +503,7 @@ export default function MapView() {
                         closeButton={true}
                     >
                         <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 160, padding: 8 }}>
-                            <strong style={{ fontSize: 14, color: '#10b981' }}>🍽️ {popupInfo.data.name}</strong>
+                            <strong style={{ fontSize: 14, color: '#065f46' }}>🍽️ {popupInfo.data.name}</strong>
                             <p style={{ fontSize: 12, color: '#666', margin: '4px 0' }}>{popupInfo.data.cuisine}</p>
                             <p style={{ fontSize: 11, color: '#888' }}>
                                 Avg ₹{popupInfo.data.avgCostForTwo} for two · Day {popupInfo.dayNum}
@@ -521,7 +521,7 @@ export default function MapView() {
                         closeButton={true}
                     >
                         <div style={{ fontFamily: 'Inter, sans-serif', minWidth: 160, padding: 8 }}>
-                            <strong style={{ color: '#f59e0b' }}>🏨 {popupInfo.data.hotel.name}</strong>
+                            <strong style={{ color: '#92400e', fontSize: 14 }}>🏨 {popupInfo.data.hotel.name}</strong>
                             <p style={{ fontSize: 12, margin: '4px 0', color: '#666' }}>{popupInfo.data.locality}</p>
                         </div>
                     </Popup>

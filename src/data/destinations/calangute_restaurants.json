@@ -1,0 +1,152 @@
+[
+  {
+    "id": "48394de9-e8cd-4857-ac38-234ae06404d2",
+    "name": "Mum's Kitchen",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5445,
+      "lng": 73.7582
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "0cbc4a7f-d36f-41f3-86bd-d177e2d7fa13",
+    "name": "Calamari Bathe & Binge",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5449,
+      "lng": 73.7575
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 1200,
+    "rating": 4.3,
+    "openingTime": "12:00",
+    "closingTime": "23:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "55c3ab5b-f8e0-478e-b502-b5fca2fe8299",
+    "name": "Vinayak Family Restaurant",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5458,
+      "lng": 73.7589
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 500,
+    "rating": 4.1,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "89fc26a4-ff85-4e23-9211-b9bdc45206df",
+    "name": "Cafe Chocolatti",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.545,
+      "lng": 73.7595
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "eb48fb7e-6bc9-4d5f-a56d-3ae1063519bb",
+    "name": "Souza Lobo",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5443,
+      "lng": 73.7587
+    },
+    "cuisine": "Seafood, Local Authentic",
+    "avgCostForTwo": 1500,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "fde13040-7725-4f8b-a6ef-e51b92fdf6a2",
+    "name": "German Bakery",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.546,
+      "lng": 73.7578
+    },
+    "cuisine": "Bakery, Continental",
+    "avgCostForTwo": 600,
+    "rating": 4.2,
+    "openingTime": "07:30",
+    "closingTime": "21:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "e78d022e-98f3-4872-8dd0-37f9e3ab7db4",
+    "name": "Navtara Veg Restaurant",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5455,
+      "lng": 73.759
+    },
+    "cuisine": "North Indian, Vegetarian",
+    "avgCostForTwo": 400,
+    "rating": 4,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "e3364e15-c2fa-43e1-a03a-732510a5e388",
+    "name": "Fat Fish",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5447,
+      "lng": 73.758
+    },
+    "cuisine": "Seafood, Continental",
+    "avgCostForTwo": 1300,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "3852def3-5c0d-48be-b5b3-c2562c6b82ae",
+    "name": "Anand Bar & Restaurant",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5452,
+      "lng": 73.7572
+    },
+    "cuisine": "Local Authentic, Seafood",
+    "avgCostForTwo": 700,
+    "rating": 4.1,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "4e70fc2d-a2c2-4881-874e-f056fbda3afc",
+    "name": "Calangute Market Street Food",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.544,
+      "lng": 73.757
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 300,
+    "rating": 4.3,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  }
+]
