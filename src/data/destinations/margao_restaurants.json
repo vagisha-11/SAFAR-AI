@@ -1,0 +1,152 @@
+[
+  {
+    "id": "57ee61f3-0b04-4f5f-8880-9c261ba05cd5",
+    "name": "Mum's Kitchen",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2993,
+      "lng": 73.9864
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.7,
+    "openingTime": "11:00",
+    "closingTime": "22:30",
+    "mealType": "any"
+  },
+  {
+    "id": "22ab6ab7-fe07-4641-9e4d-fa8ba82eb06a",
+    "name": "Martin's Corner",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2999,
+      "lng": 73.9875
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 1200,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "235b5f18-eaed-416d-95d8-2f40fce00891",
+    "name": "Anand Bar & Restaurant",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2987,
+      "lng": 73.9851
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.3,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "bae2483d-c383-46be-8035-dfdffe8f2b2b",
+    "name": "Cafe Bhonsle",
+    "address": "Margao",
+    "location": {
+      "lat": 15.3005,
+      "lng": 73.984
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 400,
+    "rating": 4.1,
+    "openingTime": "07:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "e3d8914a-f34a-45c5-a383-b096191671a2",
+    "name": "Viva Panjim",
+    "address": "Margao",
+    "location": {
+      "lat": 15.301,
+      "lng": 73.987
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 700,
+    "rating": 4.2,
+    "openingTime": "11:30",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "a9768ddf-c2bf-460e-9d91-271cd7b04631",
+    "name": "Soro - The Village Pub",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2975,
+      "lng": 73.9882
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 1500,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "23:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "39b1b02b-2afd-4f7c-bb44-99d9b008237a",
+    "name": "Ritz Classic",
+    "address": "Margao",
+    "location": {
+      "lat": 15.2968,
+      "lng": 73.9855
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 900,
+    "rating": 4.4,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "6c88259e-fddf-4fe5-805d-75b70e6169e7",
+    "name": "Viva Panjim Street Food Hub",
+    "address": "Margao",
+    "location": {
+      "lat": 15.299,
+      "lng": 73.986
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 300,
+    "rating": 4,
+    "openingTime": "17:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "81c9fe0b-014d-453f-a987-830e2bae7a3d",
+    "name": "Cafe Alchemia",
+    "address": "Margao",
+    "location": {
+      "lat": 15.298,
+      "lng": 73.9835
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 500,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "1df03c42-7ec4-4429-b367-d2c3eec88bc7",
+    "name": "The Fisherman's Wharf",
+    "address": "Margao",
+    "location": {
+      "lat": 15.3008,
+      "lng": 73.989
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 1300,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "id": "5e37b1cd-b919-4129-b9b8-80c59b861aef",
+    "name": "Thaff Restaurant",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4981,
+      "lng": 76.3388
+    },
+    "cuisine": "Seafood, Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "4295eb6a-d74e-44fb-81f3-eb926aee0c0b",
+    "name": "Indian Coffee House",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4987,
+      "lng": 76.3382
+    },
+    "cuisine": "South Indian, Cafe",
+    "avgCostForTwo": 150,
+    "rating": 4,
+    "openingTime": "07:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "0026627d-751a-4117-8b6c-35d15088f398",
+    "name": "Halais Restaurant",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4985,
+      "lng": 76.339
+    },
+    "cuisine": "Kerala, Seafood",
+    "avgCostForTwo": 700,
+    "rating": 4.3,
+    "openingTime": "11:30",
+    "closingTime": "22:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "c076fc32-83af-4cbc-b23f-d06b703e6e91",
+    "name": "Cafe Catamaran",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4979,
+      "lng": 76.3375
+    },
+    "cuisine": "Continental, Cafe",
+    "avgCostForTwo": 500,
+    "rating": 4.2,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "b4ea133d-2650-46f9-af31-ac6aded699d2",
+    "name": "Alleppy Fish Curry Rice",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4992,
+      "lng": 76.3395
+    },
+    "cuisine": "Local Authentic, Seafood",
+    "avgCostForTwo": 400,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "21:00",
+    "mealType": "lunch"
+  },
+  {
+    "id": "1d96d3a0-88ec-4ba8-9e92-d504488294f4",
+    "name": "The Rice Boat",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4975,
+      "lng": 76.34
+    },
+    "cuisine": "Fine Dining, Seafood",
+    "avgCostForTwo": 1500,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "66f3817a-208a-4891-b79b-4b4a3e79a138",
+    "name": "Kumarakom Restaurant",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.498,
+      "lng": 76.337
+    },
+    "cuisine": "Kerala, Local Authentic",
+    "avgCostForTwo": 550,
+    "rating": 4.4,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "dc5c76c4-886c-4765-ae64-0d4ebe080ca8",
+    "name": "Alleppey Bakery",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.499,
+      "lng": 76.338
+    },
+    "cuisine": "Bakery, Cafe",
+    "avgCostForTwo": 250,
+    "rating": 4.1,
+    "openingTime": "06:30",
+    "closingTime": "20:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "684e506a-2034-417a-a3b3-87e5c060ef99",
+    "name": "Spicy Lagoon",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4983,
+      "lng": 76.3392
+    },
+    "cuisine": "Kerala, Seafood",
+    "avgCostForTwo": 650,
+    "rating": 4.3,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "3a3d19ad-1c52-4f66-8ae7-6bf64f7073a2",
+    "name": "Alleppey Street Food Hub",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4978,
+      "lng": 76.3385
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 200,
+    "rating": 4,
+    "openingTime": "10:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  }
+]

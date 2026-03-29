@@ -1,0 +1,152 @@
+[
+  {
+    "id": "d3b9a0c7-737c-4964-b5ae-54d3c7235e20",
+    "name": "Venite Bar and Restaurant",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4989,
+      "lng": 73.8278
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 700,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "any"
+  },
+  {
+    "id": "00872aed-9240-49cd-9fa7-270e4b57251b",
+    "name": "Mum's Kitchen",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4976,
+      "lng": 73.827
+    },
+    "cuisine": "Goan, Local Authentic",
+    "avgCostForTwo": 1200,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "lunch"
+  },
+  {
+    "id": "f9ee5216-0f7b-4349-b957-259b3788d14c",
+    "name": "Cafe Bhonsle",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4982,
+      "lng": 73.8285
+    },
+    "cuisine": "Local Authentic, Street Food",
+    "avgCostForTwo": 300,
+    "rating": 4.3,
+    "openingTime": "07:00",
+    "closingTime": "15:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "ee376b04-085d-405e-9626-27eb6fcade20",
+    "name": "Black Sheep Bistro",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4955,
+      "lng": 73.8289
+    },
+    "cuisine": "Continental, European",
+    "avgCostForTwo": 1500,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "0b060246-35c7-4fa4-b123-3f1f61bda41f",
+    "name": "Venus Cafe",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.498,
+      "lng": 73.829
+    },
+    "cuisine": "Local Authentic, Seafood",
+    "avgCostForTwo": 900,
+    "rating": 4.4,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any"
+  },
+  {
+    "id": "e3be97ab-4f6b-46cc-a7da-ea254460da67",
+    "name": "The Fisherman's Wharf",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4967,
+      "lng": 73.8305
+    },
+    "cuisine": "Seafood, Goan",
+    "avgCostForTwo": 1600,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:30",
+    "mealType": "dinner"
+  },
+  {
+    "id": "9d3b6595-ee00-42bc-95d6-3e684eba8e99",
+    "name": "Cafe Tato",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.497,
+      "lng": 73.8265
+    },
+    "cuisine": "Local Authentic, Street Food",
+    "avgCostForTwo": 350,
+    "rating": 4.2,
+    "openingTime": "06:30",
+    "closingTime": "14:00",
+    "mealType": "breakfast"
+  },
+  {
+    "id": "8e62f9e2-c6a5-45fb-8df2-4e97d91efc69",
+    "name": "Venite Lounge",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.499,
+      "lng": 73.828
+    },
+    "cuisine": "Bar, Continental",
+    "avgCostForTwo": 1300,
+    "rating": 4.5,
+    "openingTime": "17:00",
+    "closingTime": "01:00",
+    "mealType": "dinner"
+  },
+  {
+    "id": "b2a97e01-0962-45b3-9054-cce4c5e37e71",
+    "name": "Gunpowder",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4958,
+      "lng": 73.8295
+    },
+    "cuisine": "South Indian, Local Authentic",
+    "avgCostForTwo": 1100,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "lunch"
+  },
+  {
+    "id": "94c5f221-18b0-4ea1-b02c-b589c2d2f30e",
+    "name": "Mango Tree",
+    "address": "Panjim",
+    "location": {
+      "lat": 15.4973,
+      "lng": 73.8277
+    },
+    "cuisine": "Goan, Seafood",
+    "avgCostForTwo": 1400,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner"
+  }
+]

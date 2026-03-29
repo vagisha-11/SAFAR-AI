@@ -65,14 +65,8 @@ export default function TripDashboard({ isChatCollapsed, setIsChatCollapsed, cha
                         ←
                     </button>
                     <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                            <span style={{
-                                fontFamily: 'Outfit, sans-serif', fontWeight: 700, fontSize: 18,
-                                background: 'linear-gradient(135deg, #f0f0ff, #818cf8)',
-                                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                            }}>Safar AI</span>
-                            <span style={{ color: '#6b6b99' }}>|</span>
-                            <span style={{ color: '#a0a0cc', fontSize: 14 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44 }}>
+                            <span style={{ color: '#a0a0cc', fontSize: 14, fontWeight: 500 }}>
                                 {tripInput.source} → {tripInput.destination}
                             </span>
                         </div>
@@ -127,6 +121,23 @@ export default function TripDashboard({ isChatCollapsed, setIsChatCollapsed, cha
                         }}>
                             ₹{currentCost.toLocaleString('en-IN')}
                         </div>
+                    </div>
+                    <div style={{ width: 1, height: 32, background: 'rgba(99,102,241,0.15)' }} />
+                    <div style={{
+                        minWidth: 40, height: 40, borderRadius: '50%',
+                        background: 'rgba(255,255,255,0.05)',
+                        border: '1px solid rgba(255,255,255,0.1)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        cursor: 'pointer', transition: 'background 0.2s',
+                        color: 'rgba(255,255,255,0.8)',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.1)')}
+                    onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.05)')}
+                    title="User Login"
+                    >
+                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
                     </div>
                 </div>
             </header>

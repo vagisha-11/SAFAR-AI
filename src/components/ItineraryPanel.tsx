@@ -22,14 +22,35 @@ export default function ItineraryPanel() {
 
     return (
         <div>
-            <h2 style={{
-                fontFamily: 'Outfit, sans-serif', fontSize: 18, fontWeight: 700,
-                color: '#f0f0ff', marginBottom: 16,
-                display: 'flex', alignItems: 'center', gap: 8,
-            }}>
-                📋 Your Itinerary
-                <span className="badge" style={{ fontSize: 11 }}>{itinerary.days.length} days</span>
-            </h2>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                <h2 style={{
+                    fontFamily: 'Outfit, sans-serif', fontSize: 18, fontWeight: 700,
+                    color: '#f0f0ff',
+                    display: 'flex', alignItems: 'center', gap: 8,
+                }}>
+                    📋 Your Itinerary
+                    <span className="badge" style={{ fontSize: 11 }}>{itinerary.days.length} days</span>
+                </h2>
+                <button 
+                    onClick={() => window.print()} 
+                    style={{
+                        padding: '6px 12px', fontSize: 12, borderRadius: 8,
+                        background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.3)',
+                        color: '#a0a0cc', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6,
+                        transition: 'all 0.2s', fontFamily: 'Inter, sans-serif'
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(99,102,241,0.25)';
+                        e.currentTarget.style.color = '#fff';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(99,102,241,0.15)';
+                        e.currentTarget.style.color = '#a0a0cc';
+                    }}
+                >
+                    🖨️ Save / Print
+                </button>
+            </div>
 
             {daysToShow.map(day => {
                 const isExpanded = expandedDay === day.dayNumber || selectedDay === day.dayNumber;

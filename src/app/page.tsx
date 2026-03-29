@@ -8,6 +8,75 @@ import TripDashboard from '@/components/TripDashboard';
 import LoadingOverlay from '@/components/LoadingOverlay';
 import { ChatPanel } from '@/components/ChatPanel';
 
+
+// Destination-keyed fun facts (fallback to general India facts)
+const FUN_FACTS: Record<string, string[]> = {
+    default: [
+        "India has the largest number of vegetarians in the world — nearly 40% of the population!",
+        "The game of Chess was invented in India around the 6th century AD.",
+        "India is the world's largest democracy with over 900 million eligible voters.",
+        "The number zero was invented by the Indian mathematician Brahmagupta in 628 AD.",
+        "India has the most post offices in the world — over 155,000 of them!",
+    ],
+    jaipur: [
+        "Jaipur is called the Pink City because Maharaja Ram Singh painted the entire old city pink in 1876 to welcome the Prince of Wales.",
+        "The Amber Fort in Jaipur took over 100 years to build and was completed in 1727.",
+        "Jaipur was the first planned city of India, designed in 1727 by Maharaja Sawai Jai Singh II.",
+        "The Hawa Mahal has 953 small windows designed so royal ladies could observe street festivals without being seen.",
+        "Jaipur is one of the few cities in Asia with an underground drainage system from the 18th century.",
+    ],
+    goa: [
+        "Goa has the highest per-capita income among all Indian states.",
+        "Goa was a Portuguese colony for 451 years — longer than India was under British rule.",
+        "The Basilica of Bom Jesus in Goa holds the remains of St. Francis Xavier and is a UNESCO World Heritage Site.",
+        "Goa has over 100 km of stunning coastline with more than 40 beaches.",
+        "Goa liberalized from Portugal and joined India only in 1961, 14 years after Independence.",
+    ],
+    kerala: [
+        "Kerala has India's highest literacy rate at over 96%, the highest in the country.",
+        "Kerala is home to the world's longest canoe race — the Nehru Trophy Boat Race on Punnamada Lake.",
+        "Ayurveda, the ancient Indian system of medicine, originated in Kerala over 3,000 years ago.",
+        "Kerala's backwaters span over 900 km of waterways, lagoons, lakes, and canals.",
+        "Kerala is nicknamed 'God's Own Country' and is one of the top 10 paradises in the world by National Geographic.",
+    ],
+    delhi: [
+        "Delhi has been the capital of at least 8 major empires in over 5,000 years of history.",
+        "The Qutub Minar in Delhi is the tallest brick minaret in the world at 73 metres.",
+        "Delhi Metro is one of the largest and busiest metro systems in the world.",
+        "India Gate in Delhi commemorates 84,000 Indian soldiers who died in the First World War.",
+        "Humayun's Tomb in Delhi preceded the Taj Mahal and was its primary inspiration.",
+    ],
+    mumbai: [
+        "Mumbai is built on what was originally seven separate islands — they were joined by land reclamation projects.",
+        "The Dharavi slum in Mumbai has one of the highest population densities in the world — over 300,000 people per km².",
+        "Mumbai's Dabbawala system delivers over 200,000 lunches daily with an accuracy rate of near 99.99%.",
+        "The Gateway of India was built to commemorate the visit of King George V and Queen Mary in 1911.",
+        "Mumbai's local train network carries over 7.5 million passengers daily — more than most countries' entire rail systems.",
+    ],
+    agra: [
+        "The Taj Mahal took 22 years and over 20,000 artisans to build between 1632 and 1653.",
+        "The Taj Mahal appears to change color depending on the time of day — pinkish in the morning, white at noon, golden at sunset.",
+        "Agra Fort was used as both a palace and a prison — Shah Jahan spent the last 8 years of his life imprisoned here with a view of the Taj Mahal.",
+        "Emperor Shah Jahan built the Taj Mahal as a mausoleum for his beloved wife Mumtaz Mahal who died in 1631.",
+        "It is said the minarets of the Taj Mahal were built at a slight outward angle so they would fall away from the main tomb if an earthquake struck.",
+    ],
+    manali: [
+        "Manali was named after Manu, the Hindu law-giver, who is believed to have saved humanity from a great flood here.",
+        "The Rohtang Pass near Manali is one of the highest motorable mountain passes in the world at 3,978 metres.",
+        "Solang Valley near Manali is known as the 'Snow Point' and offers skiing, zorbing, and paragliding year-round.",
+        "The Hidimba Devi Temple in Manali is over 500 years old and dedicated to the wife of Bhima from the Mahabharata.",
+        "Manali experiences temperatures as low as -15°C in winter, making it one of the coldest inhabited places in India.",
+    ],
+};
+
+function getFunFacts(destination: string): string[] {
+    const key = destination.toLowerCase().replace(/[^a-z]/g, '');
+    for (const [city, facts] of Object.entries(FUN_FACTS)) {
+        if (city !== 'default' && key.includes(city)) return facts;
+    }
+    return FUN_FACTS.default;
+}
+
 type Message = {
     id: string;
     role: 'assistant' | 'user';
@@ -20,7 +89,7 @@ export default function Home() {
         activeStep, isLoading,
         setIsLoading, setLoadingMessage, setActiveStep,
         setLocalitySplit, setAgentData, setItinerary, setBudget,
-        setSelectedHotel, setTripInput,
+        setSelectedHotel, setTripInput, setLoadingFunFacts,
         tripInput: storeTripInput, itinerary,
     } = useSafarStore();
 
@@ -48,6 +117,28 @@ export default function Home() {
 
         setTripInput(tripInput);
         setIsLoading(true);
+        
+        // Parallel: Fetch AI-generated fun facts (with local fallback)
+        const fetchFacts = async () => {
+            try {
+                const localFacts = getFunFacts(tripInput.destination);
+                setLoadingFunFacts(localFacts); // Initial set from local dictionary
+
+                const res = await fetch('/api/getFacts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ destination: tripInput.destination }),
+                });
+                const data = await res.json();
+                if (data.facts && Array.isArray(data.facts)) {
+                    setLoadingFunFacts(data.facts);
+                }
+            } catch (err) {
+                console.error("Failed to fetch AI fun facts, sticking to local:", err);
+            }
+        };
+        fetchFacts();
+
         setActiveStep('planning');
 
         try {
@@ -170,17 +261,7 @@ export default function Home() {
                                     flexShrink: 0,
                                 }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                                        <div style={{
-                                            width: 28, height: 28, borderRadius: 8,
-                                            background: 'linear-gradient(135deg, #6366f1, #d946ef)',
-                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                            fontSize: 12,
-                                        }}>✈️</div>
-                                        <span style={{
-                                            fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 700,
-                                            background: 'linear-gradient(135deg, #f0f0ff, #e879f9)',
-                                            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                                        }}>Safar AI</span>
+                                        <img src="/erasebg-transformed.png" alt="Safar AI" style={{ height: 34, width: 'auto' }} />
                                     </div>
                                     <button
                                         className="collapse-btn"

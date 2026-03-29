@@ -1,0 +1,325 @@
+[
+  {
+    "id": "283f6efe-06f3-404f-9b87-e8686e6009cf",
+    "name": "Alleppey Backwaters",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4981,
+      "lng": 76.3388
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Experience the serene and picturesque network of lagoons and canals by boat, witnessing lush greenery and traditional village life.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "2d435bae-353b-4e05-b974-5e6862b5a857",
+    "name": "Alleppey Beach",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4986,
+      "lng": 76.337
+    },
+    "timeToSpend": 2,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A tranquil beach with golden sands and a beautiful pier, perfect for sunrise and sunset views.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "e46bf6e2-92fc-4046-a198-f339e4dcb725",
+    "name": "Alleppey Lighthouse",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4989,
+      "lng": 76.3365
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "An iconic lighthouse offering panoramic views of the Arabian Sea and the town, standing tall since 1862.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "f88ccd59-416c-40da-9254-e32121e0c8a7",
+    "name": "Ambalapuzha Sri Krishna Temple",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.3887,
+      "lng": 76.4553
+    },
+    "timeToSpend": 2,
+    "openingTime": "04:00",
+    "closingTime": "12:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A historic temple famous for its exquisite architecture and the unique sweet milk porridge called 'Palpayasam'.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "f2974fbe-b111-4371-9895-3b4688eac8e3",
+    "name": "Krishnapuram Palace",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.3115,
+      "lng": 76.5479
+    },
+    "timeToSpend": 3,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Heritage",
+    "description": "A majestic 18th-century palace showcasing traditional Kerala architecture and ancient murals.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "ecf039f2-060b-43e9-84b0-15384d8238cc",
+    "name": "Pathiramanal Island",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.574,
+      "lng": 76.345
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A small island in Vembanad Lake known for its rich birdlife and peaceful natural surroundings.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "aaba11e3-60ec-492e-bf52-9475d5e61804",
+    "name": "Marari Beach",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.7132,
+      "lng": 76.2793
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A pristine and less crowded beach offering a perfect blend of tranquility and traditional fishing village culture.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "38b12c2c-3303-45d1-a9f5-879fdb5e6686",
+    "name": "Alleppey Boat House Stay",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4981,
+      "lng": 76.3388
+    },
+    "timeToSpend": 5,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "entryFee": 1500,
+    "category": "Cultural",
+    "description": "Stay overnight on a traditional houseboat cruising through the backwaters, enjoying local cuisine and scenic views.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "14d05413-47e0-4136-99cd-95a8cdc73ad1",
+    "name": "Mullakkal Rajarajeswari Temple",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.498,
+      "lng": 76.338
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A prominent temple in the heart of Alleppey dedicated to Goddess Rajarajeswari, known for its vibrant festivals.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "8b02df77-246f-4237-8c7e-e0bd7ee282fd",
+    "name": "Kuttanad Paddy Fields",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4,
+      "lng": 76.35
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Explore the vast and unique below-sea-level paddy fields, often called the 'Rice Bowl of Kerala'.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "55b5e943-934f-4b34-b188-8eba965c54db",
+    "name": "St. Mary's Forane Church",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4983,
+      "lng": 76.339
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A beautiful old church with colonial architecture and a peaceful ambiance in the heart of Alleppey.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "315a0be8-67c5-42db-8529-427210a2d004",
+    "name": "Alleppey Market",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4985,
+      "lng": 76.3375
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling local market offering fresh spices, seafood, and handicrafts, perfect for an authentic shopping experience.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "87ed3ece-c807-4e3c-9970-827e77e600fb",
+    "name": "Vembanad Lake",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.5,
+      "lng": 76.35
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "The longest lake in India, offering stunning views, bird watching, and boat rides through its vast waters.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "00aebb0e-143e-4748-8846-c914ac8f92d2",
+    "name": "Chettikulangara Devi Temple",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.25,
+      "lng": 76.45
+    },
+    "timeToSpend": 2,
+    "openingTime": "05:00",
+    "closingTime": "12:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A revered temple known for its grand festivals and traditional Kerala temple architecture.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "204bda72-b91c-4e86-a9b4-e15c82f69359",
+    "name": "Alleppey Boat Jetty",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4982,
+      "lng": 76.3385
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "The main boat jetty from where houseboats and ferries depart, bustling with local activity and scenic views.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "999dd4e2-79b0-4dcb-9406-384167a951eb",
+    "name": "Pathiramanal Bird Sanctuary",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.5735,
+      "lng": 76.3445
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "17:00",
+    "entryFee": 40,
+    "category": "Nature",
+    "description": "A hidden gem for bird watchers, this sanctuary hosts migratory and native birds in a peaceful island setting.",
+    "rating": 4.7,
+    "popularity": 6
+  },
+  {
+    "id": "9306edff-eaf5-4ced-ad0e-c4fdfc3dc1fb",
+    "name": "Alleppey Heritage Museum",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4975,
+      "lng": 76.3378
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 25,
+    "category": "Heritage",
+    "description": "Showcasing the rich cultural and historical heritage of Alleppey through artifacts, photographs, and exhibits.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "3df3bc0f-f861-43f0-8450-4fefe6ef51cc",
+    "name": "Kumarakom Bird Sanctuary",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.615,
+      "lng": 76.46
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A renowned sanctuary near Alleppey, home to a variety of migratory birds and lush mangrove forests.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "d20d9d86-eba7-4ef7-b723-4c9b20999df6",
+    "name": "Alleppey Boat Race (Nehru Trophy Boat Race)",
+    "address": "Alleppey",
+    "location": {
+      "lat": 9.4981,
+      "lng": 76.3388
+    },
+    "timeToSpend": 5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Witness the thrilling annual snake boat race, a spectacular cultural event showcasing local traditions and competitive spirit.",
+    "rating": 4.9,
+    "popularity": 10
+  }
+]

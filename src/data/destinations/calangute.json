@@ -1,0 +1,342 @@
+[
+  {
+    "id": "f05af27e-5674-403f-9048-71734a9b8a06",
+    "name": "Calangute Beach",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5762,
+      "lng": 73.7539
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "The largest and most popular beach in North Goa, known for its golden sands, vibrant shacks, and water sports.",
+    "rating": 4.5,
+    "popularity": 10
+  },
+  {
+    "id": "fd3352b8-5a2a-4dea-ba30-4ad0b3b4ed4a",
+    "name": "Baga Beach",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5791,
+      "lng": 73.7556
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A lively beach adjacent to Calangute, famous for nightlife, beach parties, and water activities.",
+    "rating": 4.4,
+    "popularity": 9
+  },
+  {
+    "id": "aa728b10-15f0-42e4-ad70-98be7ab2dc24",
+    "name": "St. Alex Church",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5778,
+      "lng": 73.7543
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A beautiful 17th-century church showcasing Portuguese architecture and serene interiors.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "7812c937-51c0-494e-90dc-ec9c2983f3ab",
+    "name": "Saturday Night Market Arpora",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.59,
+      "lng": 73.752
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "18:00",
+    "closingTime": "01:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling night market offering local crafts, street food, live music, and a vibrant atmosphere.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "10e21a36-3d43-43e5-962f-ee3330e5288c",
+    "name": "Candolim Beach",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5799,
+      "lng": 73.7587
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A quieter beach near Calangute, perfect for peaceful walks and sunset views.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "cac53ed9-bc72-4b2f-b0b4-e33fd39e32d9",
+    "name": "Fort Aguada",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.4961,
+      "lng": 73.7709
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 25,
+    "category": "Heritage",
+    "description": "A 17th-century Portuguese fort with panoramic views of the Arabian Sea and a historic lighthouse.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "198a1556-0deb-4e3d-8458-725f7daa7f1e",
+    "name": "Anjuna Flea Market",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.6035,
+      "lng": 73.7443
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A vibrant market offering eclectic handicrafts, jewelry, clothes, and souvenirs from local vendors.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "96b33d1f-c311-4c4f-8ab0-9025294bc355",
+    "name": "Dudhsagar Waterfalls",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.3145,
+      "lng": 74.3142
+    },
+    "timeToSpend": 4,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A majestic four-tiered waterfall located in the Bhagwan Mahavir Wildlife Sanctuary, perfect for trekking and nature lovers.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "4991cbf6-336f-4482-a3ee-c9b106b1a260",
+    "name": "Tito's Lane",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5795,
+      "lng": 73.755
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "18:00",
+    "closingTime": "03:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "The heart of nightlife in Calangute, lined with famous clubs, bars, and restaurants.",
+    "rating": 4.4,
+    "popularity": 9
+  },
+  {
+    "id": "a3dbddfb-9f92-4f21-951d-0e9cc93d0afb",
+    "name": "Baga River",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.579,
+      "lng": 73.757
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A serene river flowing into the Arabian Sea, ideal for boat rides and bird watching.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "f3a5d864-a9c9-4291-a2cc-4a7b59be06e0",
+    "name": "Calangute Market",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5765,
+      "lng": 73.754
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling local market offering fresh produce, spices, and souvenirs reflecting Goan culture.",
+    "rating": 4,
+    "popularity": 7
+  },
+  {
+    "id": "d23e355f-5f46-45fd-bf4f-2ffd7b163e6e",
+    "name": "Sinq Nightclub",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5797,
+      "lng": 73.7548
+    },
+    "timeToSpend": 2,
+    "openingTime": "20:00",
+    "closingTime": "03:00",
+    "entryFee": 500,
+    "category": "Cultural",
+    "description": "A trendy nightclub known for its energetic music, dance floors, and vibrant crowd.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "2bbb1109-cf91-4161-a21a-af919901d347",
+    "name": "St. Anthony's Chapel",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.574,
+      "lng": 73.751
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A quaint chapel with beautiful frescoes and peaceful ambiance, a hidden gem in Calangute.",
+    "rating": 4.2,
+    "popularity": 6
+  },
+  {
+    "id": "06e7b4af-f369-49e4-ad41-d031e8a7e110",
+    "name": "Goa State Museum",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.4925,
+      "lng": 73.8278
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "Showcases Goa’s rich history, art, and culture through a vast collection of artifacts and exhibits.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "2fb66c5f-dac4-4639-9841-d38f622025e1",
+    "name": "Watersports at Calangute",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5762,
+      "lng": 73.7539
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "Experience thrilling activities like parasailing, jet skiing, and banana boat rides on Calangute Beach.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "8dfdd86e-9bbc-4c72-a2b6-ee5a540eb776",
+    "name": "Chapora Fort",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.6293,
+      "lng": 73.7475
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 10,
+    "category": "Heritage",
+    "description": "A scenic fort offering breathtaking views of the Chapora River and Arabian Sea, famous from Bollywood films.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "196c9515-8c97-4be2-831b-890330546571",
+    "name": "Morjim Beach",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.642,
+      "lng": 73.755
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A tranquil beach known for olive ridley sea turtle nesting and a peaceful vibe away from crowds.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "ab463bb3-d028-468b-856d-096b9911a0e4",
+    "name": "Arpora Saturday Night Market Food Stalls",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.59,
+      "lng": 73.752
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "18:00",
+    "closingTime": "01:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Sample authentic Goan and international street food in a lively market setting with live entertainment.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "e19a4070-ae5d-4a45-b639-69a1f791619c",
+    "name": "The Black Sheep Bistro",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.577,
+      "lng": 73.7545
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A popular eatery offering innovative Goan and global cuisine in a cozy, artistic ambiance.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "34719e48-ff18-4c1c-9e66-e1d4c6a7804a",
+    "name": "Calangute Art Gallery",
+    "address": "Calangute",
+    "location": {
+      "lat": 15.5755,
+      "lng": 73.7535
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Showcases contemporary Goan art and crafts, providing insight into local creativity and culture.",
+    "rating": 4.3,
+    "popularity": 6
+  }
+]
