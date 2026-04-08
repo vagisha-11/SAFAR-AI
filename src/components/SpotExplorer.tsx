@@ -4,7 +4,7 @@ import { useSafarStore } from '@/lib/store';
 import { useState } from 'react';
 
 export default function SpotExplorer() {
-    const { itinerary, selectedDay, addSpotToDay } = useSafarStore();
+    const { itinerary, selectedDay, addSpotToDay, setPhotoViewerPlace } = useSafarStore();
     const [search, setSearch] = useState('');
 
     if (!itinerary || !itinerary.unselectedSpots || itinerary.unselectedSpots.length === 0) {
@@ -113,13 +113,26 @@ export default function SpotExplorer() {
                                 <span style={{ color: '#6366f1' }}>⏱️ {spot.timeToSpend}h</span>
                             </div>
                         </div>
-                        <button
-                            onClick={() => addSpotToDay(targetDay, spot)}
-                            className="btn-secondary"
-                            style={{ padding: '8px 12px', fontSize: 12, borderRadius: 10, whiteSpace: 'nowrap' }}
-                        >
-                            + Day {targetDay}
-                        </button>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'flex-end', justifyContent: 'center' }}>
+                            <button
+                                onClick={() => addSpotToDay(targetDay, spot)}
+                                className="btn-secondary"
+                                style={{ padding: '8px 12px', fontSize: 12, borderRadius: 10, whiteSpace: 'nowrap' }}
+                            >
+                                + Day {targetDay}
+                            </button>
+                            <button
+                                onClick={() => setPhotoViewerPlace(spot.name)}
+                                style={{
+                                    padding: '6px 12px', fontSize: 13, borderRadius: 10, 
+                                    background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid rgba(255,255,255,0.2)',
+                                    cursor: 'pointer', whiteSpace: 'nowrap'
+                                }}
+                                title="Street View"
+                            >
+                                📷
+                            </button>
+                        </div>
                     </div>
                 ))}
                 {filteredSpots.length === 0 && (

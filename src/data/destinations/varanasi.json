@@ -1,0 +1,342 @@
+[
+  {
+    "id": "60466a39-37b4-4959-8e32-f7d5e5b2674b",
+    "name": "Kashi Vishwanath Temple",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3102,
+      "lng": 83.0096
+    },
+    "timeToSpend": 2,
+    "openingTime": "05:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "One of the most famous Hindu temples dedicated to Lord Shiva, located on the western bank of the Ganges.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "d08cbafd-c435-4278-989c-d4f5e1219223",
+    "name": "Dashashwamedh Ghat",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.314,
+      "lng": 83.0101
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "04:00",
+    "closingTime": "23:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "The main and most spectacular ghat on the Ganges, famous for its evening Ganga Aarti ceremony.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "402a3843-e523-43c0-9e91-678d1cbc65d3",
+    "name": "Sarnath",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.366,
+      "lng": 83.0246
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 40,
+    "category": "Heritage",
+    "description": "An important Buddhist pilgrimage site where Lord Buddha gave his first sermon after enlightenment.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "c9b4d4e1-a1ae-4fd9-83bf-60e106a62b49",
+    "name": "Ramnagar Fort",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.321,
+      "lng": 83.0412
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "A 17th-century fort and palace on the eastern bank of the Ganges, showcasing royal artifacts and vintage cars.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "0178e4ff-ddba-4994-9a81-aa91379d6595",
+    "name": "Manikarnika Ghat",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3145,
+      "lng": 83.012
+    },
+    "timeToSpend": 1,
+    "openingTime": "24 Hours",
+    "closingTime": "24 Hours",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "One of the oldest and most sacred cremation ghats, symbolizing the cycle of life and death in Varanasi.",
+    "rating": 4.4,
+    "popularity": 9
+  },
+  {
+    "id": "2c0ee6b1-585f-4b96-b6b7-9b76b3a0bd4f",
+    "name": "Tulsi Manas Mandir",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3095,
+      "lng": 83.0113
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A beautiful temple dedicated to Lord Rama, with walls inscribed with verses from the Ramcharitmanas.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "8a036b60-4c09-4212-b383-6013a9b0569a",
+    "name": "Assi Ghat",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.2939,
+      "lng": 83.0076
+    },
+    "timeToSpend": 2,
+    "openingTime": "04:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A lively ghat popular for morning yoga sessions, boat rides, and vibrant local life along the Ganges.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "29fc70da-6ec9-43b2-bca3-eee0113285e0",
+    "name": "Bharat Kala Bhavan Museum",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3147,
+      "lng": 83.0072
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A museum exhibiting a rich collection of Indian paintings, Hindu and Buddhist sculptures, and textiles.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "2ef306f3-5c37-4144-8cdd-c2dca9ff2f69",
+    "name": "Banaras Hindu University (BHU) Campus",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.2677,
+      "lng": 82.9913
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A sprawling university campus with beautiful gardens, the Bharat Kala Bhavan museum, and spiritual centers.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "18c84084-82c9-4773-b02c-756c86816cf4",
+    "name": "Gyanvapi Mosque",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.31,
+      "lng": 83.009
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A historic mosque adjacent to the Kashi Vishwanath Temple, reflecting the city's rich religious history.",
+    "rating": 4.1,
+    "popularity": 7
+  },
+  {
+    "id": "dce1f25a-4b58-4970-a9c8-f943160f26f3",
+    "name": "Chunar Fort",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.166,
+      "lng": 83.02
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 30,
+    "category": "Heritage",
+    "description": "A majestic fort located about 40 km from Varanasi, offering panoramic views and historical insights.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "9baf7e25-8e8a-45bd-b76d-60472a46f039",
+    "name": "Alamgir Mosque",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.312,
+      "lng": 83.011
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A mosque built by Mughal emperor Aurangzeb, situated on the banks of the Ganges with stunning views.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "5227ac75-9ca1-4788-ad91-cf0f8679b39c",
+    "name": "Tulsi Ghat",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.308,
+      "lng": 83.0105
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "04:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A serene ghat known for its association with poet-saint Tulsidas and vibrant cultural activities.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "aed67818-9615-4230-a162-53a0b472d4bf",
+    "name": "Scindia Ghat",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3125,
+      "lng": 83.0095
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A peaceful ghat ideal for boat rides and witnessing the spiritual rituals of Varanasi.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "d2293c22-67db-41f1-af69-d092f626a09c",
+    "name": "Harishchandra Ghat",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.315,
+      "lng": 83.013
+    },
+    "timeToSpend": 1,
+    "openingTime": "24 Hours",
+    "closingTime": "24 Hours",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "One of the oldest cremation ghats, known for its traditional funeral pyres and spiritual significance.",
+    "rating": 4.1,
+    "popularity": 7
+  },
+  {
+    "id": "bb82bbae-ccd2-4e0f-8b15-d137aae88bad",
+    "name": "Brijrama Palace",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.313,
+      "lng": 83.008
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 30,
+    "category": "Heritage",
+    "description": "A historic palace on the banks of the Ganges, now converted into a heritage hotel with exquisite architecture.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "2b639c1a-889b-4039-bfb1-59257292fa83",
+    "name": "Boat Ride on the Ganges",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.314,
+      "lng": 83.01
+    },
+    "timeToSpend": 2,
+    "openingTime": "05:00",
+    "closingTime": "19:00",
+    "entryFee": 150,
+    "category": "Adventure",
+    "description": "Experience a serene boat ride at sunrise or sunset to witness the ghats and rituals along the holy river.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "23c85a06-733e-4f8e-93c9-1ef858dc6350",
+    "name": "Banaras Ghats Walk",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.31,
+      "lng": 83.01
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A guided walking tour along the numerous ghats, exploring local life, rituals, and hidden temples.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "56bb8a9d-cc47-4cb2-a4e2-eb316b8c1e8c",
+    "name": "Kabir Math",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.32,
+      "lng": 83.005
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A spiritual center dedicated to the poet-saint Kabir, offering insight into his teachings and philosophy.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "bf95845e-27ef-4c95-833e-e46c5065da12",
+    "name": "Chaukhandi Stupa",
+    "address": "Varanasi",
+    "location": {
+      "lat": 25.3665,
+      "lng": 83.025
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A Buddhist stupa marking the site where Buddha met his first disciples before his first sermon.",
+    "rating": 4.4,
+    "popularity": 7
+  }
+]

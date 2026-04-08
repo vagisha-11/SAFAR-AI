@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import PhotoViewer from "@/components/PhotoViewer";
 
 export const metadata: Metadata = {
   title: "Safar AI — Your Intelligent Trip Planner",
@@ -19,6 +20,7 @@ export default function RootLayout({
       </head>
       <body>
         {children}
+        <PhotoViewer />
       </body>
     </html>
   );

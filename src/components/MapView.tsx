@@ -30,7 +30,7 @@ const OLA_MAPS_STYLES = {
 };
 
 export default function MapView() {
-    const { itinerary, selectedDay, selectedHotels, selectedPlaceId, setSelectedPlaceId, setDayRoutes } = useSafarStore();
+    const { itinerary, selectedDay, selectedHotels, selectedPlaceId, setSelectedPlaceId, setDayRoutes, setPhotoViewerPlace } = useSafarStore();
     const mapRef = useRef<MapRef>(null);
     const [mapStyleKey, setMapStyleKey] = useState<keyof typeof OLA_MAPS_STYLES>('2d-light');
     const [popupInfo, setPopupInfo] = useState<{ id: string, type: 'spot' | 'restaurant' | 'hotel', data: any, dayNum?: number } | null>(null);
@@ -484,12 +484,24 @@ export default function MapView() {
                             <div style={{ display: 'flex', gap: 8 }}>
                                 <span style={{ fontSize: 11, color: '#f59e0b' }}>{'⭐'.repeat(Math.round(popupInfo.data.rating))}</span>
                             </div>
-                            <button
-                                onClick={() => removeSpot(popupInfo.data.id)}
-                                style={{ marginTop: 8, padding: '4px 12px', borderRadius: 4, background: '#ef4444', color: 'white', border: 'none', fontSize: 11, cursor: 'pointer', width: '100%' }}
-                            >
-                                ✕ Remove from itinerary
-                            </button>
+                            <div style={{ display: 'flex', gap: 8 }}>
+                                <span style={{ fontSize: 11, color: '#f59e0b' }}>{'⭐'.repeat(Math.round(popupInfo.data.rating))}</span>
+                            </div>
+                            <div style={{ display: 'flex', gap: 6, marginTop: 8 }}>
+                                <button
+                                    onClick={() => setPhotoViewerPlace(popupInfo.data.name)}
+                                    style={{ flex: 1, padding: '4px 12px', borderRadius: 4, background: '#4f46e5', color: 'white', border: 'none', fontSize: 13, cursor: 'pointer' }}
+                                    title="Street View"
+                                >
+                                    📷
+                                </button>
+                                <button
+                                    onClick={() => removeSpot(popupInfo.data.id)}
+                                    style={{ flex: 3, padding: '4px 12px', borderRadius: 4, background: '#ef4444', color: 'white', border: 'none', fontSize: 11, cursor: 'pointer' }}
+                                >
+                                    ✕ Remove
+                                </button>
+                            </div>
                         </div>
                     </Popup>
                 )}

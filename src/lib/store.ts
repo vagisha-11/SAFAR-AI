@@ -340,7 +340,7 @@
 import { create } from 'zustand';
 import {
     TripInput, LocalitySplit, AgentData, FullItinerary,
-    DayPlan, Hotel, Review, BudgetAllocation, TravelSelection, RouteInfo,
+    DayPlan, Hotel, Review, BudgetAllocation, TravelSelection, RouteInfo, LatLng
 } from './types';
 
 // ---------- STATE INTERFACE ----------
@@ -398,6 +398,10 @@ interface SafarState {
     selectedPlaceId: string | null;
     setSelectedPlaceId: (id: string | null) => void;
 
+    // Wikimedia Photo Viewer
+    photoViewerPlace: string | null;
+    setPhotoViewerPlace: (place: string | null) => void;
+
     // Suggestions
     suggestions: { type: string; message: string; data: any }[];
     setSuggestions: (suggestions: any[]) => void;
@@ -429,6 +433,7 @@ const initialState = {
     suggestions: [],
     selectedPlaceId: null,
     dayRoutes: [],
+    photoViewerPlace: null,
 };
 
 export const useSafarStore = create<SafarState>((set, get) => ({
@@ -581,6 +586,8 @@ export const useSafarStore = create<SafarState>((set, get) => ({
     },
 
     setSelectedPlaceId: (id) => set({ selectedPlaceId: id }),
+
+    setPhotoViewerPlace: (place) => set({ photoViewerPlace: place }),
 
     setDayRoutes: (routes) => set({ dayRoutes: routes }),
 
