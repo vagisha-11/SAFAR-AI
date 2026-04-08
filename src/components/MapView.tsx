@@ -10,17 +10,17 @@ import { decodePolyline } from '@/lib/decodePolyline';
 
 // Custom marker icons
 const SpotIcon = () => (
-    <div style={{width: 28, height: 28, background: 'linear-gradient(135deg, #6366f1, #4f46e5)', borderRadius: '50% 50% 50% 0', transform: 'rotate(-45deg)', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.3)', cursor: 'pointer'}}>
-        <span style={{transform: 'rotate(45deg)', fontSize: 11, color: 'white'}}>📍</span>
+    <div style={{ width: 28, height: 28, background: 'linear-gradient(135deg, #6366f1, #4f46e5)', borderRadius: '50% 50% 50% 0', transform: 'rotate(-45deg)', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.3)', cursor: 'pointer' }}>
+        <span style={{ transform: 'rotate(45deg)', fontSize: 11, color: 'white' }}>📍</span>
     </div>
 );
 
 const RestaurantIcon = () => (
-    <div style={{width: 24, height: 24, background: 'linear-gradient(135deg, #10b981, #059669)', borderRadius: '50%', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 6px rgba(0,0,0,0.3)', fontSize: 12, cursor: 'pointer'}}>🍽️</div>
+    <div style={{ width: 24, height: 24, background: 'linear-gradient(135deg, #10b981, #059669)', borderRadius: '50%', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 6px rgba(0,0,0,0.3)', fontSize: 12, cursor: 'pointer' }}>🍽️</div>
 );
 
 const HotelIcon = () => (
-    <div style={{width: 26, height: 26, background: 'linear-gradient(135deg, #f59e0b, #d97706)', borderRadius: '50%', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 6px rgba(0,0,0,0.3)', fontSize: 12, cursor: 'pointer'}}>🏨</div>
+    <div style={{ width: 26, height: 26, background: 'linear-gradient(135deg, #f59e0b, #d97706)', borderRadius: '50%', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 6px rgba(0,0,0,0.3)', fontSize: 12, cursor: 'pointer' }}>🏨</div>
 );
 
 const OLA_MAPS_STYLES = {
@@ -34,7 +34,7 @@ export default function MapView() {
     const mapRef = useRef<MapRef>(null);
     const [mapStyleKey, setMapStyleKey] = useState<keyof typeof OLA_MAPS_STYLES>('2d-light');
     const [popupInfo, setPopupInfo] = useState<{ id: string, type: 'spot' | 'restaurant' | 'hotel', data: any, dayNum?: number } | null>(null);
-    const [contextMenuPopup, setContextMenuPopup] = useState<{lat: number, lng: number, placeName: string, address: string} | null>(null);
+    const [contextMenuPopup, setContextMenuPopup] = useState<{ lat: number, lng: number, placeName: string, address: string } | null>(null);
     // Real road route features fetched from Ola Directions API (fallback: empty = use straight-line)
     const [actualRouteFeatures, setActualRouteFeatures] = useState<any[]>([]);
 
@@ -205,8 +205,8 @@ export default function MapView() {
         };
 
         fetchRoutesForDay();
-    // Rebuild routes when itinerary days, selected day, or hotel selection changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // Rebuild routes when itinerary days, selected day, or hotel selection changes
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [itinerary, selectedDay, selectedHotels]);
     // Programmatically open popup when selectedPlaceId changes
     useEffect(() => {
@@ -288,7 +288,7 @@ export default function MapView() {
             // Reverse Geocoding with Ola Maps
             let placeName = `Custom place at ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
             let address = placeName;
-            
+
             try {
                 const apiKey = process.env.NEXT_PUBLIC_OLA_MAPS_API_KEY || '';
                 const res = await fetch(`https://api.olamaps.io/places/v1/reverse-geocode?latlng=${lat},${lng}&api_key=${apiKey}`);
@@ -309,7 +309,7 @@ export default function MapView() {
 
     const confirmAddContextPlace = async () => {
         if (!contextMenuPopup || !itinerary) return;
-        
+
         const { lat, lng, placeName, address } = contextMenuPopup;
         const name = window.prompt(`Location found: ${placeName}\nEnter a name for this place:`, placeName);
         if (!name) return; // User cancelled
@@ -354,7 +354,7 @@ export default function MapView() {
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
             <Map
                 ref={mapRef}
-                initialViewState={{...defaultCenter, pitch: OLA_MAPS_STYLES[mapStyleKey].pitch}}
+                initialViewState={{ ...defaultCenter, pitch: OLA_MAPS_STYLES[mapStyleKey].pitch }}
                 mapStyle={OLA_MAPS_STYLES[mapStyleKey].url}
                 transformRequest={transformRequest}
                 onContextMenu={handleMapRightClick}
@@ -383,7 +383,7 @@ export default function MapView() {
                             <button
                                 onClick={confirmAddContextPlace}
                                 style={{
-                                    padding: '6px 12px', borderRadius: 6, background: '#10b981', 
+                                    padding: '6px 12px', borderRadius: 6, background: '#10b981',
                                     color: 'white', border: 'none', fontSize: 12, cursor: 'pointer',
                                     width: '100%', fontWeight: 600
                                 }}
@@ -404,7 +404,7 @@ export default function MapView() {
                                 'line-color': feature.properties.color,
                                 'line-width': actualRouteFeatures.length > 0 ? 4 : 5,
                                 'line-opacity': 0.85,
-                                ...( actualRouteFeatures.length === 0 ? { 'line-dasharray': [1, 2] } : {} ),
+                                ...(actualRouteFeatures.length === 0 ? { 'line-dasharray': [1, 2] } : {}),
                             }}
                         />
                     </Source>
@@ -412,10 +412,10 @@ export default function MapView() {
 
                 {/* Hotel markers */}
                 {hotelMarkers.map((h, i) => (
-                    <Marker 
-                        key={`hotel-${i}`} 
-                        longitude={h.hotel.location.lng} 
-                        latitude={h.hotel.location.lat} 
+                    <Marker
+                        key={`hotel-${i}`}
+                        longitude={h.hotel.location.lng}
+                        latitude={h.hotel.location.lat}
                         anchor="bottom"
                         onClick={e => {
                             e.originalEvent.stopPropagation();
@@ -430,7 +430,7 @@ export default function MapView() {
                 {spots.map(({ spot, dayNum }, idx) => (
                     <Marker
                         key={`${spot.id}-${dayNum}-${idx}`}
-                        longitude={spot.location.lng} 
+                        longitude={spot.location.lng}
                         latitude={spot.location.lat}
                         anchor="bottom"
                         onClick={e => {
@@ -447,7 +447,7 @@ export default function MapView() {
                 {restaurants.map(({ restaurant, dayNum }, idx) => (
                     <Marker
                         key={`${restaurant.id}-${dayNum}-${idx}`}
-                        longitude={restaurant.location.lng} 
+                        longitude={restaurant.location.lng}
                         latitude={restaurant.location.lat}
                         anchor="bottom"
                         onClick={e => {
@@ -628,7 +628,7 @@ export default function MapView() {
                     <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#f59e0b' }} />
                     <span style={{ color: '#a0a0cc' }}>Hotels</span>
                 </div>
-                <div style={{ color: '#6b6b99' }}>Click map to add a place</div>
+                <div style={{ color: '#6b6b99' }}>Right click map to add a place</div>
             </div>
         </div>
     );

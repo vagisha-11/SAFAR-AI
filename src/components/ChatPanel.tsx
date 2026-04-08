@@ -1235,7 +1235,6 @@ export function ChatPanel({ messages, setMessages, onTripReady, isCollapsed, fon
         { label: "Kerala Backwaters", detail: "houseboat & spice trails", text: "Plan a 6 day Kerala houseboat trip", icon: "🌴" },
         { label: "Rajasthan Royal", detail: "palaces & desert safari", text: "Plan a 7 day royal Rajasthan tour covering Jaipur, Jodhpur and Jaisalmer", icon: "🐪" },
         { label: "Ladakh Adventure", detail: "high altitude road trip", text: "Plan a 8 day Ladakh road trip adventure", icon: "🏔️" },
-        { label: "Mumbai Blast", detail: "city food & culture tour", text: "Plan a 3 day Mumbai city trip with food and culture", icon: "🌆" },
         { label: "Andaman Escape", detail: "island hopping & diving", text: "Plan a 5 day Andaman island trip with scuba diving", icon: "🤿" },
         { label: "Varanasi Spiritual", detail: "ghats & spiritual journey", text: "Plan a 4 day spiritual trip to Varanasi", icon: "🪔" },
         { label: "Coorg Coffee", detail: "misty hills & plantations", text: "Plan a 3 day Coorg retreat in the coffee hills", icon: "☕" },

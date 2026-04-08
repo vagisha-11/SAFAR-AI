@@ -22,10 +22,10 @@ export default function PhotoViewer() {
             try {
                 // Fetch images related to the place name using Wikimedia Commons API
                 const url = `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(photoViewerPlace)}&gsrnamespace=6&gsrlimit=12&prop=imageinfo&iiprop=url&format=json&origin=*`;
-                
+
                 const res = await fetch(url);
                 const data = await res.json();
-                
+
                 if (data && data.query && data.query.pages) {
                     const pages = Object.values(data.query.pages) as any[];
                     const urls = pages
@@ -82,7 +82,7 @@ export default function PhotoViewer() {
                     <h2 style={{ fontSize: 22, fontWeight: 'bold', color: 'white', margin: 0 }}>
                         📷 Photos of {photoViewerPlace}
                     </h2>
-                    <button 
+                    <button
                         onClick={() => {
                             setPhotoViewerPlace(null);
                             setImages([]);
@@ -101,7 +101,7 @@ export default function PhotoViewer() {
                 <div style={{ flexGrow: 1, overflowY: 'auto', paddingRight: 8 }}>
                     {loading && (
                         <div style={{ display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center', color: '#a0a0cc', fontSize: 18 }}>
-                            Searching Wikimedia Commons...
+                            Fetching Images...
                         </div>
                     )}
 
@@ -119,16 +119,16 @@ export default function PhotoViewer() {
                             paddingBottom: 24
                         }}>
                             {images.map((url, idx) => (
-                                <a 
-                                    key={idx} 
-                                    href={url} 
-                                    target="_blank" 
+                                <a
+                                    key={idx}
+                                    href={url}
+                                    target="_blank"
                                     rel="noopener noreferrer"
                                     style={{ display: 'block', textDecoration: 'none', background: '#0f0f1a', borderRadius: 8, overflow: 'hidden' }}
                                 >
-                                    <img 
-                                        src={url} 
-                                        alt={`${photoViewerPlace} photo ${idx + 1}`} 
+                                    <img
+                                        src={url}
+                                        alt={`${photoViewerPlace} photo ${idx + 1}`}
                                         style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block' }}
                                         loading="lazy"
                                     />
@@ -141,3 +141,4 @@ export default function PhotoViewer() {
         </div>
     );
 }
+
