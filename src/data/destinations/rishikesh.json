@@ -1,0 +1,325 @@
+[
+  {
+    "id": "d07e0ad1-8959-446a-8011-6fa20d5ed854",
+    "name": "Laxman Jhula",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.126,
+      "lng": 78.267
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "An iconic suspension bridge over the Ganges, offering stunning views and a spiritual vibe.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "31e11774-a6a5-480e-ae5f-838f440dd129",
+    "name": "Ram Jhula",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.132,
+      "lng": 78.273
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "A larger suspension bridge similar to Laxman Jhula, connecting important temples and ashrams.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "8ad7306c-c98a-46b0-82cd-e5c47e5dba3d",
+    "name": "Triveni Ghat",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1265,
+      "lng": 78.266
+    },
+    "timeToSpend": 2,
+    "openingTime": "04:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A sacred bathing spot on the Ganges where pilgrims gather for ritual baths and evening aarti ceremonies.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "157ccda2-2d7c-48da-83dc-5121708c20e5",
+    "name": "Neelkanth Mahadev Temple",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1325,
+      "lng": 78.21
+    },
+    "timeToSpend": 2,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A revered Shiva temple nestled in the forested hills, known for its spiritual ambiance and scenic surroundings.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "5c05aaaa-7796-4bef-bdae-e1ea4d5043c9",
+    "name": "Beatles Ashram (Chaurasi Kutia)",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.136,
+      "lng": 78.2675
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 150,
+    "category": "Heritage",
+    "description": "The abandoned ashram where The Beatles stayed in 1968, now a graffiti-filled spiritual and artistic site.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "4fa9ed56-1ead-49a1-bd77-57d6a7b51d79",
+    "name": "Rajaji National Park",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.2,
+      "lng": 78.2
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 200,
+    "category": "Nature",
+    "description": "A vast wildlife sanctuary offering jeep safaris and nature walks amidst rich flora and fauna.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "17449461-7a12-4607-afc4-014fc2210da3",
+    "name": "Tera Manzil Temple",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1268,
+      "lng": 78.2672
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A thirteen-story temple with intricate carvings and panoramic views of the Ganges and Rishikesh.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "9e938bbf-17f0-4aab-a6e3-f22c08148fcb",
+    "name": "Vashishta Gufa",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.15,
+      "lng": 78.25
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A serene cave where sage Vashishta is said to have meditated, surrounded by tranquil forest.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "b30a24fb-9189-4741-a5bf-c353b04def65",
+    "name": "Ganga Aarti at Parmarth Niketan",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.124,
+      "lng": 78.2675
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "18:00",
+    "closingTime": "19:30",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A mesmerizing evening ritual on the riverbank with devotional songs, lamps, and spiritual chanting.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "f1ec6802-a600-4e50-b198-7ad4ff1ef241",
+    "name": "Swarg Ashram",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.128,
+      "lng": 78.27
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A peaceful spiritual enclave with ashrams, cafes, and shops selling spiritual books and handicrafts.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "89b95402-9535-4d31-b572-4d8b1f612367",
+    "name": "Rishikund",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1255,
+      "lng": 78.268
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A sacred pond believed to have been created by Lord Rama, offering a tranquil spot for reflection.",
+    "rating": 4.2,
+    "popularity": 6
+  },
+  {
+    "id": "0d3d3065-4bf1-4945-8159-a2ffb25eac2c",
+    "name": "Kunjapuri Temple",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.19,
+      "lng": 78.28
+    },
+    "timeToSpend": 3,
+    "openingTime": "05:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A hilltop temple famous for breathtaking sunrise views over the Himalayas and the Ganges valley.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "13d76dbc-ab00-4c80-a75a-7c0994ee7e97",
+    "name": "Adventure Zone Rishikesh",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.13,
+      "lng": 78.27
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 1200,
+    "category": "Adventure",
+    "description": "A hub for thrilling activities like white-water rafting, zip-lining, and bungee jumping.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "381d3330-6c38-4ba0-b3e0-b3d2a3c6642c",
+    "name": "Neer Garh Waterfall",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.14,
+      "lng": 78.26
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A beautiful waterfall hidden in the forest, perfect for a refreshing dip and nature walk.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "d1c51017-bcc9-4ef0-ac95-e9517dfd6d31",
+    "name": "Gita Bhawan",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.125,
+      "lng": 78.2685
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A spiritual center dedicated to the teachings of the Bhagavad Gita with peaceful surroundings.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "9ba6013a-3f22-4993-bf20-ca542727b532",
+    "name": "Parmarth Niketan Ashram",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1245,
+      "lng": 78.267
+    },
+    "timeToSpend": 2,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "One of the largest ashrams in Rishikesh, offering yoga classes, spiritual discourses, and serene gardens.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "a2bc8035-0b19-4856-8706-06d1e9ca6757",
+    "name": "Swami Rama Sadhaka Grama",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1305,
+      "lng": 78.265
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A meditation and yoga center founded by Swami Rama, focusing on spiritual growth and wellness.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "82caed3c-bba0-4e70-bc4f-116c1485fa13",
+    "name": "Vashishta Cave Trek",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.15,
+      "lng": 78.25
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A scenic trek through forest trails leading to the ancient Vashishta meditation cave.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "80107a02-d5ab-4d9a-962e-d0f98cc775e8",
+    "name": "Ganga Beach",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.125,
+      "lng": 78.268
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A peaceful sandy riverbank ideal for picnics, yoga, and watching the sunrise over the Ganges.",
+    "rating": 4.3,
+    "popularity": 6
+  }
+]

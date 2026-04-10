@@ -25,6 +25,8 @@ interface AgentBInput {
     startDate: string;
     arrivalHour?: number;
     budget?: number;
+    dietaryFilter?: 'veg' | 'jain'; // strict dietary requirement
+    travelers: number;
 }
 
 const RELEVANCE_THRESHOLD = 15; // Lowered threshold: let more diverse spots qualify (popular ones score high regardless)
@@ -143,10 +145,12 @@ async function findOptimalRestaurant(
     nextLocation: LatLng,
     restaurants: Restaurant[],
     mealType: 'lunch' | 'dinner',
-    usedRestaurants: Set<string>
+    usedRestaurants: Set<string>,
+    dietaryFilter?: 'veg' | 'jain'
 ): Promise<Restaurant | null> {
     const candidates = restaurants.filter(
         r => !usedRestaurants.has(r.id) && (r.mealType === mealType || r.mealType === 'any')
+             && (!dietaryFilter || (dietaryFilter === 'veg' ? r.isPureVeg : r.hasJainFood))
     );
 
     if (candidates.length === 0) return null;
@@ -172,7 +176,7 @@ async function findOptimalRestaurant(
  * Maximizes aggregate Profit (User Interest) across all days M.
  */
 async function buildDayPlans(input: AgentBInput): Promise<{ dayPlans: DayPlan[], unselectedSpots: Spot[] }> {
-    const { spots, restaurants, daysInLocality, locality, cityCenter, hotelLocation, maxHoursPerDay, userPreferences = [], mustExclude = [], additionalNotes = '', startDate, arrivalHour, budget } = input;
+    const { spots, restaurants, daysInLocality, locality, cityCenter, hotelLocation, maxHoursPerDay, userPreferences = [], mustExclude = [], additionalNotes = '', startDate, arrivalHour, budget, dietaryFilter, travelers } = input;
 
     // Use HotelLocation as Depot. If missing, flexibly use the first spot's precision coordinates (LLM fallback). Finally, cityCenter.
     const depot = hotelLocation || (spots.length > 0 ? spots[0].location : cityCenter);
@@ -317,7 +321,7 @@ async function buildDayPlans(input: AgentBInput): Promise<{ dayPlans: DayPlan[],
                 startTime: formatTime(currentDecTime),
                 endTime: formatTime(currentDecTime + p2pToSpot.duration / 60)
             });
-            dayCost += p2pToSpot.cost;
+            dayCost += p2pToSpot.cost * Math.ceil(travelers / 4);
             currentDecTime += p2pToSpot.duration / 60;
 
             // 2. Spot
@@ -327,7 +331,7 @@ async function buildDayPlans(input: AgentBInput): Promise<{ dayPlans: DayPlan[],
                 startTime: formatTime(currentDecTime),
                 endTime: formatTime(currentDecTime + spot.timeToSpend)
             });
-            dayCost += spot.entryFee;
+            dayCost += spot.entryFee * travelers;
             currentDecTime += spot.timeToSpend;
             currentLocation = spot.location;
             currentName = spot.name;
@@ -335,16 +339,16 @@ async function buildDayPlans(input: AgentBInput): Promise<{ dayPlans: DayPlan[],
             // 3. Check for Lunch
             if (j === lunchIdx) {
                 const nextLoc = j + 1 < spotsList.length ? spotsList[j+1].location : depot;
-                const lunch = await findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'lunch', usedRestaurants);
+                const lunch = await findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'lunch', usedRestaurants, dietaryFilter);
                 if (lunch) {
                     usedRestaurants.add(lunch.id);
                     const p2pToLunch = await getP2PCost(currentLocation, lunch.location, currentName, lunch.name, 'cab');
                     finalizedItems.push({ type: 'p2p', data: p2pToLunch, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + p2pToLunch.duration / 60) });
-                    dayCost += p2pToLunch.cost;
+                    dayCost += p2pToLunch.cost * Math.ceil(travelers / 4);
                     currentDecTime += p2pToLunch.duration / 60;
 
                     finalizedItems.push({ type: 'restaurant', data: lunch, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + 1.0), notes: '🍽️ Lunch' });
-                    dayCost += lunch.avgCostForTwo / 2;
+                    dayCost += (lunch.avgCostForTwo / 2) * travelers;
                     currentDecTime += 1.0;
                     currentLocation = lunch.location;
                     currentName = lunch.name;
@@ -354,16 +358,16 @@ async function buildDayPlans(input: AgentBInput): Promise<{ dayPlans: DayPlan[],
             // 4. Check for Dinner
             if (j === dinnerIdx) {
                 const nextLoc = depot; // Dinner is last
-                const dinner = await findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'dinner', usedRestaurants);
+                const dinner = await findOptimalRestaurant(currentLocation, nextLoc, restaurants, 'dinner', usedRestaurants, dietaryFilter);
                 if (dinner) {
                     usedRestaurants.add(dinner.id);
                     const p2pToDinner = await getP2PCost(currentLocation, dinner.location, currentName, dinner.name, 'cab');
                     finalizedItems.push({ type: 'p2p', data: p2pToDinner, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + p2pToDinner.duration / 60) });
-                    dayCost += p2pToDinner.cost;
+                    dayCost += p2pToDinner.cost * Math.ceil(travelers / 4);
                     currentDecTime += p2pToDinner.duration / 60;
 
                     finalizedItems.push({ type: 'restaurant', data: dinner, startTime: formatTime(currentDecTime), endTime: formatTime(currentDecTime + 1.5), notes: '🍽️ Dinner' });
-                    dayCost += dinner.avgCostForTwo / 2;
+                    dayCost += (dinner.avgCostForTwo / 2) * travelers;
                     currentDecTime += 1.5;
                     currentLocation = dinner.location;
                     currentName = dinner.name;
@@ -380,7 +384,7 @@ async function buildDayPlans(input: AgentBInput): Promise<{ dayPlans: DayPlan[],
                 endTime: formatTime(currentDecTime + returnP2P.duration / 60),
                 notes: '🏨 Return to hotel',
             });
-            dayCost += returnP2P.cost;
+            dayCost += returnP2P.cost * Math.ceil(travelers / 4);
         }
 
         return {
@@ -400,7 +404,13 @@ async function buildDayPlans(input: AgentBInput): Promise<{ dayPlans: DayPlan[],
 }
 
 export async function executeAgentB(body: any) {
-    const { localities, agentData, startDate, maxHoursPerDay = DEFAULT_MAX_HOURS, userPreferences = [], mustExclude = [], additionalNotes = '', hotelLocation, arrivalHour, budget } = body;
+    const { localities, agentData, startDate, maxHoursPerDay = DEFAULT_MAX_HOURS, userPreferences = [], mustExclude = [], additionalNotes = '', hotelLocation, arrivalHour, budget, travelers = 1 } = body;
+
+    // Derive dietary filter from user preferences/notes
+    let dietaryFilter: 'veg' | 'jain' | undefined;
+    const allText = [...userPreferences, additionalNotes].join(' ').toLowerCase();
+    if (allText.includes('jain')) dietaryFilter = 'jain';
+    else if (allText.includes('veg') && !allText.includes('non veg') && !allText.includes('non-veg')) dietaryFilter = 'veg';
 
     const allDayPlans: DayPlan[] = [];
     const allUnselectedSpots: Spot[] = [];
@@ -442,6 +452,8 @@ export async function executeAgentB(body: any) {
             startDate: new Date(new Date(startDate).getTime() + dayOffset * 86400000).toISOString(),
             arrivalHour: plannedLocalitiesCount === 0 ? arrivalHour : undefined,
             budget,
+            dietaryFilter,
+            travelers,
         });
 
         // Ensure a locality is only created if at least one attraction is associated with it

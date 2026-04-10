@@ -1,0 +1,342 @@
+[
+  {
+    "id": "e562794a-6f7c-4cbc-9b08-6fe362aa12f5",
+    "name": "Diskit Monastery",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.7361,
+      "lng": 77.5786
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "Ancient Buddhist monastery famous for its giant Maitreya Buddha statue overlooking the Nubra Valley.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "571ef676-7fc4-4fe6-9132-f40817479501",
+    "name": "Hunder Sand Dunes",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.7433,
+      "lng": 77.5941
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Expansive cold desert sand dunes offering thrilling double-humped camel rides and stunning sunset views.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "20b98d9f-5eb3-4bab-8955-046059167ca6",
+    "name": "Turtuk Village",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.8939,
+      "lng": 77.5867
+    },
+    "timeToSpend": 4,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A remote Balti village near the Pakistan border, known for its unique culture, apricot orchards, and warm hospitality.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "49793a88-2fe2-46c6-9106-54a25b768bf1",
+    "name": "Sumur Village",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.7345,
+      "lng": 77.5832
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A quaint village with traditional Ladakhi houses and peaceful surroundings, perfect for experiencing local life.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "1e595576-3290-4191-ad46-3fa981e9f75e",
+    "name": "Yarab Tso Lake",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.755,
+      "lng": 77.6
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A serene high-altitude lake surrounded by rugged mountains, ideal for photography and quiet reflection.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "6ddff51c-1105-4bff-9b95-e418243c75b7",
+    "name": "Deskit Gompa Museum",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.7365,
+      "lng": 77.579
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "Museum showcasing ancient Buddhist artifacts, thangkas, and local history within Diskit Monastery complex.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "4b178544-f7ed-4c8d-96fb-d91c6a4e2404",
+    "name": "Samstanling Monastery",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.741,
+      "lng": 77.585
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A peaceful monastery known for its beautiful murals and tranquil atmosphere away from the main tourist path.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "a479d472-bc01-45d7-be11-33a5005abef8",
+    "name": "Camel Safari in Nubra",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.7433,
+      "lng": 77.5941
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "Experience a unique camel safari on the cold desert dunes, a rare adventure in the Himalayan region.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "e49b8770-814a-4e4c-a9e3-5743bccc1ef0",
+    "name": "Panamik Hot Springs",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.84,
+      "lng": 77.57
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "Natural hot springs known for their therapeutic properties, located in a scenic valley near the Indo-China border.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "60c55bde-8170-4af5-b2bb-466596094a6c",
+    "name": "Siachen Base Camp Viewpoint",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.85,
+      "lng": 77.6
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "A vantage point offering distant views of the Siachen Glacier, the highest battlefield in the world.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "734f67f6-0237-4237-9697-63798a7e14f2",
+    "name": "Nubra Valley Market",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.736,
+      "lng": 77.578
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Bustling local market offering traditional handicrafts, apricots, and authentic Ladakhi cuisine.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "2f247653-8438-440f-a183-05bd505dded9",
+    "name": "Shyok River Confluence",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.74,
+      "lng": 77.59
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Scenic spot where the Nubra and Shyok rivers meet, surrounded by dramatic mountain landscapes.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "ea254ecf-709b-4c2f-a3f5-bcf9af3fd0a6",
+    "name": "Khalsar Village",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.75,
+      "lng": 77.58
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Traditional Nubra village with authentic Ladakhi architecture and friendly locals.",
+    "rating": 4.2,
+    "popularity": 6
+  },
+  {
+    "id": "226465da-f296-4e9f-ae94-eda592d0bff2",
+    "name": "Panamik Village",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.839,
+      "lng": 77.569
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A charming village famous for its hot springs and proximity to the Siachen Glacier region.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "1816bddd-d55a-4e33-96b7-a6fdebcbad8f",
+    "name": "Samstanling Monastery Festival",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.741,
+      "lng": 77.585
+    },
+    "timeToSpend": 3,
+    "openingTime": "10:00",
+    "closingTime": "16:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Experience vibrant local festivals with traditional dances, music, and rituals at Samstanling Monastery.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "422ce643-2cfb-4b55-9b06-be138bb24daf",
+    "name": "Nubra Valley Trekking Routes",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.74,
+      "lng": 77.59
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "Various trekking trails through rugged terrain offering breathtaking views of the valley and mountains.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "04a9f61b-c29a-4d2e-9ad7-b65f5ab20637",
+    "name": "Diskit Village",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.735,
+      "lng": 77.577
+    },
+    "timeToSpend": 1,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A lively village near Diskit Monastery with local shops and traditional Ladakhi homes.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "fc9a43a9-3973-4bf8-b3cb-96c19e61f19e",
+    "name": "Nubra Valley Photography Spots",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.74,
+      "lng": 77.59
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Multiple scenic locations ideal for capturing the stunning landscapes, wildlife, and cultural scenes of Nubra.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "134e20b6-267d-4a0a-8f57-9eda8c4ee7c0",
+    "name": "Lchang Nang Retreat",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.742,
+      "lng": 77.582
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A hidden gem offering traditional Ladakhi hospitality, local cuisine, and cultural immersion experiences.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "03b9b12a-2a3b-40ad-bafa-2be1c42508db",
+    "name": "Nubra Valley Viewpoint",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.745,
+      "lng": 77.595
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Panoramic viewpoint offering breathtaking vistas of the valley, sand dunes, and surrounding mountains.",
+    "rating": 4.7,
+    "popularity": 9
+  }
+]

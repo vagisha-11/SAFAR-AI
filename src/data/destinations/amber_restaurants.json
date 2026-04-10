@@ -1,0 +1,172 @@
+[
+  {
+    "id": "b23a816e-ce22-48df-b3f6-48f357aa5ad3",
+    "name": "1135 AD",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9854,
+      "lng": 75.851
+    },
+    "cuisine": "Rajasthani, North Indian",
+    "avgCostForTwo": 2500,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "420c3b99-b782-46ac-b3f0-86a70e76903d",
+    "name": "The Stag Rooftop Restro",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9859,
+      "lng": 75.8495
+    },
+    "cuisine": "North Indian, Continental",
+    "avgCostForTwo": 1200,
+    "rating": 4.3,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "1e8db45c-8ea0-48f9-91a6-433de14389ca",
+    "name": "Amber Fort Food Street",
+    "address": "Amber",
+    "location": {
+      "lat": 26.985,
+      "lng": 75.85
+    },
+    "cuisine": "Local Authentic, Street Food",
+    "avgCostForTwo": 300,
+    "rating": 4.1,
+    "openingTime": "10:00",
+    "closingTime": "19:00",
+    "mealType": "lunch",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "b537070d-f893-4b46-b6cf-4d43305bd7e5",
+    "name": "Sunset Cafe Amber",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9845,
+      "lng": 75.849
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "55cc96e0-135c-4b04-bc96-5afe3e069353",
+    "name": "Maharaja Restaurant",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9862,
+      "lng": 75.8521
+    },
+    "cuisine": "Rajasthani, North Indian",
+    "avgCostForTwo": 1500,
+    "rating": 4.4,
+    "openingTime": "11:30",
+    "closingTime": "22:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "9d1f83b4-bd5d-454a-8a7d-259690bd3fee",
+    "name": "Amber Heritage Cafe",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9857,
+      "lng": 75.8507
+    },
+    "cuisine": "Cafe, Local Authentic",
+    "avgCostForTwo": 700,
+    "rating": 4.2,
+    "openingTime": "09:00",
+    "closingTime": "19:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "7a5fd2c7-b8a1-4759-b9d6-a1666c88d7bd",
+    "name": "Rajputana Rasoi",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9848,
+      "lng": 75.8515
+    },
+    "cuisine": "Rajasthani, North Indian",
+    "avgCostForTwo": 1300,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "a047343d-d0e3-4944-87cd-38ab0b10ac2c",
+    "name": "Amber Chaat Corner",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9853,
+      "lng": 75.8498
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 250,
+    "rating": 4,
+    "openingTime": "11:00",
+    "closingTime": "20:00",
+    "mealType": "lunch",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "91a76f49-5a9a-4164-9c25-d961b30f5513",
+    "name": "Fort View Restaurant",
+    "address": "Amber",
+    "location": {
+      "lat": 26.986,
+      "lng": 75.8505
+    },
+    "cuisine": "North Indian, Continental",
+    "avgCostForTwo": 1100,
+    "rating": 4.3,
+    "openingTime": "10:30",
+    "closingTime": "21:30",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "4aaf371d-a460-4691-ba8c-9ee29ea59051",
+    "name": "Amber Heritage Dining",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9851,
+      "lng": 75.8512
+    },
+    "cuisine": "Local Authentic, Rajasthani",
+    "avgCostForTwo": 1400,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  }
+]

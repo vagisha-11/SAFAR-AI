@@ -35,7 +35,7 @@ function parseTimeToHour(timeStr: string): number {
     return h + m / 60;
 }
 
-async function addPlaceToDay(dayPlan: DayPlan, spot: Spot, depot: { lat: number; lng: number } | null): Promise<DayPlan> {
+async function addPlaceToDay(dayPlan: DayPlan, spot: Spot, depot: { lat: number; lng: number } | null, travelers: number): Promise<DayPlan> {
     const items = [...dayPlan.items];
 
     // Separate the "Return to Hotel" P2P from the rest (it's always last)
@@ -119,24 +119,24 @@ async function addPlaceToDay(dayPlan: DayPlan, spot: Spot, depot: { lat: number;
     const finalItems = returnItem ? [...workItems, returnItem] : workItems;
 
     // Recalculate cost
-    const newCost = dayPlan.totalCost + p2p.cost + spot.entryFee;
+    const newCost = dayPlan.totalCost + (p2p.cost * Math.ceil(travelers / 4)) + (spot.entryFee * travelers);
 
     return { ...dayPlan, items: finalItems, totalCost: Math.round(newCost) };
 }
 
 
-function removePlaceFromDay(dayPlan: DayPlan, spotId: string): DayPlan {
+function removePlaceFromDay(dayPlan: DayPlan, spotId: string, travelers: number): DayPlan {
     const items: ItineraryItem[] = [];
     let removedCost = 0;
 
     for (let i = 0; i < dayPlan.items.length; i++) {
         const item = dayPlan.items[i];
         if (item.type === 'spot' && (item.data as Spot).id === spotId) {
-            removedCost += (item.data as Spot).entryFee;
+            removedCost += (item.data as Spot).entryFee * travelers;
             // Also remove the preceding P2P if it exists
             if (items.length > 0 && items[items.length - 1].type === 'p2p') {
                 const removedP2P = items.pop()!;
-                removedCost += (removedP2P.data as { cost: number }).cost;
+                removedCost += (removedP2P.data as { cost: number }).cost * Math.ceil(travelers / 4);
             }
             continue;
         }
@@ -156,6 +156,7 @@ export async function POST(request: NextRequest) {
         const { action, itinerary, payload } = body;
 
         let updatedItinerary = { ...itinerary };
+        const travelers = updatedItinerary.tripInput.travelers || 1;
 
         switch (action) {
             case 'add_place': {
@@ -164,7 +165,7 @@ export async function POST(request: NextRequest) {
                 const dayIdx = updatedItinerary.days.findIndex(d => d.dayNumber === targetDay);
                 if (dayIdx >= 0) {
                     updatedItinerary.days = [...updatedItinerary.days];
-                    updatedItinerary.days[dayIdx] = await addPlaceToDay(updatedItinerary.days[dayIdx], payload.spot, null);
+                    updatedItinerary.days[dayIdx] = await addPlaceToDay(updatedItinerary.days[dayIdx], payload.spot, null, travelers);
                 }
                 break;
             }
@@ -175,7 +176,7 @@ export async function POST(request: NextRequest) {
                     const hasSpot = day.items.some(
                         item => item.type === 'spot' && (item.data as Spot).id === payload.spotId
                     );
-                    if (hasSpot) return removePlaceFromDay(day, payload.spotId!);
+                    if (hasSpot) return removePlaceFromDay(day, payload.spotId!, travelers);
                     return day;
                 });
                 break;
@@ -223,7 +224,7 @@ export async function POST(request: NextRequest) {
                     if (spotsToRemove.length > 0) {
                         affectedLocalities.add(day.locality);
                         for (const id of spotsToRemove) {
-                            newDay = removePlaceFromDay(newDay, id);
+                            newDay = removePlaceFromDay(newDay, id, travelers);
                         }
                     }
                     return newDay;
@@ -246,7 +247,7 @@ export async function POST(request: NextRequest) {
 
                         if (candidateIdx >= 0) {
                             const candidate = pool.splice(candidateIdx, 1)[0];
-                            return await addPlaceToDay(day, candidate, null);
+                            return await addPlaceToDay(day, candidate, null, travelers);
                         }
                         return day;
                     }));
@@ -262,7 +263,7 @@ export async function POST(request: NextRequest) {
             if (loc.isTransitDay) return sum;
             const day = updatedItinerary.days.find(d => d.locality === loc.locality && d.hotel);
             if (day && day.hotel) {
-                return sum + (day.hotel.pricePerNight * loc.days);
+                return sum + (day.hotel.pricePerNight * loc.days * Math.ceil(travelers / 2));
             }
             return sum;
         }, 0);

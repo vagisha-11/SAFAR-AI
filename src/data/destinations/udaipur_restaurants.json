@@ -1,0 +1,172 @@
+[
+  {
+    "id": "32910abc-7968-49d1-903c-3163e10a410b",
+    "name": "Ambrai Restaurant",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5775,
+      "lng": 73.6839
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 1200,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "c5fcb7ca-c4ca-417b-93f2-a9bd21ba2cf9",
+    "name": "Upre by 1559 AD",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5768,
+      "lng": 73.6831
+    },
+    "cuisine": "North Indian, Rajasthani",
+    "avgCostForTwo": 1500,
+    "rating": 4.6,
+    "openingTime": "11:30",
+    "closingTime": "22:30",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "2e388754-9287-4137-8a37-9392d7c2bedf",
+    "name": "Millets of Mewar",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.579,
+      "lng": 73.682
+    },
+    "cuisine": "Healthy, Organic, Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "12db31e2-fc89-4823-acd5-5a82d029f2f4",
+    "name": "Natraj Dining Hall",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5798,
+      "lng": 73.6835
+    },
+    "cuisine": "Local Authentic, Rajasthani",
+    "avgCostForTwo": 400,
+    "rating": 4.2,
+    "openingTime": "07:00",
+    "closingTime": "21:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "972536c3-4345-4617-9a4f-6edb547be49f",
+    "name": "Jheel's Ginger Coffee Bar & Bakery",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.577,
+      "lng": 73.6845
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "3305c67c-88f8-4842-8ca1-c9af474f2c86",
+    "name": "Tribute Restaurant",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.576,
+      "lng": 73.6825
+    },
+    "cuisine": "North Indian, Continental",
+    "avgCostForTwo": 1300,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "17017881-3794-4b20-99ba-f4e4e3f59871",
+    "name": "Santosh Bhojnalaya",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5782,
+      "lng": 73.685
+    },
+    "cuisine": "Local Authentic, Street Food",
+    "avgCostForTwo": 300,
+    "rating": 4,
+    "openingTime": "10:00",
+    "closingTime": "20:00",
+    "mealType": "lunch",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "9bce4f55-11b1-4795-89d9-af13016984df",
+    "name": "Raaj Bagh Restaurant",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5755,
+      "lng": 73.681
+    },
+    "cuisine": "Rajasthani, North Indian",
+    "avgCostForTwo": 900,
+    "rating": 4.1,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "75efa0fe-a888-418d-a1ae-052bbadf3446",
+    "name": "Cafe Edelweiss",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5778,
+      "lng": 73.683
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 600,
+    "rating": 4.2,
+    "openingTime": "07:30",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "95e031e8-bc2a-4985-ba9d-ea64a16a817d",
+    "name": "Hari Garh Restaurant",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5805,
+      "lng": 73.684
+    },
+    "cuisine": "Local Authentic, Rajasthani",
+    "avgCostForTwo": 700,
+    "rating": 4.3,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner",
+    "isPureVeg": true,
+    "hasJainFood": true
+  }
+]

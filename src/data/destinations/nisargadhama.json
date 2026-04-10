@@ -1,0 +1,342 @@
+[
+  {
+    "id": "5c3691ec-6877-47ba-b63a-70e00d80ad2b",
+    "name": "Nisargadhama Bamboo Bridge",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3352,
+      "lng": 75.8061
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A scenic bamboo bridge over the river that offers a unique walking experience amidst lush greenery.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "e14cb62d-8e6f-4f81-a276-620949fd2200",
+    "name": "Nisargadhama Deer Park",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.336,
+      "lng": 75.807
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "A tranquil deer park where visitors can observe spotted deer and other small wildlife in a natural setting.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "2f7c8aea-032e-4fd6-b783-5e05f24434d3",
+    "name": "Nisargadhama Orchid Garden",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3345,
+      "lng": 75.8055
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 25,
+    "category": "Nature",
+    "description": "A vibrant garden showcasing a variety of rare and colorful orchids native to the Western Ghats.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "47c64def-64c9-4824-9939-4b803eb11428",
+    "name": "Nisargadhama Children's Park",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3358,
+      "lng": 75.8065
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 15,
+    "category": "Adventure",
+    "description": "A fun-filled park with swings, slides, and play areas designed especially for children.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "037b6015-7edd-48b9-9b43-c09116aa2fc4",
+    "name": "Nisargadhama Boating Lake",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.335,
+      "lng": 75.8072
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:30",
+    "closingTime": "17:30",
+    "entryFee": 40,
+    "category": "Adventure",
+    "description": "Enjoy serene boating on a calm lake surrounded by dense forest and birdlife.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "e4894409-07c3-49c1-aeb3-32bb872cd808",
+    "name": "Nisargadhama Bamboo Grove",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3365,
+      "lng": 75.8058
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 10,
+    "category": "Nature",
+    "description": "A peaceful bamboo grove perfect for a quiet stroll and photography.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "45a9fc7b-29d9-4982-a6ac-6c7204a3c48d",
+    "name": "Nisargadhama Butterfly Park",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3348,
+      "lng": 75.8068
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "A colorful park where visitors can see a variety of butterfly species in their natural habitat.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "60209b7f-c404-477a-a55a-e73ab6172f50",
+    "name": "Nisargadhama Meditation Spot",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3357,
+      "lng": 75.8059
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A serene spot amidst nature ideal for meditation and mindfulness practices.",
+    "rating": 4.8,
+    "popularity": 6
+  },
+  {
+    "id": "e8a4f7c9-f6a8-48c1-b3a1-a377459c643d",
+    "name": "Nisargadhama Tribal Handicraft Center",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3362,
+      "lng": 75.8063
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Explore and purchase authentic tribal handicrafts made by local artisans.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "2c761efd-7b52-4c56-9cf1-55e8056323d4",
+    "name": "Nisargadhama Nature Trail",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3354,
+      "lng": 75.8075
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Adventure",
+    "description": "A guided nature trail through dense forest offering sightings of exotic flora and fauna.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "96577078-74c5-4671-b897-10f257af505d",
+    "name": "Nisargadhama Sunset Point",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.337,
+      "lng": 75.8078
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "16:30",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A beautiful vantage point to watch the sun set over the forested landscape.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "6a9affe9-df5d-4b0f-a49d-f54a91b8d47f",
+    "name": "Nisargadhama Bird Watching Spot",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3349,
+      "lng": 75.8057
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "10:00",
+    "entryFee": 15,
+    "category": "Nature",
+    "description": "A hotspot for bird watchers to spot rare and migratory birds in their natural habitat.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "8c41aad8-d565-4614-b919-91b717781135",
+    "name": "Nisargadhama Tribal Dance Performances",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3359,
+      "lng": 75.8067
+    },
+    "timeToSpend": 1,
+    "openingTime": "18:00",
+    "closingTime": "20:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "Experience vibrant tribal dance performances showcasing local traditions and folklore.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "7b8d0609-c3c3-41a4-88e4-339eaf118822",
+    "name": "Nisargadhama Bamboo Craft Workshop",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3363,
+      "lng": 75.8056
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "16:00",
+    "entryFee": 40,
+    "category": "Cultural",
+    "description": "Participate in a hands-on workshop to learn traditional bamboo crafting techniques.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "a4484f3d-5200-47a8-a79b-686faef7f883",
+    "name": "Nisargadhama Picnic Area",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3351,
+      "lng": 75.806
+    },
+    "timeToSpend": 1,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A well-maintained picnic spot with benches and shaded areas ideal for family outings.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "1846976a-42e0-46ee-ae30-385e49eb9006",
+    "name": "Nisargadhama Fishing Pond",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3347,
+      "lng": 75.807
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Adventure",
+    "description": "A peaceful pond where visitors can try their hand at fishing in a natural environment.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "a19ad1b9-e38e-417e-b861-0b516500e62e",
+    "name": "Nisargadhama Forest Camping Site",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3372,
+      "lng": 75.8062
+    },
+    "timeToSpend": 3,
+    "openingTime": "16:00",
+    "closingTime": "06:00",
+    "entryFee": 150,
+    "category": "Adventure",
+    "description": "Overnight camping experience amidst the forest with bonfires and star gazing opportunities.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "76006e90-7c03-4932-817e-997644d2faf2",
+    "name": "Nisargadhama Tribal Museum",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3356,
+      "lng": 75.8069
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A small museum showcasing the history, culture, and artifacts of local tribal communities.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "5dd860ea-fa71-45d5-86e6-80c600d54010",
+    "name": "Nisargadhama Nature Photography Spot",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3361,
+      "lng": 75.8071
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A popular spot for photographers to capture the diverse flora and fauna of the region.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "9832960e-7ce8-458a-b23f-d950a420cc92",
+    "name": "Nisargadhama Herbal Garden",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3346,
+      "lng": 75.8064
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 15,
+    "category": "Nature",
+    "description": "A garden dedicated to medicinal plants and herbs used in traditional healing practices.",
+    "rating": 4.4,
+    "popularity": 6
+  }
+]

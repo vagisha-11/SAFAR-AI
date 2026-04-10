@@ -1,0 +1,342 @@
+[
+  {
+    "id": "d786259c-9a6c-4858-bc4f-104f0fc18f12",
+    "name": "City Palace Udaipur",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5754,
+      "lng": 73.6835
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "09:30",
+    "closingTime": "17:30",
+    "entryFee": 300,
+    "category": "Heritage",
+    "description": "A majestic palace complex overlooking Lake Pichola, showcasing intricate peacock mosaics and royal artifacts.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "d3f3574e-93be-4523-94f4-52dfe67abab5",
+    "name": "Lake Pichola",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.577,
+      "lng": 73.6777
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 150,
+    "category": "Nature",
+    "description": "A serene artificial freshwater lake famous for boat rides offering stunning views of palaces and temples.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "d8267720-8bb8-4e8a-ac66-f09334459623",
+    "name": "Jag Mandir",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5791,
+      "lng": 73.6785
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 100,
+    "category": "Heritage",
+    "description": "An exquisite island palace on Lake Pichola known as the 'Lake Garden Palace' with beautiful marble architecture.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "e830ef5a-89a8-4093-be44-21d8b604186f",
+    "name": "Saheliyon Ki Bari",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5903,
+      "lng": 73.6753
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "19:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A lush garden adorned with fountains, lotus pools, and marble pavilions, created for royal ladies.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "6bbc28de-b62d-4eb8-b08b-1dcd0b9b8e23",
+    "name": "Jagdish Temple",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5758,
+      "lng": 73.683
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A large and intricately carved Hindu temple dedicated to Lord Vishnu, located near City Palace.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "44ab1947-82b1-4e0a-af2c-08bd62b3ccb9",
+    "name": "Fateh Sagar Lake",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5931,
+      "lng": 73.6724
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A beautiful artificial lake surrounded by hills, popular for boat rides and sunset views.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "3278b985-682d-4d25-a27e-3f07cba99e9b",
+    "name": "Vintage Car Museum",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5775,
+      "lng": 73.6832
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 100,
+    "category": "Cultural",
+    "description": "A unique collection of vintage and classic cars owned by the royal family of Udaipur.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "83ba50ab-aa14-451b-a6b6-ecf2b27e6662",
+    "name": "Bagore Ki Haveli",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.575,
+      "lng": 73.681
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "19:00",
+    "entryFee": 60,
+    "category": "Heritage",
+    "description": "A historic haveli showcasing royal artifacts and evening cultural dance performances.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "67518676-fa42-4d9f-80e8-fbdbca6605ff",
+    "name": "Shilpgram",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.583,
+      "lng": 73.66
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "A rural arts and crafts complex offering insight into traditional Rajasthani village life and handicrafts.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "f9c98786-f6be-4615-b690-4e3536652a1b",
+    "name": "Monsoon Palace (Sajjan Garh)",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.602,
+      "lng": 73.664
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 100,
+    "category": "Heritage",
+    "description": "A hilltop palace offering panoramic views of Udaipur’s lakes and surrounding countryside.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "28208739-5fdf-46a2-b856-f9187e564529",
+    "name": "Ahar Cenotaphs",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5885,
+      "lng": 73.69
+    },
+    "timeToSpend": 1,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A historic site with royal cenotaphs and an archaeological museum showcasing ancient artifacts.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "0b4e3122-315e-4409-add4-d24ad31c3cb5",
+    "name": "Badi Lake",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.615,
+      "lng": 73.676
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A tranquil lake surrounded by hills, perfect for picnics and nature walks away from the city bustle.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "d583bd7b-c982-4ee2-8554-d0be8e86f0f0",
+    "name": "Doodh Talai Garden",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.574,
+      "lng": 73.678
+    },
+    "timeToSpend": 1,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "A peaceful garden with musical fountains and a small zoo, offering great views of Lake Pichola.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "453c9493-ed51-435e-8b49-004f7411d220",
+    "name": "Vintage Camera Museum",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.575,
+      "lng": 73.682
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "A niche museum displaying a rare collection of vintage cameras and photography equipment.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "872b6ece-9dd6-4d36-bd23-4cdf8c308649",
+    "name": "Shree Eklingji Temple",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.636,
+      "lng": 73.691
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A grand temple complex dedicated to Lord Shiva, known for its intricate carvings and religious significance.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "8abcf2e4-d476-402a-b40e-707f32393716",
+    "name": "Karni Mata Temple",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.6,
+      "lng": 73.67
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A hilltop temple dedicated to Karni Mata, offering spectacular views of the city and surrounding lakes.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "bb079aa5-7f78-4fc0-b80a-20d2ec911b1b",
+    "name": "Fateh Prakash Palace Museum",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5753,
+      "lng": 73.6837
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:30",
+    "closingTime": "17:30",
+    "entryFee": 200,
+    "category": "Heritage",
+    "description": "A museum within City Palace exhibiting royal costumes, paintings, and historical artifacts.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "00c59aa9-303b-422c-b6e4-03bec14eaf06",
+    "name": "Bharatiya Lok Kala Mandal",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.576,
+      "lng": 73.682
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "A cultural museum dedicated to preserving Rajasthani folk arts, crafts, and traditions.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "a1921b64-b7c4-493c-aa1e-f934fe1d294c",
+    "name": "Sajjangarh Biological Park",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.603,
+      "lng": 73.663
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A wildlife sanctuary near Monsoon Palace housing various species of animals and birds in natural habitats.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "2afe5aee-6872-4edd-b115-ad7d73a4190f",
+    "name": "Ambrai Ghat",
+    "address": "Udaipur",
+    "location": {
+      "lat": 24.5745,
+      "lng": 73.678
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "A picturesque ghat on Lake Pichola, perfect for enjoying sunset views and local street food.",
+    "rating": 4.6,
+    "popularity": 8
+  }
+]

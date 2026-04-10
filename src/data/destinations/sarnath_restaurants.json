@@ -12,7 +12,9 @@
     "rating": 4.3,
     "openingTime": "08:00",
     "closingTime": "22:00",
-    "mealType": "any"
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
   },
   {
     "id": "49e4aafa-2f5b-46c4-8227-b9eaa579a143",
@@ -27,7 +29,9 @@
     "rating": 4.6,
     "openingTime": "11:00",
     "closingTime": "23:00",
-    "mealType": "lunch"
+    "mealType": "lunch",
+    "isPureVeg": false,
+    "hasJainFood": true
   },
   {
     "id": "107c09b4-a050-40d5-928b-be713c11ac53",
@@ -42,7 +46,9 @@
     "rating": 4.1,
     "openingTime": "10:00",
     "closingTime": "20:00",
-    "mealType": "any"
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
   },
   {
     "id": "83773452-0e15-4f16-b5bb-1bc6c4379040",
@@ -57,7 +63,9 @@
     "rating": 4.4,
     "openingTime": "07:30",
     "closingTime": "21:30",
-    "mealType": "breakfast"
+    "mealType": "breakfast",
+    "isPureVeg": false,
+    "hasJainFood": false
   },
   {
     "id": "4a8b294d-d846-4ef1-9cfb-1152206ff38d",
@@ -72,7 +80,9 @@
     "rating": 4.8,
     "openingTime": "12:00",
     "closingTime": "23:00",
-    "mealType": "dinner"
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
   },
   {
     "id": "92979a07-8374-4f8e-9694-fd813213887d",
@@ -87,7 +97,9 @@
     "rating": 4.2,
     "openingTime": "09:00",
     "closingTime": "22:00",
-    "mealType": "any"
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": true
   },
   {
     "id": "e83e0d34-ff90-4c33-b534-53a333310ae5",
@@ -102,7 +114,9 @@
     "rating": 4.5,
     "openingTime": "08:00",
     "closingTime": "20:00",
-    "mealType": "breakfast"
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": true
   },
   {
     "id": "c733b5c0-2186-49ab-97f4-c1466735a398",
@@ -117,7 +131,9 @@
     "rating": 4.3,
     "openingTime": "11:00",
     "closingTime": "22:30",
-    "mealType": "dinner"
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
   },
   {
     "id": "e10a869a-8adf-41f0-a234-fbf86698c4aa",
@@ -132,7 +148,9 @@
     "rating": 4,
     "openingTime": "10:00",
     "closingTime": "19:00",
-    "mealType": "any"
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
   },
   {
     "id": "a4d8b22a-508c-473f-9840-00a91b102b98",
@@ -147,6 +165,8 @@
     "rating": 4.7,
     "openingTime": "12:00",
     "closingTime": "22:00",
-    "mealType": "lunch"
+    "mealType": "lunch",
+    "isPureVeg": false,
+    "hasJainFood": false
   }
 ]

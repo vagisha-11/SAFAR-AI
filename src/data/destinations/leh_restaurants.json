@@ -1,0 +1,172 @@
+[
+  {
+    "id": "89a783cc-fd64-4376-96ba-09db225c013a",
+    "name": "Bon Appetit",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1635,
+      "lng": 77.5855
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 1200,
+    "rating": 4.5,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "3a830166-8cc3-4792-9647-6b65b6113a44",
+    "name": "The Tibetan Kitchen",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1629,
+      "lng": 77.585
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.3,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "6407fb28-4c45-437f-94a6-52fab1147fff",
+    "name": "Gesmo Restaurant",
+    "address": "Leh",
+    "location": {
+      "lat": 34.163,
+      "lng": 77.586
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 900,
+    "rating": 4.2,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "cc6623d3-0cc8-472f-af01-1caca49f3109",
+    "name": "Bon Appetit Cafe",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1636,
+      "lng": 77.5857
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 700,
+    "rating": 4.4,
+    "openingTime": "07:30",
+    "closingTime": "20:00",
+    "mealType": "breakfast",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "ef5e6a42-7a12-49fe-b1be-e36a2f82472b",
+    "name": "Lamayuru Restaurant",
+    "address": "Leh",
+    "location": {
+      "lat": 34.164,
+      "lng": 77.5845
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 850,
+    "rating": 4.1,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "974a30c0-e397-44c1-9b6a-baf961b8dcc1",
+    "name": "Bon Appetit Bakery",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1637,
+      "lng": 77.5853
+    },
+    "cuisine": "Bakery",
+    "avgCostForTwo": 500,
+    "rating": 4.6,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "a4f83580-37be-45d4-a8c2-d62376122d8c",
+    "name": "Druk Ladakh Restaurant",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1625,
+      "lng": 77.5848
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 900,
+    "rating": 4,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "770069ca-0365-4be3-8446-df7273e9267f",
+    "name": "Bon Appetit Rooftop",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1634,
+      "lng": 77.5856
+    },
+    "cuisine": "Fine Dining",
+    "avgCostForTwo": 1500,
+    "rating": 4.7,
+    "openingTime": "18:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "69d34261-2820-4687-a425-fc259ac71a96",
+    "name": "Leh Market Street Food",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1632,
+      "lng": 77.5852
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 400,
+    "rating": 4.3,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "872ad221-7943-4c34-9edc-ddb3e0d7fea6",
+    "name": "Cafe Coffee Day Leh",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1633,
+      "lng": 77.5854
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 600,
+    "rating": 4.1,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": true
+  }
+]

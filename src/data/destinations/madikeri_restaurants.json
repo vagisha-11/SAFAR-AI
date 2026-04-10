@@ -1,0 +1,172 @@
+[
+  {
+    "id": "c0107d6b-194f-4f30-8732-aa897099a0ae",
+    "name": "Raintree",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4245,
+      "lng": 75.7389
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 800,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "4d39918e-4bed-41e7-bb45-79391e69c835",
+    "name": "Coorg Cuisine",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4231,
+      "lng": 75.7372
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.3,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "f10ad536-845c-46b3-a49c-35103db8203f",
+    "name": "The Falls at Tamara",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4278,
+      "lng": 75.742
+    },
+    "cuisine": "Fine Dining",
+    "avgCostForTwo": 2500,
+    "rating": 4.7,
+    "openingTime": "07:30",
+    "closingTime": "22:30",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "5d7fec48-7f53-499f-871a-f47fc9e9c63e",
+    "name": "Coorg Coffee House",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.425,
+      "lng": 75.7395
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 400,
+    "rating": 4.2,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "a587429d-577b-40bf-bba0-a503ade53c50",
+    "name": "East End Hotel",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.422,
+      "lng": 75.736
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 500,
+    "rating": 4,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "c1627e7e-5006-456b-b70c-92868234f93b",
+    "name": "Coorg Food Street",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4248,
+      "lng": 75.7402
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 300,
+    "rating": 4.1,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "7409201e-9008-47a3-8704-62eb95256cf4",
+    "name": "The Madikeri Cafe",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4262,
+      "lng": 75.7387
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 450,
+    "rating": 4.4,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "c9eb0345-3946-4b57-8b39-b2c1bee7537b",
+    "name": "Silver Oaks",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4215,
+      "lng": 75.7355
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 700,
+    "rating": 4.3,
+    "openingTime": "11:30",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "9f9381e6-3fd0-4082-8b8e-3123ea1e70f7",
+    "name": "Coorg Spice Garden",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.428,
+      "lng": 75.7415
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 650,
+    "rating": 4.6,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "c94eb500-3077-4a5e-acde-455df549085b",
+    "name": "Madikeri Tiffin Room",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4235,
+      "lng": 75.7378
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 350,
+    "rating": 4,
+    "openingTime": "06:30",
+    "closingTime": "14:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": true
+  }
+]

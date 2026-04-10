@@ -144,7 +144,9 @@ RULES:
   "rating": <float between 3.5 and 5.0>,
   "openingTime": "<HH:MM>",
   "closingTime": "<HH:MM>",
-  "mealType": "<one of: lunch, dinner, breakfast, any>"
+  "mealType": "<one of: lunch, dinner, breakfast, any>",
+  "isPureVeg": <true if restaurant serves ONLY vegetarian food, false otherwise>,
+  "hasJainFood": <true if restaurant offers Jain-friendly menu items (no root vegetables), false otherwise>
 }`;
 
         try {
@@ -172,7 +174,9 @@ RULES:
                 rating: r.rating || 4.2,
                 openingTime: r.openingTime || '11:00',
                 closingTime: r.closingTime || '23:00',
-                mealType: r.mealType || 'any'
+                mealType: r.mealType || 'any',
+                isPureVeg: r.isPureVeg ?? false,
+                hasJainFood: r.hasJainFood ?? false,
             }));
 
             // Save to local cache asynchronously so we don't block
@@ -204,6 +208,9 @@ function createGenericRestaurants(locality: string): Restaurant[] {
             openingTime: '10:00',
             closingTime: '22:00',
             mealType: 'any',
+            isPureVeg: false,
+            hasJainFood: false,
         };
     });
 }
+

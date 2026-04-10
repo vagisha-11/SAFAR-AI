@@ -1,0 +1,172 @@
+[
+  {
+    "id": "931a98ae-46ff-4ceb-a691-638cbf19b90e",
+    "name": "Indique",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2915,
+      "lng": 73.0169
+    },
+    "cuisine": "North Indian, Rajasthani",
+    "avgCostForTwo": 1500,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "52a8d064-369c-4bba-8df6-f3cad9a2c7f1",
+    "name": "Gypsy Restaurant",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2957,
+      "lng": 73.0355
+    },
+    "cuisine": "Local Authentic, Rajasthani",
+    "avgCostForTwo": 600,
+    "rating": 4.2,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "1df3e24a-2606-448d-a235-a424e9931f28",
+    "name": "Stepwell Café",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2951,
+      "lng": 73.0342
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "7c09b88a-61f0-4d27-bb9f-d49abc20c928",
+    "name": "Shandar Sweet Home",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2968,
+      "lng": 73.0311
+    },
+    "cuisine": "Sweets, Street Food",
+    "avgCostForTwo": 200,
+    "rating": 4,
+    "openingTime": "07:00",
+    "closingTime": "21:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "29ce51da-d20d-44ab-9c02-d3129e675523",
+    "name": "Janta Sweet Home",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2959,
+      "lng": 73.0348
+    },
+    "cuisine": "Local Authentic, Sweets",
+    "avgCostForTwo": 300,
+    "rating": 4.1,
+    "openingTime": "06:30",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "3b4ebd7f-52ea-4ddf-a17e-006ff81d225a",
+    "name": "The Khaas Bagh",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.291,
+      "lng": 73.0175
+    },
+    "cuisine": "Rajasthani, North Indian",
+    "avgCostForTwo": 1200,
+    "rating": 4.4,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "13a26b77-2517-4127-b190-7204aa139bc2",
+    "name": "Shri Mishrilal Hotel",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.296,
+      "lng": 73.034
+    },
+    "cuisine": "Local Authentic, Street Food",
+    "avgCostForTwo": 350,
+    "rating": 4.3,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "3f940363-a085-4f4a-82cb-d510541437c4",
+    "name": "On The Rocks",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2917,
+      "lng": 73.0172
+    },
+    "cuisine": "Continental, North Indian",
+    "avgCostForTwo": 1800,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "23:30",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "b9eaa273-3289-4dcf-b2e8-70042ab682b2",
+    "name": "Cafe Mehran",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2973,
+      "lng": 73.0345
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 800,
+    "rating": 4.2,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "2f3c31e1-d283-4175-937b-1a4940a410bf",
+    "name": "Makhaniya Lassi",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2965,
+      "lng": 73.0347
+    },
+    "cuisine": "Street Food, Beverages",
+    "avgCostForTwo": 150,
+    "rating": 4.4,
+    "openingTime": "07:00",
+    "closingTime": "21:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": true
+  }
+]

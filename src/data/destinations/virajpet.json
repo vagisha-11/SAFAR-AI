@@ -1,0 +1,342 @@
+[
+  {
+    "id": "922b6fb4-ebfa-4a70-a8b5-d3ed34956035",
+    "name": "Nisargadhama Virajpet",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.1245,
+      "lng": 75.9853
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "A beautiful island formed by the river Kaveri, featuring bamboo groves, deer park, and hanging bridges amidst lush greenery.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "a8123c81-da1b-421a-a3ba-e88b755107b7",
+    "name": "Abbey Falls",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.4202,
+      "lng": 75.8061
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A stunning waterfall surrounded by coffee plantations and spice estates, offering a refreshing experience in the Western Ghats.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "548f976b-bead-4865-b6d4-f7f7fc56e4f3",
+    "name": "Tadiandamol Peak",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.3043,
+      "lng": 75.9167
+    },
+    "timeToSpend": 5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "The highest peak in Coorg, perfect for trekking enthusiasts seeking panoramic views of the misty hills and valleys.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "b1255c88-6a03-4a37-8afb-acb48be6148d",
+    "name": "Bhagamandala Temple",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.1467,
+      "lng": 75.9005
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A sacred confluence of three rivers with a historic temple dedicated to Lord Shiva, attracting pilgrims and history lovers alike.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "4b9c2841-05c3-45f0-95c9-5c64dc99b496",
+    "name": "Raja's Seat",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.4251,
+      "lng": 75.7389
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 15,
+    "category": "Landmark",
+    "description": "A scenic viewpoint offering breathtaking sunset views over the valley, once a favorite spot of the Kodagu kings.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "9c228419-46f0-4f4f-8891-835de9f760e3",
+    "name": "Coffee Plantation Tour",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.13,
+      "lng": 75.98
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "16:00",
+    "entryFee": 100,
+    "category": "Cultural",
+    "description": "Experience the aroma and process of coffee making by touring local plantations and interacting with farmers.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "60d0b057-2e09-423a-b30e-e4b447cb066e",
+    "name": "Chelavara Falls",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.35,
+      "lng": 75.85
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A hidden gem waterfall surrounded by dense forest, ideal for nature lovers and photographers.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "f52852f1-d68d-4365-babc-8279d6e2309c",
+    "name": "Nalknad Palace",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.14,
+      "lng": 75.92
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 25,
+    "category": "Heritage",
+    "description": "An ancient palace showcasing traditional Kodava architecture and royal history.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "5d5c85db-ca77-4b2a-b7ce-572305658fbf",
+    "name": "Iruppu Falls",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.15,
+      "lng": 75.9
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "A majestic waterfall located in the Brahmagiri hills, surrounded by dense forests and a sacred temple nearby.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "57c111e5-8a3c-4c64-b7a9-558015ea26ef",
+    "name": "Pushpagiri Wildlife Sanctuary",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.32,
+      "lng": 75.88
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A protected forest area rich in biodiversity, home to rare species of flora and fauna, perfect for wildlife enthusiasts.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "3f3f1b03-13d1-4dc7-b55f-59a73539a568",
+    "name": "Madikeri Fort",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.424,
+      "lng": 75.738
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A historic fort with a museum inside, offering insights into the region's colonial and royal past.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "269ec294-c1ef-4444-8fd8-c73ca799add6",
+    "name": "Omkareshwara Temple",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.4255,
+      "lng": 75.7395
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A unique temple blending Gothic and Islamic styles, dedicated to Lord Shiva, located in the heart of Madikeri.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "a8c8b375-8e92-4cfb-a561-32e5e2acd510",
+    "name": "Chelavara Coffee Estate Homestay",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.345,
+      "lng": 75.845
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A chance to experience authentic Kodava hospitality and lifestyle amidst sprawling coffee plantations.",
+    "rating": 4.8,
+    "popularity": 7
+  },
+  {
+    "id": "885c5339-a81d-408a-a0aa-e3986f4d55ac",
+    "name": "Kaveri Nisargadhama Bamboo Bridge",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.125,
+      "lng": 75.985
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 10,
+    "category": "Nature",
+    "description": "A scenic bamboo bridge connecting the island to the mainland, offering a unique walking experience over the river.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "d9e205a9-b0ff-4d55-9590-946230e717a1",
+    "name": "Chelavara Waterfalls Trek",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.348,
+      "lng": 75.847
+    },
+    "timeToSpend": 3,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A moderately challenging trek through coffee estates and forests leading to the serene Chelavara Falls.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "44bffd90-4306-48c4-9d53-9f162f569a8d",
+    "name": "Kutta Wildlife Sanctuary",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.2,
+      "lng": 75.95
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 40,
+    "category": "Nature",
+    "description": "A lesser-known sanctuary offering sightings of elephants, deer, and exotic birds in their natural habitat.",
+    "rating": 4.5,
+    "popularity": 6
+  },
+  {
+    "id": "82d93648-a412-44ba-b604-e4d9ebe9515e",
+    "name": "Kodava Cuisine Experience",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.13,
+      "lng": 75.98
+    },
+    "timeToSpend": 2,
+    "openingTime": "12:00",
+    "closingTime": "15:00",
+    "entryFee": 300,
+    "category": "Cultural",
+    "description": "Savor traditional Kodava dishes prepared with local spices and ingredients in a homely setting.",
+    "rating": 4.9,
+    "popularity": 9
+  },
+  {
+    "id": "14017612-07ff-41a4-b36b-b86770257212",
+    "name": "Chelavara Spice Plantation",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.34,
+      "lng": 75.84
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "16:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "Explore aromatic spice gardens growing pepper, cardamom, and vanilla with guided tours explaining their uses.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "1c671355-f646-420e-b51c-3bed93706ab9",
+    "name": "Brahmagiri Wildlife Sanctuary",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.15,
+      "lng": 75.9
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A sanctuary rich in biodiversity, home to rare flora and fauna, ideal for trekking and bird watching.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "a8170762-1e3d-415a-98f0-25de6dc25477",
+    "name": "Virajpet Market",
+    "address": "Virajpet",
+    "location": {
+      "lat": 12.13,
+      "lng": 75.98
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling local market where visitors can shop for fresh produce, spices, and traditional Kodava handicrafts.",
+    "rating": 4.4,
+    "popularity": 8
+  }
+]

@@ -1,0 +1,172 @@
+[
+  {
+    "id": "58b961c2-3db5-4e6e-bb6a-2fbe0c11177a",
+    "name": "Pangong Tso Cafe",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.9961,
+      "lng": 78.4065
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.5,
+    "openingTime": "07:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "e62e176d-7ddc-4db5-a154-14c57f1bdb57",
+    "name": "Blue Heaven Restaurant",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.9978,
+      "lng": 78.4082
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 800,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "21:00",
+    "mealType": "dinner",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "6df950fd-1c6b-4eda-9653-126f67211d0c",
+    "name": "Pangong Lake View Cafe",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.9955,
+      "lng": 78.405
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.2,
+    "openingTime": "06:30",
+    "closingTime": "20:30",
+    "mealType": "breakfast",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "d6a54b0d-59ab-4295-928b-2ca16111ee08",
+    "name": "Tso Moriri Street Food Hub",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.9983,
+      "lng": 78.4101
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 300,
+    "rating": 4,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "e95a5b18-c3bf-4c3c-b575-81f2e176d4f5",
+    "name": "Ladakhi Kitchen",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.994,
+      "lng": 78.407
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 650,
+    "rating": 4.6,
+    "openingTime": "07:30",
+    "closingTime": "21:30",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "e3a82529-d4fd-45c9-bef6-64d9d947cce3",
+    "name": "Pangong Fine Dining",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.9968,
+      "lng": 78.4095
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 1200,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "21231eaf-5bb0-45a3-ba21-d392d6ce6a04",
+    "name": "Nomad's Rest Cafe",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.995,
+      "lng": 78.406
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 750,
+    "rating": 4.4,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "abb0c92f-9637-4920-a9d0-5aa0b78bd455",
+    "name": "Pangong Lake Street Bites",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.997,
+      "lng": 78.4078
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 350,
+    "rating": 4.1,
+    "openingTime": "11:00",
+    "closingTime": "21:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "80c0c516-e901-40b1-a08c-ddf945ea309c",
+    "name": "The Himalayan Feast",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.9935,
+      "lng": 78.4085
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 900,
+    "rating": 4.8,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "c34b06be-fc52-47b0-bb30-d5a4abc2e3ab",
+    "name": "Pangong Sunrise Cafe",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.996,
+      "lng": 78.4055
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.3,
+    "openingTime": "05:30",
+    "closingTime": "14:00",
+    "mealType": "breakfast",
+    "isPureVeg": false,
+    "hasJainFood": false
+  }
+]

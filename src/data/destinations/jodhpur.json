@@ -1,0 +1,342 @@
+[
+  {
+    "id": "bcbafa45-75a2-4b6b-96d4-37e9d7d54e79",
+    "name": "Mehrangarh Fort",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2958,
+      "lng": 73.0194
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 100,
+    "category": "Heritage",
+    "description": "A majestic 15th-century fort towering over Jodhpur, offering panoramic views and rich history with intricate palaces and museums inside.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "fe15af07-f8fc-4a20-9273-3c3aa3c01008",
+    "name": "Jaswant Thada",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2969,
+      "lng": 73.0221
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:30",
+    "entryFee": 30,
+    "category": "Heritage",
+    "description": "A stunning marble cenotaph built in memory of Maharaja Jaswant Singh II, known for its delicate lattice work and peaceful gardens.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "fd9b3495-b0e4-4494-9298-3d60f409b253",
+    "name": "Umaid Bhawan Palace Museum",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2986,
+      "lng": 73.0199
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 150,
+    "category": "Heritage",
+    "description": "A grand palace blending Art Deco and Indian architecture, part of which is a museum showcasing royal artifacts and vintage cars.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "98f3901b-4bf8-4895-b4aa-54194c2991ab",
+    "name": "Clock Tower & Sardar Market",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2961,
+      "lng": 73.0297
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Bustling local market around the iconic Clock Tower, perfect for shopping spices, textiles, handicrafts, and experiencing local life.",
+    "rating": 4.3,
+    "popularity": 9
+  },
+  {
+    "id": "2032d637-fa71-49ab-ba4a-20aa12c6a5e4",
+    "name": "Mandore Gardens",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.3271,
+      "lng": 73.0153
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "Historic gardens with royal cenotaphs, temples, and a museum, offering a serene escape and insight into Jodhpur’s ancient capital.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "d993cf91-625c-44b3-b569-0fc42806e00d",
+    "name": "Rao Jodha Desert Rock Park",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2975,
+      "lng": 73.0206
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A unique ecological park created to restore the natural desert landscape around Mehrangarh Fort, featuring native flora and walking trails.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "c133db9e-6db5-4b54-94c9-4d3c65b90c0f",
+    "name": "Chamunda Mata Temple",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2963,
+      "lng": 73.0232
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A revered temple dedicated to Goddess Chamunda, located within Mehrangarh Fort, known for its spiritual ambiance and intricate carvings.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "c96d60bc-53ab-44c3-8e64-9a65a6190612",
+    "name": "Toorji Ka Jhalra (Stepwell)",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2967,
+      "lng": 73.0311
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "An ancient stepwell with beautiful architecture and a peaceful atmosphere, a hidden gem showcasing traditional water conservation methods.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "0c390399-44c2-4cbc-89f4-6677c4b1caf3",
+    "name": "Kaylana Lake",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.3069,
+      "lng": 72.9963
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A scenic artificial lake surrounded by hills, ideal for picnics, bird watching, and enjoying tranquil sunsets away from the city bustle.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "40e6dd48-7943-4bcb-ad7b-16eab4ddf4e5",
+    "name": "Balsamand Lake and Garden",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.295,
+      "lng": 73.0005
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A historic artificial lake with a charming garden and palace, perfect for a peaceful stroll and enjoying nature’s beauty.",
+    "rating": 4,
+    "popularity": 6
+  },
+  {
+    "id": "ed831ce2-aa4b-4429-a4c6-642ae4a4b2c8",
+    "name": "Machia Biological Park",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.298,
+      "lng": 72.9975
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Adventure",
+    "description": "A wildlife sanctuary featuring native and exotic animals, offering safari rides and a chance to see wildlife in a naturalistic setting.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "999e841e-22ca-4566-95a2-56e53413b23d",
+    "name": "Ghanta Ghar (Old Clock Tower)",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.296,
+      "lng": 73.0295
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "Open 24 hours",
+    "closingTime": "Open 24 hours",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "The iconic clock tower in the heart of Jodhpur’s old city, a popular meeting point surrounded by vibrant bazaars.",
+    "rating": 4.1,
+    "popularity": 8
+  },
+  {
+    "id": "b944e576-e000-4291-bbf9-99558457fd2c",
+    "name": "Nathji Ki Haveli",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2955,
+      "lng": 73.031
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 40,
+    "category": "Heritage",
+    "description": "A beautifully preserved haveli showcasing traditional Rajasthani architecture with intricate frescoes and wooden carvings.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "43664096-df17-49b5-8a60-9a68a4f49050",
+    "name": "Mandore Stepwell",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.3275,
+      "lng": 73.0148
+    },
+    "timeToSpend": 1,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 10,
+    "category": "Heritage",
+    "description": "An ancient stepwell near Mandore Gardens, featuring impressive stonework and a glimpse into historic water management.",
+    "rating": 4,
+    "popularity": 6
+  },
+  {
+    "id": "423b1761-cbaa-4bb4-9a7b-ab79ceb3d11a",
+    "name": "Ratanada Ganesh Temple",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2989,
+      "lng": 73.0275
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "05:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A popular temple dedicated to Lord Ganesha, known for its vibrant festivals and spiritual atmosphere in the city center.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "105b38cd-aea8-4cfb-8877-2e83e8b891a6",
+    "name": "Jodhpur Ropeway",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.296,
+      "lng": 73.019
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 120,
+    "category": "Adventure",
+    "description": "A thrilling cable car ride offering spectacular aerial views of Mehrangarh Fort and the blue cityscape below.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "fc87880f-73b5-4ed3-b09a-f9683ef13bde",
+    "name": "Phool Mahal",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.2959,
+      "lng": 73.0196
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "An exquisite palace hall inside Mehrangarh Fort, adorned with intricate mirror work and floral decorations, once used for royal gatherings.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "aa84f0a9-1280-4ad4-9a47-4daeb083afc6",
+    "name": "Chameli Bagh",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.3,
+      "lng": 73.022
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A lesser-known garden with fragrant jasmine flowers and shaded walkways, ideal for a quiet retreat in the city.",
+    "rating": 4,
+    "popularity": 5
+  },
+  {
+    "id": "f4fdd9e2-6004-4f9e-8dde-d3f884c493e1",
+    "name": "Sardar Government Museum",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.298,
+      "lng": 73.02
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 40,
+    "category": "Cultural",
+    "description": "A museum showcasing artifacts, sculptures, and paintings that narrate the rich cultural heritage of Jodhpur and Rajasthan.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "2186ad6b-5ec3-4f3e-b072-fd45e114404a",
+    "name": "Bishnoi Village Safari",
+    "address": "Jodhpur",
+    "location": {
+      "lat": 26.35,
+      "lng": 73.05
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 500,
+    "category": "Cultural",
+    "description": "An immersive experience visiting the Bishnoi community, known for their wildlife conservation, traditional crafts, and rural lifestyle.",
+    "rating": 4.7,
+    "popularity": 8
+  }
+]

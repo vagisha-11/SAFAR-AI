@@ -27,11 +27,34 @@ export default function PromptBar() {
             const promptData = await promptRes.json();
 
             if (promptData.success) {
-                setLastResponse(promptData.intent.response);
-                addPromptMessage('assistant', promptData.intent.response);
+                if (promptData.intent.action === 'filter_restaurants') {
+                    const filter = promptData.intent.params.dietaryFilter;
+                    
+                    const progressMsg = `I'm rebuilding your schedule to strictly include only ${filter === 'veg' ? 'Pure Veg' : 'Jain'} food options! Give me a few seconds...`;
+                    setLastResponse(progressMsg);
+                    addPromptMessage('assistant', progressMsg);
 
-                // Handle all delta updates
-                if (promptData.intent.action !== 'generic') {
+                    const updatedNotes = (itinerary.tripInput.additionalNotes || '') + ` Must strictly only eat ${filter === 'veg' ? 'pure veg' : 'Jain'} food.`;
+                    const updatedTrip = { ...itinerary.tripInput, additionalNotes: updatedNotes };
+                    
+                    const res = await fetch('/api/orchestrator', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(updatedTrip),
+                    });
+                    
+                    const result = await res.json();
+                    if (result.success) {
+                        setItinerary(result.itinerary);
+                        setLastResponse(`Done! I've updated your entire trip exclusively with ${filter === 'veg' ? 'Pure Veg' : 'Jain'} restaurants.`);
+                    } else {
+                        setLastResponse("I ran into an issue rebuilding the itinerary against those constraints.");
+                        addPromptMessage('assistant', "I ran into an issue rebuilding the itinerary against those strict dietary constraints.");
+                    }
+                } else if (promptData.intent.action !== 'generic') {
+                    setLastResponse(promptData.intent.response);
+                    addPromptMessage('assistant', promptData.intent.response);
+
                     const res = await fetch('/api/deltaUpdate', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -46,6 +69,9 @@ export default function PromptBar() {
                     });
                     const data = await res.json();
                     if (data.success) setItinerary(data.itinerary);
+                } else {
+                    setLastResponse(promptData.intent.response);
+                    addPromptMessage('assistant', promptData.intent.response);
                 }
             }
         } catch (err) {

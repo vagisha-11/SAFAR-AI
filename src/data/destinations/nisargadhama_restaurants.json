@@ -1,0 +1,172 @@
+[
+  {
+    "id": "397874ed-987f-41c4-98bd-5236ae3eac81",
+    "name": "Nisarga Restaurant",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3354,
+      "lng": 75.7801
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 400,
+    "rating": 4.3,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "84200ae8-e6d6-4e8e-9c08-ff7a61effd94",
+    "name": "River View Cafe",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.336,
+      "lng": 75.7795
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.5,
+    "openingTime": "09:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "8e17d67a-7bff-4109-ba27-e9655a9e908d",
+    "name": "Mysore Pak House",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3348,
+      "lng": 75.7807
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 150,
+    "rating": 4,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "3f5c8be4-b4fe-429a-99d3-adc3350bd2b9",
+    "name": "Nisarga Fine Dining",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3359,
+      "lng": 75.7799
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 1200,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "8651850a-8db6-4db7-9df5-ae0f154cf2dd",
+    "name": "Bamboo Hut",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.335,
+      "lng": 75.7803
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 350,
+    "rating": 4.2,
+    "openingTime": "11:00",
+    "closingTime": "20:00",
+    "mealType": "lunch",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "4f2de977-3bb9-42bb-860c-5b84c701b92d",
+    "name": "Nisarga Street Food Corner",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3365,
+      "lng": 75.78
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 200,
+    "rating": 4.1,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "ddbfe6eb-10f5-4ac9-ab07-2e747a9f884a",
+    "name": "Coffee Nest Cafe",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3357,
+      "lng": 75.7797
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 500,
+    "rating": 4.4,
+    "openingTime": "07:30",
+    "closingTime": "19:30",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "509f9981-8ccc-44cf-866c-bc08fdff42bc",
+    "name": "The Riverside Grill",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3349,
+      "lng": 75.7798
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 1500,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "40843fc3-8897-42ac-a417-625181f32e1f",
+    "name": "Nisarga Veg Delight",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3352,
+      "lng": 75.7805
+    },
+    "cuisine": "South Indian",
+    "avgCostForTwo": 300,
+    "rating": 4,
+    "openingTime": "06:30",
+    "closingTime": "15:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "deb62299-d0b8-4c6f-a570-ab8c695c0b6d",
+    "name": "Forest View Tandoor",
+    "address": "Nisargadhama",
+    "location": {
+      "lat": 12.3361,
+      "lng": 75.7802
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 800,
+    "rating": 4.3,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  }
+]

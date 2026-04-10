@@ -1,0 +1,342 @@
+[
+  {
+    "id": "232b6d3f-eb35-43e1-be70-db0a388a1693",
+    "name": "Pangong Tso Lake",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.985,
+      "lng": 78.565
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A stunning high-altitude saline lake famous for its changing colors and breathtaking views.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "e51cda33-5781-49f5-8227-c5510bcefca4",
+    "name": "Spangmik Village",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.991,
+      "lng": 78.572
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A quaint village on the banks of Pangong Lake offering authentic Ladakhi culture and homestays.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "de91ae21-63a1-41bd-bc1e-58db51c7e1a8",
+    "name": "Pangong Lake Viewpoint",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.98,
+      "lng": 78.56
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A prime spot to witness the lake’s mesmerizing color shifts during sunrise and sunset.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "c9cddd2a-0469-4d46-99e2-0be57dca82e9",
+    "name": "Thiksey Monastery",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 34.003,
+      "lng": 78.267
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A beautiful Tibetan Buddhist monastery with stunning architecture and panoramic valley views.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "920ccc73-9489-427c-bac6-dfdbd89115f6",
+    "name": "Chang La Pass",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 34.01,
+      "lng": 78.75
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "One of the highest motorable passes offering thrilling views and a gateway to Pangong Lake.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "77e2fdf7-cbf5-41b0-9268-301110ad9e49",
+    "name": "Merak Village",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.95,
+      "lng": 78.6
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A lesser-known village near Pangong Lake known for its traditional lifestyle and yak herding.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "e9b0dc9a-6317-4b70-a3ee-55838bcb085f",
+    "name": "Pangong Lake Bird Watching Spot",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.975,
+      "lng": 78.57
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A serene area to spot migratory birds like the Brahminy duck and bar-headed goose.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "dff506a1-f761-4683-8a00-39806b5d64c6",
+    "name": "Pangong Lake Camping Site",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.982,
+      "lng": 78.575
+    },
+    "timeToSpend": 4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "Experience overnight camping by the lake with starry skies and tranquil surroundings.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "417b6aed-fd80-456d-a206-1d687d25d5a8",
+    "name": "Durbuk Village",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 34.02,
+      "lng": 78.45
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A small village en route to Pangong offering local markets and traditional Ladakhi cuisine.",
+    "rating": 4.2,
+    "popularity": 6
+  },
+  {
+    "id": "0395f877-ac4e-4e5b-84ee-6d5a3eed99e5",
+    "name": "Pangong Lake Photography Point",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.978,
+      "lng": 78.568
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A perfect spot for photographers to capture the lake’s vivid hues and reflections.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "a53f28a5-0cbd-419f-8e76-23d2fb5a3d86",
+    "name": "Pangong Lake Sunset Point",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.985,
+      "lng": 78.58
+    },
+    "timeToSpend": 1,
+    "openingTime": "16:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Watch the sun dip behind the mountains, casting golden hues over the lake’s surface.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "9f6dec73-33b5-458b-b43c-f5f1b2f7baa7",
+    "name": "Pangong Lake Ice Skating (Winter Season)",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.985,
+      "lng": 78.565
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "16:00",
+    "entryFee": 150,
+    "category": "Adventure",
+    "description": "Enjoy ice skating on the frozen lake during winter months, a unique and thrilling experience.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "ad07c450-ff7f-4e35-98c8-61e9f12d8078",
+    "name": "Pangong Lake Local Handicraft Market",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.99,
+      "lng": 78.57
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Explore stalls selling traditional Ladakhi handicrafts, woolens, and souvenirs.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "32fd4a1d-8107-46a6-8bcd-12f6a8885017",
+    "name": "Pangong Lake Horse Riding",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.983,
+      "lng": 78.566
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 200,
+    "category": "Adventure",
+    "description": "Take a guided horse ride along the lake’s edge for a unique way to explore the area.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "21d8d8a8-35b7-42f5-bd2b-c03136e80e6a",
+    "name": "Pangong Lake Meditation Spot",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.987,
+      "lng": 78.562
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A quiet and peaceful area ideal for meditation and spiritual reflection by the lake.",
+    "rating": 4.6,
+    "popularity": 6
+  },
+  {
+    "id": "8bdd87df-ea72-4a9c-8956-92494853a6c4",
+    "name": "Pangong Lake Stargazing Point",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.984,
+      "lng": 78.567
+    },
+    "timeToSpend": 2,
+    "openingTime": "20:00",
+    "closingTime": "23:59",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Experience spectacular night skies with minimal light pollution, perfect for stargazing.",
+    "rating": 4.9,
+    "popularity": 9
+  },
+  {
+    "id": "01f24aee-de82-49e6-9ce2-a06d92c5e3e2",
+    "name": "Pangong Lake Rock Formations",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.979,
+      "lng": 78.563
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Explore unique and dramatic rock formations along the lake’s shoreline.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "217b714e-1525-453a-8d74-f8cf7ba297be",
+    "name": "Pangong Lake Local Cuisine Experience",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.99,
+      "lng": 78.571
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Taste authentic Ladakhi dishes prepared by local families in homestays or small eateries.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "16e39748-d493-4214-b951-fc52014d04bc",
+    "name": "Pangong Lake Sunrise Point",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.981,
+      "lng": 78.559
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:30",
+    "closingTime": "08:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "Catch the first light of day illuminating the lake with vibrant colors and calm waters.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "313f6a2a-2b91-41af-a2bd-5ec6a2b9a18d",
+    "name": "Pangong Lake Eco-Trail",
+    "address": "Pangong Lake",
+    "location": {
+      "lat": 33.976,
+      "lng": 78.564
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A guided walking trail highlighting the lake’s ecology, flora, and fauna.",
+    "rating": 4.5,
+    "popularity": 7
+  }
+]

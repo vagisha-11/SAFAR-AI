@@ -100,6 +100,8 @@ export interface Restaurant {
   openingTime: string;
   closingTime: string;
   mealType: 'breakfast' | 'lunch' | 'dinner' | 'any';
+  isPureVeg?: boolean;   // true = only vegetarian food served
+  hasJainFood?: boolean; // true = Jain-friendly menu available
 }
 
 // ---------- P2P TRAVEL ----------
@@ -187,6 +189,7 @@ export interface TripInput {
   departureDate: string; // ISO date
   returnDate: string; // ISO date
   budget: number; // INR
+  travelers: number; // number of people
   preferences: string[];
   maxHoursPerDay: number;
   isDateFlexible: boolean;

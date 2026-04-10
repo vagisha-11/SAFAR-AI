@@ -1,0 +1,342 @@
+[
+  {
+    "id": "9c333953-e2d0-4229-a577-5d825981f833",
+    "name": "Kumarakom Bird Sanctuary",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.6053,
+      "lng": 76.46
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A serene sanctuary hosting a variety of migratory and native birds amidst lush backwaters.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "1f63467a-ef41-4122-937b-6c634e96fd57",
+    "name": "Vembanad Lake",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.6,
+      "lng": 76.46
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "05:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "The longest lake in India, offering breathtaking views and tranquil boat rides through the backwaters.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "88a07cad-d467-4460-8003-9e6af376e227",
+    "name": "Pathiramanal Island",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.615,
+      "lng": 76.4605
+    },
+    "timeToSpend": 4,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 100,
+    "category": "Nature",
+    "description": "A hidden gem island in Vembanad Lake known for its rich birdlife and peaceful environment.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "983e5811-446e-4afd-92d4-1e365cdb687b",
+    "name": "Bay Island Driftwood Museum",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.606,
+      "lng": 76.462
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Cultural",
+    "description": "A unique museum showcasing artistic driftwood sculptures and local craftsmanship.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "97845503-cfae-4db9-90fe-d583796960ce",
+    "name": "Kumarakom Backwater Kayaking",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.603,
+      "lng": 76.459
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "Experience the backwaters up close by kayaking through narrow canals and lush greenery.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "b3998341-5b62-4ddb-b666-ee907a18121e",
+    "name": "Thazhathangady Juma Masjid",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.6055,
+      "lng": 76.463
+    },
+    "timeToSpend": 1,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "One of the oldest mosques in Kerala, renowned for its traditional Kerala architecture and intricate woodwork.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "d23a93fc-2e5c-4ec6-9e12-97e4836c2fb3",
+    "name": "Aruvikkuzhi Waterfalls",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.62,
+      "lng": 76.47
+    },
+    "timeToSpend": 2,
+    "openingTime": "07:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A scenic waterfall surrounded by lush greenery, perfect for a refreshing nature walk and photography.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "48510f16-3ff7-4650-bb53-27fc8f1e37c3",
+    "name": "Kumarakom Boat Cruise",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.604,
+      "lng": 76.46
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "08:00",
+    "closingTime": "19:00",
+    "entryFee": 500,
+    "category": "Adventure",
+    "description": "Enjoy a luxurious houseboat cruise through the tranquil backwaters with traditional Kerala cuisine onboard.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "9e181c48-dc2a-4de0-a3ec-85f91db79a47",
+    "name": "Kumarakom Village Walk",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.602,
+      "lng": 76.458
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Explore the rustic village life, interact with locals, and witness traditional fishing and farming practices.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "d4bd46ef-620b-4fbf-8fe9-2f1291eb9569",
+    "name": "St. Joseph's Church, Kumarakom",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.607,
+      "lng": 76.4625
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A beautiful historic church showcasing colonial architecture and peaceful surroundings.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "cd28a12c-4f25-4e4e-8d83-ff46d7460e5e",
+    "name": "Kumarakom Ayurveda Village",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.601,
+      "lng": 76.4595
+    },
+    "timeToSpend": 4,
+    "openingTime": "09:00",
+    "closingTime": "20:00",
+    "entryFee": 1500,
+    "category": "Wellness",
+    "description": "Experience authentic Ayurvedic treatments and therapies in a tranquil village setting.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "5c99ed9d-84e1-402f-acf6-d142439fdaeb",
+    "name": "Kumarakom Fishing Experience",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.605,
+      "lng": 76.461
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "05:30",
+    "closingTime": "10:00",
+    "entryFee": 200,
+    "category": "Adventure",
+    "description": "Join local fishermen early morning to learn traditional fishing techniques on the backwaters.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "faef1472-7425-4180-9eb3-71d4d4f3d2c1",
+    "name": "Kumarakom Handicrafts Market",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.6035,
+      "lng": 76.4605
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Browse and buy exquisite local handicrafts, including coir products, pottery, and traditional textiles.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "e4e45606-5763-4621-af9f-fc896b51b8d5",
+    "name": "Kumarakom Sunset Point",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.6075,
+      "lng": 76.459
+    },
+    "timeToSpend": 1,
+    "openingTime": "16:30",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A perfect spot to witness stunning sunsets over the backwaters with panoramic views.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "0d23631e-b0d6-4da8-bf74-5235ccad6d81",
+    "name": "Thazhathangady Heritage Walk",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.6057,
+      "lng": 76.4628
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "Explore the historic lanes, ancient architecture, and cultural landmarks of the Thazhathangady area.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "8cc5b3e6-2fcc-45b7-8f80-cc56b965eb6e",
+    "name": "Kumarakom Spice Plantation Tour",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.61,
+      "lng": 76.465
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "16:00",
+    "entryFee": 100,
+    "category": "Nature",
+    "description": "Discover the aromatic world of spices with guided tours through lush plantations and tasting sessions.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "88fac6db-4a7f-4dfc-a806-fa635830e889",
+    "name": "Kumarakom Cultural Center",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.6045,
+      "lng": 76.4615
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 75,
+    "category": "Cultural",
+    "description": "Experience traditional Kerala dance, music performances, and art exhibitions in an intimate setting.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "d17537d4-4ee6-4123-b71d-69c244ed27b5",
+    "name": "Kumarakom Floating Cottages",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.606,
+      "lng": 76.46
+    },
+    "timeToSpend": 4,
+    "openingTime": "All Day",
+    "closingTime": "All Day",
+    "entryFee": 0,
+    "category": "Accommodation",
+    "description": "Unique stay experience on floating cottages offering stunning views and direct water access.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "ee75edb5-1a8c-4649-8b38-713c74170c60",
+    "name": "Kumarakom Boat Jetty",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.6038,
+      "lng": 76.4598
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "The main boat jetty serving as a gateway to various backwater tours and houseboat cruises.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "10a5cf76-597d-44a4-81d3-d08540dc0d10",
+    "name": "Kumarakom Village Temple",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.608,
+      "lng": 76.462
+    },
+    "timeToSpend": 1,
+    "openingTime": "05:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A quaint local temple showcasing traditional Kerala temple architecture and vibrant festivals.",
+    "rating": 4.4,
+    "popularity": 7
+  }
+]

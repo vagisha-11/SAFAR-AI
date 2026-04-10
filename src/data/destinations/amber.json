@@ -1,0 +1,342 @@
+[
+  {
+    "id": "fb958a00-b5ae-4a7f-ae27-bbdec345853f",
+    "name": "Amber Fort",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9855,
+      "lng": 75.8513
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "08:00",
+    "closingTime": "17:30",
+    "entryFee": 100,
+    "category": "Heritage",
+    "description": "A majestic hilltop fort known for its artistic Hindu style elements and panoramic views of Maota Lake.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "7748d40c-a5cc-4a77-be12-46fe26efbff2",
+    "name": "Jal Mahal",
+    "address": "Amber",
+    "location": {
+      "lat": 26.985,
+      "lng": 75.848
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A stunning palace situated in the middle of Man Sagar Lake, offering picturesque views and photo opportunities.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "5059f546-8789-497c-bd5f-f281737476b4",
+    "name": "Panna Meena ka Kund",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9877,
+      "lng": 75.8492
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "An ancient stepwell with symmetrical staircases and intricate architecture, perfect for history buffs and photographers.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "a56739e1-ded9-489f-a8fa-842d82e59715",
+    "name": "Shila Devi Temple",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9858,
+      "lng": 75.8525
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A sacred temple dedicated to Goddess Shila Devi, known for its religious significance and beautiful carvings.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "6fc571eb-7c9c-46c9-99f7-de2ba5cbe240",
+    "name": "Jaigarh Fort",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9933,
+      "lng": 75.847
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 80,
+    "category": "Heritage",
+    "description": "A massive fort overlooking Amber Fort, famous for its cannon foundry and panoramic views of the Aravalli hills.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "339f207e-1f92-43d3-aa75-6ba9ffb03315",
+    "name": "Nahargarh Fort",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9995,
+      "lng": 75.837
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 80,
+    "category": "Heritage",
+    "description": "A fort offering stunning sunset views over Jaipur city and a blend of Indian and European architectural styles.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "ca79345e-7ca1-49b1-bbe9-81277a35abb1",
+    "name": "Amber Village Market",
+    "address": "Amber",
+    "location": {
+      "lat": 26.985,
+      "lng": 75.85
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling local market where visitors can shop for traditional Rajasthani handicrafts, textiles, and jewelry.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "8f2255a9-39eb-4bd0-ab99-ce6935c6b979",
+    "name": "Elephant Rides at Amber Fort",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9855,
+      "lng": 75.8513
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 500,
+    "category": "Adventure",
+    "description": "A unique experience riding elephants up the hill to Amber Fort, offering a royal and traditional journey.",
+    "rating": 4.2,
+    "popularity": 8
+  },
+  {
+    "id": "15174dfc-5bcf-4fdf-a87b-2847f8da3664",
+    "name": "Maota Lake",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9845,
+      "lng": 75.8495
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A serene lake at the base of Amber Fort, ideal for peaceful walks and spotting migratory birds during winter.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "020f7f5e-ed72-457b-bc89-2a157c0a5f67",
+    "name": "Sisodia Rani Garden",
+    "address": "Amber",
+    "location": {
+      "lat": 26.933,
+      "lng": 75.805
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Nature",
+    "description": "A beautifully landscaped garden with fountains, murals, and pavilions, showcasing royal Mughal garden design.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "731e3bc6-f9d8-405d-8905-492ce87053e4",
+    "name": "Anokhi Museum of Hand Printing",
+    "address": "Amber",
+    "location": {
+      "lat": 26.927,
+      "lng": 75.823
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 100,
+    "category": "Cultural",
+    "description": "A museum dedicated to the art of traditional hand block printing, featuring workshops and exhibits.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "a0e0f172-0be4-4ccf-99f7-1c9eb3ea5035",
+    "name": "Galta Ji Temple",
+    "address": "Amber",
+    "location": {
+      "lat": 26.982,
+      "lng": 75.872
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A historic Hindu pilgrimage site with natural springs, sacred water tanks, and ancient temples set in a rocky landscape.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "3c4de705-b184-41ff-9388-2b9a63bc1cc0",
+    "name": "Amber Light and Sound Show",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9855,
+      "lng": 75.8513
+    },
+    "timeToSpend": 1,
+    "openingTime": "19:30",
+    "closingTime": "20:30",
+    "entryFee": 150,
+    "category": "Cultural",
+    "description": "An evening show narrating the history of Amber Fort with dramatic lights and sound effects.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "d6e1972f-480c-45eb-a54b-621943cf1531",
+    "name": "Jaipur Ropeway (Nahargarh Biological Park)",
+    "address": "Amber",
+    "location": {
+      "lat": 26.998,
+      "lng": 75.832
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 150,
+    "category": "Adventure",
+    "description": "A scenic cable car ride offering breathtaking views of the Aravalli hills and the Nahargarh Biological Park.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "116eae2b-3717-4529-a3f9-b511dcb6a816",
+    "name": "Chand Baori Stepwell",
+    "address": "Amber",
+    "location": {
+      "lat": 26.985,
+      "lng": 75.8485
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A hidden stepwell near Amber Fort with intricate geometric steps and a cool retreat from the heat.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "2f9c22a9-53c9-4612-a338-36d85fe77b6f",
+    "name": "Rajputana Handicrafts Workshop",
+    "address": "Amber",
+    "location": {
+      "lat": 26.984,
+      "lng": 75.849
+    },
+    "timeToSpend": 1,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A local workshop where visitors can watch artisans create traditional Rajasthani crafts and try their hand at it.",
+    "rating": 4.4,
+    "popularity": 6
+  },
+  {
+    "id": "9313bc83-7ece-443a-b647-4d87735f44e5",
+    "name": "Amber Fort Photography Tour",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9855,
+      "lng": 75.8513
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "09:00",
+    "entryFee": 300,
+    "category": "Adventure",
+    "description": "A guided early morning photography tour capturing the fort’s architecture and sunrise views without crowds.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "3b58cf3d-4f4b-420a-b11b-958f6358486d",
+    "name": "Local Rajasthani Cuisine Experience",
+    "address": "Amber",
+    "location": {
+      "lat": 26.985,
+      "lng": 75.8505
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Enjoy authentic Rajasthani dishes in a traditional setting with local hosts sharing culinary stories.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "70eb28d8-1ccc-422f-bd41-757bce0fdef2",
+    "name": "Amber Fort Sound and Light Show",
+    "address": "Amber",
+    "location": {
+      "lat": 26.9855,
+      "lng": 75.8513
+    },
+    "timeToSpend": 1,
+    "openingTime": "19:00",
+    "closingTime": "20:00",
+    "entryFee": 150,
+    "category": "Cultural",
+    "description": "An immersive evening show that brings the history of Amber Fort alive through narration and lighting effects.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "64b1b7f4-663b-4c20-9c0e-89d7a1e4c628",
+    "name": "Stepwell Meditation Spot",
+    "address": "Amber",
+    "location": {
+      "lat": 26.986,
+      "lng": 75.849
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A quiet, lesser-known stepwell area perfect for meditation and peaceful reflection away from tourist crowds.",
+    "rating": 4.2,
+    "popularity": 5
+  }
+]

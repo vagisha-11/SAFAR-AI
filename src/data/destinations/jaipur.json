@@ -1,0 +1,342 @@
+[
+  {
+    "id": "28c591ce-2419-4046-9748-25ad6cdb18f1",
+    "name": "Amber Fort",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9855,
+      "lng": 75.8513
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "08:00",
+    "closingTime": "17:30",
+    "entryFee": 1000,
+    "category": "Heritage",
+    "description": "A majestic hilltop fort known for its artistic Hindu style elements and panoramic views of Maota Lake.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "9ed5e312-6574-41b4-9291-70b1197e1852",
+    "name": "City Palace",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9239,
+      "lng": 75.8267
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "09:30",
+    "closingTime": "17:00",
+    "entryFee": 700,
+    "category": "Heritage",
+    "description": "An opulent palace complex blending Rajput and Mughal architecture with museums showcasing royal artifacts.",
+    "rating": 4.6,
+    "popularity": 10
+  },
+  {
+    "id": "ff517ed5-b8ec-4f28-bfeb-25be31e9a5eb",
+    "name": "Hawa Mahal",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9239,
+      "lng": 75.8265
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 200,
+    "category": "Heritage",
+    "description": "The iconic 'Palace of Winds' with its honeycomb façade designed for royal ladies to observe street festivities unseen.",
+    "rating": 4.5,
+    "popularity": 10
+  },
+  {
+    "id": "2c5e71a5-0041-4768-8819-609c76fe2b3d",
+    "name": "Jantar Mantar",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9244,
+      "lng": 75.8246
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "16:30",
+    "entryFee": 200,
+    "category": "Heritage",
+    "description": "An 18th-century astronomical observatory with large instruments to measure time, predict eclipses, and track stars.",
+    "rating": 4.4,
+    "popularity": 9
+  },
+  {
+    "id": "f1ee4f11-0054-4eb5-b77c-2ccdfa0746ef",
+    "name": "Nahargarh Fort",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9991,
+      "lng": 75.8433
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "A fort offering stunning sunset views over Jaipur and a glimpse into royal leisure life with its palace and gardens.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "5262a7c1-99bb-4db3-9f57-875133673be3",
+    "name": "Jaigarh Fort",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9988,
+      "lng": 75.8499
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "Known as the 'Fort of Victory', it houses the world's largest cannon on wheels and offers panoramic views.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "fd26b28d-2089-4549-8a1e-070c1cdc94ab",
+    "name": "Albert Hall Museum",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9196,
+      "lng": 75.8219
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 300,
+    "category": "Museum",
+    "description": "A grand Indo-Saracenic building housing an extensive collection of artifacts, paintings, and sculptures.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "d8f59807-e96c-4a11-a9be-b8c5dfa65d36",
+    "name": "Galta Ji (Monkey Temple)",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.919,
+      "lng": 75.8824
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A sacred Hindu pilgrimage site with natural springs, ancient temples, and a large population of playful monkeys.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "7c40786a-df31-478e-9adf-5b62f2bea4a8",
+    "name": "Chokhi Dhani",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.8167,
+      "lng": 75.8
+    },
+    "timeToSpend": 4,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "entryFee": 700,
+    "category": "Cultural",
+    "description": "A vibrant ethnic village resort offering traditional Rajasthani food, folk dances, camel rides, and crafts.",
+    "rating": 4.5,
+    "popularity": 9
+  },
+  {
+    "id": "073fb90a-12ef-44c9-96f1-94f9484a291a",
+    "name": "Sisodia Rani Garden",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9121,
+      "lng": 75.7923
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A beautifully landscaped garden with fountains, painted pavilions, and terraces built for the queen.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "47ae464e-20db-4a17-b152-ce66bf44d080",
+    "name": "Panna Meena ka Kund",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.985,
+      "lng": 75.849
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Heritage",
+    "description": "A stunning stepwell with symmetrical staircases and intricate architecture, a hidden gem near Amber Fort.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "fd13c9f3-57e1-47e7-91d2-0b7172d52512",
+    "name": "Raj Mandir Cinema",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9225,
+      "lng": 75.8231
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "10:00",
+    "closingTime": "23:00",
+    "entryFee": 350,
+    "category": "Cultural",
+    "description": "An iconic movie palace known for its lavish interiors and a quintessential Bollywood cinema experience.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "f2dd330a-88b1-495c-aea7-2ddba07d33c4",
+    "name": "Jawahar Kala Kendra",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9127,
+      "lng": 75.808
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "A cultural center showcasing Rajasthani arts, crafts, and performing arts in a unique architectural setting.",
+    "rating": 4.2,
+    "popularity": 7
+  },
+  {
+    "id": "1c884fdd-8a74-441c-8fbc-6fc9f4887d44",
+    "name": "Central Park Jaipur",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9129,
+      "lng": 75.787
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A large urban park with lush greenery, jogging tracks, and a musical fountain, perfect for relaxation.",
+    "rating": 4,
+    "popularity": 6
+  },
+  {
+    "id": "fdc9d31b-56be-4be5-873f-edf2b962a017",
+    "name": "Nahargarh Biological Park",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9995,
+      "lng": 75.843
+    },
+    "timeToSpend": 3,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 100,
+    "category": "Nature",
+    "description": "A wildlife sanctuary near Nahargarh Fort featuring native species and a serene natural environment.",
+    "rating": 4.1,
+    "popularity": 6
+  },
+  {
+    "id": "89297152-31d1-45be-81ea-1125f9069173",
+    "name": "Kanak Vrindavan",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.998,
+      "lng": 75.842
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A peaceful garden with fountains, murals depicting Krishna's life, and a tranquil atmosphere near Nahargarh Fort.",
+    "rating": 4,
+    "popularity": 5
+  },
+  {
+    "id": "8c1c068c-f796-47df-9481-20f65f847840",
+    "name": "Rajputana Museum",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.923,
+      "lng": 75.823
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 100,
+    "category": "Museum",
+    "description": "A museum dedicated to Rajput history and culture with weapons, costumes, and artifacts on display.",
+    "rating": 4.1,
+    "popularity": 5
+  },
+  {
+    "id": "7f0eab42-2663-4a1d-8d06-dea21f2f32af",
+    "name": "Vintage Car Museum",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9235,
+      "lng": 75.826
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "10:00",
+    "closingTime": "17:00",
+    "entryFee": 200,
+    "category": "Museum",
+    "description": "A unique collection of vintage and classic cars owned by the Jaipur royal family, showcasing automotive history.",
+    "rating": 4.3,
+    "popularity": 7
+  },
+  {
+    "id": "e61ac97b-4616-4ea4-a3e1-75ad54f4e7d2",
+    "name": "Bapu Bazaar",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.922,
+      "lng": 75.824
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "21:00",
+    "entryFee": 0,
+    "category": "Shopping",
+    "description": "A bustling market famous for textiles, handicrafts, jewelry, and traditional Rajasthani goods.",
+    "rating": 4.2,
+    "popularity": 9
+  },
+  {
+    "id": "d70fd740-21c8-4508-ad00-8fb43c5cc96b",
+    "name": "Johari Bazaar",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.923,
+      "lng": 75.826
+    },
+    "timeToSpend": 2,
+    "openingTime": "10:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Shopping",
+    "description": "A historic market renowned for exquisite jewelry, gemstones, and traditional Rajasthani crafts.",
+    "rating": 4.3,
+    "popularity": 9
+  }
+]

@@ -196,7 +196,21 @@ export default function ItineraryPanel() {
                                                             <span style={{ fontWeight: 600, fontSize: 13, color: '#10b981' }}>
                                                                 {item.notes || '🍽️'} {rest.name}
                                                             </span>
-                                                            <div style={{ fontSize: 11, color: '#6b6b99', marginTop: 2 }}>
+                                                            <div style={{ display: 'flex', gap: '6px', marginTop: '4px' }}>
+                                                                {rest.isPureVeg && (
+                                                                    <span style={{ 
+                                                                        fontSize: '10px', padding: '2px 6px', borderRadius: '4px',
+                                                                        background: 'rgba(16,185,129,0.1)', color: '#10b981', border: '1px solid rgba(16,185,129,0.3)'
+                                                                    }}>🟢 Pure Veg</span>
+                                                                )}
+                                                                {rest.hasJainFood && (
+                                                                    <span style={{ 
+                                                                        fontSize: '10px', padding: '2px 6px', borderRadius: '4px',
+                                                                        background: 'rgba(245,158,11,0.1)', color: '#f59e0b', border: '1px solid rgba(245,158,11,0.3)'
+                                                                    }}>🔶 Jain Food</span>
+                                                                )}
+                                                            </div>
+                                                            <div style={{ fontSize: 11, color: '#6b6b99', marginTop: 4 }}>
                                                                 {rest.cuisine} · ₹{rest.avgCostForTwo} for two · {item.startTime}–{item.endTime}
                                                             </div>
                                                         </div>

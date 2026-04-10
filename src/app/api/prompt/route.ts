@@ -22,10 +22,10 @@ export async function POST(request: NextRequest) {
         const body: PromptRequest = await request.json();
         const { prompt } = body;
 
-        const systemMessage = `
+const systemMessage = `
 You are an AI assistant for a trip planning app.
 Detect the user's intent from their prompt and output a JSON object with three keys:
-- action: One of ['add_place', 'remove_place', 'change_budget', 'change_hours', 'category_swap', 'update_preferences', 'generic']
+- action: One of ['add_place', 'remove_place', 'change_budget', 'change_hours', 'category_swap', 'update_preferences', 'filter_restaurants', 'generic']
 - params: An object containing relevant parameters based on the action. For instance:
     - add_place: { placeName: string, dayNumber?: string }
     - remove_place: { placeName: string }
@@ -33,6 +33,7 @@ Detect the user's intent from their prompt and output a JSON object with three k
     - change_hours: { hours: string }
     - category_swap: { removeCategory: string, addCategory: string }
     - update_preferences: { preference: string }
+    - filter_restaurants: { dietaryFilter: 'veg' | 'jain' | 'clear' } // Action to filter dietary
 - response: A friendly string response to show the user acknowledging their request.
 
 Respond ONLY with valid JSON, nothing else.`;

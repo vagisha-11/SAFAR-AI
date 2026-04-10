@@ -128,6 +128,9 @@ function calculateDurationMin(start: string, end: string): number {
 
 export async function executeAgentC(body: AgentCInput) {
     const { dayPlans, unselectedSpots, agentData, tripInput, localities } = body;
+    const travelers = tripInput.travelers || 1;
+    const roomsNeeded = Math.ceil(travelers / 2);
+    const cabsNeeded = Math.ceil(travelers / 4);
 
     const totalDays = dayPlans.length;
     const budget = allocateBudget(tripInput.budget, totalDays, localities);
@@ -214,7 +217,7 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
             return {
                 classId: `hotel_${loc.locality}`,
                 data: h,
-                cost: h.pricePerNight * loc.days,
+                cost: h.pricePerNight * loc.days * roomsNeeded,
                 utility: scaledUtility,
                 type: 'hotel',
             };
@@ -233,7 +236,7 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
             .map(f => ({
                 classId: 'outbound',
                 data: f,
-                cost: f.price,
+                cost: f.price * travelers,
                 utility: (20 - (calculateDurationMin(f.departureTime, f.arrivalTime) / 60)) * 10,
                 type: 'flight' as const,
             })),
@@ -242,7 +245,7 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
             .map(t => ({
                 classId: 'outbound',
                 data: t,
-                cost: t.price,
+                cost: t.price * travelers,
                 utility: (40 - (calculateDurationMin(t.departureTime, t.arrivalTime) / 60)) * 5,
                 type: 'train' as const,
             })),
@@ -256,7 +259,7 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
             .map(f => ({
                 classId: 'return',
                 data: f,
-                cost: f.price,
+                cost: f.price * travelers,
                 utility: (20 - (calculateDurationMin(f.departureTime, f.arrivalTime) / 60)) * 10,
                 type: 'flight' as const,
             })),
@@ -265,7 +268,7 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
             .map(t => ({
                 classId: 'return',
                 data: t,
-                cost: t.price,
+                cost: t.price * travelers,
                 utility: (40 - (calculateDurationMin(t.departureTime, t.arrivalTime) / 60)) * 5,
                 type: 'train' as const,
             })),
@@ -284,7 +287,7 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
         const mckpOptions: MCKPItem[] = options.map(opt => ({
             classId: `transit_${idx}`,
             data: opt,
-            cost: opt.price,
+            cost: opt.type === 'cab' ? opt.price * cabsNeeded : opt.price * travelers,
             utility: opt.type === 'cab' ? 150 : (opt.type === 'shared_taxi' ? 80 : 30),
             type: 'transit' as const,
         }));
@@ -339,7 +342,7 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
                 if (item.type === 'spot') {
                     const s = item.data as Spot;
                     prunable.push({
-                        dayIdx: dIdx, itemIdx: iIdx, cost: s.entryFee,
+                        dayIdx: dIdx, itemIdx: iIdx, cost: s.entryFee * travelers,
                         utility: s.popularity + s.rating * 5,
                     });
                 }
@@ -387,7 +390,7 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
                     type: 'intercity', data: option, startTime: '09:00', endTime: '13:00',
                     notes: `🛑 Transit: ${option.modeName}`,
                 }],
-                totalCost: option.price,
+                totalCost: option.type === 'cab' ? option.price * cabsNeeded : option.price * travelers,
             };
         }
     });
@@ -450,13 +453,14 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
             if (hotelA && hotelB && hotelA.id !== hotelB.id && hotelA.location && hotelB.location) {
                 // Generate genuine P2P option with correct numeric formatting, mode, and emojis
                 const p2pData = await getP2PCost(hotelA.location, hotelB.location, hotelA.name, hotelB.name, 'cab');
+                const finalP2PCost = p2pData.cost * cabsNeeded;
                 
                 const startTime = currDay.items[0]?.startTime || '09:00';
                 const endTime = addMinutes(startTime, p2pData.duration);
                 
                 const p2pTransfer = {
                     type: 'p2p',
-                    data: p2pData,
+                    data: { ...p2pData, cost: finalP2PCost }, // Keep visual cost tied to total grouping cost
                     startTime,
                     endTime,
                     notes: `🏨 Transfer from ${hotelA.name} to ${hotelB.name}`
@@ -469,7 +473,7 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
                 });
                 
                 currDay.items.unshift(p2pTransfer as any);
-                currDay.totalCost += p2pData.cost;
+                currDay.totalCost += finalP2PCost;
             }
         }
     }
@@ -487,11 +491,11 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
                 notes: `✈️ Outbound: ${data.source} → ${data.destination}`,
             }, ...filteredItems],
             totalCost: filteredItems.reduce((sum, it) => {
-                if (it.type === 'spot') return sum + (it.data as any).entryFee;
-                if (it.type === 'restaurant') return sum + (it.data as any).avgCostForTwo / 2;
-                if (it.type === 'p2p') return sum + (it.data as any).cost;
+                if (it.type === 'spot') return sum + (it.data as any).entryFee * travelers;
+                if (it.type === 'restaurant') return sum + ((it.data as any).avgCostForTwo / 2) * travelers;
+                if (it.type === 'p2p') return sum + (it.data as any).cost; // Note: P2P inside items is already modified with travelers mult by AgentB
                 return sum;
-            }, 0) + data.price,
+            }, 0) + data.price * travelers,
         };
     }
 
@@ -509,11 +513,11 @@ ${JSON.stringify(enhancedHotels.map(h => ({ id: h.id, name: h.name, starRating: 
                 notes: `✈️ Return: ${data.source} → ${data.destination}`,
             }],
             totalCost: filteredItems.reduce((sum, it) => {
-                if (it.type === 'spot') return sum + (it.data as any).entryFee;
-                if (it.type === 'restaurant') return sum + (it.data as any).avgCostForTwo / 2;
+                if (it.type === 'spot') return sum + (it.data as any).entryFee * travelers;
+                if (it.type === 'restaurant') return sum + ((it.data as any).avgCostForTwo / 2) * travelers;
                 if (it.type === 'p2p') return sum + (it.data as any).cost;
                 return sum;
-            }, 0) + data.price,
+            }, 0) + data.price * travelers,
         };
     }
 
@@ -591,7 +595,7 @@ ${JSON.stringify(dayPlan.items, null, 2)}`;
     const finalCost = updatedDayPlans.reduce((sum, d) => sum + d.totalCost, 0) +
         Object.entries(selectedHotels).reduce((sum, [locName, h]) => {
             const loc = nonTransitLocalities.find(l => l.locality === locName);
-            return sum + (h.pricePerNight * (loc?.days || 0));
+            return sum + (h.pricePerNight * (loc?.days || 0) * roomsNeeded);
         }, 0);
 
     return {

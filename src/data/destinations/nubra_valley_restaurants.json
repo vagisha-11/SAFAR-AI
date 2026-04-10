@@ -1,0 +1,172 @@
+[
+  {
+    "id": "0db89117-9b8e-42cf-9f7a-23799fcba704",
+    "name": "The Grand Dragon Ladakh",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.927,
+      "lng": 77.6147
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 1200,
+    "rating": 4.5,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "09b60a8c-e140-48c6-a80b-a7eac7c35dff",
+    "name": "Nubra Dining Hall",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.9678,
+      "lng": 77.6231
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.2,
+    "openingTime": "07:30",
+    "closingTime": "21:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "8199c5ef-a149-413c-99c2-90ff29ae8adb",
+    "name": "Lchang Nang Retreat Restaurant",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.9485,
+      "lng": 77.6159
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 900,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "265c7df1-ccca-4273-bb64-ca42bf8dd649",
+    "name": "Sumoor Cafe",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.9632,
+      "lng": 77.629
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4,
+    "openingTime": "09:00",
+    "closingTime": "20:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "b9a63907-242b-4b33-a25e-81896b3d1267",
+    "name": "Turtuk Village Food Stall",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 35.0483,
+      "lng": 77.5787
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 300,
+    "rating": 4.4,
+    "openingTime": "10:00",
+    "closingTime": "18:00",
+    "mealType": "lunch",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "1e1a8f91-095d-4067-a4cb-8737382823d1",
+    "name": "Nubra Valley Restaurant",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.9331,
+      "lng": 77.6155
+    },
+    "cuisine": "North Indian, Tibetan",
+    "avgCostForTwo": 800,
+    "rating": 4.1,
+    "openingTime": "07:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "54f8064c-3da6-4ac9-99f8-b9a16812e3ab",
+    "name": "Deskit Cafe",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.9275,
+      "lng": 77.615
+    },
+    "cuisine": "Cafe, Local Authentic",
+    "avgCostForTwo": 650,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "19:00",
+    "mealType": "breakfast",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "ba8491e4-0912-4f4b-ad87-aae66a080120",
+    "name": "Hunder Sand Dunes Food Stalls",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.9178,
+      "lng": 77.6202
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 350,
+    "rating": 4,
+    "openingTime": "11:00",
+    "closingTime": "20:00",
+    "mealType": "lunch",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "8093bc25-d2f9-468a-9262-cf7a3d631822",
+    "name": "Yarab Tso Restaurant",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.94,
+      "lng": 77.61
+    },
+    "cuisine": "Local Authentic, Tibetan",
+    "avgCostForTwo": 750,
+    "rating": 4.2,
+    "openingTime": "07:30",
+    "closingTime": "21:30",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "0e1fab4b-b328-4106-a0a8-64c129dd3b54",
+    "name": "Sumur Village Eatery",
+    "address": "Nubra Valley",
+    "location": {
+      "lat": 34.96,
+      "lng": 77.62
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 500,
+    "rating": 4.1,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  }
+]

@@ -1,0 +1,342 @@
+[
+  {
+    "id": "7ebc28be-0d32-4c5c-b346-8db447c5243a",
+    "name": "Abbey Falls",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4245,
+      "lng": 75.7281
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "17:30",
+    "entryFee": 15,
+    "category": "Nature",
+    "description": "A stunning waterfall surrounded by lush coffee plantations and spice estates, perfect for nature lovers and photographers.",
+    "rating": 4.5,
+    "popularity": 10
+  },
+  {
+    "id": "0d7a8b5f-396c-4355-b48e-17c1efb5d481",
+    "name": "Raja's Seat",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.424,
+      "lng": 75.737
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 10,
+    "category": "Landmark",
+    "description": "A scenic viewpoint offering breathtaking sunset views over the misty hills and valleys of Madikeri.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "1ab33460-0638-4965-a070-36080d6874df",
+    "name": "Madikeri Fort",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4248,
+      "lng": 75.7355
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Heritage",
+    "description": "A historic fort built in the 17th century with a museum showcasing the region's history and culture.",
+    "rating": 4.3,
+    "popularity": 9
+  },
+  {
+    "id": "ab6540b7-82e5-4717-8cd8-5868b076c0c2",
+    "name": "Omkareshwara Temple",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4262,
+      "lng": 75.7378
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A unique temple blending Gothic and Islamic architectural styles, dedicated to Lord Shiva.",
+    "rating": 4.4,
+    "popularity": 8
+  },
+  {
+    "id": "1f149566-0e44-4f5b-af31-240522422620",
+    "name": "Nisargadhama",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.414,
+      "lng": 75.705
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 30,
+    "category": "Nature",
+    "description": "A beautiful island formed by the river Cauvery, featuring bamboo groves, deer park, and elephant rides.",
+    "rating": 4.6,
+    "popularity": 9
+  },
+  {
+    "id": "4f231b80-27b1-484f-802c-9da2158feea3",
+    "name": "Tadiandamol Peak",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.3667,
+      "lng": 75.6983
+    },
+    "timeToSpend": 4,
+    "openingTime": "05:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "The highest peak in Coorg, offering challenging treks and panoramic views of the Western Ghats.",
+    "rating": 4.8,
+    "popularity": 9
+  },
+  {
+    "id": "51471c5c-8266-4606-8cdf-7902578ee70e",
+    "name": "Chelavara Falls",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.365,
+      "lng": 75.7
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 10,
+    "category": "Nature",
+    "description": "A hidden waterfall surrounded by dense forest, ideal for peaceful picnics and nature walks.",
+    "rating": 4.4,
+    "popularity": 7
+  },
+  {
+    "id": "e1640172-729d-44f6-a0ac-68a0171b05bb",
+    "name": "Bhagamandala Temple",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.345,
+      "lng": 75.72
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A sacred pilgrimage site where three rivers meet, known for its tranquil atmosphere and religious significance.",
+    "rating": 4.5,
+    "popularity": 8
+  },
+  {
+    "id": "bc112770-a66a-4ea0-af30-a3ee4d1b6cc9",
+    "name": "Coffee Plantation Tour",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.42,
+      "lng": 75.73
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "16:00",
+    "entryFee": 100,
+    "category": "Cultural",
+    "description": "Experience the local coffee culture with guided tours through aromatic plantations and tasting sessions.",
+    "rating": 4.7,
+    "popularity": 9
+  },
+  {
+    "id": "34fb5d20-0fb1-4390-89ef-12329f6bd257",
+    "name": "Mallalli Falls",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.35,
+      "lng": 75.69
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A spectacular waterfall cascading down rocky cliffs, surrounded by dense forest and trekking trails.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "598c89dc-7c84-4f67-bef3-f5f4ab35eefa",
+    "name": "Brahmagiri Wildlife Sanctuary",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.35,
+      "lng": 75.68
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Adventure",
+    "description": "A protected forest reserve home to diverse flora and fauna, ideal for wildlife enthusiasts and trekkers.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "75f381a7-29b7-45d5-a370-47046ccc3d97",
+    "name": "Pushpagiri Wildlife Sanctuary",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4,
+      "lng": 75.67
+    },
+    "timeToSpend": 3.5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 50,
+    "category": "Adventure",
+    "description": "A biodiversity hotspot with rare species, offering trekking routes and bird watching opportunities.",
+    "rating": 4.8,
+    "popularity": 8
+  },
+  {
+    "id": "1e7a35e1-be69-490d-8472-db1faa5860f5",
+    "name": "Chelavara Falls Viewpoint",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.366,
+      "lng": 75.701
+    },
+    "timeToSpend": 0.75,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 5,
+    "category": "Nature",
+    "description": "A lesser-known viewpoint providing stunning vistas of Chelavara Falls and surrounding greenery.",
+    "rating": 4.3,
+    "popularity": 6
+  },
+  {
+    "id": "56f4b082-e4e1-4966-b6d5-676459eb8ad6",
+    "name": "Madikeri Market",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4243,
+      "lng": 75.735
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "07:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A bustling local market offering fresh produce, spices, handmade crafts, and Coorgi delicacies.",
+    "rating": 4.4,
+    "popularity": 9
+  },
+  {
+    "id": "1fa02377-420d-4d8c-8342-2acdee892046",
+    "name": "Iruppu Falls",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.15,
+      "lng": 75.9
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A sacred waterfall located in a forested area, popular for its scenic beauty and religious significance.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "de146490-2faf-4c14-a714-5470e96e16c9",
+    "name": "Chelavara Coffee Estate Homestay",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.3655,
+      "lng": 75.7005
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "Experience authentic Coorg hospitality and coffee culture with a stay or visit to this charming estate homestay.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "8dd6f291-bd11-41b5-b58f-2ddea9bcae62",
+    "name": "Kote Betta",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.43,
+      "lng": 75.74
+    },
+    "timeToSpend": 3,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A hilltop trek leading to ancient fort ruins, offering panoramic views of Madikeri and surrounding hills.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "6315ea46-42bf-4bb7-ad44-2b6b4a14fcc2",
+    "name": "Chelavara Coffee Museum",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.366,
+      "lng": 75.7005
+    },
+    "timeToSpend": 1,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Cultural",
+    "description": "A small museum showcasing the history and process of coffee cultivation in Coorg with interactive exhibits.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "ff05aa94-a9cf-4c95-aec7-f81ee8108090",
+    "name": "Mandalpatti Viewpoint",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.4,
+      "lng": 75.75
+    },
+    "timeToSpend": 2,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 20,
+    "category": "Nature",
+    "description": "A scenic hilltop viewpoint accessible by jeep, offering sweeping views of the Western Ghats and valleys.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "bbabe35e-c92e-4904-9dce-124e4c960ddf",
+    "name": "Chelavara Spice Plantation",
+    "address": "Madikeri",
+    "location": {
+      "lat": 12.3652,
+      "lng": 75.6998
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "16:00",
+    "entryFee": 30,
+    "category": "Cultural",
+    "description": "Explore aromatic spice gardens with guided tours explaining the cultivation of pepper, cardamom, and vanilla.",
+    "rating": 4.5,
+    "popularity": 7
+  }
+]

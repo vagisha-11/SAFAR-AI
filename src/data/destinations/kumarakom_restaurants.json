@@ -1,0 +1,172 @@
+[
+  {
+    "id": "50bf354f-2956-4d62-a09d-bfb64dc5380d",
+    "name": "The Zuri Kumarakom Kerala Resort & Spa - Cayenne",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.5851,
+      "lng": 76.4993
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 2500,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "22:30",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "a781bda8-1619-4eae-b1de-cad72847ed92",
+    "name": "Tharavadu Restaurant",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.5857,
+      "lng": 76.4987
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 1200,
+    "rating": 4.5,
+    "openingTime": "11:00",
+    "closingTime": "21:30",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "fa55f70d-f4af-495a-8d93-fbf0a05db28c",
+    "name": "Fort House Restaurant",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.5843,
+      "lng": 76.4999
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 1500,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "d12c416b-de43-4c42-af3e-e25b96fd4b52",
+    "name": "Coffee Temple",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.5865,
+      "lng": 76.5005
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 500,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "18:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "624283c2-d0f6-4612-b51d-140dda702ff0",
+    "name": "Kumarakom Lake Resort - The Black Pepper",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.5839,
+      "lng": 76.4982
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 3000,
+    "rating": 4.8,
+    "openingTime": "12:30",
+    "closingTime": "22:30",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "d6115c59-7f74-4bf9-8bea-a2777ebfcd10",
+    "name": "Mullapanthal",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.587,
+      "lng": 76.4978
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 700,
+    "rating": 4.2,
+    "openingTime": "10:00",
+    "closingTime": "20:00",
+    "mealType": "lunch",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "6c9186b4-a3e8-4a27-adef-67205919a80c",
+    "name": "Cafe Coffee Day Kumarakom",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.585,
+      "lng": 76.501
+    },
+    "cuisine": "Cafe",
+    "avgCostForTwo": 400,
+    "rating": 4,
+    "openingTime": "07:30",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "2b8568b3-5258-4cb3-a652-88c946424ce6",
+    "name": "The Rice Boat - Kumarakom Lake Resort",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.584,
+      "lng": 76.498
+    },
+    "cuisine": "Seafood",
+    "avgCostForTwo": 2800,
+    "rating": 4.7,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "7436f89e-8f50-4a1e-86a6-3df37eeb534d",
+    "name": "Kumarakom Bakery & Restaurant",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.5862,
+      "lng": 76.4995
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.1,
+    "openingTime": "07:00",
+    "closingTime": "21:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "097dcaf6-e264-4649-b159-af3d3fa5f599",
+    "name": "Backwater Cafe",
+    "address": "Kumarakom",
+    "location": {
+      "lat": 9.5858,
+      "lng": 76.5002
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 900,
+    "rating": 4.4,
+    "openingTime": "09:00",
+    "closingTime": "20:00",
+    "mealType": "lunch",
+    "isPureVeg": true,
+    "hasJainFood": true
+  }
+]

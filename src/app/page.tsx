@@ -106,6 +106,7 @@ export default function Home() {
             departureDate: tripData.departureDate,
             returnDate: tripData.returnDate,
             budget: tripData.budget,
+            travelers: tripData.travelers || 1,
             preferences: tripData.preferences || [],
             maxHoursPerDay: 14,
             isDateFlexible: tripData.isDateFlexible || false,

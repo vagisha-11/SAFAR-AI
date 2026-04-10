@@ -1,0 +1,342 @@
+[
+  {
+    "id": "7e3a5997-4272-452a-9633-47d6f536e056",
+    "name": "Leh Palace",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1616,
+      "lng": 77.5856
+    },
+    "timeToSpend": 2.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 50,
+    "category": "Heritage",
+    "description": "A 17th-century royal palace offering panoramic views of Leh and showcasing Tibetan architecture and artifacts.",
+    "rating": 4.7,
+    "popularity": 10
+  },
+  {
+    "id": "4b3de9b8-3f42-4c70-8180-6d0106d20d65",
+    "name": "Shanti Stupa",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1661,
+      "lng": 77.5852
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "A white-domed Buddhist stupa on a hilltop providing spectacular sunrise and sunset views over Leh.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "2fd47e20-386a-42b7-ad61-c09e364c7fb4",
+    "name": "Hemis Monastery",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1478,
+      "lng": 77.5821
+    },
+    "timeToSpend": 3,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Temple",
+    "description": "The largest and wealthiest monastery in Ladakh, famous for its annual Hemis festival and intricate murals.",
+    "rating": 4.9,
+    "popularity": 9
+  },
+  {
+    "id": "4af9e0e8-b28c-4515-9d6f-c853b050449e",
+    "name": "Nubra Valley",
+    "address": "Leh",
+    "location": {
+      "lat": 34.8765,
+      "lng": 77.7043
+    },
+    "timeToSpend": 5,
+    "openingTime": "06:00",
+    "closingTime": "20:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A stunning valley with sand dunes, double-humped Bactrian camels, and ancient monasteries nestled between mountains.",
+    "rating": 4.8,
+    "popularity": 10
+  },
+  {
+    "id": "8090c0dc-5f3c-4efc-8159-b5d889880731",
+    "name": "Pangong Lake",
+    "address": "Leh",
+    "location": {
+      "lat": 33.996,
+      "lng": 78.4029
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A breathtaking high-altitude lake famous for its changing hues and serene surroundings, straddling India and China.",
+    "rating": 4.9,
+    "popularity": 10
+  },
+  {
+    "id": "5d9fa08f-5c27-4dfd-b7e6-24de99cca363",
+    "name": "Magnetic Hill",
+    "address": "Leh",
+    "location": {
+      "lat": 34.184,
+      "lng": 77.578
+    },
+    "timeToSpend": 0.5,
+    "openingTime": "00:00",
+    "closingTime": "23:59",
+    "entryFee": 0,
+    "category": "Landmark",
+    "description": "A gravity-defying slope where vehicles appear to roll uphill, a quirky natural optical illusion near Leh.",
+    "rating": 4.3,
+    "popularity": 8
+  },
+  {
+    "id": "6c8eef4a-93f6-4a9f-98d3-95d0543d5298",
+    "name": "Spituk Monastery",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1523,
+      "lng": 77.5715
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Temple",
+    "description": "A 11th-century Buddhist monastery perched on a hill offering peaceful ambiance and panoramic views of the Indus valley.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "2617d51b-04dd-491e-b44a-91929b19cd83",
+    "name": "Stok Palace Museum",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1502,
+      "lng": 77.615
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "16:00",
+    "entryFee": 40,
+    "category": "Heritage",
+    "description": "A royal museum displaying Ladakhi artifacts, traditional costumes, and the history of the Stok royal family.",
+    "rating": 4.5,
+    "popularity": 7
+  },
+  {
+    "id": "d203a4c5-f5b5-4dc1-a515-e915c3ab1d33",
+    "name": "Tsemo Gompa",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1619,
+      "lng": 77.585
+    },
+    "timeToSpend": 1,
+    "openingTime": "07:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Temple",
+    "description": "An ancient monastery atop a hill with a golden statue of Maitreya Buddha and stunning views over Leh.",
+    "rating": 4.6,
+    "popularity": 8
+  },
+  {
+    "id": "6d08e7c8-9e3f-4081-98b9-c2f8eaaa5a23",
+    "name": "Chadar Trek (Frozen Zanskar River)",
+    "address": "Leh",
+    "location": {
+      "lat": 33.89,
+      "lng": 77.25
+    },
+    "timeToSpend": 5,
+    "openingTime": "06:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A thrilling winter trek over the frozen Zanskar River offering unique icy landscapes and local nomadic culture.",
+    "rating": 4.9,
+    "popularity": 9
+  },
+  {
+    "id": "00f572a5-7066-434e-98d7-269dfcab4495",
+    "name": "Hall of Fame Museum",
+    "address": "Leh",
+    "location": {
+      "lat": 34.161,
+      "lng": 77.5855
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "09:00",
+    "closingTime": "17:00",
+    "entryFee": 30,
+    "category": "Cultural",
+    "description": "A museum dedicated to the Indian Army’s history in Ladakh, showcasing military artifacts and stories of valor.",
+    "rating": 4.7,
+    "popularity": 8
+  },
+  {
+    "id": "67bb45ba-5813-4b92-9789-98530bb07672",
+    "name": "Suru Valley",
+    "address": "Leh",
+    "location": {
+      "lat": 34.3,
+      "lng": 76.9
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A lush green valley with rivers, waterfalls, and traditional villages, perfect for nature lovers and trekkers.",
+    "rating": 4.7,
+    "popularity": 7
+  },
+  {
+    "id": "4e814b4e-2aa9-402e-9021-275a453a3a98",
+    "name": "Alchi Monastery",
+    "address": "Leh",
+    "location": {
+      "lat": 34.13,
+      "lng": 77.32
+    },
+    "timeToSpend": 2,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 40,
+    "category": "Temple",
+    "description": "One of the oldest monasteries in Ladakh, renowned for its exquisite 11th-century wall paintings and sculptures.",
+    "rating": 4.8,
+    "popularity": 8
+  },
+  {
+    "id": "7623653e-8873-430f-ae56-bcb7593b21ea",
+    "name": "Stok Kangri Trek",
+    "address": "Leh",
+    "location": {
+      "lat": 34.1,
+      "lng": 77.65
+    },
+    "timeToSpend": 5,
+    "openingTime": "05:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Adventure",
+    "description": "A challenging high-altitude trek to the summit of Stok Kangri peak, offering breathtaking Himalayan vistas.",
+    "rating": 4.9,
+    "popularity": 9
+  },
+  {
+    "id": "f385001b-a4d4-459a-a1a3-106641011c18",
+    "name": "Phyang Monastery",
+    "address": "Leh",
+    "location": {
+      "lat": 34.15,
+      "lng": 77.55
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Temple",
+    "description": "A peaceful 16th-century monastery known for its beautiful murals and annual Phyang Tsedup festival.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "65dcf423-e226-44ae-b675-ab8073273479",
+    "name": "Tso Moriri Lake",
+    "address": "Leh",
+    "location": {
+      "lat": 33.08,
+      "lng": 78.27
+    },
+    "timeToSpend": 4,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A remote high-altitude lake surrounded by snow-capped mountains, home to migratory birds and nomadic herders.",
+    "rating": 4.8,
+    "popularity": 8
+  },
+  {
+    "id": "5ca23a65-460a-4571-8da6-0c949ad46c55",
+    "name": "Choglamsar Village",
+    "address": "Leh",
+    "location": {
+      "lat": 34.14,
+      "lng": 77.59
+    },
+    "timeToSpend": 2,
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "entryFee": 0,
+    "category": "Cultural",
+    "description": "A traditional Ladakhi village offering authentic local experiences, handicrafts, and homestays.",
+    "rating": 4.5,
+    "popularity": 6
+  },
+  {
+    "id": "1c359588-818c-427c-8afa-3fbb119e741a",
+    "name": "Zanskar Valley",
+    "address": "Leh",
+    "location": {
+      "lat": 33.6,
+      "lng": 76.9
+    },
+    "timeToSpend": 5,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "A remote and rugged valley known for its dramatic landscapes, ancient monasteries, and adventurous treks.",
+    "rating": 4.9,
+    "popularity": 9
+  },
+  {
+    "id": "71675056-8a4b-4796-8641-bd31c3dfcf7c",
+    "name": "Basgo Monastery",
+    "address": "Leh",
+    "location": {
+      "lat": 34.2,
+      "lng": 77.55
+    },
+    "timeToSpend": 1.5,
+    "openingTime": "08:00",
+    "closingTime": "17:00",
+    "entryFee": 20,
+    "category": "Temple",
+    "description": "An ancient monastery and fortress offering insight into Ladakh’s history and stunning views of the Indus River.",
+    "rating": 4.6,
+    "popularity": 7
+  },
+  {
+    "id": "905919f5-4d9c-4711-8710-f0d20d2794c5",
+    "name": "Sangam Point",
+    "address": "Leh",
+    "location": {
+      "lat": 34.17,
+      "lng": 77.58
+    },
+    "timeToSpend": 1,
+    "openingTime": "06:00",
+    "closingTime": "19:00",
+    "entryFee": 0,
+    "category": "Nature",
+    "description": "The confluence of the Indus and Zanskar rivers, a serene spot perfect for photography and nature walks.",
+    "rating": 4.4,
+    "popularity": 7
+  }
+]

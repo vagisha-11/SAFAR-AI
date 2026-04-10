@@ -1,0 +1,172 @@
+[
+  {
+    "id": "06c9cddc-3e58-418e-be34-4a6b17f9ea74",
+    "name": "Chotiwala Restaurant",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1033,
+      "lng": 78.2922
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 400,
+    "rating": 4.3,
+    "openingTime": "07:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "c7c8cb24-9644-47c2-a6e0-f3a7794203ee",
+    "name": "Pure Soul Cafe & Organic Kitchen",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1091,
+      "lng": 78.2679
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.6,
+    "openingTime": "08:00",
+    "closingTime": "20:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "7890ec0b-249e-4a53-bee6-49c348c697c4",
+    "name": "The Sitting Elephant",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1095,
+      "lng": 78.2671
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 900,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "22:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "4e35a6f7-8e67-477d-be11-43417f03c960",
+    "name": "Little Buddha Cafe",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1039,
+      "lng": 78.2678
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 800,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "88ad3409-3552-4b31-a348-297fc6df3bad",
+    "name": "Ramana's Organic Cafe",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1102,
+      "lng": 78.2703
+    },
+    "cuisine": "Local Authentic",
+    "avgCostForTwo": 600,
+    "rating": 4.2,
+    "openingTime": "07:30",
+    "closingTime": "21:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "a095de30-519e-4d36-8a88-eb60ce99704c",
+    "name": "Ganga View Cafe",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1035,
+      "lng": 78.267
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 500,
+    "rating": 4.1,
+    "openingTime": "09:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "730e1cd1-779b-440f-9d7a-0550fcbb2015",
+    "name": "Cafe Delmar",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1047,
+      "lng": 78.2685
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 750,
+    "rating": 4.3,
+    "openingTime": "08:00",
+    "closingTime": "23:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "f5c9284c-7694-4540-a8ec-f61818f83d79",
+    "name": "Chandini Cafe",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.1028,
+      "lng": 78.269
+    },
+    "cuisine": "Street Food",
+    "avgCostForTwo": 250,
+    "rating": 4,
+    "openingTime": "10:00",
+    "closingTime": "20:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "e3673761-5b73-4423-9b40-10c9e6a69e31",
+    "name": "Pure Veg Restaurant",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.105,
+      "lng": 78.27
+    },
+    "cuisine": "North Indian",
+    "avgCostForTwo": 450,
+    "rating": 4.2,
+    "openingTime": "11:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "39949d8b-f370-49da-84c4-0bd341a12196",
+    "name": "The Beatles Cafe",
+    "address": "Rishikesh",
+    "location": {
+      "lat": 30.108,
+      "lng": 78.2695
+    },
+    "cuisine": "Continental",
+    "avgCostForTwo": 850,
+    "rating": 4.5,
+    "openingTime": "08:00",
+    "closingTime": "23:00",
+    "mealType": "any",
+    "isPureVeg": false,
+    "hasJainFood": false
+  }
+]

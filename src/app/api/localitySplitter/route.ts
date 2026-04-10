@@ -162,9 +162,11 @@ JSON Schema:
     }
 
     // Transparent budget advisory (non-blocking)
-    const estimatedCostPerDay = 4500;
+    const estimatedCostPerDayPerPerson = 4500;
+    const travelers = budget ? body.travelers || 1 : 1;
+    const estimatedCostPerDay = estimatedCostPerDayPerPerson * travelers;
     const budgetWarning = budget && (budget / totalDays) < estimatedCostPerDay
-        ? `Your budget of ₹${budget.toLocaleString('en-IN')} for ${totalDays} days is tight (~₹${Math.floor(budget / totalDays).toLocaleString('en-IN')}/day). We'll design a smart, cost-effective plan!`
+        ? `Your budget of ₹${budget.toLocaleString('en-IN')} for ${travelers} traveler(s) over ${totalDays} days is tight (~₹${Math.floor(budget / totalDays).toLocaleString('en-IN')}/day total). We'll design a smart, cost-effective plan!`
         : null;
 
     return { totalDays, source, destination, split, budgetWarning, durationAdvisory };

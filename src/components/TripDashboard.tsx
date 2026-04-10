@@ -107,14 +107,14 @@ export default function TripDashboard({ isChatCollapsed, setIsChatCollapsed, cha
                 {/* Budget summary */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
                     <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontSize: 11, color: '#6b6b99', textTransform: 'uppercase', letterSpacing: 1 }}>Budget</div>
+                        <div style={{ fontSize: 11, color: '#6b6b99', textTransform: 'uppercase', letterSpacing: 1 }}>Total Budget</div>
                         <div style={{ fontSize: 14, fontWeight: 600, color: '#818cf8' }}>
                             ₹{tripInput.budget.toLocaleString('en-IN')}
                         </div>
                     </div>
                     <div style={{ width: 1, height: 32, background: 'rgba(99,102,241,0.15)' }} />
                     <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontSize: 11, color: '#6b6b99', textTransform: 'uppercase', letterSpacing: 1 }}>Cost</div>
+                        <div style={{ fontSize: 11, color: '#6b6b99', textTransform: 'uppercase', letterSpacing: 1 }}>Cost for {tripInput.travelers || 1}</div>
                         <div style={{
                             fontSize: 14, fontWeight: 600,
                             color: currentCost > tripInput.budget ? '#ef4444' : '#10b981',

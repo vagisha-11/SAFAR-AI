@@ -1,0 +1,172 @@
+[
+  {
+    "id": "c0230b2e-dda5-4219-9886-a4297219aae6",
+    "name": "Suvarna Mahal - Rambagh Palace",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9124,
+      "lng": 75.8234
+    },
+    "cuisine": "Rajasthani, North Indian",
+    "avgCostForTwo": 4000,
+    "rating": 4.7,
+    "openingTime": "12:30",
+    "closingTime": "15:30",
+    "mealType": "lunch",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "b3aafe74-0504-4c1e-bb2a-047636fae5d2",
+    "name": "Laxmi Misthan Bhandar (LMB)",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9195,
+      "lng": 75.8199
+    },
+    "cuisine": "Local Authentic, North Indian",
+    "avgCostForTwo": 600,
+    "rating": 4.3,
+    "openingTime": "07:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "2d66e327-1cf4-4c31-8a22-163017540160",
+    "name": "Chokhi Dhani",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.8499,
+      "lng": 75.8022
+    },
+    "cuisine": "Rajasthani, North Indian",
+    "avgCostForTwo": 1500,
+    "rating": 4.5,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": true,
+    "hasJainFood": true
+  },
+  {
+    "id": "85b3334b-113b-4dbb-9139-08c052ed08bf",
+    "name": "Tapri Central",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9111,
+      "lng": 75.7874
+    },
+    "cuisine": "Cafe, North Indian",
+    "avgCostForTwo": 500,
+    "rating": 4.4,
+    "openingTime": "08:00",
+    "closingTime": "23:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "6eb0f482-e48d-4c74-b050-15604b9c660d",
+    "name": "Rawat Mishthan Bhandar",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.919,
+      "lng": 75.819
+    },
+    "cuisine": "Local Authentic, Street Food",
+    "avgCostForTwo": 300,
+    "rating": 4.2,
+    "openingTime": "10:00",
+    "closingTime": "22:00",
+    "mealType": "any",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "d9ea009f-601e-4835-8e67-553e0aee4f19",
+    "name": "The Forresta Kitchen & Bar",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9128,
+      "lng": 75.787
+    },
+    "cuisine": "Continental, North Indian",
+    "avgCostForTwo": 1200,
+    "rating": 4.3,
+    "openingTime": "11:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  },
+  {
+    "id": "a4948448-e241-4545-86f8-73aadb3bb6ad",
+    "name": "Anokhi Cafe",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9167,
+      "lng": 75.818
+    },
+    "cuisine": "Cafe, Continental",
+    "avgCostForTwo": 700,
+    "rating": 4.5,
+    "openingTime": "08:00",
+    "closingTime": "21:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "46d04c90-d88a-4cf7-bc72-0bf92498f1c1",
+    "name": "Niros",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.912,
+      "lng": 75.823
+    },
+    "cuisine": "North Indian, Mughlai",
+    "avgCostForTwo": 1500,
+    "rating": 4.4,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": true
+  },
+  {
+    "id": "b3c4fc79-cbff-4cf5-9bb1-b7e4087889c2",
+    "name": "Rawat Kachori",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9192,
+      "lng": 75.8193
+    },
+    "cuisine": "Street Food, Local Authentic",
+    "avgCostForTwo": 150,
+    "rating": 4.1,
+    "openingTime": "06:00",
+    "closingTime": "14:00",
+    "mealType": "breakfast",
+    "isPureVeg": true,
+    "hasJainFood": false
+  },
+  {
+    "id": "8cb64227-baf3-4e8d-a413-0a861c03adfa",
+    "name": "Bar Palladio Jaipur",
+    "address": "Jaipur",
+    "location": {
+      "lat": 26.9126,
+      "lng": 75.8237
+    },
+    "cuisine": "Italian, Continental",
+    "avgCostForTwo": 3500,
+    "rating": 4.6,
+    "openingTime": "12:00",
+    "closingTime": "23:00",
+    "mealType": "dinner",
+    "isPureVeg": false,
+    "hasJainFood": false
+  }
+]
