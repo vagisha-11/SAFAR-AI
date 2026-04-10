@@ -484,9 +484,6 @@ export default function MapView() {
                             <div style={{ display: 'flex', gap: 8 }}>
                                 <span style={{ fontSize: 11, color: '#f59e0b' }}>{'⭐'.repeat(Math.round(popupInfo.data.rating))}</span>
                             </div>
-                            <div style={{ display: 'flex', gap: 8 }}>
-                                <span style={{ fontSize: 11, color: '#f59e0b' }}>{'⭐'.repeat(Math.round(popupInfo.data.rating))}</span>
-                            </div>
                             <div style={{ display: 'flex', gap: 6, marginTop: 8 }}>
                                 <button
                                     onClick={() => setPhotoViewerPlace(popupInfo.data.name)}
